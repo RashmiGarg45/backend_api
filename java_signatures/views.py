@@ -2,6 +2,7 @@ from django.http import HttpResponse
 import subprocess
 import json
 from subprocess import STDOUT, PIPE
+import sqlite3
 
 def get_signtaure(request):
     data = json.loads(request.body)
@@ -19,3 +20,17 @@ def execute_java(java_file, argument_list=[]):
     if stderr:
         print (stderr)
     return stdout
+
+
+def get_tatapalette_orders(request):
+    conn = sqlite3.connect(r"C:\Users\vinod\Downloads\backend_api\backend_api\db.sqlite3")
+    cursor = conn.cursor()    
+    
+    data = cursor.execute('''SELECT * FROM TATAPALETTE WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
+    order_id = "-1"
+    for row in data:
+        order_id = row[2]
+        cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE serial={}'.format(row[0]))  
+        conn.commit()
+        break
+    return HttpResponse(order_id)
