@@ -25,12 +25,15 @@ def execute_java(java_file, argument_list=[]):
 def get_tatapalette_orders(request):
     conn = sqlite3.connect(r".\db.sqlite3")
     cursor = conn.cursor()    
+    request_data = json.loads(request.body)
+    request_type = request_data.get("request_type")
     
     data = cursor.execute('''SELECT * FROM TATAPALETTE WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
     order_id = "-1"
     for row in data:
         order_id = row[2]
-        cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE serial={}'.format(row[0]))  
-        conn.commit()
+        if request_type != "test":
+            cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE serial={}'.format(row[0]))  
+            conn.commit()
         break
     return HttpResponse(order_id)
