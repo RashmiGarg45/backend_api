@@ -37,3 +37,14 @@ def get_tatapalette_orders(request):
             conn.commit()
         break
     return HttpResponse(order_id)
+
+def get_available_orders_count(request):
+    conn = sqlite3.connect(r".\db.sqlite3")
+    cursor = conn.cursor()    
+    
+    data = cursor.execute('''SELECT COUNT(*) FROM TATAPALETTE WHERE NOT OrderId_Status=1''')
+    count = "-1"
+    for row in data:
+        count = row[0]
+        break
+    return HttpResponse(count)
