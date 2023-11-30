@@ -45,21 +45,19 @@ if __name__ == "__main__":
 
     conn = sqlite3.connect(".\db.sqlite3")
     cursor = conn.cursor()
-    cursor.execute("DROP TABLE IF EXISTS TATAPALETTE")
-    table = """ CREATE TABLE TATAPALETTE (
-            serial INTEGER PRIMARY KEY AUTOINCREMENT,
-            AWB VARCHAR(255) NOT NULL,
-            OrderId VARCHAR(255) NOT NULL,
-            ShipmentUploadTime DATETIME,
-            ShipmentOrigin VARCHAR(255),
-            ShipmentStatus VARCHAR(255),
-            ShipmentWeight VARCHAR(255),
-            OrderId_Status INTEGER DEFAULT 0
-        ); """
+    # cursor.execute("DROP TABLE IF EXISTS TATAPALETTE")
+    # table = """ CREATE TABLE TATAPALETTE (
+    #         serial INTEGER PRIMARY KEY AUTOINCREMENT,
+    #         AWB VARCHAR(255) NOT NULL,
+    #         OrderId VARCHAR(255) NOT NULL,
+    #         ShipmentUploadTime DATETIME,
+    #         ShipmentOrigin VARCHAR(255),
+    #         ShipmentStatus VARCHAR(255),
+    #         ShipmentWeight VARCHAR(255),
+    #         OrderId_Status INTEGER DEFAULT 0
+    #     ); """
     
-    cursor.execute(table)
-
-    exit()
+    # cursor.execute(table)
     already_present_awbs = []
     current_awbs = []
     successful_awbs = []

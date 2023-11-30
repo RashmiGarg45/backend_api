@@ -23,7 +23,7 @@ def execute_java(java_file, argument_list=[]):
 
 
 def get_tatapalette_orders(request):
-    conn = sqlite3.connect(r"C:\Users\vinod\Downloads\backend_api\backend_api\db.sqlite3")
+    conn = sqlite3.connect(r".\db.sqlite3")
     cursor = conn.cursor()    
     
     data = cursor.execute('''SELECT * FROM TATAPALETTE WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
