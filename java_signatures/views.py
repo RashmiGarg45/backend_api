@@ -28,10 +28,7 @@ def get_tatapalette_orders(request):
     
     data = cursor.execute('''SELECT * FROM TATAPALETTE WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
     order_id = "-1"
-    print (data)
     for row in data:
-        print ("inside")
-        print (row)
         order_id = row[2]
         cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE serial={}'.format(row[0]))  
         conn.commit()
