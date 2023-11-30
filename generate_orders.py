@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     conn = sqlite3.connect(".\db.sqlite3")
     cursor = conn.cursor()
-    
+
     # cursor.execute("DROP TABLE IF EXISTS TATAPALETTE")
     # table = """ CREATE TABLE TATAPALETTE (
     #         serial INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,7 +68,8 @@ if __name__ == "__main__":
         already_present_awbs.append(str(row[0]))
 
     for j in range(1000):
-        awb = "2073" + str(random.randint(100000, 999999))
+        print (j)
+        awb = "2073" + str(random.randint(100000, 999999))        
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
             if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
@@ -76,6 +77,7 @@ if __name__ == "__main__":
             current_awbs.append(awb)
 
     for j in range(1000):
+        print (j)
         awb = "7046" + str(random.randint(100000, 999999))
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
