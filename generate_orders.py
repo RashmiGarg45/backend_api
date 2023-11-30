@@ -66,7 +66,7 @@ if __name__ == "__main__":
     for row in data: 
         already_present_awbs.append(str(row[0]))
 
-    for j in range(250):
+    for j in range(1000):
         awb = "2073" + str(random.randint(100000, 999999))
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
@@ -74,7 +74,7 @@ if __name__ == "__main__":
                 successful_awbs.append(resp)				
             current_awbs.append(awb)
 
-    for j in range(250):
+    for j in range(1000):
         awb = "7046" + str(random.randint(100000, 999999))
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
@@ -82,8 +82,6 @@ if __name__ == "__main__":
                 successful_awbs.append(resp)				
             current_awbs.append(awb)
 
-    print (successful_awbs)
-	
     for resp in successful_awbs:
         print ("found")
         cursor.execute('''INSERT INTO TATAPALETTE (AWB, OrderId, ShipmentUploadTime, ShipmentOrigin, ShipmentStatus, ShipmentWeight, OrderId_Status)
