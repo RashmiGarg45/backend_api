@@ -43,7 +43,8 @@ def convert(date_time):
 
 if __name__ == "__main__":
 
-    conn = sqlite3.connect(".\db.sqlite3")
+    # conn = sqlite3.connect(".\db.sqlite3")
+    conn = sqlite3.connect("/backend_api/db.sqlite3")
     cursor = conn.cursor()
 
     # cursor.execute("DROP TABLE IF EXISTS TATAPALETTE")
@@ -73,7 +74,8 @@ if __name__ == "__main__":
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
             if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                successful_awbs.append(resp)				
+                if not "order cancelled" in status_remark.lower():
+                    successful_awbs.append(resp)				
             current_awbs.append(awb)
 
     for j in range(1000):
@@ -82,7 +84,8 @@ if __name__ == "__main__":
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
             if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                successful_awbs.append(resp)				
+                if not "order cancelled" in status_remark.lower():
+                    successful_awbs.append(resp)
             current_awbs.append(awb)
 
     for resp in successful_awbs:
