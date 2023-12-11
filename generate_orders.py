@@ -43,7 +43,7 @@ def convert(date_time):
 
 if __name__ == "__main__":
 
-    conn = sqlite3.connect(".\db.sqlite3")
+    conn = sqlite3.connect("/home/ubuntu/backend_api/db.sqlite3")
     cursor = conn.cursor()
 
     # cursor.execute("DROP TABLE IF EXISTS TATAPALETTE")
