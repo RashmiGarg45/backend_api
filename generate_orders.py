@@ -42,6 +42,21 @@ def convert(date_time):
  
     return datetime_str
 
+def add_rows(successful_awbs):
+     for resp in successful_awbs:
+        print ("found")
+        cursor.execute('''INSERT INTO TATAPALETTE (AWB, OrderId, ShipmentUploadTime, ShipmentOrigin, ShipmentStatus, ShipmentWeight, OrderId_Status)
+                  VALUES ('{}', '{}', '{}', '{}', '{}', '{}', {})'''.format(
+                      resp.get("AWB"),
+                      resp.get("orderid"),
+                      convert(resp.get("Upload_Time")),
+                      resp.get("origin"),
+                      resp.get("status_remark"),
+                      resp.get("actual_weight"),
+                      0 
+                  ))
+        conn.commit()
+
 if __name__ == "__main__":
 
     conn = sqlite3.connect(".\db.sqlite3")
@@ -93,8 +108,8 @@ if __name__ == "__main__":
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
                                     upload_time = convert(resp.get("Upload_Time"))
-                                    if current_month != upload_time.month:
-                                        break
+                            if current_month != upload_time.month:
+                                break
                         awb = temp_awb
                         print ("inside decreasing")
                         while True:     
@@ -107,11 +122,17 @@ if __name__ == "__main__":
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
                                     upload_time = convert(resp.get("Upload_Time"))
-                                    if current_month != upload_time.month:
-                                        break
+                            if current_month != upload_time.month:
+                                break
+
+                        add_rows(successful_awbs)
+                        successful_awbs = []
 
                         print ("end")
 
+    add_rows(successful_awbs)
+    successful_awbs = []
+    
     for j in range(1000):
         print (j)
         awb = "7046" + str(random.randint(100000, 999999))
@@ -138,8 +159,8 @@ if __name__ == "__main__":
                                         current_awbs.append(awb)
 
                                     upload_time = convert(resp.get("Upload_Time"))
-                                    if current_month != upload_time.month:
-                                        break
+                            if current_month != upload_time.month:
+                                break
                         awb = temp_awb
                         print ("inside decreasing")
                         while True:                            
@@ -152,24 +173,14 @@ if __name__ == "__main__":
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
                                     upload_time = convert(resp.get("Upload_Time"))
-                                    if current_month != upload_time.month:
-                                        break
+                            if current_month != upload_time.month:
+                                break
 
+                        add_rows(successful_awbs)
+                        successful_awbs = []
                         print ("end")
 
-    for resp in successful_awbs:
-        print ("found")
-        cursor.execute('''INSERT INTO TATAPALETTE (AWB, OrderId, ShipmentUploadTime, ShipmentOrigin, ShipmentStatus, ShipmentWeight, OrderId_Status)
-                  VALUES ('{}', '{}', '{}', '{}', '{}', '{}', {})'''.format(
-                      resp.get("AWB"),
-                      resp.get("orderid"),
-                      convert(resp.get("Upload_Time")),
-                      resp.get("origin"),
-                      resp.get("status_remark"),
-                      resp.get("actual_weight"),
-                      0 
-                  ))
-        conn.commit()
+    add_rows(successful_awbs)
 
     output = []
     data=cursor.execute('''SELECT * FROM TATAPALETTE''') 
