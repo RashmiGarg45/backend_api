@@ -85,26 +85,28 @@ if __name__ == "__main__":
                         print ("inside increasing")
                         while True:                            
                             awb += 1
-                            resp = get_tracking_data(str(awb))
-                            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                                if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
-                                    successful_awbs.append(resp)
-                                    current_awbs.append(awb)
-                                upload_time = convert(resp.get("Upload_Time"))
-                                if current_month != upload_time.month:
-                                    break
+                            if str(awb) not in current_awbs:
+                                resp = get_tracking_data(str(awb))
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
+                                    if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
+                                        successful_awbs.append(resp)
+                                        current_awbs.append(awb)
+                                    upload_time = convert(resp.get("Upload_Time"))
+                                    if current_month != upload_time.month:
+                                        break
                         awb = temp_awb
                         print ("inside decreasing")
                         while True:                            
-                            awb += 1
-                            resp = get_tracking_data(str(awb))
-                            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                                if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
-                                    successful_awbs.append(resp)
-                                    current_awbs.append(awb)
-                                upload_time = convert(resp.get("Upload_Time"))
-                                if current_month != upload_time.month:
-                                    break
+                            awb -= 1
+                            if str(awb) not in current_awbs:
+                                resp = get_tracking_data(str(awb))
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
+                                    if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
+                                        successful_awbs.append(resp)
+                                        current_awbs.append(awb)
+                                    upload_time = convert(resp.get("Upload_Time"))
+                                    if current_month != upload_time.month:
+                                        break
 
                         print ("end")
 
@@ -125,27 +127,29 @@ if __name__ == "__main__":
                         print ("inside increasing")
                         while True:                            
                             awb += 1
-                            resp = get_tracking_data(str(awb))
-                            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                                if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
-                                    successful_awbs.append(resp)
-                                    current_awbs.append(awb)
+                            if str(awb) not in current_awbs:
+                                resp = get_tracking_data(str(awb))
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
+                                    if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
+                                        successful_awbs.append(resp)
+                                        current_awbs.append(awb)
 
-                                upload_time = convert(resp.get("Upload_Time"))
-                                if current_month != upload_time.month:
-                                    break
+                                    upload_time = convert(resp.get("Upload_Time"))
+                                    if current_month != upload_time.month:
+                                        break
                         awb = temp_awb
                         print ("inside decreasing")
                         while True:                            
-                            awb += 1
-                            resp = get_tracking_data(str(awb))
-                            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
-                                if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
-                                    successful_awbs.append(resp)
-                                    current_awbs.append(awb)
-                                upload_time = convert(resp.get("Upload_Time"))
-                                if current_month != upload_time.month:
-                                    break
+                            awb -= 1
+                            if str(awb) not in current_awbs:
+                                resp = get_tracking_data(str(awb))
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
+                                    if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
+                                        successful_awbs.append(resp)
+                                        current_awbs.append(awb)
+                                    upload_time = convert(resp.get("Upload_Time"))
+                                    if current_month != upload_time.month:
+                                        break
 
                         print ("end")
 
