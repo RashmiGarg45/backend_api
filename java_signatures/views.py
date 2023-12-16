@@ -33,7 +33,7 @@ def get_tatapalette_orders(request):
     for row in data:
         order_id = row[2]
         if request_type != "test":
-            cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE serial={}'.format(row[0]))  
+            cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE OrderId={}'.format(order_id))  
             conn.commit()
         break
     return HttpResponse(order_id)
