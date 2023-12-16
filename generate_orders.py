@@ -23,7 +23,6 @@ def get_tracking_data(order_id):
     end_index = javascript_data.rfind(']')
     json_data = javascript_data[start_index:end_index + 1]
     parsed_data = json.loads(json_data)
-    print (parsed_data)
     resp = {"orderid": "", "actual_weight":"", "origin": "", "Upload_Time": "", "status_remark": ""}
     for s in parsed_data:
         for key in resp:
