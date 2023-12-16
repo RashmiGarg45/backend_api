@@ -23,7 +23,8 @@ def get_tracking_data(order_id):
     end_index = javascript_data.rfind(']')
     json_data = javascript_data[start_index:end_index + 1]
     parsed_data = json.loads(json_data)
-    resp = {"orderid": "", "actual_weight":"", "origin": "", "Upload_Time": "", "status_remark": "", "status": ""}
+    print (parsed_data)
+    resp = {"orderid": "", "actual_weight":"", "origin": "", "Upload_Time": "", "status_remark": ""}
     for s in parsed_data:
         for key in resp:
             try:
@@ -89,7 +90,7 @@ if __name__ == "__main__":
         awb = "2073" + str(random.randint(100000, 999999))        
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
-            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                 if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                     successful_awbs.append(resp)
                     current_awbs.append(awb)	
@@ -103,7 +104,7 @@ if __name__ == "__main__":
                             awb += 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
-                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                                     if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
@@ -117,7 +118,7 @@ if __name__ == "__main__":
                             awb -= 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
-                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                                     if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
@@ -138,7 +139,7 @@ if __name__ == "__main__":
         awb = "7046" + str(random.randint(100000, 999999))
         if awb not in already_present_awbs and awb not in current_awbs:
             resp = get_tracking_data(awb)
-            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+            if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                 if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                     successful_awbs.append(resp)
                     current_awbs.append(awb)
@@ -153,7 +154,7 @@ if __name__ == "__main__":
                             awb += 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
-                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                                     if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
@@ -168,7 +169,7 @@ if __name__ == "__main__":
                             print (awb)
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
-                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129") and resp.get("status")!="AWB_NOT_FOUND":
+                                if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
                                     if resp.get("status_remark") and not "order cancelled" in resp.get("status_remark").lower():
                                         successful_awbs.append(resp)
                                         current_awbs.append(awb)
