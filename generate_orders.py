@@ -83,7 +83,8 @@ if __name__ == "__main__":
                         awb = int(awb)
                         temp_awb = awb
                         print ("inside increasing")
-                        while True:                            
+                        while True:   
+                            print (awb)                         
                             awb += 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
@@ -96,7 +97,8 @@ if __name__ == "__main__":
                                         break
                         awb = temp_awb
                         print ("inside decreasing")
-                        while True:                            
+                        while True:     
+                            print (awb)                       
                             awb -= 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
@@ -125,7 +127,8 @@ if __name__ == "__main__":
                         awb = int(awb)
                         temp_awb = awb
                         print ("inside increasing")
-                        while True:                            
+                        while True:         
+                            print (awb)                   
                             awb += 1
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
@@ -141,6 +144,7 @@ if __name__ == "__main__":
                         print ("inside decreasing")
                         while True:                            
                             awb -= 1
+                            print (awb)
                             if str(awb) not in current_awbs:
                                 resp = get_tracking_data(str(awb))
                                 if "bhiwandi" in resp.get("origin").lower() and len(resp.get("orderid"))==9 and resp.get("orderid").startswith("129"):
