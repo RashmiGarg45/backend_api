@@ -8,7 +8,7 @@ from sqlite3 import Error
 from bs4 import BeautifulSoup
 
 def get_tracking_data(order_id):
-    url = "https://ecomexpress.in/tracking/?awb_field=2073753475"#+ order_id
+    url = "https://ecomexpress.in/tracking/?awb_field="+ order_id
     resp = requests.get(url)
     html = resp.text
     soup = BeautifulSoup(html, "html.parser")
