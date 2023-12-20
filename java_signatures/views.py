@@ -57,15 +57,15 @@ def get_available_orders_count(request):
 def add_install_count(request):
     request_data = json.loads(request.body)
     campaign_name = request_data.get("name")
-    channel = request_data.get("channel")
-    network = request_data.get("network")
-    offer_id = request_data.get("offer_id")
+    channel = request_data.get("channel", "*")
+    network = request_data.get("network", "*")
+    offer_id = request_data.get("offer_id", "*")
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()
 
-        created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S")
+        created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
         cursor.execute('''INSERT INTO check_event_count (created_at, campaign_name, channel, network, offer_id)
                         VALUES ('{}', '{}', '{}', '{}', '{}')'''.format(created_at, campaign_name, channel, network, offer_id))
         conn.commit()
@@ -86,9 +86,9 @@ def is_event_allowed(request):
     campaign_name = request_data.get("name")
     event_type = request_data.get("event_type")
     current_date = request_data.get("current_date")
-    channel = request_data.get("channel")
-    network = request_data.get("network")
-    offer_id = request_data.get("offer_id")
+    channel = request_data.get("channel", "*")
+    network = request_data.get("network", "*")
+    offer_id = request_data.get("offer_id", "*")
     required_percentage = request_data.get("required_percentage")
 
     try:
@@ -126,9 +126,9 @@ def update_event_count(request):
     campaign_name = request_data.get("name")
     created_at = request_data.get("created_at")
     event_origin = request_data.get("event_origin")
-    channel = request_data.get("channel")
-    network = request_data.get("network")
-    offer_id = request_data.get("offer_id")
+    channel = request_data.get("channel", "*")
+    network = request_data.get("network", "*")
+    offer_id = request_data.get("offer_id", "*")
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
