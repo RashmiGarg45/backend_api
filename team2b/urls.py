@@ -2,5 +2,7 @@ from django.urls import path
 from team2b import views
 
 urlpatterns = [
-    path("insertid/", views.OfferViewApi.as_view(), name="insert_id"),
+    path("indigo", views.Indigo.as_view(), name="cru_pnr"),
+    path("igp", views.IGP.as_view(), name="cru_igp"),
+    
 ]
