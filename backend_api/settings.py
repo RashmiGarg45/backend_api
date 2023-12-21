@@ -13,6 +13,9 @@ from pathlib import Path
 import os
 import dotenv
 dotenv.load_dotenv()
+
+import pymysql
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#bx$ivmdn5a!p!a%n1c)58)uqck-yk!*oi2a*j$hdz762m77-)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -38,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'java_signatures.apps.JavaSignaturesConfig'
+    'rest_framework',
+    'java_signatures.apps.JavaSignaturesConfig',
+    'team2b.apps.Team2BConfig'
 ]
 
 MIDDLEWARE = [
