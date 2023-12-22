@@ -53,7 +53,7 @@ class Indigo(APIView):
 
     def post(self, request):
         set_used = request.data.get('used')
-        pnr = request.data.get('used')
+        pnr = request.data.get('pnr')
         if set_used:
             query = IndigoScriptOrderIds.objects.filter(id=pnr)
             if query:
