@@ -55,15 +55,9 @@ class Indigo(APIView):
         set_used = request.data.get('used')
         pnr = request.data.get('pnr')
         if set_used:
-            query = IndigoScriptOrderIds.objects.filter(id=pnr)
-            if query:
-                query.used_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                query.save()
+            query = IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         else:
-            query = IndigoScriptOrderIds.objects.filter(id=pnr)
-            if query:
-                query.used_at = None
-                query.save()
+            query = IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=None)
         return Response({
             'used':set_used,
             'pnr':pnr
