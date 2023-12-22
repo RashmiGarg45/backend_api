@@ -81,13 +81,15 @@ class Indigo(APIView):
         channel = request.data.get('channel')
         offer_id = request.data.get('offer_id')
         network_name = request.data.get('network_name')
-        custom_text = {
-            'channel':channel,
-            'offer_id':offer_id,
-            'network_name':network_name,
-        }
         if set_used:
-            query = IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),custom_text=custom_text)
+            query = IndigoScriptOrderIds.objects.filter(id=pnr).first()
+            custom_text = query.extra_details
+            custom_text.update({
+                'channel':channel,
+                'offer_id':offer_id,
+                'network_name':network_name,
+            })
+            IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),extra_details=custom_text)
         else:
             query = IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=None)
         return Response({
