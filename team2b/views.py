@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds
+from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds
 
 from datetime import datetime,timedelta
 import json
@@ -11,12 +11,11 @@ from django.db.models import Count
 
 class Indigo(APIView):
     def put(self, request):
-        data = IndigoScriptOrderIds.objects.filter(id=request.GET.get('id'))
         query = IndigoScriptOrderIds()
         query.campaign_name = request.data.get('camp_name','indigomoddteam2modd')
         query.id = request.data.get('pnr')
         query.type = request.data.get('id_type','pnr')
-        query.departure_date=datetime.strptime(request.data.get('departure_date'),'%Y-%m-%d %H:%M:%S')
+        query.departure_date=request.data.get('departure_date')
         query.booking_date=request.data.get('booking_date')
         query.used_at = None
         query.extra_details = request.data.get('other_details','{}')
@@ -112,4 +111,46 @@ class IGP(APIView):
             query.used_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             query.save()
         return Response({
+        })
+
+
+class Mcdelivery(APIView):
+    def put(self, request):
+        query = McdeliveryScriptOrderIds()
+        query.campaign_name = request.data.get('camp_name','mcdeliverymodd')
+        query.id = request.data.get('order_id')
+        invoice_date = request.data.get('invoice_date')
+        if request.data.get('invoice_time'):
+            invoice_date += ' '+request.data.get('invoice_time')
+        query.invoice_date_time = invoice_date
+        query.address=request.data.get('address')
+        query.gross_amount=request.data.get('gross_amount')
+        query.member_name=request.data.get('member_name')
+        query.used_at = None
+        query.extra_details = request.data.get('other_details',{})
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        invoice_date_time=datetime.now().strftime('%Y-%m-%d')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = McdeliveryScriptOrderIds.objects.filter(used_at=None,invoice_date_time__gte=invoice_date_time).order_by('-invoice_date_time').first()
+        
+        data = {
+                'order_id':query.id,
+                'invoice_date':query.invoice_date_time.strftime('%Y-%m-%d'),
+                'address':query.address,
+                'gross_amount':query.gross_amount,
+                'member_name':query.member_name,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details,
+        }
+        if setUsed:
+            query = McdeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
         })
