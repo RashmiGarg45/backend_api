@@ -8,6 +8,21 @@ import json
 
 from django.db.models import Count
 
+class GenericScriptFunctions(APIView):
+    def get(self, request):
+        tablesDict = {
+            'mcdelivery':McdeliveryScriptOrderIds,
+            'indigo':IndigoScriptOrderIds
+        }
+        table = request.GET.get('table')
+        today = datetime.now().strftime('%Y-%m-%d')
+        used_count = tablesDict[table].objects.filter(used_at__contains=str(today)).aggregate(Count('used_at')).get('used_at__count')
+        remaining_count = len(tablesDict[table].objects.filter(used_at=None))
+        return Response({
+            'used_count':used_count,
+            'remaining_count':remaining_count
+        })
+
 
 class Indigo(APIView):
     def put(self, request):
