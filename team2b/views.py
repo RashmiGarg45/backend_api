@@ -2,9 +2,12 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds
-# Create your views here.
+
 from datetime import datetime,timedelta
 import json
+
+from django.db.models import Count
+
 
 class Indigo(APIView):
     def put(self, request):
@@ -23,32 +26,39 @@ class Indigo(APIView):
 
     def get(self, request):
         departure_date=datetime.now().strftime('%Y-%m-%d')
-        setUsed = request.GET.get('set_used')
+        setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
-        query = IndigoScriptOrderIds.objects.filter(used_at=None,departure_date__gte=departure_date).order_by('-booking_date').first()
-        extra_details = query.extra_details
-        
-        data = {
-                "booking_date": query.booking_date, 
-                "usedAt": query.used_at, 
-                "departure_date": query.departure_date.strftime('%Y-%m-%d %H:%M:%S'), 
-                "transaction_id": extra_details.get('transaction_id'),#[{"value": "113097902036", "key": "ReferenceNo"}], 
-                "email": extra_details.get('email'),#"nrd981@gmail.com", 
-                "flight_reference": extra_details.get('flight_reference'),#"20231227 6E5265 GWLBOM", 
-                "departure_city": extra_details.get('departure_city'),#"GWL", 
-                "pnr": query.id, 
-                "fare": extra_details.get('fare'),#"6031.0", 
-                "company": extra_details.get('company'),#null, 
-                "arrival_date": extra_details.get('arrival_date'),#"2023-12-27T16:15:00", 
-                "used": True if query.used_at else False,#false, 
-                "arrival_city": extra_details.get('arrival_city'),#"BOM", 
-                "pushed_at": query.created_at
-         }
-        if setUsed:
-            query = IndigoScriptOrderIds.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        pnr_used = IndigoScriptOrderIds.objects.filter(used_at__contains=str(departure_date)).aggregate(Count('used_at'))
+        if pnr_used:
+            pnr_used = pnr_used.get('used_at__count')
+
+        data = {}
+        if pnr_used<=100:
+            query = IndigoScriptOrderIds.objects.filter(used_at=None,departure_date__gte=departure_date).order_by('-booking_date').first()
+            extra_details = query.extra_details
+            
+            data = {
+                    "booking_date": query.booking_date, 
+                    "usedAt": query.used_at, 
+                    "departure_date": query.departure_date.strftime('%Y-%m-%d %H:%M:%S'), 
+                    "transaction_id": extra_details.get('transaction_id'),#[{"value": "113097902036", "key": "ReferenceNo"}], 
+                    "email": extra_details.get('email'),#"nrd981@gmail.com", 
+                    "flight_reference": extra_details.get('flight_reference'),#"20231227 6E5265 GWLBOM", 
+                    "departure_city": extra_details.get('departure_city'),#"GWL", 
+                    "pnr": query.id, 
+                    "fare": extra_details.get('fare'),#"6031.0", 
+                    "company": extra_details.get('company'),#null, 
+                    "arrival_date": extra_details.get('arrival_date'),#"2023-12-27T16:15:00", 
+                    "used": True if query.used_at else False,#false, 
+                    "arrival_city": extra_details.get('arrival_city'),#"BOM", 
+                    "pushed_at": query.created_at
+            }
+            if setUsed:
+                query = IndigoScriptOrderIds.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
-            'body':data
+            'body':data,
+            'pnr_used':pnr_used+1
         })
 
     def post(self, request):
