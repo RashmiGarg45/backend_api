@@ -32,7 +32,7 @@ class Indigo(APIView):
         data = {
                 "booking_date": query.booking_date, 
                 "usedAt": query.used_at, 
-                "departure_date": query.departure_date, 
+                "departure_date": query.departure_date.strftime('%Y-%m-%d %H:%M:%S'), 
                 "transaction_id": extra_details.get('transaction_id'),#[{"value": "113097902036", "key": "ReferenceNo"}], 
                 "email": extra_details.get('email'),#"nrd981@gmail.com", 
                 "flight_reference": extra_details.get('flight_reference'),#"20231227 6E5265 GWLBOM", 
