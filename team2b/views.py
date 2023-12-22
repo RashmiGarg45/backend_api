@@ -46,17 +46,27 @@ class Indigo(APIView):
                 "pushed_at": query.created_at
          }
         if setUsed:
-            query = IndigoScriptOrderIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = IndigoScriptOrderIds.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data
         })
 
     def post(self, request):
-        query = IndigoScriptOrderIds.objects.filter(id=request.GET.get('id'))
-        if query:
-            query.used_at = datetime.now()
-            query.save()
+        set_used = request.data.get('used')
+        pnr = request.data.get('used')
+        if set_used:
+            query = IndigoScriptOrderIds.objects.filter(id=pnr)
+            if query:
+                query.used_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                query.save()
+        else:
+            query = IndigoScriptOrderIds.objects.filter(id=pnr)
+            if query:
+                query.used_at = None
+                query.save()
         return Response({
+            'used':set_used,
+            'pnr':pnr
         })
 
 class IGP(APIView):
@@ -95,7 +105,7 @@ class IGP(APIView):
     def post(self, request):
         query = IgpScriptOrderIds.objects.filter(id=request.GET.get('id'))
         if query:
-            query.used_at = datetime.now()
+            query.used_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             query.save()
         return Response({
         })
