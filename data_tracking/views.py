@@ -10,24 +10,25 @@ def pad(s):
 
 @api_view(['POST', 'GET'])
 def tracking(request, package_name, path):
-    d = json.loads(request.body)
-    data = []
-    for i in bytearray(d):
+    if request.body:
+        d = json.loads(request.body)
+        data = []
+        for i in bytearray(d):
 
-        if i > 127:
-            data.append(-256+i)
-        else:
-            data.append(i)	
+            if i > 127:
+                data.append(-256+i)
+            else:
+                data.append(i)	
 
-    key = [100, 45, -19, -50, 81, 127, -26, -20, -98, -35, -61, -99, -10, 78, 70, -83]
-    val = data[-24::]
-    iv = val[:16]
-    key_new = array.array('b', key).tostring()
-    iv_new = array.array('b', iv).tostring()
-    cipher = AES.new(key_new, AES.MODE_CBC, iv_new )
-    data = array.array('b', data).tostring()
-    data = pad(data)	
-    decrypted_text = cipher.decrypt( data )
-    print (decrypted_text)
+        key = [100, 45, -19, -50, 81, 127, -26, -20, -98, -35, -61, -99, -10, 78, 70, -83]
+        val = data[-24::]
+        iv = val[:16]
+        key_new = array.array('b', key).tostring()
+        iv_new = array.array('b', iv).tostring()
+        cipher = AES.new(key_new, AES.MODE_CBC, iv_new )
+        data = array.array('b', data).tostring()
+        data = pad(data)	
+        decrypted_text = cipher.decrypt( data )
+        print (decrypted_text)
 
     return HttpResponse(json.dumps({"package_name": package_name, "path": path}))
