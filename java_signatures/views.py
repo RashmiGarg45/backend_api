@@ -157,7 +157,7 @@ def get_univest_orders(request):
         data = cursor.fetchall()
         order_id = data[0][2]
 
-        if request_type == "test":
+        if request_type != "test":
             used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE univest_orderIds SET status=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
