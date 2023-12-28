@@ -91,9 +91,26 @@ class McdeliveryScriptOrderIds(models.Model):
     member_name = models.CharField(max_length=100,blank=True, null=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default=dict)
-
+    
     class Meta:
         indexes = [
             models.Index(fields=['id']),
             models.Index(fields=['invoice_date_time'])
+        ]
+
+class LightInTheBox(models.Model):
+    """
+    This is the base model for all the models.
+    It has all the requried and common fields in our custom models.
+    """
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
         ]

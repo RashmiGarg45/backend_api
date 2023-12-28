@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds
+from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox
 
 from datetime import datetime,timedelta
 import json
@@ -12,7 +12,8 @@ class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
             'mcdelivery':McdeliveryScriptOrderIds,
-            'indigo':IndigoScriptOrderIds
+            'indigo':IndigoScriptOrderIds,
+            'lightinthebox':LightInTheBox
         }
         table = request.GET.get('table')
         today = datetime.now().strftime('%Y-%m-%d')
@@ -138,7 +139,6 @@ class IGP(APIView):
         return Response({
         })
 
-
 class Mcdelivery(APIView):
     def put(self, request):
         query = McdeliveryScriptOrderIds()
@@ -158,12 +158,11 @@ class Mcdelivery(APIView):
         })
 
     def get(self, request):
-        invoice_date_time=datetime.now().strftime('%Y-%m-%d')
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = McdeliveryScriptOrderIds.objects.filter(used_at=None,invoice_date_time__gte=invoice_date_time).order_by('-invoice_date_time').first()
+        query = McdeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time').first()
         
         data = {
                 'order_id':query.id,
@@ -176,6 +175,32 @@ class Mcdelivery(APIView):
         }
         if setUsed:
             query = McdeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+class LightInTheBoxAPI(APIView):
+    def put(self, request):
+        query = LightInTheBox()
+        query.campaign_name = request.data.get('camp_name','lightintheboxmodd')
+        query.id = request.data.get('order_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = LightInTheBox.objects.filter(used_at=None).order_by('-created_at').first()
+        
+        data = {
+                'order_id':query.id,
+        }
+        if setUsed:
+            query = LightInTheBox.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
