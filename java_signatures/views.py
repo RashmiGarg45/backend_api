@@ -32,12 +32,12 @@ def get_tatapalette_orders(request):
     request_data = json.loads(request.body)
     request_type = request_data.get("request_type")
     
-    data = cursor.execute('''SELECT * FROM TATAPALETTE WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
+    data = cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 ORDER BY ShipmentUploadTime DESC, OrderId ASC''')
     order_id = "-1"
     for row in data:
         order_id = row[2]
         if request_type != "test":
-            cursor.execute('UPDATE TATAPALETTE SET OrderId_Status=1 WHERE OrderId={}'.format(order_id))  
+            cursor.execute('UPDATE tatapalette_orderIds SET OrderId_Status=1 WHERE OrderId={}'.format(order_id))  
             conn.commit()
         break
     return HttpResponse(order_id)
@@ -46,7 +46,7 @@ def get_available_orders_count(request):
     conn = sqlite3.connect(r".\db.sqlite3")
     cursor = conn.cursor()    
     
-    data = cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM TATAPALETTE WHERE NOT OrderId_Status=1''')
+    data = cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1''')
     count = "-1"
     for row in data:
         count = row[0]
@@ -188,3 +188,69 @@ def get_univest_orders_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
+def get_zalora_orders_count(request):
+    request_data = json.loads(request.body)
+    country = request_data.get("country")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM zalora_orderIds WHERE NOT isUsed=1 AND country ="{}"'''.format(country))
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
+def get_zalora_orders(request):
+    request_data = json.loads(request.body)
+    country = request_data.get("country")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM zalora_orderIds WHERE NOT isUsed=1 AND country ="{}" ORDER BY order_id ASC'''.format(country))
+        data = cursor.fetchall()
+        order_id = data[0][4]
+
+        cursor.execute('''SELECT * FROM zalora_orderIds WHERE order_id = "{}"'''.format(order_id))
+        data = cursor.fetchall()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def update_zalora_orderid_status(request):
+    request_data = json.loads(request.body)
+    order_id = request_data.get("order_id")
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor() 
+
+        used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+        cursor.execute("UPDATE zalora_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+        conn.commit()
+
+
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message}))

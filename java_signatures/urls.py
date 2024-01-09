@@ -10,4 +10,7 @@ urlpatterns = [
     path("event_allowed/", views.is_event_allowed, name="is_event_allowed"),
     path("get_univest_orders/", views.get_univest_orders, name="get_univest_orders"),
     path("get_univest_orders_count/", views.get_univest_orders_count, name="get_univest_orders_count"),
+    path("get_zalora_orders/", views.get_zalora_orders, name="get_zalora_orders"),
+    path("get_zalora_orders_count/", views.get_zalora_orders_count, name="get_zalora_orders_count"),
+    path("update_zalora_orderid_status/", views.update_zalora_orderid_status, name="update_zalora_orderid_status")
 ]
