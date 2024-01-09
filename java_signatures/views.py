@@ -213,6 +213,7 @@ def get_zalora_orders_count(request):
 def get_zalora_orders(request):
     request_data = json.loads(request.body)
     country = request_data.get("country")
+    user_type = request_data.get("user_type")
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
@@ -225,6 +226,11 @@ def get_zalora_orders(request):
         cursor.execute('''SELECT * FROM zalora_orderIds WHERE order_id = "{}"'''.format(order_id))
         data = cursor.fetchall()
 
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE zalora_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
         response_code = 200
         message = "success"
     except Exception as e:
@@ -234,6 +240,7 @@ def get_zalora_orders(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
 
+@api_view(['POST'])
 def update_zalora_orderid_status(request):
     request_data = json.loads(request.body)
     order_id = request_data.get("order_id")
@@ -242,9 +249,8 @@ def update_zalora_orderid_status(request):
         cursor = conn.cursor() 
 
         used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
-        cursor.execute("UPDATE zalora_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+        cursor.execute("UPDATE zalora_orderIds SET isUsed=0, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
         conn.commit()
-
 
         response_code = 200
         message = "success"
