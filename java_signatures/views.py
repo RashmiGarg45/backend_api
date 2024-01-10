@@ -3,6 +3,7 @@ import subprocess
 import json
 from subprocess import STDOUT, PIPE
 import sqlite3
+import execjs
 import datetime
 import time
 import mysql.connector as mysql
@@ -329,18 +330,18 @@ def ragazzo_signature(request):
     encrypted_string = data.get("encrypted_string")
     decrypted_string = data.get("decrypted_string")
 
-    # try:       
-    if encrypted_string:
-        output = cipher(encrypted_text=encrypted_string)
-    if decrypted_string:
-        output = json.dumps(cipher(decrypted_text=decrypted_string))
+    try:       
+        if encrypted_string:
+            output = cipher(encrypted_text=encrypted_string)
+        if decrypted_string:
+            output = json.dumps(cipher(decrypted_text=decrypted_string))
 
-    response_code = 200
-    message = "success"
+        response_code = 200
+        message = "success"
 
-    # except Exception as e:
-    #     response_code = 500
-    #     message = str(e)
-    #     output = ""
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        output = ""
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": output}))
