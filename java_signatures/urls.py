@@ -12,5 +12,6 @@ urlpatterns = [
     path("get_univest_orders_count/", views.get_univest_orders_count, name="get_univest_orders_count"),
     path("get_zalora_orders/", views.get_zalora_orders, name="get_zalora_orders"),
     path("get_zalora_orders_count/", views.get_zalora_orders_count, name="get_zalora_orders_count"),
-    path("update_zalora_orderid_status/", views.update_zalora_orderid_status, name="update_zalora_orderid_status")
+    path("update_zalora_orderid_status/", views.update_zalora_orderid_status, name="update_zalora_orderid_status"),
+    path("ragazzo_signature/", views.ragazzo_signature, name="ragazzo_signature")
 ]
