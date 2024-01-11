@@ -127,6 +127,7 @@ class DominosIndodeliveryScriptOrderIds(models.Model):
     id = models.CharField(max_length=50,unique=True)
     invoice_date_time = models.DateTimeField(blank=True, null=True)
     address = models.CharField(max_length=500,blank=True, null=True)
+    order_status = models.FloatField(default=0)
     order_type = models.FloatField(default=0)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     
