@@ -208,7 +208,7 @@ class LightInTheBoxAPI(APIView):
 
 class DominosIndo(APIView):
     def put(self, request):
-        query = DominosIndo()
+        query = DominosIndodeliveryScriptOrderIds()
         query.campaign_name = request.data.get('camp_name','dominosindoauto')
         query.id = request.data.get('order_id')
         query.invoice_date_time = request.data.get('order_date_time')
@@ -238,7 +238,7 @@ class DominosIndo(APIView):
                 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = McdeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DominosIndodeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
