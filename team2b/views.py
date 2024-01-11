@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox
+from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds
 
 from datetime import datetime,timedelta
 import json
@@ -162,7 +162,7 @@ class Mcdelivery(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = McdeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time').first()
+        query = McdeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time')[0:50].first()
         
         data = {
                 'order_id':query.id,
@@ -201,6 +201,44 @@ class LightInTheBoxAPI(APIView):
         }
         if setUsed:
             query = LightInTheBox.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+
+class DominosIndo(APIView):
+    def put(self, request):
+        query = DominosIndo()
+        query.campaign_name = request.data.get('camp_name','dominosindoauto')
+        query.id = request.data.get('order_id')
+        query.invoice_date_time = request.data.get('order_date_time')
+        query.address=request.data.get('address')
+        query.order_type=request.data.get('order_type')
+        query.order_status=request.data.get('order_status')
+        query.used_at = None
+        query.extra_details = request.data.get('other_details',{})
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = DominosIndodeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time')[0:50].first()
+        
+        data = {
+                'order_id':query.id,
+                'invoice_date':query.invoice_date_time.strftime('%Y-%m-%d %H:%M:%S'),
+                'address':query.address,
+                'order_status':query.order_status,
+                'order_type':query.order_type,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details,
+        }
+        if setUsed:
+            query = McdeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
