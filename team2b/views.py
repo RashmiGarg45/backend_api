@@ -216,7 +216,6 @@ class DominosIndo(APIView):
         query.order_type=request.data.get('order_type')
         query.order_status=request.data.get('order_status')
         query.used_at = None
-        query.extra_details = request.data.get('other_details',{})
         query.save()
         return Response({
         })
@@ -235,7 +234,6 @@ class DominosIndo(APIView):
                 'order_status':query.order_status,
                 'order_type':query.order_type,
                 'used_at':query.used_at,
-                'extra_details':query.extra_details,
         }
         if setUsed:
             query = DominosIndodeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
