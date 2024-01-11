@@ -222,10 +222,17 @@ class DominosIndo(APIView):
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
+        order_type = request.GET.get('order_type')
+        order_status = request.GET.get('order_status',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = DominosIndodeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time')[0:50].first()
+        filter_dict = {}
+        if order_type:
+            filter_dict['order_type'] = order_type
+        if order_status:
+            filter_dict['order_status'] = order_status
+        query = DominosIndodeliveryScriptOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-invoice_date_time')[0:50].first()
         
         data = {
                 'order_id':query.id,
