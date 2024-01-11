@@ -114,3 +114,24 @@ class LightInTheBox(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class DominosIndodeliveryScriptOrderIds(models.Model):
+    """
+    This is the base model for all the models.
+    It has all the requried and common fields in our custom models.
+    """
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    invoice_date_time = models.DateTimeField(blank=True, null=True)
+    address = models.CharField(max_length=500,blank=True, null=True)
+    order_type = models.FloatField(default=0)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+            models.Index(fields=['invoice_date_time'])
+        ]
