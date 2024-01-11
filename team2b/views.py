@@ -223,7 +223,7 @@ class DominosIndo(APIView):
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
         order_type = request.GET.get('order_type')
-        order_status = request.GET.get('order_status',True)
+        order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
