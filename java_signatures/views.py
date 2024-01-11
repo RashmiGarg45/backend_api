@@ -35,7 +35,7 @@ def get_tatapalette_orders(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
         
-        cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
+        cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
         data = cursor.fetchall()
         order_id = data[0][1]
 
@@ -58,7 +58,7 @@ def get_available_orders_count(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()    
         
-        cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1''')
+        cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND ShipmentStatus = "Shipment Delivered"''')
         data = cursor.fetchall()
         count = data[0]  
         response_code = 200
