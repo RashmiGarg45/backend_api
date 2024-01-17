@@ -34,12 +34,17 @@ def get_tatapalette_orders(request):
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
-        
+
+        current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE UsedAt LIKE "{}%" AND ShipmentStatus = "Shipment Delivered"'''.format(current_date))
+        data = cursor.fetchall()
+        ids_used = data[0][0]
+
         cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
         data = cursor.fetchall()
         order_id = data[0][1]
 
-        if request_type != "test":
+        if request_type != "test" and ids_used<=50:
             used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
             conn.commit()
@@ -50,8 +55,9 @@ def get_tatapalette_orders(request):
         response_code = 500
         message = str(e)
         order_id = -1
+        ids_used = -1
 
-    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "order_id": order_id}))
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "order_id": order_id, "ids_used":ids_used}))
 
 def get_available_orders_count(request):
     try:
