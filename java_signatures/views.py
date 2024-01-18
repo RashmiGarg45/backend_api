@@ -40,21 +40,24 @@ def get_tatapalette_orders(request):
         data = cursor.fetchall()
         ids_used = data[0][0]
 
-        cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
-        data = cursor.fetchall()
-        order_id = data[0][1]
+        if ids_used<=50:
+            cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
+            data = cursor.fetchall()
+            order_id = data[0][1]
 
-        if request_type != "test" and ids_used<=50:
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
-            cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
-            conn.commit()
+            if request_type != "test":
+                used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
+                conn.commit()
+        else:
+            order_id = "-1"
 
         response_code = 200
         message = "success"
     except Exception as e:
         response_code = 500
         message = str(e)
-        order_id = -1
+        order_id = "-1"
         ids_used = -1
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "order_id": order_id, "ids_used":ids_used}))
