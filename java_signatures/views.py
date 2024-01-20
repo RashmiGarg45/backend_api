@@ -40,7 +40,7 @@ def get_tatapalette_orders(request):
         data = cursor.fetchall()
         ids_used = data[0][0]
 
-        if ids_used<=50:
+        if ids_used<=100:
             cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
             data = cursor.fetchall()
             order_id = data[0][1]
