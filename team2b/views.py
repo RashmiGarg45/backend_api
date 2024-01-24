@@ -257,6 +257,7 @@ class OstinShop(APIView):
         query.id = request.data.get('order_id')
         query.amount=request.data.get('amount')
         query.order_status=request.data.get('order_status')
+        query.extra_details=request.data.get('extra_details')
         query.used_at = None
         query.save()
         return Response({
@@ -277,6 +278,7 @@ class OstinShop(APIView):
                 'order_id':query.id,
                 'order_status':query.order_status,
                 'used_at':query.used_at,
+                'extra_details':query.extra_details
         }
         if setUsed:
             query = OstinShopScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
