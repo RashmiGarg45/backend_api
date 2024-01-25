@@ -11,18 +11,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='dominosindodeliveryscriptorderids',
-            name='order_status',
-            field=models.CharField(default=0, max_length=100),
-        ),
-        migrations.AddField(
             model_name='ostinshopscriptorderids',
             name='extra_details',
             field=models.JSONField(blank=True, default={}, null=True),
-        ),
-        migrations.AlterField(
-            model_name='dominosindodeliveryscriptorderids',
-            name='order_type',
-            field=models.CharField(default=0, max_length=100),
         ),
     ]

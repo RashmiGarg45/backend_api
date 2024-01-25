@@ -257,7 +257,7 @@ class OstinShop(APIView):
         query.id = request.data.get('order_id')
         query.amount=request.data.get('amount')
         query.order_status=request.data.get('order_status')
-        query.extra_details=request.data.get('extra_details')
+        query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         query.save()
         return Response({
