@@ -16,4 +16,6 @@ urlpatterns = [
     path("ragazzo_signature/", views.ragazzo_signature, name="ragazzo_signature"),
     path("get_samco_user_data/", views.get_samco_user_data, name="get_samco_user_data"),
     path("get_samco_users_count/", views.get_samco_users_count, name="get_samco_users_count"),
+    path("get_flappdeals_orders_count/", views.get_flappdeals_orders_count, name="get_flappdeals_orders_count"),
+    path("get_flappdeals_orderId/", views.get_flappdeals_orderId, name="get_flappdeals_orderId"),
 ]

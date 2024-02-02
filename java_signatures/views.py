@@ -381,7 +381,7 @@ def get_samco_user_data(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
         
-        cursor.execute('''SELECT * FROM samco_userIds WHERE NOT isUsed=1 ORDER BY user_id DESC''')
+        cursor.execute('''SELECT * FROM samco_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
         data = cursor.fetchall()
         user_id = data[0][3]
         data = {"user_id": user_id, "user_details": data[0][4]}
@@ -411,6 +411,52 @@ def get_samco_users_count(request):
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM samco_userIds WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
+def get_flappdeals_orderId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM flappdeals_orderIds WHERE NOT isUsed=1 ORDER BY order_id ASC''')
+        data = cursor.fetchall()
+        order_id = data[0][4]
+        data = {"order_id": order_id}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE flappdeals_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_flappdeals_orders_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM flappdeals_orderIds WHERE NOT isUsed=1''')
         data = cursor.fetchall()
         count = data[0]   
         response_code = 200
