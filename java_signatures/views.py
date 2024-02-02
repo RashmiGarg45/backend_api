@@ -381,7 +381,7 @@ def get_samco_user_data(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
         
-        cursor.execute('''SELECT * FROM samco_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
+        cursor.execute('''SELECT * FROM samco_userIds WHERE NOT isUsed=1 ORDER BY user_id DESC''')
         data = cursor.fetchall()
         user_id = data[0][3]
         data = {"user_id": user_id, "user_details": data[0][4]}
