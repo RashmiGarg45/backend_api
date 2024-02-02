@@ -8,6 +8,7 @@ urlpatterns = [
     path("lightinthebox", views.LightInTheBoxAPI.as_view(), name="cru_lightinthebox"),
     path("dominosindo", views.DominosIndo.as_view(), name="cru_dominosindo"),
     path("ostinshop", views.OstinShop.as_view(), name="cru_ostinshop"),
+    path("habib", views.HabibOrderIdConstants.as_view(), name="cru_ostinshop"),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
     
 ]

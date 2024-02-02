@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds
+from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants
 
 from datetime import datetime,timedelta
 import json
@@ -282,6 +282,42 @@ class OstinShop(APIView):
         }
         if setUsed:
             query = OstinShopScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+class HabibOrderIdConstants(APIView):
+    def put(self, request):
+        query = HabibScriptOrderIdsConstants()
+        query.campaign_name = request.data.get('camp_name','ostinshopmodd')
+        query.id = request.data.get('order_id')
+        query.amount=request.data.get('amount')
+        query.order_status=request.data.get('order_status')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        order_status = request.GET.get('order_status')
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        if order_status:
+            filter_dict['order_status'] = order_status
+        query = HabibScriptOrderIdsConstants.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'order_id':query.id,
+                'order_status':query.order_status,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = HabibScriptOrderIdsConstants.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
