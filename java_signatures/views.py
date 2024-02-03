@@ -30,6 +30,7 @@ def execute_java(java_file, argument_list=[]):
 def get_tatapalette_orders(request):
     request_data = json.loads(request.body)
     request_type = request_data.get("request_type")
+    valid_status = request_data.get("valid_status", False)
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
@@ -40,8 +41,20 @@ def get_tatapalette_orders(request):
         data = cursor.fetchall()
         ids_used = data[0][0]
 
-        if ids_used<=125:
-            cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
+        if valid_status:
+            if ids_used<=50:
+                cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" AND validStatus=1 ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
+                data = cursor.fetchall()
+                order_id = data[0][1]
+
+                if request_type != "test":
+                    used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
+                    conn.commit()
+            else:
+                order_id = "-1"
+        else:
+            cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" AND validStatus=0 ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
             data = cursor.fetchall()
             order_id = data[0][1]
 
@@ -49,8 +62,6 @@ def get_tatapalette_orders(request):
                 used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                 cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
                 conn.commit()
-        else:
-            order_id = "-1"
 
         response_code = 200
         message = "success"
@@ -64,12 +75,22 @@ def get_tatapalette_orders(request):
 
 def get_available_orders_count(request):
     try:
+        request_data = json.loads(request.body)
+        valid_status = request_data.get("valid_status", False)
+    except:
+        valid_status = False
+    try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()    
-        
-        cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND ShipmentStatus = "Shipment Delivered"''')
-        data = cursor.fetchall()
-        count = data[0]  
+
+        if valid_status:        
+            cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND validStatus=1 AND ShipmentStatus = "Shipment Delivered"''')
+            data = cursor.fetchall()
+            count = data[0]  
+        else:
+            cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND validStatus=0 AND ShipmentStatus = "Shipment Delivered"''')
+            data = cursor.fetchall()
+            count = data[0]  
         response_code = 200
         message = "success"
 
