@@ -45,7 +45,7 @@ def get_tatapalette_orders(request):
             if ids_used<=50:
                 cursor.execute('''SELECT * FROM tatapalette_orderIds WHERE NOT OrderId_Status=1 AND  ShipmentStatus = "Shipment Delivered" AND validStatus=1 ORDER BY OrderId ASC''') #ShipmentUploadTime ASC
                 data = cursor.fetchall()
-                order_id = data[0][1]
+                order_id = data[0][2]
 
                 if request_type != "test":
                     used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
