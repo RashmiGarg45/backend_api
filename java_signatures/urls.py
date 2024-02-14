@@ -18,4 +18,6 @@ urlpatterns = [
     path("get_samco_users_count/", views.get_samco_users_count, name="get_samco_users_count"),
     path("get_flappdeals_orders_count/", views.get_flappdeals_orders_count, name="get_flappdeals_orders_count"),
     path("get_flappdeals_orderId/", views.get_flappdeals_orderId, name="get_flappdeals_orderId"),
+    path("get_practo_orders_count/", views.get_practo_orders_count, name="get_practo_orders_count"),
+    path("get_practo_orderId/", views.get_practo_orderId, name="get_practo_orderId"),
 ]
