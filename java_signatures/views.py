@@ -497,16 +497,24 @@ def get_practo_orderId(request):
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
-        
-        cursor.execute('''SELECT * FROM practo_orderIds WHERE NOT isUsed=1 ORDER BY order_id ASC''')
-        data = cursor.fetchall()
-        order_id = data[0][4]
-        data = {"order_id": order_id}
 
-        if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
-            cursor.execute("UPDATE practo_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
-            conn.commit()
+        current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM practo_orderIds WHERE used_at LIKE "{}%"'''.format(current_date))
+        data = cursor.fetchall()
+        ids_used = data[0][0]
+
+        if ids_used <0:        
+            cursor.execute('''SELECT * FROM practo_orderIds WHERE NOT isUsed=1 ORDER BY order_id ASC''')
+            data = cursor.fetchall()
+            order_id = data[0][4]
+            data = {"order_id": order_id}
+
+            if user_type == "server":
+                used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                cursor.execute("UPDATE practo_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+                conn.commit()
+        else:
+            data = {"order_id": None}
 
         response_code = 200
         message = "success"
