@@ -503,7 +503,7 @@ def get_practo_orderId(request):
         data = cursor.fetchall()
         ids_used = data[0][0]
 
-        if ids_used <0:        
+        if ids_used <40:        
             cursor.execute('''SELECT * FROM practo_orderIds WHERE NOT isUsed=1 ORDER BY order_id ASC''')
             data = cursor.fetchall()
             order_id = data[0][4]
