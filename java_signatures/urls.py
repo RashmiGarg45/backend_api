@@ -20,4 +20,6 @@ urlpatterns = [
     path("get_flappdeals_orderId/", views.get_flappdeals_orderId, name="get_flappdeals_orderId"),
     path("get_practo_orders_count/", views.get_practo_orders_count, name="get_practo_orders_count"),
     path("get_practo_orderId/", views.get_practo_orderId, name="get_practo_orderId"),
+    path("get_tamasha_users_count/", views.get_tamasha_users_count, name="get_tamasha_users_count"),
+    path("get_tamasha_userId/", views.get_tamasha_userId, name="get_tamasha_userId"),
 ]

@@ -543,3 +543,59 @@ def get_practo_orders_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
+def get_tamasha_userId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+
+        current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM tamasha_userIds WHERE used_at LIKE "{}%"'''.format(current_date))
+        data = cursor.fetchall()
+        ids_used = data[0][0]
+
+        if ids_used <75:        
+            cursor.execute('''SELECT * FROM tamasha_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
+            data = cursor.fetchall()
+            user_id = data[0][1]
+            username = data[0][2]
+            data = {"user_id": user_id, "username": username}
+
+            if user_type == "server":
+                used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                cursor.execute("UPDATE tamasha_userIds SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
+                conn.commit()
+        else:
+            data = {"user_id": None, "username":None}
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_tamasha_users_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM tamasha_userIds WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
