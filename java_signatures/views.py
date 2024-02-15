@@ -557,7 +557,7 @@ def get_tamasha_userId(request):
         data = cursor.fetchall()
         ids_used = data[0][0]
 
-        if ids_used <75:        
+        if ids_used <50:        
             cursor.execute('''SELECT * FROM tamasha_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
             data = cursor.fetchall()
             user_id = data[0][1]
