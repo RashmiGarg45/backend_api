@@ -24,4 +24,6 @@ urlpatterns = [
     path("get_tamasha_userId/", views.get_tamasha_userId, name="get_tamasha_userId"),
     path("get_cleartrip_ids_count/", views.get_cleartrip_ids_count, name="get_cleartrip_ids_count"),
     path("get_cleartrip_id/", views.get_cleartrip_id, name="get_cleartrip_id"),
+    path("get_sololearn_users_count/", views.get_sololearn_users_count, name="get_sololearn_users_count"),
+    path("get_sololearn_userId/", views.get_sololearn_userId, name="get_sololearn_userId"),
 ]
