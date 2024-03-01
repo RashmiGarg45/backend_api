@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'java_signatures.apps.JavaSignaturesConfig',
-    'team2b.apps.Team2BConfig'
+    'team2b.apps.Team2BConfig',
+    'data_tracking'
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,74 @@ DATABASES = {
         'OPTIONS': {  
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
         }  
-    }  
+    }, 
+    'cm-env1': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'clickManager',  
+        'USER': os.getenv('CLICKMANAGER_ENV_USER'),  
+        'PASSWORD': os.getenv('CLICKMANAGER_ENV_USER_PASS'),  
+        'HOST': os.getenv('CLICKMANAGER_ENV1_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    }, 
+    'cm-env2': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'clickManager',  
+        'USER': os.getenv('CLICKMANAGER_ENV_USER'),  
+        'PASSWORD': os.getenv('CLICKMANAGER_ENV_USER_PASS'),  
+        'HOST': os.getenv('CLICKMANAGER_ENV2_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    },
+    'cm-env3': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'clickManager',  
+        'USER': os.getenv('CLICKMANAGER_ENV_USER'),  
+        'PASSWORD': os.getenv('CLICKMANAGER_ENV_USER_PASS'),  
+        'HOST': os.getenv('CLICKMANAGER_ENV3_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    },
+    'at-env1': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'apptracking_api',  
+        'USER': os.getenv('APPTRACKING_ENV_USER'),  
+        'PASSWORD': os.getenv('APPTRACKING_ENV_USER_PASS'),  
+        'HOST': os.getenv('APPTRACKING_ENV1_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    },
+    'at-env2': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'apptracking_api',  
+        'USER': os.getenv('APPTRACKING_ENV_USER'),  
+        'PASSWORD': os.getenv('APPTRACKING_ENV_USER_PASS'),  
+        'HOST': os.getenv('APPTRACKING_ENV2_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    },
+    'at-env3': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'apptracking_api',  
+        'USER': os.getenv('APPTRACKING_ENV_USER'),  
+        'PASSWORD': os.getenv('APPTRACKING_ENV_USER_PASS'),  
+        'HOST': os.getenv('APPTRACKING_ENV3_HOST'),  
+        'PORT': '3306',  
+        'OPTIONS': {  
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
+        }  
+    },
+    
 }
 
 
