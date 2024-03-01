@@ -930,8 +930,9 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
                                                     }
                                                     })
             message['cardsV2'][0]['card']['sections'].append(section_data)
-            
-        googleChatBot_send_message('AAAAmJxziIo',message=message)    
+        
+        space_name = request.GET.get('space_name','AAAAmJxziIo')
+        googleChatBot_send_message(space_name,message=message)    
         return Response({
             'data':resp_dict,
             'total_row':total_row
