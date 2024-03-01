@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import CheckEventCount,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining
+from team2b.models import CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining
 
 from datetime import datetime,timedelta
 import json
@@ -323,12 +323,14 @@ class HabibOrderIdConstants(APIView):
         })
 
 
-class WatchoOrderIdsMiningAPI(APIView):
+class DamnRayMiningAPI(APIView):
     def put(self, request):
-        query = WatchoOrderIdsMining()
-        query.campaign_name = request.data.get('camp_name','watchomodd')
+        query = DamnrayOrderIds()
+        query.campaign_name = request.data.get('camp_name','damnray')
         query.id = request.data.get('order_id')
-        query.order_status=request.data.get('order_status')
+        query.products = request.data.get('products')
+        query.payment = request.data.get('payment')
+        query.price = request.data.get('price')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         query.save()
@@ -344,16 +346,19 @@ class WatchoOrderIdsMiningAPI(APIView):
         filter_dict = {}
         if order_status:
             filter_dict['order_status'] = order_status
-        query = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        query = DamnrayOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
                 'order_status':query.order_status,
                 'used_at':query.used_at,
-                'extra_details':query.extra_details
+                'products':query.products,
+                'payment':query.payment,
+                'price':query.price,
+                'extra_details':query.extra_details,
         }
         if setUsed:
-            query = WatchoOrderIdsMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DamnrayOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })

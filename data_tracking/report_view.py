@@ -168,8 +168,6 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
                         total_row[month]['{}-TR'.format(month_next)] += float(scriptdata.get('total_revenue_range',0))
                         total_row[month]['{}-TR'.format('total')] += float(scriptdata.get('total_revenue_range',0))
 
-        resp_dict = xx.get('data')
-        total_row = xx.get('total_row')
         message = {
                         "cardsV2": [
                             {
@@ -294,8 +292,8 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
                                                     })
             message['cardsV2'][0]['card']['sections'].append(section_data)
         
-        space_name = request.GET.get('space_name','AAAAmJxziIo')
-        googleChatBot_send_message(space_name,message=message)    
+        space_name = request.GET.get('space_name','AAAA7sIzS9Q')
+        googleChatBot_send_message(space_name=space_name,message=message)    
         return Response({
             'data':resp_dict,
             'total_row':total_row
