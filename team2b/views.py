@@ -428,7 +428,6 @@ class DamnRayMiningAPI(APIView):
         
         data = {
                 'order_id':query.id,
-                'order_status':query.order_status,
                 'used_at':query.used_at,
                 'products':query.products,
                 'payment':query.payment,
