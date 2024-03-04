@@ -217,3 +217,23 @@ class DamnrayOrderIds(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+
+class PepperfryOrderIds(models.Model):
+    """
+    This is the base model for all the models.
+    It has all the requried and common fields in our custom models.
+    """
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='pepperfrymodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    order_status = models.CharField(default=0,max_length=100)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
