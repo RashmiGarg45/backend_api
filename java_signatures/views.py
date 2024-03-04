@@ -310,7 +310,7 @@ def update_zalora_orderid_status(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message}))
 
-def cipher(decrypted_text=None,encrypted_text=None):
+def cipher(decrypted_text=None,encrypted_text=None, _key="iGvRAL5CpW4cp#LCDF2T"):
     code = '''
     "use strict";
 
@@ -361,8 +361,8 @@ def cipher(decrypted_text=None,encrypted_text=None):
     '''
     ctx = execjs.compile(code)
     
-    key = "iGvRAL5CpW4cp#LCDF2T"
-    
+    key = _key
+
     if encrypted_text:
         # encrypted_text = "U2FsdGVkX18XhGeLwLLRzruAHaVzBtzCwKhCaONA6H4+LRIW8qbr1f2UkGQaFhbFTZWyp5RX8M4t5rsEpbMKBQ9lMHy+z88oXYePL2KeaUaSF2zcHK9lRWgMEoebcRg4vme5/aE98V3N9P1Gys00VYKl01jYxd7cYLn3mdz4iEy9LiobAMpXAQHBvpmmdPqfsKEnbpPD09QJrBKLwUZVhSDiUFjoV4lhD/6uH9uAwwQaX9ubzsC4yoet9A/nKSUIsm/mWpPj/uV06sAolSPFkjmOYKxJgB6U2aCaE4aXL8zcSkfCVjaTNvRs8KJ01uA36RY0VCu7EXaNutaehVt5NldqiZDCviI2X2Ggovn74/qfTQ0APiIJgli095UDd6AhS8N010F4dWxTOZuufBeXn1niAhHALTmtpcrsEMqT0yM1Vs+lzyvEoti7bB5YxPF+b7kAQgL64I6hEtHiAuBSIw=="
         decrypted_text = ctx.call('module.exports.decrypt', encrypted_text, key)
@@ -377,12 +377,13 @@ def ragazzo_signature(request):
     data = json.loads(request.body)
     encrypted_string = data.get("encrypted_string")
     decrypted_string = data.get("decrypted_string")
+    key = data.get("key", "iGvRAL5CpW4cp#LCDF2T")
 
     try:       
         if encrypted_string:
-            output = cipher(encrypted_text=encrypted_string)
+            output = cipher(encrypted_text=encrypted_string, key=key)
         if decrypted_string:
-            output = json.dumps(cipher(decrypted_text=decrypted_string))
+            output = json.dumps(cipher(decrypted_text=decrypted_string, key=key))
 
         response_code = 200
         message = "success"
@@ -648,15 +649,16 @@ def get_cleartrip_ids_count(request):
 def get_sololearn_userId(request):
     request_data = json.loads(request.body)
     user_type = request_data.get("user_type")
+    subscription_type = request_data.get("subscription_type")
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
      
-        cursor.execute('''SELECT * FROM sololearn_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
+        cursor.execute('''SELECT * FROM sololearn_userIds WHERE NOT isUsed=1 AND subscription_type = '{}' ORDER BY user_id ASC'''.format(subscription_type))
         data = cursor.fetchall()
         user_id = data[0][1]
-        data = {"user_id": user_id}
+        data = {"user_id": user_id, "subscription_type":subscription_type}
 
         if user_type == "server":
             used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
@@ -690,3 +692,4 @@ def get_sololearn_users_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
