@@ -381,9 +381,9 @@ def ragazzo_signature(request):
 
     try:       
         if encrypted_string:
-            output = cipher(encrypted_text=encrypted_string, key=key)
+            output = cipher(encrypted_text=encrypted_string, _key=key)
         if decrypted_string:
-            output = json.dumps(cipher(decrypted_text=decrypted_string, key=key))
+            output = json.dumps(cipher(decrypted_text=decrypted_string, _key=key))
 
         response_code = 200
         message = "success"
