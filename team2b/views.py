@@ -339,7 +339,7 @@ class DamnRayMiningAPI(APIView):
         })
 
     def get(self, request):
-        setUsed = request.GET.get('set_used',False)
+        setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
@@ -378,7 +378,7 @@ class WatchoOrderIdsMiningAPI(APIView):
         })
 
     def get(self, request):
-        setUsed = request.GET.get('set_used',False)
+        setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
@@ -416,7 +416,7 @@ class DamnRayMiningAPI(APIView):
         })
 
     def get(self, request):
-        setUsed = request.GET.get('set_used',False)
+        setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
@@ -455,7 +455,7 @@ class PepperfryMiningAPI(APIView):
         })
 
     def get(self, request):
-        setUsed = request.GET.get('set_used',False)
+        setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
