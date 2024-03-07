@@ -209,7 +209,7 @@ class DamnrayOrderIds(models.Model):
     id = models.CharField(max_length=50,unique=True)
     products = models.JSONField(default = list,blank=True, null=True)
     payment = models.JSONField(default = dict,blank=True, null=True)
-    price = models.CharField(max_length=50,unique=True)
+    price = models.CharField(max_length=50)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     
