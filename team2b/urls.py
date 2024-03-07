@@ -1,5 +1,6 @@
 from django.urls import path
 from team2b import views
+from team2b import helper_apis
 
 urlpatterns = [
     path("indigo", views.Indigo.as_view(), name="cru_pnr"),
@@ -13,5 +14,6 @@ urlpatterns = [
     path("damnray", views.DamnRayMiningAPI.as_view(), name="cru_damnray"),
     path("pepperfry", views.PepperfryMiningAPI.as_view(), name="cru_damnray"),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
+    path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
     
 ]
