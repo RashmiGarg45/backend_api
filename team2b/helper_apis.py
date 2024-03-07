@@ -17,12 +17,14 @@ class RestartAPIService(APIView):
 
         import psutil
         PROCNAME = "damraymining.py"
-
+        xx = []
         for proc in psutil.process_iter():
+            xx.append(proc.name())
             print(proc.name())
             # if PROCNAME in proc.name():
         
         return Response({
             'service':'restarted',
+            'process_list':xx
         })
 
