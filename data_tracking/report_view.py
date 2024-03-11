@@ -13,8 +13,9 @@ import gspread
 from datetime import datetime,timedelta
 from operator import itemgetter
 
-from data_tracking.models import revenueReport,installReport
+from data_tracking.models import revenueReport,installReport,combined_app_data
 from data_tracking.serializer import revenueReportSerializer
+from data_tracking.helper.sheetbot import google_sheet
 
 from data_tracking.util import get_list_data_from_raw,googleChatBot_send_message
 
@@ -22,18 +23,36 @@ class Report6Stats(APIView):
     def get(self, request):        
         start_date = request.GET.get('start_date')
         end_date = request.GET.get('end_date')
+        team = request.GET.get('team')
+        get_total_only =  request.GET.get('get_total_only',False)
 
+        other_data = request.GET.copy()
+        if team:
+            team_data = {
+                '1':['Pushkal','Pawan'],
+                '2':['Udit','Umair'],
+                '3':['Shikha','Aniket'],
+            }
+            apps = combined_app_data.objects.filter(qa_upperlevel__in = team_data.get(team)).using('cm-env{}'.format(team))
+            if not other_data.get('campaign'):
+                list_apps = []               
+                for item in apps:
+                    list_apps.append(item.filename)
+                other_data['campaign'] = ",".join(list_apps)
+        
+        if get_total_only and get_total_only.lower() == 'false':
+            get_total_only = False
 
         filter_dict = {
             'date__gte':start_date,
             'date__lte':end_date, 
         }
         for item in ['campaign','package_name']:
-            if request.GET.get(item):
-                if ',' in request.GET.get(item):
-                    filter_dict[item+'__in'] =  request.GET.get(item).split(',')
+            if other_data.get(item):
+                if ',' in other_data.get(item):
+                    filter_dict[item+'__in'] =  other_data.get(item).split(',')
                 else:
-                    filter_dict[item] =  request.GET.get(item)
+                    filter_dict[item] =  other_data.get(item)
 
         annotation_dict = {
             'total_revenue':Sum(F'revenue'),
@@ -45,7 +64,7 @@ class Report6Stats(APIView):
             campaign_list = []
             data = revenueReport.objects.filter(**filter_dict).values('date','channel','network','offer_id','campaign').annotate(**annotation_dict).using('cm-env{}'.format(env))
             for item in data:
-                if item.get('channel').lower() not in ['vestaapps','77ads','appamplify','offersinfinite']:
+                if item.get('channel').lower() not in ['vestaapps','77ads','offersinfinite']:
                     item['total_revenue'] = item.get('total_revenue')/0.7
                 
                 campaign_name = item.get('campaign')
@@ -56,18 +75,20 @@ class Report6Stats(APIView):
                         'i2_count_range':0,
                         'total_revenue_range':0
                     }
-                if not r6_data.get(campaign_name).get(date):
-                    r6_data[campaign_name][date] = {
-                        'i1_count':0,
-                        'i2_count':0,
-                        'total_revenue':0
-                    }
-                
-                r6_data[campaign_name][date]['i2_count']+=item.get('i2_count')
-                r6_data[campaign_name][date]['total_revenue']+=item.get('total_revenue')
 
                 r6_data[campaign_name]['i2_count_range']+=item.get('i2_count')
                 r6_data[campaign_name]['total_revenue_range']+=item.get('total_revenue')
+
+                if not get_total_only:
+                    if not r6_data.get(campaign_name).get(date):
+                        r6_data[campaign_name][date] = {
+                            'i1_count':0,
+                            'i2_count':0,
+                            'total_revenue':0
+                        }
+                    
+                    r6_data[campaign_name][date]['i2_count']+=item.get('i2_count')
+                    r6_data[campaign_name][date]['total_revenue']+=item.get('total_revenue')
 
                 if campaign_name not in campaign_list:
                     campaign_list.append(campaign_name)
@@ -87,26 +108,86 @@ class Report6Stats(APIView):
             for item in i1_data:
                 campaign_name = item.get('campaign')
                 date = str(item.get('date'))
+
                 if not r6_data.get(campaign_name):
                     r6_data[campaign_name] = {
                         'i1_count_range':0,
                         'i2_count_range':0,
                         'total_revenue_range':0
                     }
-                if not r6_data.get(campaign_name).get(date):
-                    r6_data[campaign_name][date] = {
-                        'i1_count':0,
-                        'i2_count':0,
-                        'total_revenue':0
-                    }
-                
-                r6_data[campaign_name][date]['i1_count']+=item.get('i1_count')
                 r6_data[campaign_name]['i1_count_range']+=item.get('i1_count')
+
+                if not get_total_only:
+                    if not r6_data.get(campaign_name).get(date):
+                        r6_data[campaign_name][date] = {
+                            'i1_count':0,
+                            'i2_count':0,
+                            'total_revenue':0
+                        }
+                    r6_data[campaign_name][date]['i1_count']+=item.get('i1_count')
 
 
         return HttpResponse(json.dumps({
             'data':r6_data,
         }))
+
+class Report6UpdateOnSheet(APIView):
+    def get(self,request):
+        r6_obj = Report6Stats()
+        sheet_url = request.GET.get('sheet_url','https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit#gid=0')
+        sheet_name = request.GET.get('sheet_name','Report 6')
+        sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
+        resp_data = json.loads(r6_obj.get(request).content)
+
+        rows_length = len(resp_data.get('data').keys())+10
+        gs = google_sheet(sheet_url)
+        try:
+            worksheet = gs.add_worksheet(name=sheet_name,rows=rows_length,cols=26)
+        except:
+            worksheet = gs.open_worksheet(sheet_name)
+        
+        old_rows = worksheet.get_all_values()[1:]
+
+        new_rows = [['Script Name', 'Total TR',datetime.strptime(request.GET.get('start_date'),'%Y-%m-%d').strftime('%d %b - TR')]]
+        gs.insert_columns(3,1)
+
+
+        data = resp_data.get('data')
+        i = 1
+        old_scripts = []
+        for old_row in old_rows:    
+            i+=1
+            script_name = old_row[0]
+            if script_name and data.get(script_name):
+                old_scripts.append(script_name)
+                total_tr = '=SUM(C{}:AZ{})'.format(i,i)
+                tr = data.get(script_name).get('total_revenue_range')
+                new_rows.append([
+                    script_name,
+                    total_tr,
+                    tr
+                ])
+        
+        for scriptname in data.keys():
+            if scriptname and not scriptname in old_scripts:
+                i+=1
+                scriptdata = data.get(scriptname)
+                new_rows.append([
+                    scriptname,
+                    '=SUM(C{}:AZ{})'.format(i,i),
+                    scriptdata.get('total_revenue_range')
+                ])
+
+        worksheet.update('A1:C{}'.format(len(new_rows)), new_rows, raw=False)
+
+        return HttpResponse(json.dumps({
+            'result':'updated',
+        }))
+
+
+
+
+
 
 class ChatBotNotRunLastTwoMonthLevel2(APIView):
     def get(self,request):
@@ -116,7 +197,7 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
         total_row = {}
         work_data_map = get_list_data_from_raw(data)
         start_date = '2024-01-01'
-        end_date = '2024-02-29'
+        end_date = '2024-03-10'
         done_data = list(filter(lambda element: ((element.get('Work Category').replace(' ','').replace('\t','').lower()=='lvl2' or element.get('Work Category').replace(' ','').replace('\t','').lower()=='lvl1') and (element.get('Working Status').replace(' ','').replace('\t','').lower()=='done' or element.get('Working Status').replace(' ','').replace('\t','').lower()=='doneconditionaly') and element.get('Done-Date').replace(' ','').replace('\t','').lower()>=start_date and element.get('Done-Date').replace(' ','').replace('\t','').lower()<=end_date),work_data_map))
         dict__ = {}
         camp_data_dict = {}
@@ -292,7 +373,7 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
                                                     })
             message['cardsV2'][0]['card']['sections'].append(section_data)
         
-        space_name = request.GET.get('space_name','AAAA7sIzS9Q')
+        space_name = request.GET.get('space_name','AAAAmJxziIo')
         googleChatBot_send_message(space_name=space_name,message=message)    
         return Response({
             'data':resp_dict,

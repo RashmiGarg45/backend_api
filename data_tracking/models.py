@@ -34,3 +34,20 @@ class installReport(models.Model):
 
     class Meta:
         db_table = 'install_report'
+
+
+class combined_app_data(models.Model):
+    """
+    This is the base model for all the models.
+    It has all the requried and common fields in our custom models.
+    """
+    serial =  models.CharField(max_length=200,primary_key=True)
+    pckname = models.CharField(max_length=200)
+    appname = models.CharField(max_length=200)
+    filename = models.CharField(max_length=200)
+    qa = models.CharField(max_length=200)
+    qa_upperlevel = models.CharField(max_length=200)
+    devteam = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'combined_app_data'
