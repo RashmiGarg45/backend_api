@@ -11,17 +11,76 @@ from django.db.models import Count
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            'mcdelivery':McdeliveryScriptOrderIds,
-            'indigo':IndigoScriptOrderIds,
-            'lightinthebox':LightInTheBox
+            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            # 'indigomodd':IndigoScriptOrderIds,
+            # 'lightinthebox':LightInTheBox,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            # 'damnraymodd':DamnrayOrderIds,
+            'watchomodd':WatchoOrderIdsMining,
+            'pepperfrymodd':PepperfryOrderIds,
+            'mumzworldautoios':MumzworldOrderIds
+
         }
-        table = request.GET.get('table')
         today = datetime.now().strftime('%Y-%m-%d')
-        used_count = tablesDict[table].objects.filter(used_at__contains=str(today)).aggregate(Count('used_at')).get('used_at__count')
-        remaining_count = len(tablesDict[table].objects.filter(used_at=None))
+        ids_mined = {}
+        for key,value in tablesDict.items():
+            ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
+
+        from data_tracking.util import googleChatBot_send_message
+        space_name = "AAAAh8zMzAw"
+        message = {
+                        "cardsV2": [
+                            {
+                                "cardId": "reminderCard",
+                                "card": {
+                                        "header": {
+                                            "title": "Order/User Ids Mining Status",
+                                        },
+                                        "sections": [
+                                            {
+                                            "header": "",
+                                            "collapsible": False,
+                                            "uncollapsibleWidgetsCount": 1,
+                                            "widgets": [
+                                            ]
+                                            }
+                                        ]
+                                    },
+                            },
+                        ]
+                }
+
+        widgets = []
+        for sciptname,mined_num in ids_mined.items():
+            widgets.append({
+                            "columns": {
+                                "columnItems": [
+                                                    {
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                                                        "horizontalAlignment": "CENTER",
+                                                        "verticalAlignment": "CENTER",
+                                                        "widgets": [{
+                                                                        "decoratedText": {
+                                                                            "text": sciptname,
+                                                                        }
+                                                                    }]
+                                                    },
+                                                    {
+                                                        "widgets": [{
+                                                                    "decoratedText": {
+                                                                        "text": str(mined_num),
+                                                                    }
+                                                                    }]
+                                                    }
+                                ]
+                            }
+                        })
+        message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
+        # print(json.dumps(message['cardsV2'][0]['card'],indent=4))
+        googleChatBot_send_message(space_name=space_name,message=message)    
+
         return Response({
-            'used_count':used_count,
-            'remaining_count':remaining_count
+            'ids_mined':ids_mined,
         })
 
 
@@ -321,8 +380,6 @@ class HabibOrderIdConstants(APIView):
         return Response({
             'body':data,
         })
-
-
 
 class DamnRayMiningAPI(APIView):
     def put(self, request):
