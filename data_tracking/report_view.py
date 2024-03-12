@@ -35,8 +35,12 @@ class Report6Stats(APIView):
             }
             apps = combined_app_data.objects.filter(qa_upperlevel__in = team_data.get(team)).using('cm-env{}'.format(team))
             if not other_data.get('campaign'):
+                combined_app_data_map = {}
                 list_apps = []               
                 for item in apps:
+                    combined_app_data_map[item.filename] = {
+                        'package_name':item.pckname
+                    }
                     list_apps.append(item.filename)
                 other_data['campaign'] = ",".join(list_apps)
         
@@ -73,7 +77,8 @@ class Report6Stats(APIView):
                     r6_data[campaign_name] = {
                         'i1_count_range':0,
                         'i2_count_range':0,
-                        'total_revenue_range':0
+                        'total_revenue_range':0,
+                        'combined_data':combined_app_data_map.get(campaign_name,{})
                     }
 
                 r6_data[campaign_name]['i2_count_range']+=item.get('i2_count')
@@ -84,7 +89,7 @@ class Report6Stats(APIView):
                         r6_data[campaign_name][date] = {
                             'i1_count':0,
                             'i2_count':0,
-                            'total_revenue':0
+                            'total_revenue':0,
                         }
                     
                     r6_data[campaign_name][date]['i2_count']+=item.get('i2_count')
@@ -113,7 +118,8 @@ class Report6Stats(APIView):
                     r6_data[campaign_name] = {
                         'i1_count_range':0,
                         'i2_count_range':0,
-                        'total_revenue_range':0
+                        'total_revenue_range':0,
+                        'combined_data':combined_app_data_map.get(campaign_name,{})
                     }
                 r6_data[campaign_name]['i1_count_range']+=item.get('i1_count')
 
@@ -138,7 +144,6 @@ class Report6UpdateOnSheet(APIView):
         sheet_name = request.GET.get('sheet_name','Report 6')
         sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
         resp_data = json.loads(r6_obj.get(request).content)
-
         rows_length = len(resp_data.get('data').keys())+10
         gs = google_sheet(sheet_url)
         try:
@@ -146,39 +151,38 @@ class Report6UpdateOnSheet(APIView):
         except:
             worksheet = gs.open_worksheet(sheet_name)
         
-        old_rows = worksheet.get_all_values()[1:]
-
-        new_rows = [['Script Name', 'Total TR',datetime.strptime(request.GET.get('start_date'),'%Y-%m-%d').strftime('%d %b - TR')]]
-        gs.insert_columns(3,1)
-
-
-        data = resp_data.get('data')
-        i = 1
-        old_scripts = []
-        for old_row in old_rows:    
-            i+=1
-            script_name = old_row[0]
-            if script_name and data.get(script_name):
-                old_scripts.append(script_name)
-                total_tr = '=SUM(C{}:AZ{})'.format(i,i)
-                tr = data.get(script_name).get('total_revenue_range')
-                new_rows.append([
-                    script_name,
-                    total_tr,
-                    tr
-                ])
-        
-        for scriptname in data.keys():
-            if scriptname and not scriptname in old_scripts:
-                i+=1
-                scriptdata = data.get(scriptname)
-                new_rows.append([
+        end_date = int(datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d').strftime('%d'))
+        new_rows = []
+        new_rows.append(['Script Name','Package Name', 'Total TR'])
+        row_no=1
+        for scriptname,scriptdata in resp_data.get('data').items():
+            if scriptname:
+                row_no+=1
+                rr = [
                     scriptname,
-                    '=SUM(C{}:AZ{})'.format(i,i),
-                    scriptdata.get('total_revenue_range')
-                ])
+                    scriptdata.get('combined_data',{}).get('package_name'),
+                    '=SUM(D{}:AZ{})'.format(row_no,row_no)
+                ]
+                for i in reversed(range(end_date+1)):
+                    if i == 0:
+                        pass
+                    else:
+                        dddd = (datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d') - timedelta(days = (end_date-i))).strftime('%Y-%m-%d')
 
-        worksheet.update('A1:C{}'.format(len(new_rows)), new_rows, raw=False)
+                        if dddd:
+                            if dddd not in new_rows[0]:
+                                new_rows[0].append(dddd)
+                                
+                            dd = scriptdata.get(dddd)
+                            if dd:
+                                rr.append(dd.get('total_revenue'))
+                            else:
+                                rr.append(0)
+
+                    
+                new_rows.append(rr)
+
+        worksheet.update('A1:CZZ{}'.format(len(new_rows)), new_rows, raw=False)
 
         return HttpResponse(json.dumps({
             'result':'updated',

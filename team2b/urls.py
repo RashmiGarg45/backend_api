@@ -13,6 +13,7 @@ urlpatterns = [
     path("watcho", views.WatchoOrderIdsMiningAPI.as_view(), name="cru_watcho"),
     path("damnray", views.DamnRayMiningAPI.as_view(), name="cru_damnray"),
     path("pepperfry", views.PepperfryMiningAPI.as_view(), name="cru_damnray"),
+    path("mumzworld", views.MumzworldAPI.as_view(), name="cru_mumzworld"),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
     
