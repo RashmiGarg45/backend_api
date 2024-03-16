@@ -18,7 +18,8 @@ class GenericScriptFunctions(APIView):
             # 'damnraymodd':DamnrayOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
-            'mumzworldautoios':MumzworldOrderIds
+            'mumzworldautoios':MumzworldOrderIds,
+            'habibmodd':HabibScriptOrderIdsConstants,
 
         }
         today = datetime.now().strftime('%Y-%m-%d')
@@ -367,7 +368,7 @@ class HabibOrderIdConstants(APIView):
         filter_dict = {}
         if request.GET.get('old_ids'):
             filter_dict['created_at__lte'] = '2024-02-10'
-            
+
         if order_status:
             filter_dict['order_status'] = order_status
         query = HabibScriptOrderIdsConstants.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
