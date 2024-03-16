@@ -25,7 +25,7 @@ class Report6Stats(APIView):
         end_date = request.GET.get('end_date')
         team = request.GET.get('team')
         get_total_only =  request.GET.get('get_total_only',False)
-
+        combined_app_data_map = {}
         other_data = request.GET.copy()
         if team:
             team_data = {
@@ -35,11 +35,11 @@ class Report6Stats(APIView):
             }
             apps = combined_app_data.objects.filter(qa_upperlevel__in = team_data.get(team)).using('cm-env{}'.format(team))
             if not other_data.get('campaign'):
-                combined_app_data_map = {}
                 list_apps = []               
                 for item in apps:
                     combined_app_data_map[item.filename] = {
-                        'package_name':item.pckname
+                        'package_name':item.pckname,
+                        'qa_upperlevel':item.qa_upperlevel,
                     }
                     list_apps.append(item.filename)
                 other_data['campaign'] = ",".join(list_apps)
@@ -153,7 +153,7 @@ class Report6UpdateOnSheet(APIView):
         
         end_date = int(datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d').strftime('%d'))
         new_rows = []
-        new_rows.append(['Script Name','Package Name', 'Total TR'])
+        new_rows.append(['Script Name','Package Name','Subteam', 'Total TR'])
         row_no=1
         for scriptname,scriptdata in resp_data.get('data').items():
             if scriptname:
@@ -161,6 +161,7 @@ class Report6UpdateOnSheet(APIView):
                 rr = [
                     scriptname,
                     scriptdata.get('combined_data',{}).get('package_name'),
+                    scriptdata.get('combined_data',{}).get('qa_upperlevel'),
                     '=SUM(D{}:AZ{})'.format(row_no,row_no)
                 ]
                 for i in reversed(range(end_date+1)):
@@ -179,7 +180,6 @@ class Report6UpdateOnSheet(APIView):
                             else:
                                 rr.append(0)
 
-                    
                 new_rows.append(rr)
 
         worksheet.update('A1:CZZ{}'.format(len(new_rows)), new_rows, raw=False)
@@ -378,7 +378,37 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
             message['cardsV2'][0]['card']['sections'].append(section_data)
         
         space_name = request.GET.get('space_name','AAAAmJxziIo')
-        googleChatBot_send_message(space_name=space_name,message=message)    
+        googleChatBot_send_message(space_name=space_name,message=message)   
+
+        for month,monthdata in resp_dict.items():
+            header_row = ['ScriptName','SubTeam','Done Date','Level','Total TR']
+            header_key_row = ['scriptname','subteam','done_date','level','total-TR']
+            rows = [[],['']]
+            for scriptname,scriptdata in monthdata.items():
+                row = []
+                for key in sorted(scriptdata.keys()):
+                    if key not in header_key_row:
+                        header_row.append(key)
+                        header_key_row.append(key)
+
+                for item in header_key_row:
+                    row.append(scriptdata.get(item))
+                rows.append(row)
+            rows[0] = header_row
+            sheet_url = request.GET.get('sheet_url','https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit#gid=0')
+            sheet_name = request.GET.get('sheet_name','Newapp Data')
+            sheet_name += '({})'.format(month)
+            gs = google_sheet(sheet_url)
+            try:
+                worksheet = gs.add_worksheet(name=sheet_name,rows=1000,cols=26)
+            except:
+                worksheet = gs.open_worksheet(sheet_name) 
+            
+            worksheet.update('A1:CZZ{}'.format(len(rows)), rows, raw=False)
+
+        
+
+        
         return Response({
             'data':resp_dict,
             'total_row':total_row
