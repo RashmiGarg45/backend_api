@@ -143,6 +143,7 @@ class Report6UpdateOnSheet(APIView):
         sheet_url = request.GET.get('sheet_url','https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit#gid=0')
         sheet_name = request.GET.get('sheet_name','Report 6')
         sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
+        request.GET['end_date'] = datetime.utcnow()
         resp_data = json.loads(r6_obj.get(request).content)
         rows_length = len(resp_data.get('data').keys())+10
         gs = google_sheet(sheet_url)
