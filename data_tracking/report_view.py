@@ -162,6 +162,7 @@ class Report6UpdateOnSheet(APIView):
             worksheet = gs.open_worksheet(sheet_name)
         
         end_date = int(datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d').strftime('%d'))
+        no_of_days = (datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d') - datetime.strptime(request.GET.get('start_date'),'%Y-%m-%d')).days
         new_rows = []
         new_rows.append(['Script Name','Package Name','Subteam', 'Total TR'])
         row_no=1
@@ -174,11 +175,11 @@ class Report6UpdateOnSheet(APIView):
                     scriptdata.get('combined_data',{}).get('qa_upperlevel'),
                     '=SUM(E{}:AZ{})'.format(row_no,row_no)
                 ]
-                for i in reversed(range(end_date+1)):
+                for i in reversed(range(no_of_days+1)):
                     if i == 0:
                         pass
                     else:
-                        dddd = (datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d') - timedelta(days = (end_date-i))).strftime('%Y-%m-%d')
+                        dddd = (datetime.strptime(request.GET.get('end_date'),'%Y-%m-%d') - timedelta(days = (no_of_days-i))).strftime('%Y-%m-%d')
 
                         if dddd:
                             if dddd not in new_rows[0]:
