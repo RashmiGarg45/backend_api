@@ -172,7 +172,7 @@ class Report6UpdateOnSheet(APIView):
                     scriptname,
                     scriptdata.get('combined_data',{}).get('package_name'),
                     scriptdata.get('combined_data',{}).get('qa_upperlevel'),
-                    '=SUM(D{}:AZ{})'.format(row_no,row_no)
+                    '=SUM(E{}:AZ{})'.format(row_no,row_no)
                 ]
                 for i in reversed(range(end_date+1)):
                     if i == 0:
