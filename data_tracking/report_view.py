@@ -148,7 +148,10 @@ class Report6UpdateOnSheet(APIView):
         team = request.GET.get('team')
         bt_team = request.GET.get('bt_team')
 
-        sheet_name += '({}) {} {}'.format(datetime.utcnow().strftime('%b,%y'), team, 'BT-{}'.format(bt_team))
+        if bt_team:
+            sheet_name += '({}) {} {}'.format(datetime.utcnow().strftime('%b,%y'), team, 'BT-{}'.format(bt_team))
+        else:
+            sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
         # request.GET['end_date'] = datetime.utcnow().strftime('%Y-%m-%d')
         resp_data = json.loads(r6_obj.get(request).content)
         rows_length = len(resp_data.get('data').keys())+10
