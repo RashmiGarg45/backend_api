@@ -3,6 +3,7 @@ import subprocess
 import json
 from subprocess import STDOUT, PIPE
 import sqlite3
+import random
 import execjs
 import datetime
 import time
@@ -681,6 +682,53 @@ def get_sololearn_users_count(request):
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM sololearn_userIds WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
+def get_petbook_orderId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        order_id_status = random.choice(["order_already_completed", "order_already_paid", "order_already_completed"])
+        cursor.execute('''SELECT * FROM petbook_Ids WHERE NOT isUsed=1 AND order_id_status = '{}' ORDER BY order_id ASC'''.format(order_id_status))
+        data = cursor.fetchall()
+        order_id = data[0][1]
+        data = {"order_id": order_id, "order_status": "order_id_status"}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE petbook_Ids SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_petbook_orders_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM petbook_Ids WHERE NOT isUsed=1''')
         data = cursor.fetchall()
         count = data[0]   
         response_code = 200
