@@ -706,7 +706,7 @@ def get_petbook_orderId(request):
         cursor.execute('''SELECT * FROM petbook_Ids WHERE NOT isUsed=1 AND order_id_status = '{}' ORDER BY order_id ASC'''.format(order_id_status))
         data = cursor.fetchall()
         order_id = data[0][1]
-        data = {"order_id": order_id, "order_status": "order_id_status"}
+        data = {"order_id": order_id, "order_status": order_id_status}
 
         if user_type == "server":
             used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
