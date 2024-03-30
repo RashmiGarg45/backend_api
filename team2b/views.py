@@ -575,7 +575,7 @@ class TripsygamesAPI(APIView):
         query = TripsygamesOrderIds()
         query.campaign_name = request.data.get('camp_name','tripsygamesmodd')
         query.id = request.data.get('order_id')
-        query.order_at = request.data.get('order_at')
+        query.order_status = request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         query.save()
