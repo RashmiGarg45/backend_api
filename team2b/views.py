@@ -588,7 +588,7 @@ class TripsygamesAPI(APIView):
             setUsed = False
         
         filter_dict = {}
-        query = TripsygamesOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-order_at')[0:50].first()
+        query = TripsygamesOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
