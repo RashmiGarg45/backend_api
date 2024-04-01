@@ -18,8 +18,9 @@ class GenericScriptFunctions(APIView):
             # 'damnraymodd':DamnrayOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
-            'mumzworldautoios':MumzworldOrderIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
             'habibmodd':HabibScriptOrderIdsConstants,
+            'tripsygamesmodd': TripsygamesOrderIds,
 
         }
         today = datetime.now().strftime('%Y-%m-%d')
