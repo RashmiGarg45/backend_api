@@ -30,4 +30,6 @@ urlpatterns = [
     path("get_petbook_orderId/", views.get_petbook_orderId, name="get_petbook_orderId"),
     path("get_elelive_users_count/", views.get_elelive_users_count, name="get_elelive_users_count"),
     path("get_elelive_userId/", views.get_elelive_userId, name="get_elelive_userId"),
+    path("get_ladygentleman_order/", views.get_ladygentleman_order, name="get_ladygentleman_order"),
+    path("get_ladygentleman_order_count/", views.get_ladygentleman_order_count, name="get_ladygentleman_order_count"),
 ]
