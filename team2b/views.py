@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds
 
 from datetime import datetime,timedelta
 import json
@@ -18,8 +18,9 @@ class GenericScriptFunctions(APIView):
             # 'damnraymodd':DamnrayOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
-            'mumzworldautoios':MumzworldOrderIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
             'habibmodd':HabibScriptOrderIdsConstants,
+            'tripsygamesmodd': TripsygamesOrderIds,
 
         }
         today = datetime.now().strftime('%Y-%m-%d')
@@ -566,6 +567,37 @@ class MumzworldAPI(APIView):
         }
         if setUsed:
             query = MumzworldOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+class TripsygamesAPI(APIView):
+    def put(self, request):
+        query = TripsygamesOrderIds()
+        query.campaign_name = request.data.get('camp_name','tripsygamesmodd')
+        query.id = request.data.get('order_id')
+        query.order_status = request.data.get('order_status')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = TripsygamesOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'order_id':query.id,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = TripsygamesOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
