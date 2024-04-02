@@ -11,7 +11,7 @@ from django.db.models import Count
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
             # 'indigomodd':IndigoScriptOrderIds,
             # 'lightinthebox':LightInTheBox,
             'dominosindomodd':DominosIndodeliveryScriptOrderIds,
