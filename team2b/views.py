@@ -11,7 +11,7 @@ from django.db.models import Count
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
             # 'indigomodd':IndigoScriptOrderIds,
             # 'lightinthebox':LightInTheBox,
             'dominosindomodd':DominosIndodeliveryScriptOrderIds,
@@ -579,9 +579,13 @@ class TripsygamesAPI(APIView):
         query.order_status = request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
-        query.save()
-        return Response({
-        })
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)

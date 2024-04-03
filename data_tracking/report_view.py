@@ -175,7 +175,7 @@ class Report6UpdateOnSheet(APIView):
                     scriptdata.get('combined_data',{}).get('qa_upperlevel'),
                     '=SUM(E{}:AZ{})'.format(row_no,row_no)
                 ]
-                for i in reversed(range(no_of_days+1)):
+                for i in reversed(range(no_of_days+1+1)):
                     if i == 0:
                         pass
                     else:
