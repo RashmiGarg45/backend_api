@@ -32,4 +32,6 @@ urlpatterns = [
     path("get_elelive_userId/", views.get_elelive_userId, name="get_elelive_userId"),
     path("get_ladygentleman_order/", views.get_ladygentleman_order, name="get_ladygentleman_order"),
     path("get_ladygentleman_order_count/", views.get_ladygentleman_order_count, name="get_ladygentleman_order_count"),
+    path("get_styli_order/", views.get_styli_order, name="get_styli_order"),
+    path("get_styli_order_count/", views.get_styli_order_count, name="get_styli_order_count"),
 ]
