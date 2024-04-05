@@ -214,9 +214,13 @@ class Mcdelivery(APIView):
         query.member_name=request.data.get('member_name')
         query.used_at = None
         query.extra_details = request.data.get('other_details',{})
-        query.save()
-        return Response({
-        })
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
@@ -320,9 +324,13 @@ class OstinShop(APIView):
         query.order_status=request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
-        query.save()
-        return Response({
-        })
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
@@ -356,10 +364,14 @@ class HabibOrderIdConstants(APIView):
         query.order_status=request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
-        query.save()
-        return Response({
-        })
-
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+        
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
@@ -435,10 +447,14 @@ class WatchoOrderIdsMiningAPI(APIView):
         query.order_status=request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
-        query.save()
-        return Response({
-        })
-
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+        
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
