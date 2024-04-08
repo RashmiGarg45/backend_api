@@ -817,21 +817,21 @@ def get_ladygentleman_order(request):
 
 def get_ladygentleman_order_count(request):
 
-    try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
-        cursor = conn.cursor()    
-        
-        # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
-        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM ladygentleman_orderData WHERE NOT isUsed=1''')#AND order_date LIKE "{}"'''.format(current_date))
-        data = cursor.fetchall()
-        count = data[0]   
-        response_code = 200
-        message = "success"
+    # try:
+    conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+    cursor = conn.cursor()    
+    
+    # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
+    cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM ladygentleman_orderData WHERE NOT isUsed=1''')#AND order_date LIKE "{}"'''.format(current_date))
+    data = cursor.fetchall()
+    count = data[0]   
+    response_code = 200
+    message = "success"
 
-    except Exception as e:
-        response_code = 500
-        message = str(e)
-        count = None
+    # except Exception as e:
+        # response_code = 500
+        # message = str(e)
+        # count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
 
