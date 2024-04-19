@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds
 
 from datetime import datetime,timedelta
 import json
@@ -21,7 +21,8 @@ class GenericScriptFunctions(APIView):
             # 'mumzworldautoios':MumzworldOrderIds,
             'habibmodd':HabibScriptOrderIdsConstants,
             'tripsygamesmodd': TripsygamesOrderIds,
-            'ostinshopmodd': OstinShopScriptOrderIds
+            'ostinshopmodd': OstinShopScriptOrderIds,
+            'lazuritappmetrica': LazuritOrderIds
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -622,6 +623,45 @@ class TripsygamesAPI(APIView):
         }
         if setUsed:
             query = TripsygamesOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+
+class LazuritAPI(APIView):
+    def put(self, request):
+        query = LazuritOrderIds()
+        query.campaign_name = request.data.get('camp_name','lazuritappmetrica')
+        query.id = request.data.get('order_id')
+        query.price = request.data.get('amount')
+        query.order_status = request.data.get('order_status')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = LazuritOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'order_id':query.id,
+                'price': query.price,
+                'order_status':query.order_status,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = LazuritOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
