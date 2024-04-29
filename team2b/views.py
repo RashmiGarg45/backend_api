@@ -678,7 +678,9 @@ class GomcdAPI(APIView):
             query.save()
             return Response({
             })
-        except:
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
             return Response({
             })
 
