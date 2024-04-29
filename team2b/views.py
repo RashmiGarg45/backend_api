@@ -22,7 +22,8 @@ class GenericScriptFunctions(APIView):
             'habibmodd':HabibScriptOrderIdsConstants,
             'tripsygamesmodd': TripsygamesOrderIds,
             'ostinshopmodd': OstinShopScriptOrderIds,
-            'lazuritappmetrica': LazuritOrderIds
+            # 'lazuritappmetrica': LazuritOrderIds,
+            'gomcdoauto': GomcdOrderIds
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
