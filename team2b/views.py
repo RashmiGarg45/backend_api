@@ -699,7 +699,7 @@ class GomcdAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = GomcdOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = GomcdOrderIds.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
