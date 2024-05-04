@@ -739,3 +739,20 @@ class BharatmatrimonyAPI(APIView):
         return Response({
             'body':data,
         })
+
+
+
+class stock3Api(APIView):
+    def get(self, request):
+        from team2b.lib import encryption
+        call_url = ''
+        call_data = ''
+        device_id = ''
+        cksm_v4 = encryption.cksm_v4(call_url, call_data, device_id)
+        fingerprint = encryption.fingerprint(device_id)
+        
+        
+        return Response({
+            'cksm_v4':cksm_v4,
+            'fingerprint':fingerprint
+        })
