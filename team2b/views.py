@@ -744,7 +744,7 @@ class BharatmatrimonyAPI(APIView):
 
 class stock3Api(APIView):
     def get(self, request):
-        import encryption
+        from team2b import encryption
         call_url = ''
         call_data = ''
         device_id = ''
