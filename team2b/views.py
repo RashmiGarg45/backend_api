@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds
 
 from datetime import datetime,timedelta
 import json
@@ -24,6 +24,7 @@ class GenericScriptFunctions(APIView):
             'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             'gomcdoauto': GomcdOrderIds,
+            'samsclubmodd': SamsclubMemberIds,
             'bharatmatrimonymodd': BharatmatrimonyUserIds
         }
         today = datetime.now().strftime('%Y-%m-%d')
@@ -736,6 +737,42 @@ class BharatmatrimonyAPI(APIView):
         }
         if setUsed:
             query = BharatmatrimonyUserIds.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+class SamsclubAPI(APIView):
+    def put(self, request):
+        query = SamsclubMemberIds()
+        query.campaign_name = request.data.get('camp_name','samsclubmodd')
+        query.id = request.data.get('id')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return Response({
+            })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = SamsclubMemberIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'id':query.id,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = SamsclubMemberIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })

@@ -18,6 +18,7 @@ urlpatterns = [
     path("lazurit", views.LazuritAPI.as_view(), name='cru_lazurit'),
     path("gomcd", views.GomcdAPI.as_view(), name='cru_gomcd'),
     path("bharatmatrimony", views.BharatmatrimonyAPI.as_view(), name='cru_bharatmatrimony'),
+    path("samsclub", views.SamsclubAPI.as_view(), name='cru_samsclub'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
