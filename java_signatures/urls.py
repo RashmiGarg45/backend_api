@@ -34,4 +34,6 @@ urlpatterns = [
     path("get_ladygentleman_order_count/", views.get_ladygentleman_order_count, name="get_ladygentleman_order_count"),
     path("get_styli_order/", views.get_styli_order, name="get_styli_order"),
     path("get_styli_order_count/", views.get_styli_order_count, name="get_styli_order_count"),
+    path("get_pocket52_users_count/", views.get_pocket52_users_count, name="get_pocket52_users_count"),
+    path("get_pocket52_userId/", views.get_pocket52_userId, name="get_pocket52_userId"),
 ]
