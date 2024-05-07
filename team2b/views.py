@@ -12,20 +12,20 @@ class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
             'mcdeliverymodd':McdeliveryScriptOrderIds,
-            # 'indigomodd':IndigoScriptOrderIds,
-            # 'lightinthebox':LightInTheBox,
             'dominosindomodd':DominosIndodeliveryScriptOrderIds,
-            # 'damnraymodd':DamnrayOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
-            # 'mumzworldautoios':MumzworldOrderIds,
             'habibmodd':HabibScriptOrderIdsConstants,
             'tripsygamesmodd': TripsygamesOrderIds,
             'ostinshopmodd': OstinShopScriptOrderIds,
-            # 'lazuritappmetrica': LazuritOrderIds,
+            'lazuritappmetrica': LazuritOrderIds,
             'gomcdoauto': GomcdOrderIds,
-            'samsclubmodd': SamsclubMemberIds,
-            'bharatmatrimonymodd': BharatmatrimonyUserIds
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            # 'samsclubmodd': SamsclubMemberIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
+            # 'damnraymodd':DamnrayOrderIds,
+            # 'indigomodd':IndigoScriptOrdersIds,
+            # 'lightinthebox':LightInTheBox,
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
