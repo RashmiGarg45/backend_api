@@ -3,9 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds
+from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta
-import json
+import json, time
 
 from django.db.models import Count
 
@@ -90,30 +91,102 @@ class GenericScriptFunctions(APIView):
             'ids_mined':ids_mined,
         })
 
+
+def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
+    user_id_increase_per_second_list = []
+    for i in range(len(id_helper_data)):
+        if i == 0:
+            constraint = id_helper_data[i].get('constraint')
+            continue
+        if i+1!=len(id_helper_data):
+            timestamp_diff = id_helper_data[i].get('timestamp') - id_helper_data[i+1].get('timestamp')
+            user_id_diff = id_helper_data[i].get('id') - id_helper_data[i+1].get('id')
+
+            user_id_increase_per_second = float(user_id_diff)/float(timestamp_diff)
+            user_id_increase_per_second_list.append(user_id_increase_per_second)
+
+    current_time = constant_timestamp if constant_timestamp else time.time()
+    last_ordered_item = id_helper_data[0]
+    time_diff = current_time - last_ordered_item.get('timestamp')
+    avg_ord_id_increase = (sum(user_id_increase_per_second_list)/len(user_id_increase_per_second_list))*constraint
+    trans_id = (time_diff*avg_ord_id_increase)+last_ordered_item.get('id')
+
+    return int(trans_id)
+
 class SimulatedIdFunction(APIView):
     def put(self, request):
-        query = SimulationIds()
+        put_query = SimulationIds()
         for item in ['campaign_name','timestamp','id','date_added']:
             if not request.data.get(item):
                 raise ValidationError({
                     'error':item+' was not provided.'
                 })
-        query.campaign_name = request.data.get('campaign_name')
-        query.timestamp = request.data.get('timestamp')
-        query.id=request.data.get('id')
-        query.date_added = request.data.get('date_added')
-        query.save()
+        search_query = SimulationIds.objects.filter(campaign_name=request.data.get('campaign_name')).order_by('-timestamp').first()
+        if search_query:
+            if search_query.id>=request.data.get('id'):
+                raise ValidationError({
+                    'error':'ID provided is old, we have a newer id than this in our DB, and cannot be simulated'
+                })
+
+            if datetime.strptime(search_query.timestamp.strftime("%Y-%m-%d %H:%M:%S"),"%Y-%m-%d %H:%M:%S")>datetime.strptime(request.data.get('timestamp'),"%Y-%m-%d %H:%M:%S.000000"):
+                raise ValidationError({
+                    'error':'Timestamp provided is old, we have a newer timestamp than this in our DB'
+                })
+
+        put_query.campaign_name = request.data.get('campaign_name')
+        put_query.timestamp = request.data.get('timestamp')
+        put_query.id=request.data.get('id')
+        put_query.date_added = request.data.get('date_added')
+        put_query.save()
         return Response({
         })
 
     def get(self, request):
         scriptname = request.GET.get('scriptname')
-        
-        return Response({
-        
-        })
+        unique_id_duration = request.GET.get('unique_id_duration')
 
+        redis_obj = Redis()
+        data_list = redis_obj.retrieve_data(key=scriptname)
 
+        if not data_list:
+            search_query = SimulationIds.objects.filter(campaign_name=scriptname).order_by('-timestamp')
+            data_list = []
+            for item in search_query:
+                data_list.append({
+                    'timestamp':item.timestamp.timestamp(),
+                    'id':int(item.id),
+                    'constraint':item.constraint
+                })
+            redis_obj.save(key=scriptname,value=data_list)
+        
+        if len(data_list)>2:
+            first_timestamp = data_list[1].get('timestamp')
+            first_id = id_helper_function(data_list,first_timestamp)
+            second_timestamp = data_list[1].get('timestamp')
+            unique_id_time_difference = 0
+            while True:
+                second_timestamp+=1
+                second_id = id_helper_function(data_list,second_timestamp)
+                if first_id!=second_id:
+                    unique_id_time_difference = second_timestamp-first_timestamp
+                    break
+                
+            id_gen = id_helper_function(data_list,time.time())
+            last_id_used = redis_obj.retrieve_data(scriptname+'last_used_id')
+            
+            while last_id_used>=id_gen:
+                id_gen = id_gen+1
+            
+            redis_obj.save(key=scriptname+'last_used_id',value=id_gen)
+            return Response({
+                'id_gen':id_gen,
+                'unique_id_time_difference':unique_id_time_difference
+            })
+        else:
+            raise ValidationError({
+                'error':'Need 2 rows for id simulation'
+            })
+        
 class Indigo(APIView):
     def put(self, request):
         query = IndigoScriptOrderIds()

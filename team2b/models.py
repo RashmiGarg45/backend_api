@@ -309,7 +309,8 @@ class SimulationIds(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     date_added = models.DateField(blank=False)
     timestamp = models.DateTimeField(blank=False)
-    id = models.CharField(max_length=20,unique=True)
+    id = models.CharField(max_length=100,unique=True)
+    constraint = models.FloatField(default=1)
     
     class Meta:
         indexes = [

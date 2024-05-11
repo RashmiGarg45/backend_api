@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dotenv
-dotenv.load_dotenv()
+project_folder = os.getcwd()
+xx =os.path.join(project_folder, '.env')
+dotenv.load_dotenv(xx)
 
 import pymysql
 pymysql.install_as_MySQLdb()
@@ -44,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'java_signatures.apps.JavaSignaturesConfig',
     'team2b.apps.Team2BConfig',
-    'data_tracking'
+    'data_tracking',
+    'django_redis'
 ]
 
 MIDDLEWARE = [
@@ -80,6 +83,8 @@ WSGI_APPLICATION = 'backend_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+print(os.getenv('CLICKMANAGER_ENV_USER'))
 
 DATABASES = {
     'default': {  
@@ -162,6 +167,17 @@ DATABASES = {
     
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://localhost:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
