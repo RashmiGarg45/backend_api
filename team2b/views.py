@@ -95,7 +95,7 @@ class SimulatedIdFunction(APIView):
         query = SimulationIds()
         for item in ['campaign_name','timestamp','id','date_added']:
             if not request.data.get(item):
-                return ValidationError({
+                raise ValidationError({
                     'error':item+' was not provided.'
                 })
         query.campaign_name = request.data.get('campaign_name')

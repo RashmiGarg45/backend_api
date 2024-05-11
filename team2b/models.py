@@ -307,8 +307,8 @@ class SimulationIds(models.Model):
     campaign_name = models.CharField(max_length=20,default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    date_added = models.DateField(auto_now=True)
-    timestamp = models.DateField(auto_now=True)
+    date_added = models.DateField(blank=False)
+    timestamp = models.DateTimeField(blank=False)
     id = models.CharField(max_length=20,unique=True)
     
     class Meta:
