@@ -3,10 +3,7 @@ from django.db import models
 # Create your models here.
 
 class CheckEventCount(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,10 +28,7 @@ class CheckEventCount(models.Model):
 
 
 class IndigoScriptOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=100,default='indigomoddteam2modd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -53,10 +47,7 @@ class IndigoScriptOrderIds(models.Model):
         ]
 
 class IgpScriptOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=100,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -76,10 +67,7 @@ class IgpScriptOrderIds(models.Model):
 
 
 class McdeliveryScriptOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -99,10 +87,7 @@ class McdeliveryScriptOrderIds(models.Model):
         ]
 
 class LightInTheBox(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -116,10 +101,7 @@ class LightInTheBox(models.Model):
         ]
 
 class DominosIndodeliveryScriptOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -138,10 +120,7 @@ class DominosIndodeliveryScriptOrderIds(models.Model):
         ]
 
 class OstinShopScriptOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -159,10 +138,7 @@ class OstinShopScriptOrderIds(models.Model):
 
 
 class HabibScriptOrderIdsConstants(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -179,10 +155,7 @@ class HabibScriptOrderIdsConstants(models.Model):
         ]
 
 class WatchoOrderIdsMining(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -198,10 +171,7 @@ class WatchoOrderIdsMining(models.Model):
         ]
 
 class DamnrayOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -220,10 +190,7 @@ class DamnrayOrderIds(models.Model):
 
 
 class PepperfryOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='pepperfrymodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -239,10 +206,7 @@ class PepperfryOrderIds(models.Model):
         ]
 
 class MumzworldOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='mumzworld')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -258,10 +222,7 @@ class MumzworldOrderIds(models.Model):
         ]
 
 class TripsygamesOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='tripsygamesmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -277,10 +238,7 @@ class TripsygamesOrderIds(models.Model):
         ]
 
 class LazuritOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='lazuritappmetrica')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -298,10 +256,7 @@ class LazuritOrderIds(models.Model):
 
 
 class GomcdOrderIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='gomcdoauto')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -316,10 +271,7 @@ class GomcdOrderIds(models.Model):
         ]
 
 class BharatmatrimonyUserIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='bharatmatrimonymodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -335,10 +287,7 @@ class BharatmatrimonyUserIds(models.Model):
 
 
 class SamsclubMemberIds(models.Model):
-    """
-    This is the base model for all the models.
-    It has all the requried and common fields in our custom models.
-    """
+
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='samsclubmodd')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -350,5 +299,22 @@ class SamsclubMemberIds(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=['id']),
+        ]
+
+
+class SimulationIds(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    date_added = models.DateField(auto_now=True)
+    timestamp = models.DateField(auto_now=True)
+    id = models.CharField(max_length=20,unique=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+            models.Index(fields=['campaign_name']),
+            models.Index(fields=['campaign_name','id','timestamp']),
         ]
 

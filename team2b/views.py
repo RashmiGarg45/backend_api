@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,CheckEventCount,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds
 
 from datetime import datetime,timedelta
 import json
@@ -87,6 +87,29 @@ class GenericScriptFunctions(APIView):
 
         return Response({
             'ids_mined':ids_mined,
+        })
+
+class SimulatedIdFunction(APIView):
+    def put(self, request):
+        query = SimulationIds()
+        for item in ['campaign_name','timestamp','id','date_added']:
+            if not request.data.get(item):
+                return ValidationError({
+                    'error':item+' was not provided.'
+                })
+        query.campaign_name = request.data.get('campaign_name')
+        query.timestamp = request.data.get('timestamp')
+        query.id=request.data.get('id')
+        query.date_added = request.data.get('date_added')
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        scriptname = request.GET.get('scriptname')
+        
+        return Response({
+        
         })
 
 

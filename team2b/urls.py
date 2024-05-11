@@ -21,6 +21,7 @@ urlpatterns = [
     path("samsclub", views.SamsclubAPI.as_view(), name='cru_samsclub'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
+    path("idsimulated", views.SimulatedIdFunction.as_view(), name="idsimulated"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
     
 ]
