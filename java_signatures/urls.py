@@ -36,4 +36,6 @@ urlpatterns = [
     path("get_styli_order_count/", views.get_styli_order_count, name="get_styli_order_count"),
     path("get_pocket52_users_count/", views.get_pocket52_users_count, name="get_pocket52_users_count"),
     path("get_pocket52_userId/", views.get_pocket52_userId, name="get_pocket52_userId"),
+    path("get_smytten_orders_count/", views.get_smytten_orders_count, name="get_smytten_orders_count"),
+    path("get_smytten_orderId/", views.get_smytten_orderId, name="get_smytten_orderId"),
 ]
