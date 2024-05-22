@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldUserIds
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta
@@ -23,7 +23,7 @@ class GenericScriptFunctions(APIView):
             # 'lazuritappmetrica': LazuritOrderIds,
             'gomcdoauto': GomcdOrderIds,
             'bharatmatrimonymodd': BharatmatrimonyUserIds,
-            'weworldauto': WeWorldUserIds
+            'weworldauto': WeWorldIds
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             # 'damnraymodd':DamnrayOrderIds,
@@ -878,7 +878,7 @@ class SamsclubAPI(APIView):
 
 class WeWorldAPI(APIView):
     def put(self, request):
-        query = WeWorldUserIds()
+        query = WeWorldIds()
         query.campaign_name = request.data.get('camp_name','weworldauto')
         query.id = request.data.get('id')
         query.extra_details=request.data.get('extra_details',{})
@@ -899,7 +899,7 @@ class WeWorldAPI(APIView):
             setUsed = False
         
         filter_dict = {}
-        query = WeWorldUserIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        query = WeWorldIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
@@ -907,52 +907,52 @@ class WeWorldAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = WeWorldUserIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WeWorldIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })
 
-# class Player6API(APIView):
-    # def put(self, request):
-    #     query = Player6auto()
-    #     query.campaign_name = request.data.get('camp_name','player6auto')
-    #     query.event_token = request.data.get('event_token')
-    #     query.event_value = request.data.get('event_value')
-    #     query.app_data = request.data.get('app_data')
-    #     query.device_data = request.data.get('device_data')
-    #     query.extra_details=request.data.get('extra_details',{})
-    #     query.used_at = None
-    #     try:
-    #         query.save()
-    #         return Response({
-    #         })
-    #     except Exception as e:
-    #         import traceback
-    #         traceback.print_exc()
-    #         return Response({
-    #         })
+class Player6API(APIView):
+    def put(self, request):
+        query = Player6auto()
+        query.campaign_name = request.data.get('camp_name','player6auto')
+        query.event_token = request.data.get('event_token')
+        query.event_value = request.data.get('event_value')
+        query.app_data = request.data.get('app_data')
+        query.device_data = request.data.get('device_data')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            return Response({
+            })
 
-    # def get(self, request):
-    #     setUsed = request.GET.get('set_used',True)
-    #     if setUsed and (setUsed == 'False' or setUsed == 'false'):
-    #         setUsed = False
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
         
-    #     filter_dict = {}
-    #     query = Player6auto.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        filter_dict = {}
+        query = Player6auto.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
-    #     data = {
-    #             'event_token':query.event_token,
-    #             'event_value':query.event_value,
-    #             'device_data':query.device_data,
-    #             'app_data':query.app_data,
-    #             'used_at':query.used_at,
-    #             'extra_details':query.extra_details
-    #     }
-    #     if setUsed:
-    #         query = Player6auto.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    #     return Response({
-    #         'body':data,
-    #     })
+        data = {
+                'event_token':query.event_token,
+                'event_value':query.event_value,
+                'device_data':query.device_data,
+                'app_data':query.app_data,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = Player6auto.objects.filter(serial=data.get('serial')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
 
 
 
