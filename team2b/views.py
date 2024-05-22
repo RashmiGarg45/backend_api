@@ -639,6 +639,9 @@ class PepperfryMiningAPI(APIView):
             })
 
     def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
@@ -656,7 +659,7 @@ class PepperfryMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
