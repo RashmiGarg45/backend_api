@@ -19,9 +19,12 @@ urlpatterns = [
     path("gomcd", views.GomcdAPI.as_view(), name='cru_gomcd'),
     path("bharatmatrimony", views.BharatmatrimonyAPI.as_view(), name='cru_bharatmatrimony'),
     path("samsclub", views.SamsclubAPI.as_view(), name='cru_samsclub'),
+    path("weworld", views.WeWorldAPI.as_view(), name='weworld'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
+    path("player6", views.Player6API.as_view(), name='player6'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
     path("idsimulated", views.SimulatedIdFunction.as_view(), name="idsimulated"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
+
     
 ]

@@ -319,3 +319,38 @@ class SimulationIds(models.Model):
             models.Index(fields=['campaign_name','id','timestamp']),
         ]
 
+
+class Player6auto(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='player6auto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    event_token = models.CharField(max_length=30,unique=True)
+    event_value = models.JSONField(default=dict, blank=True, null=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    device_data = models.JSONField(default=dict, blank=True, null=True)
+    app_data = models.JSONField(default=dict, blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+
+
+class WeWorldUserIds(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='weworldauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=25,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
