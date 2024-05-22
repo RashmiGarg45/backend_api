@@ -351,6 +351,7 @@ class WeWorldIds(models.Model):
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     
     class Meta:
+        db_table = 'team2b_weworlduserids'
         indexes = [
             models.Index(fields=['id']),
         ]
