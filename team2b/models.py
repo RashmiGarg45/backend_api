@@ -196,6 +196,9 @@ class PepperfryOrderIds(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     order_status = models.CharField(default=0,max_length=100)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
     id = models.CharField(max_length=50,unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
@@ -204,6 +207,7 @@ class PepperfryOrderIds(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
 
 class MumzworldOrderIds(models.Model):
 
