@@ -175,8 +175,11 @@ class SimulatedIdFunction(APIView):
             id_gen = id_helper_function(data_list,time.time())
             last_id_used = redis_obj.retrieve_data(scriptname+'last_used_id')
             
-            while last_id_used>=id_gen:
-                id_gen = id_gen+1
+            if last_id_used:
+                while last_id_used>=id_gen:
+                    id_gen = id_gen+1
+            else:
+                pass
             
             redis_obj.save(key=scriptname+'last_used_id',value=id_gen)
             return Response({
