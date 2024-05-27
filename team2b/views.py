@@ -5,7 +5,7 @@ from rest_framework.exceptions import ValidationError
 from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto
 from team2b.services.redis import Redis
 
-from datetime import datetime,timedelta
+from datetime import datetime,timedelta,date
 import json, time
 
 from django.db.models import Count
@@ -124,7 +124,7 @@ class SimulatedIdFunction(APIView):
                 })
         search_query = SimulationIds.objects.filter(campaign_name=request.data.get('campaign_name')).order_by('-timestamp').first()
         if search_query:
-            if search_query.id>=request.data.get('id'):
+            if int(search_query.id)>=request.data.get('id'):
                 raise ValidationError({
                     'error':'ID provided is old, we have a newer id than this in our DB, and cannot be simulated'
                 })
@@ -173,15 +173,16 @@ class SimulatedIdFunction(APIView):
                     break
                 
             id_gen = id_helper_function(data_list,time.time())
-            last_id_used = redis_obj.retrieve_data(scriptname+'last_used_id')
-            
-            if last_id_used:
-                while last_id_used>=id_gen:
-                    id_gen = id_gen+1
-            else:
-                pass
-            
-            redis_obj.save(key=scriptname+'last_used_id',value=id_gen)
+            last_id_used_dict = redis_obj.retrieve_data(scriptname+'last_used_id')
+            if last_id_used_dict:
+                last_id_used = last_id_used_dict.get('id_gen')
+                if last_id_used:
+                    while last_id_used>=id_gen:
+                        id_gen = id_gen+1
+                else:
+                    pass
+
+            redis_obj.save(key=scriptname+'last_used_id',value={"id_gen":id_gen,"ts":time.time()})
             return Response({
                 'id_gen':id_gen,
                 'unique_id_time_difference':unique_id_time_difference
@@ -191,6 +192,60 @@ class SimulatedIdFunction(APIView):
                 'error':'Need 2 rows for id simulation'
             })
         
+class AppsForSimulation(APIView):
+    def get(self, request):
+        import requests
+        url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today(),date.today())
+        today_r6_data = requests.get(url).json()
+        apps_list = [
+            'walbimodd',
+            'karacaauto',
+            'dominosindomodd',
+            'pepperfrymodd',
+            'pinoypesomodd',
+            'arenaplusmodd',
+            'autodocmodd',
+            'legendofmushroommodd',
+            'flexsalaryauto',
+            'watchomodd',
+            'phonepestockmodd',
+            'fantosst2modd',
+            'snackshortmodd',
+            'laundrymateauto',
+            'player6auto',
+            'billeasemodd',
+            'cadburyplaypadmodd',
+            'apnatimeauto',
+            'osagomodd',
+            'moregoldmodd',
+            'rushgamesauto',
+            'fancodemodd',
+            'lalamovedrivermodd',
+            'benemodd',
+            'nuummodd',
+            'holodilinkappmetrica',
+            'bharatloanteam2modd'
+        ]
+
+        data = {}
+
+        redis_obj = Redis()
+
+        for app in apps_list:
+            if today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2'):
+                data[app] = {}
+            
+            if redis_obj.retrieve_data(key=app):
+                data[app].update({'data_list':redis_obj.retrieve_data(key=app)})
+            
+
+            if redis_obj.retrieve_data(key=app+'last_used_id'):
+                data[app].update({'last_used_dict':redis_obj.retrieve_data(key=app+'last_used_id')})
+
+        return Response({
+            'data':data
+            })
+
 class Indigo(APIView):
     def put(self, request):
         query = IndigoScriptOrderIds()

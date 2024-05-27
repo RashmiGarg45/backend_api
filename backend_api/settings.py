@@ -31,8 +31,12 @@ SECRET_KEY = 'django-insecure-#bx$ivmdn5a!p!a%n1c)58)uqck-yk!*oi2a*j$hdz762m77-)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'https://localhost:3000',
+]
 
 # Application definition
 
@@ -47,7 +51,8 @@ INSTALLED_APPS = [
     'java_signatures.apps.JavaSignaturesConfig',
     'team2b.apps.Team2BConfig',
     'data_tracking',
-    'django_redis'
+    'django_redis',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend_api.urls'
