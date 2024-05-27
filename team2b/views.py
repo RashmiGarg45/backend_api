@@ -238,7 +238,6 @@ class AppsForSimulation(APIView):
             if redis_obj.retrieve_data(key=app):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=app)})
             
-
             if redis_obj.retrieve_data(key=app+'last_used_id'):
                 data[app].update({'last_used_dict':redis_obj.retrieve_data(key=app+'last_used_id')})
 
@@ -709,18 +708,40 @@ class PepperfryMiningAPI(APIView):
         if order_status:
             filter_dict['order_status'] = order_status
         query = PepperfryOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
-        
-        data = {
-                'order_id':query.id,
-                'order_status':query.order_status,
-                'used_at':query.used_at,
-                'extra_details':query.extra_details
-        }
-        if setUsed:
-            query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
-        return Response({
-            'body':data,
-        })
+        if query:
+            data = {
+                    'order_id':query.id,
+                    'order_status':query.order_status,
+                    'used_at':query.used_at,
+                    'extra_details':query.extra_details
+            }
+            if setUsed:
+                query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            return Response({
+                'body':data,
+            })
+        else:
+            filter_dict.update({"used_at__lte":datetime.now()-timedelta(days=14)})
+            if channel and offer_id and network:
+                exclude_dict = {
+                    'channel':channel,
+                    'network':network,
+                    'offer_id':offer_id,
+                }
+            else:
+                exclude_dict = {}
+            query = PepperfryOrderIds.objects.filter(used_at_2=None,**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:50].first()
+            data = {
+                    'order_id':query.id,
+                    'order_status':query.order_status,
+                    'used_at':query.used_at,
+                    'extra_details':query.extra_details
+            }
+            if setUsed:
+                query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at_2=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            return Response({
+                'body':data,
+            })
 
 
 class MumzworldAPI(APIView):
