@@ -6,7 +6,7 @@ from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,Damn
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
-import json, time
+import json, time, random
 
 from django.db.models import Count
 
@@ -231,18 +231,27 @@ class AppsForSimulation(APIView):
 
         redis_obj = Redis()
 
+        data_list = []
         for app in apps_list:
+            dict__ = {}
+            dict__['script_name'] = app
+
             if today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2'):
                 data[app] = {}
+                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2')
             
             if redis_obj.retrieve_data(key=app):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=app)})
+                dict__['last_updated_id'] = data.get(app).get('data_list')[0].get('id')
+                dict__['last_updated_id_timestamp'] = data.get(app).get('data_list')[0].get('timestamp')
             
             if redis_obj.retrieve_data(key=app+'last_used_id'):
                 data[app].update({'last_used_dict':redis_obj.retrieve_data(key=app+'last_used_id')})
-
+                dict__['last_used_id'] = data.get(app).get('last_used_dict').get('id_gen')
+                dict__['last_used_id_timestamp'] = data.get(app).get('last_used_dict').get('ts')
+            data_list.append(dict__)
         return Response({
-            'data':data
+            'data':data_list
             })
 
 class Indigo(APIView):
@@ -701,6 +710,27 @@ class PepperfryMiningAPI(APIView):
         offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
+
+        if not channel and not network and not offer_id:
+            query_count = PepperfryOrderIds.objects.count()
+            random_serial = random.randint(200,query_count)
+            query = PepperfryOrderIds.objects.filter(serial=random_serial).first()
+
+            if query:
+                data = {
+                    'order_id':query.id,
+                    'order_status':query.order_status,
+                    'used_at':query.used_at,
+                    'extra_details':query.extra_details
+                }
+                return Response({
+                    'body':data,
+                })
+            else:
+                return Response({
+                    'body':{},
+                })
+            
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
@@ -730,7 +760,8 @@ class PepperfryMiningAPI(APIView):
                 }
             else:
                 exclude_dict = {}
-            query = PepperfryOrderIds.objects.filter(used_at_2=None,**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:50].first()
+            query = PepperfryOrderIds.objects.filter(used_at_2=None,**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:50].all()
+            query = random.choice(query)
             data = {
                     'order_id':query.id,
                     'order_status':query.order_status,
