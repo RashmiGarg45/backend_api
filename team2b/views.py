@@ -465,7 +465,8 @@ class DominosIndo(APIView):
             filter_dict['order_type'] = order_type
         if order_status:
             filter_dict['order_status'] = order_status
-        query = DominosIndodeliveryScriptOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-invoice_date_time')[0:50].first()
+        query = DominosIndodeliveryScriptOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-invoice_date_time')[0:50].all()
+        query = random.choice(query)
         
         data = {
                 'order_id':query.id,
