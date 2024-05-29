@@ -108,7 +108,7 @@ def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
             user_id_increase_per_second_list.append(user_id_increase_per_second)
 
     current_time = constant_timestamp if constant_timestamp else time.time()
-    last_ordered_item = id_helper_data[0]
+    last_ordered_item = id_helper_data[1]
     time_diff = current_time - last_ordered_item.get('timestamp')
     avg_ord_id_increase = (sum(user_id_increase_per_second_list)/len(user_id_increase_per_second_list))*constraint
     trans_id = (time_diff*avg_ord_id_increase)+last_ordered_item.get('id')
@@ -142,6 +142,7 @@ class SimulatedIdFunction(APIView):
         put_query.id=request.data.get('id')
         put_query.type=request.data.get('type','order_id')
         put_query.date_added = request.data.get('date_added')
+        put_query.constraint = request.data.get('constraint')
         put_query.save()
         
         redis_obj = Redis()
@@ -162,7 +163,6 @@ class SimulatedIdFunction(APIView):
     def get(self, request):
         scriptname = request.GET.get('scriptname')
         type = request.GET.get('type','order_id')
-        unique_id_duration = request.GET.get('unique_id_duration')
 
         redis_obj = Redis()
         data_list = redis_obj.retrieve_data(key=scriptname)
@@ -176,22 +176,11 @@ class SimulatedIdFunction(APIView):
                     'id':int(item.id),
                     'constraint':item.constraint
                 })
-            redis_obj.save(key=scriptname,value=data_list)
+            redis_obj.save(key=scriptname+'_'+type,value=data_list)
         
         if len(data_list)>2:
-            first_timestamp = data_list[1].get('timestamp')
-            first_id = id_helper_function(data_list,first_timestamp)
-            second_timestamp = data_list[1].get('timestamp')
-            unique_id_time_difference = 0
-            while True:
-                second_timestamp+=1
-                second_id = id_helper_function(data_list,second_timestamp)
-                if first_id!=second_id:
-                    unique_id_time_difference = second_timestamp-first_timestamp
-                    break
-                
             id_gen = id_helper_function(data_list,time.time())
-            last_id_used_dict = redis_obj.retrieve_data(scriptname+'last_used_id')
+            last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
             if last_id_used_dict:
                 last_id_used = last_id_used_dict.get('id_gen')
                 if last_id_used:
@@ -203,7 +192,6 @@ class SimulatedIdFunction(APIView):
             redis_obj.save(key=scriptname+'_'+type+'_'+'last_used_id',value={"id_gen":id_gen,"ts":time.time()})
             return Response({
                 'id_gen':id_gen,
-                'unique_id_time_difference':unique_id_time_difference
             })
         else:
             raise ValidationError({
@@ -240,9 +228,9 @@ class AppsForSimulation(APIView):
                 dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2')
             
             key = app +'_'+type
-            print(key)
             if redis_obj.retrieve_data(key=key):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
+                dict__['data_list'] = redis_obj.retrieve_data(key=key)
                 dict__['last_updated_id'] = data.get(app).get('data_list')[0].get('id')
                 dict__['last_updated_id_timestamp'] = data.get(app).get('data_list')[0].get('timestamp')
                 if datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') == datetime.fromtimestamp(int(dict__['last_updated_id_timestamp'])).strftime('%Y-%m-%d'):
