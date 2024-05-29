@@ -33,10 +33,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://localhost:3000',
-]
+CORS_ORIGIN_ALLOW_ALL=True
+
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
+CORS_ALLOW_HEADERS = (
+    "accept",
+    "authorization",
+    "content-type",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "Access-Control-Allow-Origin"
+)
 
 # Application definition
 
