@@ -2,11 +2,12 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
 import json, time, random
+import requests
 
 from django.db.models import Count
 
@@ -117,7 +118,9 @@ def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
 class SimulatedIdFunction(APIView):
     def put(self, request):
         put_query = SimulationIds()
-        for item in ['campaign_name','timestamp','id','date_added']:
+        scriptname = request.data.get('campaign_name')
+        type = request.data.get('type','order_id')
+        for item in ['campaign_name','type','timestamp','id','date_added']:
             if not request.data.get(item):
                 raise ValidationError({
                     'error':item+' was not provided.'
@@ -128,8 +131,8 @@ class SimulatedIdFunction(APIView):
                 raise ValidationError({
                     'error':'ID provided is old, we have a newer id than this in our DB, and cannot be simulated'
                 })
-
-            if datetime.strptime(search_query.timestamp.strftime("%Y-%m-%d %H:%M:%S"),"%Y-%m-%d %H:%M:%S")>datetime.strptime(request.data.get('timestamp'),"%Y-%m-%d %H:%M:%S.000000"):
+            
+            if datetime.strptime(search_query.timestamp.strftime("%Y-%m-%d %H:%M:%S"),"%Y-%m-%d %H:%M:%S")>datetime.strptime(request.data.get('timestamp'),"%Y-%m-%d %H:%M:%S"):
                 raise ValidationError({
                     'error':'Timestamp provided is old, we have a newer timestamp than this in our DB'
                 })
@@ -137,20 +140,35 @@ class SimulatedIdFunction(APIView):
         put_query.campaign_name = request.data.get('campaign_name')
         put_query.timestamp = request.data.get('timestamp')
         put_query.id=request.data.get('id')
+        put_query.type=request.data.get('type','order_id')
         put_query.date_added = request.data.get('date_added')
         put_query.save()
+        
+        redis_obj = Redis()
+        search_query = SimulationIds.objects.filter(campaign_name=scriptname,type=type).order_by('-timestamp')
+        data_list = []
+        for item in search_query:
+            data_list.append({
+                'timestamp':item.timestamp.timestamp(),
+                'id':int(item.id),
+                'constraint':item.constraint
+            })
+        redis_obj.save(key=scriptname+'_'+type,value=data_list)
+
         return Response({
+            'message':'Updated'
         })
 
     def get(self, request):
         scriptname = request.GET.get('scriptname')
+        type = request.GET.get('type','order_id')
         unique_id_duration = request.GET.get('unique_id_duration')
 
         redis_obj = Redis()
         data_list = redis_obj.retrieve_data(key=scriptname)
 
-        if not data_list:
-            search_query = SimulationIds.objects.filter(campaign_name=scriptname).order_by('-timestamp')
+        if True or not data_list:
+            search_query = SimulationIds.objects.filter(campaign_name=scriptname,type=type).order_by('-timestamp')
             data_list = []
             for item in search_query:
                 data_list.append({
@@ -182,7 +200,7 @@ class SimulatedIdFunction(APIView):
                 else:
                     pass
 
-            redis_obj.save(key=scriptname+'last_used_id',value={"id_gen":id_gen,"ts":time.time()})
+            redis_obj.save(key=scriptname+'_'+type+'_'+'last_used_id',value={"id_gen":id_gen,"ts":time.time()})
             return Response({
                 'id_gen':id_gen,
                 'unique_id_time_difference':unique_id_time_difference
@@ -194,66 +212,87 @@ class SimulatedIdFunction(APIView):
         
 class AppsForSimulation(APIView):
     def get(self, request):
-        import requests
         url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today(),date.today())
         today_r6_data = requests.get(url).json()
-        apps_list = [
-            'walbimodd',
-            'karacaauto',
-            'dominosindomodd',
-            'pepperfrymodd',
-            'pinoypesomodd',
-            'arenaplusmodd',
-            'autodocmodd',
-            'legendofmushroommodd',
-            'flexsalaryauto',
-            'watchomodd',
-            'phonepestockmodd',
-            'fantosst2modd',
-            'snackshortmodd',
-            'laundrymateauto',
-            'player6auto',
-            'billeasemodd',
-            'cadburyplaypadmodd',
-            'apnatimeauto',
-            'osagomodd',
-            'moregoldmodd',
-            'rushgamesauto',
-            'fancodemodd',
-            'lalamovedrivermodd',
-            'benemodd',
-            'nuummodd',
-            'holodilinkappmetrica',
-            'bharatloanteam2modd'
-        ]
+        apps_list_query = IDHelperApps.objects.all()
+        apps_list_dict = {}
+        for item in apps_list_query:
+            apps_list_dict[item.campaign_name+"_"+item.type] = {"description":item.description,"type":item.type}
+
+        apps_list = apps_list_dict.keys()
 
         data = {}
 
         redis_obj = Redis()
 
         data_list = []
-        for app in apps_list:
+
+        for app_item in apps_list:
             dict__ = {}
+            app = app_item.split('_')[0]
+            type = app_item.split('_',1)[1]
+            dict__.update(apps_list_dict.get(app_item))
             dict__['script_name'] = app
+            dict__['status'] = 'Needs Update'
 
             if today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2'):
                 data[app] = {}
                 dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2')
             
-            if redis_obj.retrieve_data(key=app):
-                data[app].update({'data_list':redis_obj.retrieve_data(key=app)})
+            key = app +'_'+type
+            print(key)
+            if redis_obj.retrieve_data(key=key):
+                data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
                 dict__['last_updated_id'] = data.get(app).get('data_list')[0].get('id')
                 dict__['last_updated_id_timestamp'] = data.get(app).get('data_list')[0].get('timestamp')
-            
-            if redis_obj.retrieve_data(key=app+'last_used_id'):
-                data[app].update({'last_used_dict':redis_obj.retrieve_data(key=app+'last_used_id')})
+                if datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') == datetime.fromtimestamp(int(dict__['last_updated_id_timestamp'])).strftime('%Y-%m-%d'):
+                    dict__['status'] = 'Updated'                    
+
+            if redis_obj.retrieve_data(key=key+'_'+'last_used_id'):
+                data[app].update({'last_used_dict':redis_obj.retrieve_data(key=key+'_'+'last_used_id')})
                 dict__['last_used_id'] = data.get(app).get('last_used_dict').get('id_gen')
                 dict__['last_used_id_timestamp'] = data.get(app).get('last_used_dict').get('ts')
             data_list.append(dict__)
         return Response({
             'data':data_list
             })
+    
+    def put(self, request):
+        campaign_name = request.data.get('campaign_name')
+        date_added = date.today()
+        description = request.data.get('description','')
+        type=request.data.get('type')
+        data = request.data.get('data')
+        
+        qq = IDHelperApps.objects.filter(campaign_name=campaign_name,type=type).first()
+        if qq:
+            return Response({
+                'message':'Already Present, please update id.'
+                })
+        dd = {
+            "campaign_name":campaign_name,
+            "date_added":date_added,
+            "description":description,
+            "type":type
+        }
+        id_helper_app = IDHelperApps.objects.create(**dd)
 
+        for item in data:
+            tt = int(item.get('timestamp'))
+            ii = int(item.get('id'))
+            data = {
+                "campaign_name":campaign_name,
+                "timestamp":datetime.fromtimestamp(tt).strftime('%Y-%m-%d %H:%M:%S.000000'),
+                "id":ii,
+                "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
+                "type":type
+            }
+            requests.put("http://localhost:8000/team2b/idsimulated",json=data)
+
+        return Response({
+            'message':'Successfully stored the app.'
+            })
+    
 class Indigo(APIView):
     def put(self, request):
         query = IndigoScriptOrderIds()

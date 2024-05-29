@@ -307,6 +307,21 @@ class SamsclubMemberIds(models.Model):
         ]
 
 
+class IDHelperApps(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    date_added = models.DateField(blank=False)
+    type = models.CharField(blank=False,default='order_id',max_length=8)
+    description = models.TextField(default='')    
+    team = models.CharField(default='',max_length=2)    
+    class Meta:
+        indexes = [
+            models.Index(fields=['serial']),
+            models.Index(fields=['campaign_name']),
+        ]
+
 class SimulationIds(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='')
@@ -314,6 +329,7 @@ class SimulationIds(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     date_added = models.DateField(blank=False)
     timestamp = models.DateTimeField(blank=False)
+    type = models.CharField(blank=False,default='order_id',max_length=8)
     id = models.CharField(max_length=100,unique=True)
     constraint = models.FloatField(default=1)
     
