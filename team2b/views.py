@@ -223,6 +223,8 @@ class AppsForSimulation(APIView):
             dict__['script_name'] = app
             dict__['status'] = 'Needs Update'
 
+            data[app] = {}
+
             if today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2'):
                 data[app] = {}
                 dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2')
