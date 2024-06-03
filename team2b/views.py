@@ -269,32 +269,20 @@ class AppsForSimulation(APIView):
         }
         id_helper_app = IDHelperApps.objects.create(**dd)
 
-        
-        item = data[1]
-        tt = int(item.get('timestamp'))
-        ii = int(item.get('id'))
-        data = {
-            "constraint":1,
-            "campaign_name":campaign_name,
-            "timestamp":datetime.fromtimestamp(tt).strftime('%Y-%m-%d %H:%M:%S.000000'),
-            "id":ii,
-            "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
-            "type":type
-        }
-        print(requests.put("http://localhost:8000/team2b/idsimulated",json=data).content)
-        
-        item = data[0]
-        tt = int(item.get('timestamp'))
-        ii = int(item.get('id'))
-        data = {
-            "constraint":1,
-            "campaign_name":campaign_name,
-            "timestamp":datetime.fromtimestamp(tt).strftime('%Y-%m-%d %H:%M:%S.000000'),
-            "id":ii,
-            "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
-            "type":type
-        }
-        print(requests.put("http://localhost:8000/team2b/idsimulated",json=data).content)
+        data.reverse()
+        for item in data:
+            tt = int(item.get('timestamp'))
+            ii = int(item.get('id'))
+            datadd = {
+                "constraint":1,
+                "campaign_name":campaign_name,
+                "timestamp":datetime.fromtimestamp(tt).strftime('%Y-%m-%d %H:%M:%S.000000'),
+                "id":ii,
+                "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
+                "type":type
+            }
+            requests.put("http://localhost:8000/team2b/idsimulated",json=datadd)
+
         return Response({
             'message':'Successfully stored the app.'
             })
