@@ -1121,7 +1121,7 @@ class FantossMiningAPI(APIView):
     def put(self, request):
         query = FantossUserIds()
         query.campaign_name = request.data.get('camp_name','fantosst2modd')
-        query.id = request.data.get('user_id')
+        query.id = request.data.get('id')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         try:
@@ -1144,7 +1144,7 @@ class FantossMiningAPI(APIView):
         query = FantossUserIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
-                'user_id':query.id,
+                'id':query.id,
                 'used_at':query.used_at,
                 'extra_details':query.extra_details
         }
