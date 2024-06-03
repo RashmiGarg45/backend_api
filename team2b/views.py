@@ -127,7 +127,7 @@ class SimulatedIdFunction(APIView):
                 raise ValidationError({
                     'error':item+' was not provided.'
                 })
-        search_query = SimulationIds.objects.filter(campaign_name=request.data.get('campaign_name')).order_by('-timestamp').first()
+        search_query = SimulationIds.objects.filter(campaign_name=request.data.get('campaign_name'),type=type).order_by('-timestamp').first()
         if search_query:
             if int(search_query.id)>=request.data.get('id'):
                 raise ValidationError({
@@ -144,7 +144,7 @@ class SimulatedIdFunction(APIView):
         put_query.id=request.data.get('id')
         put_query.type=request.data.get('type','order_id')
         put_query.date_added = request.data.get('date_added')
-        put_query.constraint = request.data.get('constraint')
+        put_query.constraint = request.data.get('constraint',1)
         put_query.save()
         
         redis_obj = Redis()
@@ -273,6 +273,7 @@ class AppsForSimulation(APIView):
             tt = int(item.get('timestamp'))
             ii = int(item.get('id'))
             data = {
+                "constraint":1,
                 "campaign_name":campaign_name,
                 "timestamp":datetime.fromtimestamp(tt).strftime('%Y-%m-%d %H:%M:%S.000000'),
                 "id":ii,
