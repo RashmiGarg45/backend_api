@@ -269,7 +269,7 @@ class AppsForSimulation(APIView):
         }
         id_helper_app = IDHelperApps.objects.create(**dd)
 
-        data.reverse()
+        # data.reverse()
         for item in data:
             tt = int(item.get('timestamp'))
             ii = int(item.get('id'))
@@ -281,7 +281,7 @@ class AppsForSimulation(APIView):
                 "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
                 "type":type
             }
-            requests.put("http://localhost:8000/team2b/idsimulated",json=datadd)
+            print(requests.put("http://localhost:8000/team2b/idsimulated",json=datadd).content)
 
         return Response({
             'message':'Successfully stored the app.'
