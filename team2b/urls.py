@@ -21,6 +21,7 @@ urlpatterns = [
     path("samsclub", views.SamsclubAPI.as_view(), name='cru_samsclub'),
     path("weworld", views.WeWorldAPI.as_view(), name='cru_weworld'),
     path("fantoss", views.FantossMiningAPI.as_view(), name='cru_fantoss'),
+    path("okeyvip", views.FantossMiningAPI.as_view(), name='cru_okeyvip'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
     path("fireEvent/player6", views.Player6API.as_view(), name='fireEvent_player6'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
