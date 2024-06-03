@@ -269,10 +269,9 @@ class AppsForSimulation(APIView):
         }
         id_helper_app = IDHelperApps.objects.create(**dd)
 
-        data.reverse()
         
-
-        for item in data:
+        for i in range(len(data)):
+            item = data[len(data)-1-i]
             tt = int(item.get('timestamp'))
             ii = int(item.get('id'))
             data = {
