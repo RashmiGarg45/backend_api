@@ -99,16 +99,17 @@ class GenericScriptFunctions(APIView):
 def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
     user_id_increase_per_second_list = []
     for i in range(len(id_helper_data)):
-        if i == 0:
+        if i == 0 :
             constraint = id_helper_data[i].get('constraint')
             continue
-        if i+1!=len(id_helper_data):
+        if i+1!=len(id_helper_data) or len(id_helper_data)==2:
             timestamp_diff = id_helper_data[i].get('timestamp') - id_helper_data[i+1].get('timestamp')
             user_id_diff = id_helper_data[i].get('id') - id_helper_data[i+1].get('id')
 
             user_id_increase_per_second = float(user_id_diff)/float(timestamp_diff)
-            print('[+] User ID per second : {}'.format(user_id_increase_per_second))
             user_id_increase_per_second_list.append(user_id_increase_per_second)
+
+    print('[+] User ID per second : {}'.format(user_id_increase_per_second))
 
     current_time = constant_timestamp if constant_timestamp else time.time()
     last_ordered_item = id_helper_data[1]
