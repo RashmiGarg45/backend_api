@@ -99,10 +99,10 @@ class GenericScriptFunctions(APIView):
 def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
     user_id_increase_per_second_list = []
     for i in range(len(id_helper_data)):
-        if i == 0 :
+        if i == 0 and len(id_helper_data)!=2:
             constraint = id_helper_data[i].get('constraint')
             continue
-        if i+1!=len(id_helper_data) or len(id_helper_data)==2:
+        if i+1!=len(id_helper_data):
             timestamp_diff = id_helper_data[i].get('timestamp') - id_helper_data[i+1].get('timestamp')
             user_id_diff = id_helper_data[i].get('id') - id_helper_data[i+1].get('id')
 
