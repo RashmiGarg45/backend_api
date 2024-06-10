@@ -129,10 +129,10 @@ class SimulatedIdFunction(APIView):
                 })
         search_query = SimulationIds.objects.filter(campaign_name=request.data.get('campaign_name'),type=type).order_by('-timestamp').first()
         if search_query:
-            if int(search_query.id)>=request.data.get('id'):
-                raise ValidationError({
-                    'error':'ID provided is old, we have a newer id than this in our DB, and cannot be simulated'
-                })
+            # if int(search_query.id)>=request.data.get('id'):
+            #     raise ValidationError({
+            #         'error':'ID provided is old, we have a newer id than this in our DB, and cannot be simulated'
+            #     })
             
             if datetime.strptime(search_query.timestamp.strftime("%Y-%m-%d %H:%M:%S"),"%Y-%m-%d %H:%M:%S")>datetime.strptime(request.data.get('timestamp'),"%Y-%m-%d %H:%M:%S"):
                 raise ValidationError({
@@ -281,7 +281,7 @@ class AppsForSimulation(APIView):
                 "date_added":datetime.fromtimestamp(tt).strftime('%Y-%m-%d'),
                 "type":type
             }
-            print(requests.put("http://localhost:8000/team2b/idsimulated",json=datadd).content)
+            print(requests.put("http://localhost:8000/team2b/idsimulated",json=datadd))
 
         return Response({
             'message':'Successfully stored the app.'
