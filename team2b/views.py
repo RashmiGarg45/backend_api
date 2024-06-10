@@ -107,6 +107,7 @@ def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
             user_id_diff = id_helper_data[i].get('id') - id_helper_data[i+1].get('id')
 
             user_id_increase_per_second = float(user_id_diff)/float(timestamp_diff)
+            print('[+] User ID per second : {}'.format(user_id_increase_per_second))
             user_id_increase_per_second_list.append(user_id_increase_per_second)
 
     current_time = constant_timestamp if constant_timestamp else time.time()
