@@ -180,7 +180,7 @@ class SimulatedIdFunction(APIView):
                 })
             redis_obj.save(key=scriptname+'_'+type,value=data_list)
         
-        if len(data_list)>2:
+        if len(data_list)>=2:
             id_gen = id_helper_function(data_list,time.time())
             last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
             if last_id_used_dict:
