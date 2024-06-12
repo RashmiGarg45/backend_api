@@ -184,10 +184,7 @@ class SimulatedIdFunction(APIView):
         
         if len(data_list)>=2:
             id_gen = id_helper_function(data_list,time.time())
-            if scriptname == 'gomechanicauto':
-                last_id_used_dict = None
-            else:
-                last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
+            last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
             if last_id_used_dict:
                 last_id_used = last_id_used_dict.get('id_gen')
                 if last_id_used:
