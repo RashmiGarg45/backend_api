@@ -171,7 +171,7 @@ class SimulatedIdFunction(APIView):
         redis_obj = Redis()
         data_list = redis_obj.retrieve_data(key=scriptname)
 
-        if not data_list:
+        if True or not data_list:
             search_query = SimulationIds.objects.filter(campaign_name=scriptname,type=type).order_by('-timestamp')
             data_list = []
             for item in search_query:
@@ -184,7 +184,10 @@ class SimulatedIdFunction(APIView):
         
         if len(data_list)>=2:
             id_gen = id_helper_function(data_list,time.time())
-            last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
+            if scriptname == 'gomechanicauto':
+                last_id_used_dict = None
+            else:
+                last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
             if last_id_used_dict:
                 last_id_used = last_id_used_dict.get('id_gen')
                 if last_id_used:
