@@ -26,7 +26,8 @@ class GenericScriptFunctions(APIView):
             'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
-            'okeyvipmodd': OkeyvipUserId
+            'okeyvipmodd': OkeyvipUserId,
+            'sephoramodd': SephoraOrderId
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             # 'damnraymodd':DamnrayOrderIds,
