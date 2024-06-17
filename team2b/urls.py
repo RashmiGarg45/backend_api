@@ -23,6 +23,7 @@ urlpatterns = [
     path("fantoss", views.FantossMiningAPI.as_view(), name='cru_fantoss'),
     path("okeyvip", views.OkeyvipMiningAPI.as_view(), name='cru_okeyvip'),
     path("sephora", views.SephoraMiningAPI.as_view(), name='cru_sephora'),
+    path("puma", views.PumaMiningAPI.as_view(), name='cru_puma'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
     path("health", views.ServerHealth.as_view(), name='health'),
     path("fireEvent/player6", views.Player6API.as_view(), name='fireEvent_player6'),
