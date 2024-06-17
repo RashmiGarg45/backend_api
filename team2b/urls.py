@@ -24,6 +24,7 @@ urlpatterns = [
     path("okeyvip", views.OkeyvipMiningAPI.as_view(), name='cru_okeyvip'),
     path("sephora", views.SephoraMiningAPI.as_view(), name='cru_sephora'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),
+    path("heath", views.ServerHealth.as_view(), name='health'),
     path("fireEvent/player6", views.Player6API.as_view(), name='fireEvent_player6'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
     path("idsimulated", views.SimulatedIdFunction.as_view(), name="idsimulated"),

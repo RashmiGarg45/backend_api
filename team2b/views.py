@@ -1237,3 +1237,9 @@ class SephoraMiningAPI(APIView):
             'body':data,
         })
 
+
+class ServerHealth(APIView):
+    def get(self, request):
+        return Response({
+            'resp': 'OK'
+        })
