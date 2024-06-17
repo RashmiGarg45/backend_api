@@ -423,7 +423,7 @@ class SephoraOrderId(models.Model):
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
     id = models.CharField(max_length=50,unique=True)
-    price = models.CharField(max_length=15,unique=True)
+    price = models.CharField(max_length=15)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     
@@ -442,7 +442,6 @@ class PumaOrderId(models.Model):
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
     id = models.CharField(max_length=50,unique=True)
-    status = models.CharField(max_length=15,unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     

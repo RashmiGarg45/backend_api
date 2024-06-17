@@ -1243,7 +1243,6 @@ class PumaMiningAPI(APIView):
         query = PumaOrderId()
         query.campaign_name = request.data.get('camp_name','pumaauto')
         query.id = request.data.get('id')
-        query.status = request.data.get('status')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         try:
@@ -1269,7 +1268,6 @@ class PumaMiningAPI(APIView):
         
         data = {
                 'id':query.id,
-                'status':query.status,
                 'used_at':query.used_at,
                 'extra_details':query.extra_details
         }
