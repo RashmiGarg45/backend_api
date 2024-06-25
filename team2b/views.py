@@ -684,6 +684,86 @@ class WatchoOrderIdsMiningAPI(APIView):
             'body':data,
         })
 
+class WatchoOrderIdsMiningAPIV2(APIView):
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        channel = request.GET.get('channel',True)
+        network = request.GET.get('network',True)
+        offer_id = request.GET.get('offer_id',True)
+        
+        if not channel or not network or not offer_id:
+            return Response({
+                        'body':'error',
+                        'message':'channel,offer_id,network id missing.'
+                    })
+        
+        order_status = request.GET.get('order_status')
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        if order_status:
+            filter_dict['order_status'] = order_status
+        
+        exclude_dict = {}
+        exclude_dict['channel_list__contains'] = channel
+        exclude_dict['network_list__contains'] = network
+        exclude_dict['offer_id_list__contains'] = offer_id
+
+        query_list = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
+        if not query_list:
+            query_list = WatchoOrderIdsMining.objects.filter(**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        
+        if query_list:
+            for i in range(3):
+                query = random.choice(query_list)
+
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
+
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
+
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
+
+                data = {
+                        'order_id':query.id,
+                        'order_status':query.order_status,
+                        'used_at':query.used_at,
+                        'extra_details':query.extra_details
+                }
+                if setUsed:
+                    query = WatchoOrderIdsMining.objects.filter(id=data.get('order_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
+                        )
+                return Response({
+                    'body':data,
+                })
+
+        return Response({
+            'body':'error',
+            'message':'no id found'
+        })
+
 
 class DamnRayMiningAPI(APIView):
     def put(self, request):

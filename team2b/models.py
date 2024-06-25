@@ -164,6 +164,9 @@ class WatchoOrderIdsMining(models.Model):
     order_status = models.CharField(default=0,max_length=100)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
+    channel_list = models.JSONField(default = list,blank=True, null=True)
+    network_list = models.JSONField(default = list,blank=True, null=True)
+    offer_id_list = models.JSONField(default = list,blank=True, null=True)
     
     class Meta:
         indexes = [

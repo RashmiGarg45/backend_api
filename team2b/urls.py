@@ -11,6 +11,7 @@ urlpatterns = [
     path("ostinshop", views.OstinShop.as_view(), name="cru_ostinshop"),
     path("habib", views.HabibOrderIdConstants.as_view(), name="cru_ostinshop"),
     path("watcho", views.WatchoOrderIdsMiningAPI.as_view(), name="cru_watcho"),
+    path("watcho/v2", views.WatchoOrderIdsMiningAPIV2.as_view(), name="cru_watcho"),
     path("damnray", views.DamnRayMiningAPI.as_view(), name="cru_damnray"),
     path("pepperfry", views.PepperfryMiningAPI.as_view(), name="cru_damnray"),
     path("mumzworld", views.MumzworldAPI.as_view(), name="cru_mumzworld"),
