@@ -976,3 +976,96 @@ def get_smytten_orders_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
+def get_lesnkart_orderId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM lesnkart_orderId WHERE NOT isUsed=1 AND order_status LIKE "{}%" ORDER BY order_id ASC'''.format("DELIVERED"))
+
+        data = cursor.fetchall()
+        order_id = data[0][1]
+        data = {"order_id": order_id}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE lesnkart_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_lenskart_orders_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM lesnkart_orderId WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
+def get_myteam11_userId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM myteam11_userId WHERE NOT isUsed=1 ORDER BY user_id ASC''')
+        data = cursor.fetchall()
+        user_id = data[0][1]
+        data = {"user_id": user_id}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE myteam11_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_myteam11_userId_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM myteam11_userId WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))

@@ -38,4 +38,8 @@ urlpatterns = [
     path("get_pocket52_userId/", views.get_pocket52_userId, name="get_pocket52_userId"),
     path("get_smytten_orders_count/", views.get_smytten_orders_count, name="get_smytten_orders_count"),
     path("get_smytten_orderId/", views.get_smytten_orderId, name="get_smytten_orderId"),
+    path("get_lenskart_orders_count/", views.get_lenskart_orders_count, name="get_lenskart_orders_count"),
+    path("get_lesnkart_orderId/", views.get_lesnkart_orderId, name="get_lesnkart_orderId"),
+    path("get_myteam11_userId_count/", views.get_myteam11_userId_count, name="get_myteam11_userId_count"),
+    path("get_myteam11_userId/", views.get_myteam11_userId, name="get_myteam11_userId"),
 ]
