@@ -23,7 +23,7 @@ class GenericScriptFunctions(APIView):
             'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             # 'gomcdoauto': GomcdOrderIds,
-            # 'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
             'okeyvipmodd': OkeyvipUserId,
