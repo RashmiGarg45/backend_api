@@ -20,7 +20,7 @@ class GenericScriptFunctions(APIView):
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
             # 'tripsygamesmodd': TripsygamesOrderIds,
-            'ostinshopmodd': OstinShopScriptOrderIds,
+            # 'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             # 'gomcdoauto': GomcdOrderIds,
             'bharatmatrimonymodd': BharatmatrimonyUserIds,
