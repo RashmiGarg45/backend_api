@@ -29,6 +29,7 @@ urlpatterns = [
     path("health", views.ServerHealth.as_view(), name='health'),
     path("fireEvent/player6", views.Player6API.as_view(), name='fireEvent_player6'),
     path("generic_functions", views.GenericScriptFunctions.as_view(), name="generic_functions"),
+    path("generic_unusedId_functions", views.GenericUnusedIdScriptFunctions.as_view(), name="generic_unusedId_functions"),
     path("idsimulated", views.SimulatedIdFunction.as_view(), name="idsimulated"),
     path("apps_for_simulation", views.AppsForSimulation.as_view(), name="apps_idsimulated"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),

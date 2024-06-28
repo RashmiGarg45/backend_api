@@ -48,7 +48,7 @@ class GenericScriptFunctions(APIView):
                                 "cardId": "reminderCard",
                                 "card": {
                                         "header": {
-                                            "title": "Order/User Ids Mining Status",
+                                            "title": "Order/User Ids Mined Today",
                                         },
                                         "sections": [
                                             {
@@ -93,6 +93,92 @@ class GenericScriptFunctions(APIView):
         # print(json.dumps(message['cardsV2'][0]['card'],indent=4))
         googleChatBot_send_message(space_name=space_name,message=message)    
         googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
+
+        return Response({
+            'ids_mined':ids_mined,
+        })
+
+
+class GenericUnusedIdScriptFunctions(APIView):
+    def get(self, request):
+        tablesDict = {
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            'pepperfrymodd':PepperfryOrderIds,
+            # 'habibmodd':HabibScriptOrderIdsConstants,
+            # 'tripsygamesmodd': TripsygamesOrderIds,
+            # 'ostinshopmodd': OstinShopScriptOrderIds,
+            # 'lazuritappmetrica': LazuritOrderIds,
+            # 'gomcdoauto': GomcdOrderIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'weworldauto': WeWorldIds,
+            'fantosst2modd': FantossUserIds,
+            'okeyvipmodd': OkeyvipUserId,
+            'sephoramodd': SephoraOrderId,
+            'pumaauto': PumaOrderId
+            # 'samsclubmodd': SamsclubMemberIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
+            # 'damnraymodd':DamnrayOrderIds,
+            # 'indigomodd':IndigoScriptOrdersIds,
+            # 'lightinthebox':LightInTheBox,
+        }
+        ids_mined = {}
+        for key in tablesDict.keys():
+            ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
+
+        from data_tracking.util import googleChatBot_send_message
+        space_name = "AAAAh8zMzAw"
+        message = {
+                        "cardsV2": [
+                            {
+                                "cardId": "reminderCard",
+                                "card": {
+                                        "header": {
+                                            "title": "Unused Order/User Ids Mining Status",
+                                        },
+                                        "sections": [
+                                            {
+                                            "header": "",
+                                            "collapsible": False,
+                                            "uncollapsibleWidgetsCount": 1,
+                                            "widgets": [
+                                            ]
+                                            }
+                                        ]
+                                    },
+                            },
+                        ]
+                }
+
+        widgets = []
+        for sciptname,mined_num in ids_mined.items():
+            widgets.append({
+                            "columns": {
+                                "columnItems": [
+                                                    {
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                                                        "horizontalAlignment": "CENTER",
+                                                        "verticalAlignment": "CENTER",
+                                                        "widgets": [{
+                                                                        "decoratedText": {
+                                                                            "text": sciptname,
+                                                                        }
+                                                                    }]
+                                                    },
+                                                    {
+                                                        "widgets": [{
+                                                                    "decoratedText": {
+                                                                        "text": str(mined_num),
+                                                                    }
+                                                                    }]
+                                                    }
+                                ]
+                            }
+                        })
+        message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
+
+        googleChatBot_send_message(space_name=space_name,message=message)    
+        # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
             'ids_mined':ids_mined,
