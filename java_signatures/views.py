@@ -985,7 +985,7 @@ def get_lenskart_orderId(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
         
-        cursor.execute('''SELECT * FROM lenskart_orderId WHERE NOT isUsed=1 AND order_status LIKE "{}%" ORDER BY order_id ASC'''.format("DELIVERED"))
+        cursor.execute('''SELECT * FROM lenskart_orderId WHERE NOT isUsed=1 ORDER BY order_id ASC''')
 
         data = cursor.fetchall()
         order_id = data[0][1]
