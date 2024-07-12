@@ -977,7 +977,7 @@ def get_smytten_orders_count(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
 
-def get_lesnkart_orderId(request):
+def get_lenskart_orderId(request):
     request_data = json.loads(request.body)
     user_type = request_data.get("user_type")
 
@@ -985,7 +985,7 @@ def get_lesnkart_orderId(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()  
         
-        cursor.execute('''SELECT * FROM lesnkart_orderId WHERE NOT isUsed=1 AND order_status LIKE "{}%" ORDER BY order_id ASC'''.format("DELIVERED"))
+        cursor.execute('''SELECT * FROM lenskart_orderId WHERE NOT isUsed=1 AND order_status LIKE "{}%" ORDER BY order_id ASC'''.format("DELIVERED"))
 
         data = cursor.fetchall()
         order_id = data[0][1]
