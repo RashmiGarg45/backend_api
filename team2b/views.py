@@ -136,7 +136,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                 "cardId": "reminderCard",
                                 "card": {
                                         "header": {
-                                            "title": "Unused Order/User Ids Mining Status",
+                                            "title": "Remaining Order/User Ids In Database",
                                         },
                                         "sections": [
                                             {
@@ -180,7 +180,7 @@ class GenericUnusedIdScriptFunctions(APIView):
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
 
         googleChatBot_send_message(space_name=space_name,message=message)    
-        # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
+        googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
             'ids_mined':ids_mined,
