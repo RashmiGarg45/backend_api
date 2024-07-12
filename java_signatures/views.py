@@ -993,7 +993,7 @@ def get_lesnkart_orderId(request):
 
         if user_type == "server":
             used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
-            cursor.execute("UPDATE lesnkart_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            cursor.execute("UPDATE lenskart_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
         response_code = 200
@@ -1011,7 +1011,7 @@ def get_lenskart_orders_count(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
         cursor = conn.cursor()    
         
-        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM lesnkart_orderId WHERE NOT isUsed=1''')
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM lenskart_orderId WHERE NOT isUsed=1''')
         data = cursor.fetchall()
         count = data[0]   
         response_code = 200
