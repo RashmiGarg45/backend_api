@@ -30,7 +30,7 @@ for user_id in output_data:
         conn.commit()
         li.append(str(user_id))
 
-print len(li)
+print (len(li))
 
 
 output_data = ['82787813', '82787807', '82787806']
@@ -57,7 +57,7 @@ for user_id in output_data:
         conn.commit()
         li.append(str(user_id))
 
-print len(li)
+print (len(li))
 
 
 output_data = [{'order_id': '000699701', 'order_date': u'2024-07-09T09:52:57.819112Z', 'waybill_no': '288012144'}, {'order_id': '000699567', 'order_date': u'2024-07-09T11:17:28.449562Z', 'waybill_no': '288012167'}, {'order_id': '000699691', 'order_date': u'2024-07-09T11:45:56.354898Z', 'waybill_no': '288012185'}, {'order_id': '000699703', 'order_date': u'2024-07-09T12:22:23.719273Z', 'waybill_no': '288012200'}, {'order_id': '000699765', 'order_date': u'2024-07-09T20:12:27.441977Z', 'waybill_no': '288012248'}, {'order_id': '000699731', 'order_date': u'2024-07-09T20:35:36.820538Z', 'waybill_no': '288012265'}, {'order_id': '000699815', 'order_date': u'2024-07-09T20:41:38.245609Z', 'waybill_no': '288012272'}, {'order_id': '000699829', 'order_date': u'2024-07-09T20:42:04.194494Z', 'waybill_no': '288012273'}, {'order_id': '000699835', 'order_date': u'2024-07-09T23:09:21.359374Z', 'waybill_no': '288012310'}, {'order_id': '000699875', 'order_date': u'2024-07-09T23:33:27.211622Z', 'waybill_no': '288012329'}, {'order_id': '000699893', 'order_date': u'2024-07-09T23:52:14.581867Z', 'waybill_no': '288012346'}]
@@ -87,4 +87,4 @@ for data in output:
 
     pass
 
-print len(li)
+print (len(li))
