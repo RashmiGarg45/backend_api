@@ -847,7 +847,7 @@ def get_styli_order(request):
         
         cursor.execute('''SELECT * FROM stylishop_orderId WHERE NOT isUsed=1 ORDER BY order_id ASC''')#AND order_date LIKE "{}" ORDER BY order_id ASC'''.format(current_date))
         data = cursor.fetchall()
-        order_id = data[0][1]
+        order_id = data[0][2]
         data = {"order_id": order_id}
 
         if user_type == "server":
