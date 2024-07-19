@@ -491,3 +491,26 @@ class EmailIdMining(models.Model):
         ]
 
 
+
+class RevenueHelper(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='pepperfryyauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    id = models.CharField(max_length=200, blank=True)
+    revenue = models.FloatField(default='', blank=True, max_length=100)
+    currency = models.CharField(default='', blank=True, max_length=100)
+    adid = models.UUIDField(default='', blank=True)
+    event_name = models.CharField(default='', blank=True, max_length=100)
+    event_value = models.JSONField(default = dict,blank=True, null=True)
+
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
