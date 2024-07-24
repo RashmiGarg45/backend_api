@@ -29,7 +29,7 @@ class GenericScriptFunctions(APIView):
             'okeyvipmodd': OkeyvipUserId,
             'sephoramodd': SephoraOrderId,
             'pumaauto': PumaOrderId, 
-            'timoclubmodd': TimoclubUserId
+            'timoclubauto': TimoclubUserId
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             # 'damnraymodd':DamnrayOrderIds,
@@ -117,7 +117,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'okeyvipmodd': OkeyvipUserId,
             'sephoramodd': SephoraOrderId,
             'pumaauto': PumaOrderId,
-            'timoclubmodd': TimoclubUserId,
+            'timoclubauto': TimoclubUserId,
             'emailIds_Mined': EmailIdMining
 
             # 'samsclubmodd': SamsclubMemberIds,
