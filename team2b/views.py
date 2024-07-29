@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
@@ -1531,6 +1531,46 @@ class EmailIdMiningAPI(APIView):
         return Response({
             'body':data,
         })
+
+class IndigoV2MiningAPI(APIView):
+    def put(self, request):
+        query = ()
+        query.campaign_name = request.data.get('camp_name','indigomoddteam2modd')
+        query.pnr = request.data.get('pnr')
+        query.email = request.get('email')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = IndigoV2Mining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'pnr':query.pnr,
+                'email': query.email,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = IndigoV2Mining.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+
 
 class RevenueHelperAPI(APIView):
     def put(self, request):
