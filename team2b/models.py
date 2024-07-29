@@ -508,7 +508,7 @@ class IndigoV2Mining(models.Model):
     
     class Meta:
         indexes = [
-            models.Index(fields=['id']),
+            models.Index(fields=['serial']),
         ]
 
 
