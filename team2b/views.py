@@ -265,6 +265,7 @@ class SimulatedIdFunction(APIView):
         data_list = redis_obj.retrieve_data(key=scriptname)
 
         if not data_list:
+            print('Did not got id from redis')
             search_query = SimulationIds.objects.filter(campaign_name=scriptname,type=type).order_by('-timestamp')
             data_list = []
             for item in search_query:
