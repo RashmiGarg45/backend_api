@@ -196,7 +196,9 @@ CACHES = {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'SOCKET_TIMEOUT': 5,
             'SOCKET_CONNECT_TIMEOUT': 5,
-        }
+        },
+        "KEY_PREFIX": "team2b"
+
     }
 }
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
