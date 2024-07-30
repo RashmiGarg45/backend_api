@@ -189,16 +189,11 @@ DATABASES = {
 }
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'SOCKET_TIMEOUT': 5,
-            'SOCKET_CONNECT_TIMEOUT': 5,
-        },
-        "KEY_PREFIX": "team2b"
-
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://localhost:6379/",
+        "KEY_PREFIX": "imdb",
+        "TIMEOUT": 60 * 15,  # in seconds: 60 * 15 (15 minutes)
     }
 }
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
