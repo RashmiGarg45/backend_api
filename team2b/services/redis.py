@@ -16,6 +16,7 @@ class Redis:
     def retrieve_data(self,key):
         print('[{}] Getting {} from redis'.format(datetime.now(),key))
         raw_data = self.connection.get(key)
+        print(raw_data)
         try:
             data = json.loads(raw_data)
             return data
