@@ -262,7 +262,7 @@ class SimulatedIdFunction(APIView):
         type = request.GET.get('type','order_id')
 
         redis_obj = Redis()
-        data_list = redis_obj.retrieve_data(key=scriptname)
+        data_list = redis_obj.retrieve_data(key=scriptname+'_'+type)
 
         if not data_list:
             print('Did not got id from redis')
