@@ -1538,6 +1538,7 @@ class IndigoV2MiningAPI(APIView):
         query = ()
         query.campaign_name = request.data.get('camp_name','indigomoddteam2modd')
         query.pnr = request.data.get('pnr')
+        query.departure_date = request.data.get('departure_date')
         query.email = request.get('email')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None

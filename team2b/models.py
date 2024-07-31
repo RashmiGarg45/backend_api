@@ -505,10 +505,12 @@ class IndigoV2Mining(models.Model):
     email = models.CharField(max_length=100, unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
-    
+    departure_date = models.DateTimeField(blank=True, null=True)
+
     class Meta:
         indexes = [
             models.Index(fields=['serial']),
+            models.Index(fields=['departure_date']),
         ]
 
 
