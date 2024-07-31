@@ -501,16 +501,17 @@ class IndigoV2Mining(models.Model):
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
+    company = models.CharField(default='', blank=True, max_length=100)
     pnr = models.CharField(max_length=20,unique=True)
     email = models.CharField(max_length=100, unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
-    departure_date = models.DateTimeField(blank=True, null=True)
+    departure_date = models.DateTimeField(blank=False, null=True)
 
     class Meta:
         indexes = [
             models.Index(fields=['serial']),
-            models.Index(fields=['departure_date']),
+            models.Index(fields=['company','departure_date']),
         ]
 
 
