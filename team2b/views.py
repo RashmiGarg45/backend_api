@@ -1535,7 +1535,7 @@ class EmailIdMiningAPI(APIView):
 
 class IndigoV2MiningAPI(APIView):
     def put(self, request):
-        query = ()
+        query = IndigoV2Mining()
         query.campaign_name = request.data.get('camp_name','indigomoddteam2modd')
         query.pnr = request.data.get('pnr')
         query.departure_date = request.data.get('departure_date')
