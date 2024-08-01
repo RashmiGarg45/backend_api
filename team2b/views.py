@@ -1560,7 +1560,7 @@ class IndigoV2MiningAPI(APIView):
             setUsed = False
         
         filter_dict = {}
-        query = IndigoV2Mining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'pnr':query.pnr,
