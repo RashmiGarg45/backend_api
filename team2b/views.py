@@ -1583,7 +1583,7 @@ class IndigoV2MiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = IndigoV2Mining.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = IndigoV2Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
