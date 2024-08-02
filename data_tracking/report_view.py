@@ -147,11 +147,15 @@ class Report6UpdateOnSheet(APIView):
         sheet_name = request.GET.get('sheet_name','Report 6')
         team = request.GET.get('team')
         bt_team = request.GET.get('bt_team')
+        sheetname_update_not_allowed = request.GET.get('sheetname_update_not_allowed',False)
 
-        if bt_team:
-            sheet_name += '({}) {} {}'.format(datetime.utcnow().strftime('%b,%y'), team, 'BT-{}'.format(bt_team))
+        if sheetname_update_not_allowed:
+            pass
         else:
-            sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
+            if bt_team:
+                sheet_name += '({}) {} {}'.format(datetime.utcnow().strftime('%b,%y'), team, 'BT-{}'.format(bt_team))
+            else:
+                sheet_name += '({})'.format(datetime.utcnow().strftime('%b,%y'))
         # request.GET['end_date'] = datetime.utcnow().strftime('%Y-%m-%d')
         resp_data = json.loads(r6_obj.get(request).content)
         rows_length = len(resp_data.get('data').keys())+10
