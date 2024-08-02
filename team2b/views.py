@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
@@ -10,6 +10,7 @@ import json, time, random
 import requests
 
 from django.db.models import Count
+from django.db.models import Avg
 
 class GenericScriptFunctions(APIView):
     def get(self, request):
@@ -1602,6 +1603,8 @@ class RevenueHelperAPI(APIView):
         query.adid = request.data.get('adid')
         query.event_name = request.data.get('event_name')
         query.event_value = request.data.get('event_value', {})
+        query.app_version = request.data.get('app_version', '')
+        query.script_version = request.data.get('script_version', '')
         try:
             query.save()
             return Response({
@@ -1612,11 +1615,56 @@ class RevenueHelperAPI(APIView):
         
 
 
+def send_to_gchat(_msg,_tag,webhook_url):
+    params = { 
+            "threadKey": _tag,
+            "messageReplyOption": "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
+        }
+    try:
+        resp = requests.post(url=webhook_url,params=params, json={"text": _msg}, verify=False).json()
+    except Exception as e:
+        print("[+] Something went wrong {}".format(e))
+
 class ScriptRealtimeChecker(APIView):
+
     def get(self, request):
+        from django.db.models import F, Sum, FloatField, Avg
+        from tabulate import tabulate
+        import pandas
+
+        aov_data_dict = {'Script Name':[],'Channel':[],'Network':[],'Offer ID':[],'Currency':[],'AOV':[],'Total Revenue':[],'Count':[]}
+        arpu_data_list = []
+        event_percent_list = []
+
+        yesterday_date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
+        data = ScriptChecks.objects.all()
+        for item in data:
+            campaign_name = item.campaign_name
+            aov_check = item.AOV_check
+            arpu_check = item.ARPU_check
+            event_percent_check = item.event_percent_check
+            if aov_check:
+                data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('currency','channel','network','offer_id').annotate(count=Count(F('event_name')),total_revenue=Sum(F('revenue')),revenue=Avg(F('revenue')))
+                for cc in data:
+                    aov_data_dict['Script Name'].append(campaign_name)
+                    aov_data_dict['Channel'].append(cc.get('channel'))
+                    aov_data_dict['Network'].append(cc.get('network'))
+                    aov_data_dict['Offer ID'].append(cc.get('offer_id'))
+                    aov_data_dict['Currency'].append(cc.get('currency'))
+                    aov_data_dict['AOV'].append(int(cc.get('revenue')))
+                    aov_data_dict['Total Revenue'].append(int(cc.get('total_revenue')))
+                    aov_data_dict['Count'].append(cc.get('count'))
+
+        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).to_dict(orient="list"), headers="keys", tablefmt="github")
+        tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
+
+        _tag = yesterday_date
+        send_to_gchat(tabular_string,_tag,'https://chat.googleapis.com/v1/spaces/AAAAh8zMzAw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=gzewsbx9lIeHlzEa5j5c1K7eqOS60AevmzgPe1UpZJc')
+
         
         try:
             return Response({
+                'data':aov_data_dict,
             })
         except:
             return Response({

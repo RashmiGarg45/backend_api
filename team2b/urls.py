@@ -37,6 +37,7 @@ urlpatterns = [
     path("idsimulated", views.SimulatedIdFunction.as_view(), name="idsimulated"),
     path("apps_for_simulation", views.AppsForSimulation.as_view(), name="apps_idsimulated"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
+    path("script_checks", views.ScriptRealtimeChecker.as_view(), name="restart_id_service"),
 
     
 ]
