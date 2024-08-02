@@ -530,6 +530,8 @@ class RevenueHelper(models.Model):
     adid = models.UUIDField(default='', blank=True)
     event_name = models.CharField(default='', blank=True, max_length=100)
     event_value = models.JSONField(default = dict,blank=True, null=True)
+    app_version = models.TextField(blank=True, null=True)
+    script_version = models.TextField(blank=True, null=True)
 
 
     class Meta:
@@ -537,3 +539,15 @@ class RevenueHelper(models.Model):
             models.Index(fields=['id']),
         ]
 
+
+class ScriptChecks(models.Model):
+
+    campaign_name = models.TextField(primary_key=True, editable=True)
+    AOV_check = models.BooleanField(default=False)
+    ARPU_check = models.BooleanField(default=False)
+    event_percent_check = models.BooleanField(default=False)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name']),
+        ]

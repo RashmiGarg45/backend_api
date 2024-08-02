@@ -1609,3 +1609,15 @@ class RevenueHelperAPI(APIView):
         except:
             return Response({
             })
+        
+
+
+class ScriptRealtimeChecker(APIView):
+    def get(self, request):
+        
+        try:
+            return Response({
+            })
+        except:
+            return Response({
+            })
