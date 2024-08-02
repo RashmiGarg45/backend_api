@@ -542,7 +542,7 @@ class RevenueHelper(models.Model):
 
 class ScriptChecks(models.Model):
 
-    campaign_name = models.TextField(primary_key=True, editable=True)
+    campaign_name = models.TextField(primary_key=True, max_length=100, editable=True)
     AOV_check = models.BooleanField(default=False)
     ARPU_check = models.BooleanField(default=False)
     event_percent_check = models.BooleanField(default=False)
