@@ -42,4 +42,6 @@ urlpatterns = [
     path("get_lenskart_orderId/", views.get_lenskart_orderId, name="get_lenskart_orderId"),
     path("get_myteam11_userId_count/", views.get_myteam11_userId_count, name="get_myteam11_userId_count"),
     path("get_myteam11_userId/", views.get_myteam11_userId, name="get_myteam11_userId"),
+    path("get_gamezy_users_count/", views.get_gamezy_users_count, name="get_gamezy_users_count"),
+    path("get_gamezy_userId/", views.get_gamezy_userId, name="get_gamezy_userId"),
 ]
