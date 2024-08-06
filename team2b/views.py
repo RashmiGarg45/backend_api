@@ -1571,11 +1571,11 @@ class IndigoV2MiningAPI(APIView):
             'NUPUR TRAVELS'
         ]
         filter_dict = {}
-        query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at')[0:50].first()
+        query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('created_at')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('created_at')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:50].first()
         
         data = {
                 'pnr':query.pnr,
