@@ -312,7 +312,7 @@ class SamsclubMemberIds(models.Model):
 
 class IDHelperApps(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='')
+    campaign_name = models.CharField(max_length=40,default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     date_added = models.DateField(blank=False)
