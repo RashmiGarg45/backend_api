@@ -799,6 +799,7 @@ class WatchoOrderIdsMiningAPIV2(APIView):
         filter_dict = {}
         if order_status:
             filter_dict['order_status'] = order_status
+        filter_dict['created_at__gte'] = date.today()
         
         exclude_dict = {}
         exclude_dict['channel_list__contains'] = channel
