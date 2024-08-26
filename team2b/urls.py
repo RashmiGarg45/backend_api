@@ -24,6 +24,7 @@ urlpatterns = [
     path("fantoss", views.FantossMiningAPI.as_view(), name='cru_fantoss'),
     path("okeyvip", views.OkeyvipMiningAPI.as_view(), name='cru_okeyvip'),
     path("sephora", views.SephoraMiningAPI.as_view(), name='cru_sephora'),
+    path("sephora/v2", views.SephoraMiningAPIV2.as_view(), name='cru_sephora'),
     path("puma", views.PumaMiningAPI.as_view(), name='cru_puma'),
     path("timoclub", views.TimoclubMiningAPI.as_view(), name='cru_timoclub'),
     path("indigov2", views.IndigoV2MiningAPI.as_view(), name='cru_indigo'),

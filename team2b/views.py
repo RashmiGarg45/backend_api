@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
@@ -1410,6 +1410,46 @@ class SephoraMiningAPI(APIView):
         }
         if setUsed:
             query = SephoraOrderId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+
+class SephoraMiningAPIV2(APIView):
+    def put(self, request):
+        query = SephoraOrderIdV2()
+        query.campaign_name = request.data.get('camp_name','sephoramodd')
+        query.id = request.data.get('id')
+        query.price = request.data.get('price')
+        query.extra_details=request.data.get('extra_details',{})
+        query.payment_type=request.data.get('payment_type','cash')
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = SephoraOrderIdV2.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'id':query.id,
+                'price':query.price,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = SephoraOrderIdV2.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })

@@ -435,6 +435,25 @@ class SephoraOrderId(models.Model):
             models.Index(fields=['id']),
         ]
 
+class SephoraOrderIdV2(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='sephoramodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    id = models.CharField(max_length=50,unique=True)
+    price = models.CharField(max_length=15)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    payment_type = models.TextField()
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
 class PumaOrderId(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
