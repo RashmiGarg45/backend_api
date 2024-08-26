@@ -1507,7 +1507,10 @@ class SephoraMiningAPIV2(APIView):
                 return Response({
                     'body':data,
                 })
-
+                
+        return Response({
+            'body':{},
+        })
 
 class PumaMiningAPI(APIView):
     def put(self, request):
