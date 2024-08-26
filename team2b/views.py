@@ -1438,6 +1438,7 @@ class SephoraMiningAPIV2(APIView):
         network = request.GET.get('network',True)
         af_prt = request.GET.get('af_prt',True)
         offer_id = request.GET.get('offer_id',True)
+        payment_type = request.GET.get('payment_type',True)
         
         if not channel or not network or not offer_id:
             return Response({
@@ -1451,6 +1452,8 @@ class SephoraMiningAPIV2(APIView):
         filter_dict = {}
         filter_dict['created_at__gte'] = date.today()
         
+        if payment_type:
+            filter_dict['payment_type']= payment_type
         exclude_dict = {}
         if af_prt:
             exclude_dict['af_prt__contains'] = af_prt
