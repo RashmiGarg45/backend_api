@@ -1488,7 +1488,7 @@ class SephoraMiningAPIV2(APIView):
                 if af_prt:
                     if af_prt in query.af_prt:
                         continue
-                    new_af_prt.append(offer_id)
+                    new_af_prt.append(af_prt)
 
                 data = {
                         'order_id':query.id,
