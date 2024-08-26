@@ -1492,7 +1492,7 @@ class SephoraMiningAPIV2(APIView):
                     if af_prt in query.af_prt:
                         continue
                     new_af_prt.append(offer_id)
-                    
+
                 data = {
                         'order_id':query.id,
                         'payment_type':query.payment_type,
@@ -1502,9 +1502,10 @@ class SephoraMiningAPIV2(APIView):
                 if setUsed:
                     query = SephoraOrderIdV2.objects.filter(id=data.get('order_id')).update(
                         used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        channel_list=new_channel,
-                        network_list=new_network,
-                        offer_id_list=new_offer_id,
+                        channel=new_channel,
+                        network=new_network,
+                        offer_id=new_offer_id,
+                        af_prt=new_af_prt
                         )
                 return Response({
                     'body':data,
