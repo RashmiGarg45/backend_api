@@ -1432,27 +1432,84 @@ class SephoraMiningAPIV2(APIView):
             })
 
     def get(self, request):
-        channel = request.GET.get('channel', '')
-        network = request.GET.get('network', '')
-        offer_id = request.GET.get('offer_id', '')
+        
         setUsed = request.GET.get('set_used',True)
+        channel = request.GET.get('channel',True)
+        network = request.GET.get('network',True)
+        af_prt = request.GET.get('af_prt',True)
+        offer_id = request.GET.get('offer_id',True)
+        
+        if not channel or not network or not offer_id:
+            return Response({
+                        'body':'error',
+                        'message':'channel,offer_id,network id missing.'
+                    })
+        
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
         filter_dict = {}
-        query = SephoraOrderIdV2.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        filter_dict['created_at__gte'] = date.today()
         
-        data = {
-                'id':query.id,
-                'price':query.price,
-                'used_at':query.used_at,
-                'extra_details':query.extra_details
-        }
-        if setUsed:
-            query = SephoraOrderIdV2.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
-        return Response({
-            'body':data,
-        })
+        exclude_dict = {}
+        if af_prt:
+            exclude_dict['af_prt__contains'] = af_prt
+
+        query_list = SephoraOrderIdV2.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
+        if not query_list:
+            query_list = SephoraOrderIdV2.objects.filter(**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        
+        if query_list:
+            for i in range(3):
+                query = random.choice(query_list)
+
+                if not query.channel:
+                    new_channel = [channel]
+                else:
+                    if channel in query.channel:
+                        continue
+                    new_channel = query.channel
+                    new_channel.append(channel)
+
+                if not query.network:
+                    new_network = [network]
+                else:
+                    if network in query.network:
+                        continue
+                    new_network = query.network
+                    new_network.append(network)
+
+                if not query.offer_id:
+                    new_offer_id = [offer_id]
+                else:
+                    if offer_id in query.offer_id:
+                        continue
+                    new_offer_id = query.offer_id
+                    new_offer_id.append(offer_id)
+
+                new_af_prt = query.af_prt
+                if af_prt:
+                    if af_prt in query.af_prt:
+                        continue
+                    new_af_prt.append(offer_id)
+                    
+                data = {
+                        'order_id':query.id,
+                        'payment_type':query.payment_type,
+                        'used_at':query.used_at,
+                        'extra_details':query.extra_details
+                }
+                if setUsed:
+                    query = SephoraOrderIdV2.objects.filter(id=data.get('order_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel,
+                        network_list=new_network,
+                        offer_id_list=new_offer_id,
+                        )
+                return Response({
+                    'body':data,
+                })
+
 
 class PumaMiningAPI(APIView):
     def put(self, request):
