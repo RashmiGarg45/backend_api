@@ -1438,7 +1438,7 @@ class SephoraMiningAPIV2(APIView):
         network = request.GET.get('network',True)
         af_prt = request.GET.get('af_prt',True)
         offer_id = request.GET.get('offer_id',True)
-        payment_type = request.GET.get('payment_type',True)
+        payment_type = request.GET.get('payment_type')
         
         if not channel or not network or not offer_id:
             return Response({
@@ -1507,7 +1507,7 @@ class SephoraMiningAPIV2(APIView):
                 return Response({
                     'body':data,
                 })
-                
+            
         return Response({
             'body':{},
         })
