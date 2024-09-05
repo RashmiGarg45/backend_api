@@ -932,9 +932,7 @@ class PepperfryMiningAPI(APIView):
             panel_offer = False
 
         if panel_offer or (not channel and not network and not offer_id):
-            query_count = PepperfryOrderIds.objects.count()
-            random_serial = random.randint(0,query_count)
-            query = PepperfryOrderIds.objects.filter(serial=random_serial).first()
+            query = PepperfryOrderIds.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
 
             if query:
                 data = {
