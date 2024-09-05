@@ -925,7 +925,13 @@ class PepperfryMiningAPI(APIView):
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
 
-        if not channel and not network and not offer_id:
+        try:
+            if int(offer_id):
+                panel_offer = True
+        except:
+            panel_offer = False
+
+        if panel_offer or (not channel and not network and not offer_id):
             query_count = PepperfryOrderIds.objects.count()
             random_serial = random.randint(200,query_count)
             query = PepperfryOrderIds.objects.filter(serial=random_serial).first()
@@ -939,10 +945,12 @@ class PepperfryMiningAPI(APIView):
                 }
                 return Response({
                     'body':data,
+                    'set_used':False
                 })
             else:
                 return Response({
                     'body':{},
+                    'set_used':False
                 })
             
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
