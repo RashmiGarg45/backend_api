@@ -15,7 +15,7 @@ from django.db.models import Avg
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            'mcdeliverymodd':McdeliveryScriptOrderIds,
+            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
             'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
@@ -24,7 +24,7 @@ class GenericScriptFunctions(APIView):
             # 'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             # 'gomcdoauto': GomcdOrderIds,
-            # 'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
             'okeyvipmodd': OkeyvipUserId,
