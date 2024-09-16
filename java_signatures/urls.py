@@ -46,4 +46,6 @@ urlpatterns = [
     path("get_gamezy_userId/", views.get_gamezy_userId, name="get_gamezy_userId"),
     path("get_galaxychat_userData/", views.get_galaxychat_userData, name="get_galaxychat_userData"),
     path("get_galaxychat_users_count/", views.get_galaxychat_users_count, name="get_galaxychat_users_count"),
+    path("get_derma_orderData/", views.get_derma_orderData, name="get_derma_orderData"),
+    path("get_derma_orders_count/", views.get_derma_orders_count, name="get_derma_orders_count"),
 ]

@@ -1162,3 +1162,52 @@ def get_galaxychat_users_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
+def get_derma_orderData(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM derma_user_data WHERE NOT isUsed=1 ORDER BY order_id ASC''')
+        data = cursor.fetchall()
+        order_id = data[0][1]
+        order_total = data[0][2]
+        order_date = data[0][3]
+        system_order_id = data[0][4]
+        data = {"order_id": order_id, "order_total": order_total, "order_date": order_date, "system_order_id": system_order_id}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE derma_user_data SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_derma_orders_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM derma_user_data WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
