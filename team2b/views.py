@@ -15,7 +15,7 @@ from django.db.models import Avg
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            'mcdeliverymodd':McdeliveryScriptOrderIds,
+            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
             'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
@@ -24,7 +24,7 @@ class GenericScriptFunctions(APIView):
             # 'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             # 'gomcdoauto': GomcdOrderIds,
-            # 'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
             'okeyvipmodd': OkeyvipUserId,
@@ -925,12 +925,17 @@ class PepperfryMiningAPI(APIView):
         setUsed = request.GET.get('set_used',True)
         order_status = request.GET.get('order_status')
 
-        if not channel and not network and not offer_id:
-            query_count = PepperfryOrderIds.objects.count()
-            random_serial = random.randint(200,query_count)
-            query = PepperfryOrderIds.objects.filter(serial=random_serial).first()
+        try:
+            if int(offer_id):
+                panel_offer = True
+        except:
+            panel_offer = False
 
+        if panel_offer or (not channel and not network and not offer_id):
+            query = PepperfryOrderIds.objects.exclude(used_at=None).order_by('-created_at')[0:500].all()
+            
             if query:
+                query = random.choice(query)
                 data = {
                     'order_id':query.id,
                     'order_status':query.order_status,
@@ -939,10 +944,12 @@ class PepperfryMiningAPI(APIView):
                 }
                 return Response({
                     'body':data,
+                    'set_used':False
                 })
             else:
                 return Response({
                     'body':{},
+                    'set_used':False
                 })
             
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
@@ -1450,7 +1457,7 @@ class SephoraMiningAPIV2(APIView):
             setUsed = False
         
         filter_dict = {}
-        filter_dict['created_at__gte'] = date.today()
+        # filter_dict['created_at__gte'] = date.today()
         
         if payment_type:
             filter_dict['payment_type']= payment_type
@@ -1768,3 +1775,40 @@ class ScriptRealtimeChecker(APIView):
         except:
             return Response({
             })
+        
+
+class ResetOrderId(APIView):
+
+    def get(self, request):
+        tablesDict = {
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            'pepperfryauto':PepperfryOrderIds,
+            # 'habibmodd':HabibScriptOrderIdsConstants,
+            # 'tripsygamesmodd': TripsygamesOrderIds,
+            # 'ostinshopmodd': OstinShopScriptOrderIds,
+            # 'lazuritappmetrica': LazuritOrderIds,
+            # 'gomcdoauto': GomcdOrderIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'weworldauto': WeWorldIds,
+            'fantosst2modd': FantossUserIds,
+            'okeyvipmodd': OkeyvipUserId,
+            'sephoramodd': SephoraOrderId,
+            'pumaauto': PumaOrderId,
+            'timoclubauto': TimoclubUserId,
+            'emailIds_Mined': EmailIdMining
+
+            # 'samsclubmodd': SamsclubMemberIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
+            # 'damnraymodd':DamnrayOrderIds,
+            # 'indigomodd':IndigoScriptOrdersIds,
+            # 'lightinthebox':LightInTheBox,
+        }
+        tablename = request.GET.get('table')
+        id_ = request.GET.get('id')
+        update_status = tablesDict[tablename].objects.filter(id=id_).update(used_at=None)
+
+        return Response({
+            'status':'ok',
+            'record_updated':update_status
+        })
