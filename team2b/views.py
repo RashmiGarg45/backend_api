@@ -1775,3 +1775,40 @@ class ScriptRealtimeChecker(APIView):
         except:
             return Response({
             })
+        
+
+class ResetOrderId(APIView):
+
+    def get(self, request):
+        tablesDict = {
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            'pepperfryauto':PepperfryOrderIds,
+            # 'habibmodd':HabibScriptOrderIdsConstants,
+            # 'tripsygamesmodd': TripsygamesOrderIds,
+            # 'ostinshopmodd': OstinShopScriptOrderIds,
+            # 'lazuritappmetrica': LazuritOrderIds,
+            # 'gomcdoauto': GomcdOrderIds,
+            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            'weworldauto': WeWorldIds,
+            'fantosst2modd': FantossUserIds,
+            'okeyvipmodd': OkeyvipUserId,
+            'sephoramodd': SephoraOrderId,
+            'pumaauto': PumaOrderId,
+            'timoclubauto': TimoclubUserId,
+            'emailIds_Mined': EmailIdMining
+
+            # 'samsclubmodd': SamsclubMemberIds,
+            # 'mumzworldautoios':MumzworldOrderIds,
+            # 'damnraymodd':DamnrayOrderIds,
+            # 'indigomodd':IndigoScriptOrdersIds,
+            # 'lightinthebox':LightInTheBox,
+        }
+        tablename = requests.GET.get('table')
+        id_ = requests.GET.get('id')
+        update_status = tablesDict[tablename].objects.filter(id=id_).update(used_at=None)
+
+        return Response({
+            'status':'ok',
+            'record_updated':update_status
+        })
