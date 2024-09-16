@@ -1804,8 +1804,8 @@ class ResetOrderId(APIView):
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
         }
-        tablename = requests.GET.get('table')
-        id_ = requests.GET.get('id')
+        tablename = request.GET.get('table')
+        id_ = request.GET.get('id')
         update_status = tablesDict[tablename].objects.filter(id=id_).update(used_at=None)
 
         return Response({
