@@ -30,3 +30,6 @@ class Redis:
     def update_ttl(self, key, ttl):
         print('[{}] Getting ttl for {} from redis'.format(datetime.now(),key))
         return self.connection.expire(key, ttl)
+    
+    def delete(self,key):
+        return self.connection.delete(key)

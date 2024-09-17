@@ -252,6 +252,7 @@ class SimulatedIdFunction(APIView):
                 'id':int(item.id),
                 'constraint':item.constraint
             })
+        redis_obj.delete(key=(scriptname+'_'+type+'_'+'last_used_id'))
         redis_obj.save(key=scriptname+'_'+type,value=data_list)
 
         return Response({
