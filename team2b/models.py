@@ -571,3 +571,22 @@ class ScriptChecks(models.Model):
         indexes = [
             models.Index(fields=['campaign_name']),
         ]
+
+class ghnUserId(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='ghnmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    id = models.CharField(max_length=70,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+

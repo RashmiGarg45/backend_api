@@ -27,6 +27,7 @@ urlpatterns = [
     path("sephora/v2", views.SephoraMiningAPIV2.as_view(), name='cru_sephora'),
     path("puma", views.PumaMiningAPI.as_view(), name='cru_puma'),
     path("timoclub", views.TimoclubMiningAPI.as_view(), name='cru_timoclub'),
+    path("ghnmodd", views.GhnMiningAPI.as_view(), name='cru_ghnmodd'),
     path("indigov2", views.IndigoV2MiningAPI.as_view(), name='cru_indigo'),
     path("email", views.EmailIdMiningAPI.as_view(), name='cru_email'),
     path("revenuedata", views.RevenueHelperAPI.as_view(), name='cru_revenuedata'),
