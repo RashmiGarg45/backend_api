@@ -30,6 +30,7 @@ urlpatterns = [
     path("ghnmodd", views.GhnMiningAPI.as_view(), name='cru_ghnmodd'),
     path("rummytime", views.RummytimeMiningAPI.as_view(), name='cru_rummytime'),
     path("indigov2", views.IndigoV2MiningAPI.as_view(), name='cru_indigo'),
+    path("indigov2/updatetoken", views.IndigoTokenRefresh.as_view(), name='cru_indigo'),
     path("email", views.EmailIdMiningAPI.as_view(), name='cru_email'),
     path("revenuedata", views.RevenueHelperAPI.as_view(), name='cru_revenuedata'),
     path("phonepestock", views.stock3Api.as_view(), name='phonepestock'),

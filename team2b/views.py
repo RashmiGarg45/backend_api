@@ -1891,3 +1891,39 @@ class RummytimeMiningAPI(APIView):
         return Response({
             'body':data,
         })
+
+
+class IndigoTokenRefresh(APIView):
+    def get(self,request):
+        from oauth2client.service_account import ServiceAccountCredentials
+        from googleapiclient.discovery import build
+        import gspread
+        from data_tracking.util import get_credential
+
+        credentials = get_credential()
+        
+        sheet_url = "https://docs.google.com/spreadsheets/d/1tDT7Wco4_NgV3wWzI3Q8MqdVzVcDz-qxhljI3nuf1lA/edit?gid=0#gid=0"
+        subsheet_name = "Tokens"
+
+        Sheet_credential = gspread.service_account_from_dict(credentials)
+        spreadsheet = Sheet_credential.open_by_url(sheet_url)
+        print('[+] Subsheet Access: {}'.format(subsheet_name))
+        worksheet = spreadsheet.worksheet(subsheet_name)
+        list_of_lists = worksheet.get_all_values()
+        header_row = list_of_lists[0]
+        redis_obj = Redis()
+        for item in list_of_lists[1:]:
+            value = {
+                'INSTANCE_ID':item[0],
+                'PNR_USED':item[1],
+                'POST_TOKEN':item[2],
+                'GET_TOKEN':item[3],
+                'INITIALIZER':item[4],
+                "UPDATED_AT":str(datetime.now()),
+            }
+            key = 'INDIGO_TOKEN_{}_DATA'.format(item[0])
+            redis_obj.save(key=key,value=value)
+
+        return Response({
+            'body':list_of_lists,
+        })
