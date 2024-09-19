@@ -1913,15 +1913,22 @@ class IndigoTokenRefresh(APIView):
         header_row = list_of_lists[0]
         redis_obj = Redis()
         for item in list_of_lists[1:]:
+            no_update = False
+            key = 'INDIGO_TOKEN_{}_DATA'.format(item[0])
+            old_data = redis_obj.retrieve_data(key=key)
+            if old_data:
+                if item[0] == old_data.get('INSTANCE_ID'):
+                    if item[3] == old_data.get('GET_TOKEN') and item[2] == old_data.get('POST_TOKEN'):
+                        no_update = old_data.get('UPDATED_AT')
+
             value = {
                 'INSTANCE_ID':item[0],
                 'PNR_USED':item[1],
                 'POST_TOKEN':item[2],
                 'GET_TOKEN':item[3],
                 'INITIALIZER':item[4],
-                "UPDATED_AT":str(datetime.now()),
+                "UPDATED_AT":str(datetime.now()) if not no_update else no_update,
             }
-            key = 'INDIGO_TOKEN_{}_DATA'.format(item[0])
             redis_obj.save(key=key,value=value)
 
         return Response({
