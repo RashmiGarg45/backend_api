@@ -16,7 +16,7 @@ class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
             # 'mcdeliverymodd':McdeliveryScriptOrderIds,
-            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
@@ -24,7 +24,7 @@ class GenericScriptFunctions(APIView):
             # 'ostinshopmodd': OstinShopScriptOrderIds,
             # 'lazuritappmetrica': LazuritOrderIds,
             # 'gomcdoauto': GomcdOrderIds,
-            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            # 'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
             'okeyvipmodd': OkeyvipUserId,
@@ -106,8 +106,8 @@ class GenericScriptFunctions(APIView):
 class GenericUnusedIdScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            'mcdeliverymodd':McdeliveryScriptOrderIds,
-            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
             # 'tripsygamesmodd': TripsygamesOrderIds,
@@ -116,7 +116,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'gomcdoauto': GomcdOrderIds,
             'ghnmodd': ghnUserId,
             'rummytimemodd': RummytimeUserId,
-            'bharatmatrimonymodd': BharatmatrimonyUserIds,
+            # 'bharatmatrimonymodd': BharatmatrimonyUserIds,
             'weworldauto': WeWorldIds,
             'fantosst2modd': FantossUserIds,
             'okeyvipmodd': OkeyvipUserId,
