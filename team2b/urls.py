@@ -29,6 +29,7 @@ urlpatterns = [
     path("timoclub", views.TimoclubMiningAPI.as_view(), name='cru_timoclub'),
     path("ghnmodd", views.GhnMiningAPI.as_view(), name='cru_ghnmodd'),
     path("rummytime", views.RummytimeMiningAPI.as_view(), name='cru_rummytime'),
+    path("scoreone", views.ScoreoneMiningAPI.as_view(), name='cru_scoreone'),
     path("indigov2", views.IndigoV2MiningAPI.as_view(), name='cru_indigo'),
     path("indigov2/updatetoken", views.IndigoTokenRefresh.as_view(), name='cru_indigo'),
     path("email", views.EmailIdMiningAPI.as_view(), name='cru_email'),
