@@ -1680,7 +1680,8 @@ class IndigoV2MiningAPI(APIView):
             'EaseMyTrip',
             'EasyTripPlanners',
             'travelmaster.in',
-            'NUPUR TRAVELS'
+            'NUPUR TRAVELS',
+            'Yatra Online Pvt Ltd'
         ]
         filter_dict = {}
         query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at')[0:50].first()
