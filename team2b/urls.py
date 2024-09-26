@@ -43,6 +43,7 @@ urlpatterns = [
     path("apps_for_simulation", views.AppsForSimulation.as_view(), name="apps_idsimulated"),
     path("restart_id_service", helper_apis.RestartAPIService.as_view(), name="restart_id_service"),
     path("script_checks", views.ScriptRealtimeChecker.as_view(), name="restart_id_service"),
+    path("track_script", views.TrackScript.as_view(), name="track_script"),
     
     path("id/reset", views.ResetOrderId.as_view(), name="restart_id_service"),
 

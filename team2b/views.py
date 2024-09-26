@@ -1978,3 +1978,60 @@ class ScoreoneMiningAPI(APIView):
             'body':data,
         })
 
+
+
+
+class TrackScript(APIView):
+
+    def get(self, request):
+        from django.db.models import Q,Sum
+
+        start_date = request.GET.get('from_date')
+        end_date = request.GET.get('end_date')
+        campaign_name = request.GET.get('campaign_name')
+        channel = request.GET.get('channel')
+        network = request.GET.get('network')
+        offer_id = request.GET.get('offer_id')
+
+        filter_dict = {
+            'created_at__gte':start_date,
+            'created_at__lte':end_date + " 23:59:59.999999",
+        }
+
+        for key in ['campaign_name','channel','network','offer_id']:
+            if request.GET.get(key):
+                dd = {}
+                dd[key] = request.GET.get(key)
+                filter_dict.update(dd)
+                
+        values_dict = [
+            'campaign_name',
+        ]
+
+        data = RevenueHelper.objects.filter(**filter_dict).values(*values_dict).annotate(
+            install_count=Count('event_name',filter=Q(event_name='Install')),
+            total_count=Count('event_name'),
+            total_revenue=Sum('revenue'),
+            )
+
+        for item in data:
+            item['event_count'] = item.get('total_count') - item.get('install_count')
+            item['event_percent']=0
+            item['aov']=0
+            item['roi']=0
+            if item.get('install_count'):
+                item['event_percent'] = round(item.get('event_count')*100/item.get('install_count'),2)
+            if item.get('total_revenue')>0:
+                if item.get('event_count'):
+                    item['aov'] = round(item.get('total_revenue')/item.get('event_count'),2)
+                if item.get('install_count'):
+                    item['roi'] = round(item.get('total_revenue')/item.get('install_count'),2)
+        try:
+            return Response({
+                'data':data
+            })
+        except:
+            return Response({
+                'data':data
+            })
+        
