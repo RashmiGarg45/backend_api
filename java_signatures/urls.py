@@ -48,4 +48,5 @@ urlpatterns = [
     path("get_galaxychat_users_count/", views.get_galaxychat_users_count, name="get_galaxychat_users_count"),
     path("get_derma_orderData/", views.get_derma_orderData, name="get_derma_orderData"),
     path("get_derma_orders_count/", views.get_derma_orders_count, name="get_derma_orders_count"),
+    path("put_data/", views.put_data, name="put_data"),
 ]

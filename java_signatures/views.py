@@ -10,6 +10,7 @@ import time
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
 
+
 def get_signtaure(request):
     data = json.loads(request.body)
     args_list = data.get("args")
@@ -1211,3 +1212,37 @@ def get_derma_orders_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
+@api_view(['PUT'])
+def put_data(request):
+    request_data = json.loads(request.body)
+    camp_name = request_data.get("camp_name")
+    data = request_data.get("data")
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor() 
+
+        if camp_name == "pocket52":
+            cursor.execute('''SELECT DISTINCT user_id FROM pocket52_userId''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for user_id in data:
+                if str(user_id) not in already_present_user_ids:
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO pocket52_userId (user_id, created_at, isUsed)
+                                        VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
+                    conn.commit()
+
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message}))
