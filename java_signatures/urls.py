@@ -48,5 +48,7 @@ urlpatterns = [
     path("get_galaxychat_users_count/", views.get_galaxychat_users_count, name="get_galaxychat_users_count"),
     path("get_derma_orderData/", views.get_derma_orderData, name="get_derma_orderData"),
     path("get_derma_orders_count/", views.get_derma_orders_count, name="get_derma_orders_count"),
+    path("get_toonsutra_user_data/", views.get_toonsutra_user_data, name="get_toonsutra_user_data"),
+    path("get_toonsutra_users_count/", views.get_toonsutra_users_count, name="get_toonsutra_users_count"),
     path("put_data/", views.put_data, name="put_data"),
 ]

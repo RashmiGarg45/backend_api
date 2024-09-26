@@ -1213,6 +1213,53 @@ def get_derma_orders_count(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
 
+def get_toonsutra_user_data(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM toonsutra_user_data WHERE NOT isUsed=1 ORDER BY user_id ASC''')
+        data = cursor.fetchall()
+        user_id = data[0][1]
+        extra_details = data[0][2]
+        data = {"user_id": user_id, "extra_details": extra_details}
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE toonsutra_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_toonsutra_users_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM toonsutra_user_data WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
 @api_view(['PUT'])
 def put_data(request):
     request_data = json.loads(request.body)
@@ -1236,6 +1283,24 @@ def put_data(request):
                     cursor.execute('''INSERT INTO pocket52_userId (user_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
+
+        elif camp_name == "toonsutra":
+            cursor.execute('''SELECT DISTINCT user_id FROM toonsutra_user_data''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for d in data:
+                user_id = d.get("user_id")
+                details = d.get("details")
+                if str(user_id) not in already_present_user_ids:
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO toonsutra_user_data (user_id, extra_details, createdAt, isUsed)
+                                        VALUES ('{}','{}', '{}', 0)'''.format(user_id , json.dumps(details),created_at ))
+                    conn.commit()
+
 
         response_code = 200
         message = "success"
