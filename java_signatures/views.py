@@ -1316,6 +1316,29 @@ def put_data(request):
                                         VALUES ('{}','{}', 0)'''.format(order_id, created_at ))
                     conn.commit()
 
+        elif camp_name == "derma":
+            cursor.execute('''SELECT DISTINCT order_id FROM derma_user_data''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for d in data:
+                order_id = d.get("order_id")
+                order_total = d.get("order_total")
+                order_date = d.get("order_date")
+                system_order_id = d.get("system_order_id")
+                AWB = d.get("AWB")
+                if str(order_id) not in already_present_user_ids:
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO derma_user_data (order_id, order_total, order_date, system_order_id, createdAt, isUsed, AWB)
+                              VALUES ('{}', '{}', '{}', '{}','{}', 0, '{}')'''.format(order_id, order_total, order_date, system_order_id ,created_at , AWB))
+                    conn.commit()
+
+
+
+
         response_code = 200
         message = "success"
 
