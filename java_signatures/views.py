@@ -1301,6 +1301,20 @@ def put_data(request):
                                         VALUES ('{}','{}', '{}', 0)'''.format(user_id , json.dumps(details),created_at ))
                     conn.commit()
 
+        elif camp_name == "lenskart":
+            cursor.execute('''SELECT DISTINCT order_id FROM lenskart_orderId''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for order_id in data:
+                if str(order_id) not in already_present_user_ids:
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO lenskart_orderId (order_id, created_at, isUsed)
+                                        VALUES ('{}','{}', 0)'''.format(order_id, created_at ))
+                    conn.commit()
 
         response_code = 200
         message = "success"
