@@ -926,82 +926,85 @@ class PepperfryMiningAPI(APIView):
             })
 
     def get(self, request):
-        channel = request.GET.get('channel', '')
-        network = request.GET.get('network', '')
-        offer_id = request.GET.get('offer_id', '')
-        setUsed = request.GET.get('set_used',True)
-        order_status = request.GET.get('order_status')
-
         try:
-            if int(offer_id):
-                panel_offer = True
-        except:
-            panel_offer = False
+            channel = request.GET.get('channel', '')
+            network = request.GET.get('network', '')
+            offer_id = request.GET.get('offer_id', '')
+            setUsed = request.GET.get('set_used',True)
+            order_status = request.GET.get('order_status')
 
-        if panel_offer or (not channel and not network and not offer_id):
-            query = PepperfryOrderIds.objects.exclude(used_at=None).order_by('-created_at')[0:500].all()
+            try:
+                if int(offer_id):
+                    panel_offer = True
+            except:
+                panel_offer = False
+
+            if panel_offer or (not channel and not network and not offer_id):
+                query = PepperfryOrderIds.objects.exclude(used_at=None).order_by('-created_at')[0:500].all()
+                
+                if query:
+                    query = random.choice(query)
+                    data = {
+                        'order_id':query.id,
+                        'order_status':query.order_status,
+                        'used_at':query.used_at,
+                        'extra_details':query.extra_details
+                    }
+                    return Response({
+                        'body':data,
+                        'set_used':False
+                    })
+                else:
+                    return Response({
+                        'body':{},
+                        'set_used':False
+                    })
+                
+            if setUsed and (setUsed == 'False' or setUsed == 'false'):
+                setUsed = False
             
+            filter_dict = {}
+            if order_status:
+                filter_dict['order_status'] = order_status
+            query = PepperfryOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
             if query:
-                query = random.choice(query)
                 data = {
-                    'order_id':query.id,
-                    'order_status':query.order_status,
-                    'used_at':query.used_at,
-                    'extra_details':query.extra_details
+                        'order_id':query.id,
+                        'order_status':query.order_status,
+                        'used_at':query.used_at,
+                        'extra_details':query.extra_details
                 }
+                if setUsed:
+                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
                 return Response({
                     'body':data,
-                    'set_used':False
                 })
             else:
-                return Response({
-                    'body':{},
-                    'set_used':False
-                })
-            
-        if setUsed and (setUsed == 'False' or setUsed == 'false'):
-            setUsed = False
-        
-        filter_dict = {}
-        if order_status:
-            filter_dict['order_status'] = order_status
-        query = PepperfryOrderIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
-        if query:
-            data = {
-                    'order_id':query.id,
-                    'order_status':query.order_status,
-                    'used_at':query.used_at,
-                    'extra_details':query.extra_details
-            }
-            if setUsed:
-                query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
-            return Response({
-                'body':data,
-            })
-        else:
-            filter_dict.update({"used_at__lte":datetime.now()-timedelta(days=14)})
-            if channel and offer_id and network:
-                exclude_dict = {
-                    'channel':channel,
-                    'network':network,
-                    'offer_id':offer_id,
+                filter_dict.update({"used_at__lte":datetime.now()-timedelta(days=14)})
+                if channel and offer_id and network:
+                    exclude_dict = {
+                        'channel':channel,
+                        'network':network,
+                        'offer_id':offer_id,
+                    }
+                else:
+                    exclude_dict = {}
+                query = PepperfryOrderIds.objects.filter(used_at_2=None,**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:50].all()
+                query = random.choice(query)
+                data = {
+                        'order_id':query.id,
+                        'order_status':query.order_status,
+                        'used_at':query.used_at,
+                        'extra_details':query.extra_details
                 }
-            else:
-                exclude_dict = {}
-            query = PepperfryOrderIds.objects.filter(used_at_2=None,**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:50].all()
-            query = random.choice(query)
-            data = {
-                    'order_id':query.id,
-                    'order_status':query.order_status,
-                    'used_at':query.used_at,
-                    'extra_details':query.extra_details
-            }
-            if setUsed:
-                query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at_2=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                if setUsed:
+                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at_2=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                return Response({
+                    'body':data,
+                })
+        except:
             return Response({
-                'body':data,
             })
-
 
 class MumzworldAPI(APIView):
     def put(self, request):
@@ -1978,3 +1981,60 @@ class ScoreoneMiningAPI(APIView):
             'body':data,
         })
 
+
+
+
+class TrackScript(APIView):
+
+    def get(self, request):
+        from django.db.models import Q,Sum
+
+        start_date = request.GET.get('from_date')
+        end_date = request.GET.get('end_date')
+        campaign_name = request.GET.get('campaign_name')
+        channel = request.GET.get('channel')
+        network = request.GET.get('network')
+        offer_id = request.GET.get('offer_id')
+
+        filter_dict = {
+            'created_at__gte':start_date,
+            'created_at__lte':end_date + " 23:59:59.999999",
+        }
+
+        for key in ['campaign_name','channel','network','offer_id']:
+            if request.GET.get(key):
+                dd = {}
+                dd[key] = request.GET.get(key)
+                filter_dict.update(dd)
+                
+        values_dict = [
+            'campaign_name',
+        ]
+
+        data = RevenueHelper.objects.filter(**filter_dict).values(*values_dict).annotate(
+            install_count=Count('event_name',filter=Q(event_name='Install')),
+            total_count=Count('event_name'),
+            total_revenue=Sum('revenue'),
+            )
+
+        for item in data:
+            item['event_count'] = item.get('total_count') - item.get('install_count')
+            item['event_percent']=0
+            item['aov']=0
+            item['roi']=0
+            if item.get('install_count'):
+                item['event_percent'] = round(item.get('event_count')*100/item.get('install_count'),2)
+            if item.get('total_revenue')>0:
+                if item.get('event_count'):
+                    item['aov'] = round(item.get('total_revenue')/item.get('event_count'),2)
+                if item.get('install_count'):
+                    item['roi'] = round(item.get('total_revenue')/item.get('install_count'),2)
+        try:
+            return Response({
+                'data':data
+            })
+        except:
+            return Response({
+                'data':data
+            })
+        
