@@ -1311,7 +1311,7 @@ def put_data(request):
 
             for order_id in data:
                 if str(order_id) not in already_present_user_ids:
-                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO lenskart_orderId (order_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(order_id, created_at ))
                     conn.commit()
