@@ -51,4 +51,5 @@ urlpatterns = [
     path("get_toonsutra_user_data/", views.get_toonsutra_user_data, name="get_toonsutra_user_data"),
     path("get_toonsutra_users_count/", views.get_toonsutra_users_count, name="get_toonsutra_users_count"),
     path("put_data/", views.put_data, name="put_data"),
+    path("get_event_info/", views.get_event_info, name="get_event_info"),
 ]

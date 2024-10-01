@@ -1348,3 +1348,42 @@ def put_data(request):
         data = {}
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message}))
+
+def get_event_info(request):
+    campaign_name = request.GET.get('campaign_name')
+    channel = request.GET.get('channel')
+    network = request.GET.get('network')
+    offer_id = request.GET.get('offer_id')
+    date_ = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+    event_name = request.GET.get('event_name')
+
+    try:
+        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()
+
+        cursor.execute('''SELECT COUNT(*) FROM team2b_revenuehelper WHERE event_name = "Install" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at LIKE "{}%"'''.format(campaign_name, channel, network, offer_id, date_))
+        data = cursor.fetchall()
+        install_count = data[0][0]
+
+
+        cursor.execute('''SELECT SUM(revenue), COUNT(revenue) FROM team2b_revenuehelper WHERE event_name = "{}" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at LIKE "{}%"'''.format(event_name, campaign_name, channel, network, offer_id, date_))
+        data = cursor.fetchall()
+        
+        total_revenue = data[0][0]
+        event_count = data[0][1]
+        response_code = 200
+        message = "success"
+        data = {"install_count": install_count, "event_count": event_count, "total_revenue": total_revenue}
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+
+
+    
+
+
