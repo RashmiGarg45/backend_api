@@ -1373,6 +1373,9 @@ def get_event_info(request):
         event_count = data[0][1]
         response_code = 200
         message = "success"
+
+        if total_revenue is None:
+            total_revenue = 0
         data = {"install_count": install_count, "event_count": event_count, "total_revenue": total_revenue}
 
     except Exception as e:
