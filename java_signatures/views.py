@@ -1375,7 +1375,7 @@ def get_event_info(request):
         message = "success"
 
         if total_revenue is None:
-            total_revenue = 0
+            total_revenue = 0.00001
         data = {"install_count": install_count, "event_count": event_count, "total_revenue": total_revenue}
 
     except Exception as e:
