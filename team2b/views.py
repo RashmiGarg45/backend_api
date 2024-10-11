@@ -34,7 +34,8 @@ class GenericScriptFunctions(APIView):
             'sephoramodd': SephoraOrderIdV2,
             'pumaauto': PumaOrderId, 
             'timoclubauto': TimoclubUserId,
-            'apnatimeauto': ApnatimeUserId
+            'apnatimeauto': ApnatimeUserId,
+            'khiladiaddamodd': KhiladiaddaUserId
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             # 'damnraymodd':DamnrayOrderIds,
@@ -127,6 +128,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'pumaauto': PumaOrderId,
             'timoclubauto': TimoclubUserId,
             'apnatimeauto': ApnatimeUserId,
+            'khiladiaddamodd': KhiladiaddaUserId
             # 'emailIds_Mined': EmailIdMining
 
             # 'samsclubmodd': SamsclubMemberIds,
