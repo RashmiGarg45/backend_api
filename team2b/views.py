@@ -1677,6 +1677,7 @@ class IndigoV2MiningAPI(APIView):
         channel = request.GET.get('channel', '')
         network = request.GET.get('network', '')
         offer_id = request.GET.get('offer_id', '')
+        unused_count = request.GET.get('unused_count', False)
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
@@ -1693,7 +1694,14 @@ class IndigoV2MiningAPI(APIView):
             'Yatra Online Pvt Ltd'
         ]
         filter_dict = {}
-        query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at')[0:50].first()
+        query = None
+        
+        cc = 21
+        if not unused_count:
+            cc = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at').count()
+        
+        if unused_count or (not unused_count and cc>20):
+            query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at')[0:50].first()
         if not query:
             query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('created_at')[0:50].first()
         if not query:
