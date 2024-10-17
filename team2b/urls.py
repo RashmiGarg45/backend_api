@@ -32,6 +32,7 @@ urlpatterns = [
     path("scoreone", views.ScoreoneMiningAPI.as_view(), name='cru_scoreone'),
     path("apnatime", views.ApnatimeMiningAPI.as_view(), name='cru_apnatime'),
     path("khiladi", views.KhiladiaddaMiningAPI.as_view(), name='cru_khiladi'),
+    path("datingglobal", views.DatingGlobalMiningAPI.as_view(), name='cru_datingglobal'),
     path("indigov2", views.IndigoV2MiningAPI.as_view(), name='cru_indigo'),
     path("indigov2/updatetoken", views.IndigoTokenRefresh.as_view(), name='cru_indigo'),
     path("email", views.EmailIdMiningAPI.as_view(), name='cru_email'),
