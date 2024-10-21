@@ -1524,8 +1524,6 @@ class SephoraMiningAPIV2(APIView):
 
                 new_af_prt = query.af_prt
                 if af_prt:
-                    if af_prt in query.af_prt:
-                        continue
                     new_af_prt.append(af_prt)
 
                 data = {
