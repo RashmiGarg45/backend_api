@@ -1482,8 +1482,14 @@ class SephoraMiningAPIV2(APIView):
         if payment_type:
             filter_dict['payment_type']= payment_type
         exclude_dict = {}
-        if af_prt:
-            exclude_dict['af_prt__contains'] = af_prt
+        if channel and network and offer_id: 
+            exclude_dict['channel__contains'] = channel
+            exclude_dict['network__contains'] = network
+            exclude_dict['offer_id__contains'] = offer_id
+            # exclude_dict['af_prt__contains'] = af_prt
+
+        # if af_prt:
+        #     exclude_dict['af_prt__contains'] = af_prt
 
         query_list = SephoraOrderIdV2.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
         if not query_list:
