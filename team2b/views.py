@@ -1489,7 +1489,7 @@ class SephoraMiningAPIV2(APIView):
             filter_dict['payment_type']= payment_type
 
         exclude_dict = {}
-        if channel and network and offer_id: 
+        if channel: 
             exclude_dict['channel__contains'] = channel
             # exclude_dict['af_prt__contains'] = af_prt
 
@@ -1507,24 +1507,18 @@ class SephoraMiningAPIV2(APIView):
                 if not query.channel:
                     new_channel = [channel]
                 else:
-                    if channel in query.channel:
-                        continue
                     new_channel = query.channel
                     new_channel.append(channel)
 
                 if not query.network:
                     new_network = [network]
                 else:
-                    if network in query.network:
-                       continue
                     new_network = query.network
                     new_network.append(network)
 
                 if not query.offer_id:
                     new_offer_id = [offer_id]
                 else:
-                    if offer_id in query.offer_id:
-                        continue
                     new_offer_id = query.offer_id
                     new_offer_id.append(offer_id)
 
