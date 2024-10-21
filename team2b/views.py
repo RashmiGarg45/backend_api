@@ -1491,8 +1491,6 @@ class SephoraMiningAPIV2(APIView):
         exclude_dict = {}
         if channel and network and offer_id: 
             exclude_dict['channel__contains'] = channel
-            exclude_dict['network__contains'] = network
-            exclude_dict['offer_id__contains'] = offer_id
             # exclude_dict['af_prt__contains'] = af_prt
 
         # if af_prt:
