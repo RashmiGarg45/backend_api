@@ -1476,9 +1476,7 @@ class SephoraMiningAPIV2(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        # filter_dict = {
-        #     "id":60123721
-        # }
+        filter_dict = {}
         # filter_dict['created_at__gte'] = date.today()
         
         if payment_type:
