@@ -1461,10 +1461,10 @@ class SephoraMiningAPIV2(APIView):
     def get(self, request):
         
         setUsed = request.GET.get('set_used',True)
-        channel = request.GET.get('channel',True)
-        network = request.GET.get('network',True)
-        af_prt = request.GET.get('af_prt',True)
-        offer_id = request.GET.get('offer_id',True)
+        channel = request.GET.get('channel')
+        network = request.GET.get('network')
+        af_prt = request.GET.get('af_prt')
+        offer_id = request.GET.get('offer_id')
         payment_type = request.GET.get('payment_type')
         test = request.GET.get('test')
         
