@@ -1727,7 +1727,7 @@ class IndigoV2MiningAPI(APIView):
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
             bt2_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel="adshustle").count()
             if not unused_count:
-                unused_count = IndigoV2Mining.objects.filter(used_at=None).count()
+                unused_count = IndigoV2Mining.objects.filter(used_at=None,company='None').count()
 
             
             
