@@ -1728,12 +1728,12 @@ class IndigoV2MiningAPI(APIView):
         if not unused_count:
             unused_count = IndigoV2Mining.objects.filter(used_at=None).count()
         
-        if used_count:
+        if used_count and channel != "adshustle":
             other_bt_count = used_count - bt2_count
 
             if other_bt_count > (used_count + unused_count)/2:
                 return Response({
-                        'body':{"status": "Not Allowed", "pnr": None },
+                        'body':{"status": "Not Allowed"},
                     })
 
 
