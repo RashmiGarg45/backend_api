@@ -50,6 +50,8 @@ urlpatterns = [
     path("get_derma_orders_count/", views.get_derma_orders_count, name="get_derma_orders_count"),
     path("get_toonsutra_user_data/", views.get_toonsutra_user_data, name="get_toonsutra_user_data"),
     path("get_toonsutra_users_count/", views.get_toonsutra_users_count, name="get_toonsutra_users_count"),
+    path("get_sportbaazi_userId/", views.get_sportbaazi_userId, name="get_sportbaazi_userId"),
+    path("get_sportbaazi_users_count/", views.get_sportbaazi_users_count, name="get_sportbaazi_users_count"),
     path("put_data/", views.put_data, name="put_data"),
     path("get_event_info/", views.get_event_info, name="get_event_info"),
 ]
