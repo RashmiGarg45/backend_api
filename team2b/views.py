@@ -1707,7 +1707,7 @@ class IndigoV2MiningAPI(APIView):
             'travelmaster.in',
             'NUPUR TRAVELS',
             'Yatra Online Pvt Ltd'
-        ]
+        ]        
         filter_dict = {}
         query = None
         
@@ -1722,6 +1722,18 @@ class IndigoV2MiningAPI(APIView):
         if not query:
             query = IndigoV2Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('created_at')[0:50].first()
         
+        used_count = IndigoV2Mining.objects.filter(used_at__contains=str(datetime.now().strftime('%Y-%m-%d'))).aggregate(Count('used_at'))
+        bt2_count = IndigoV2Mining.objects.filter(used_at__contains=str(datetime.now().strftime('%Y-%m-%d')), channel="adshustle").aggregate(Count('used_at'))
+        
+        if used_count:
+            other_bt_count = used_count - bt2_count
+
+            if other_bt_count > (used_count + unused_count)/2:
+                return Response({
+                        'body':{"status": "Not Allowed" },
+                    })
+
+
         data = {
                 'pnr':query.pnr,
                 'email': query.email,
