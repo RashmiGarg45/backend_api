@@ -1733,7 +1733,7 @@ class IndigoV2MiningAPI(APIView):
 
             if other_bt_count > (used_count + unused_count)/2:
                 return Response({
-                        'body':{"status": "Not Allowed" },
+                        'body':{"status": "Not Allowed", "pnr": None },
                     })
 
 
