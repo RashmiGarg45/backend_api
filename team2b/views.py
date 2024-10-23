@@ -1729,12 +1729,14 @@ class IndigoV2MiningAPI(APIView):
             if not unused_count:
                 unused_count = IndigoV2Mining.objects.filter(used_at=None).count()
 
-            return Response({
-                            'body':{"status": used_count}
-                        })
+            
             
             if used_count:
                 other_bt_count = used_count - bt2_count
+
+                return Response({
+                            'body':{"status": used_count, "unused_count": unused_count, "other_bt_count": other_bt_count, "output": other_bt_count > (used_count + unused_count)/2}
+                        })
 
                 if other_bt_count > (used_count + unused_count)/2:
                     return Response({
