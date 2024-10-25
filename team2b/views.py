@@ -1496,9 +1496,9 @@ class SephoraMiningAPIV2(APIView):
         # if af_prt:
         #     exclude_dict['af_prt__contains'] = af_prt
 
-        query_list = SephoraOrderIdV2.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
+        query_list = SephoraOrderIdV2.objects.filter(used_at=None, price__gte="7000.0",**filter_dict).order_by('-created_at')[0:25].all()
         if not query_list:
-            query_list = SephoraOrderIdV2.objects.filter(**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+            query_list = SephoraOrderIdV2.objects.filter(price__gte="7000.0", **filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
