@@ -56,4 +56,6 @@ urlpatterns = [
     path("get_privalia_users_count/", views.get_privalia_users_count, name="get_privalia_users_count"),
     path("put_data/", views.put_data, name="put_data"),
     path("get_event_info/", views.get_event_info, name="get_event_info"),
+    path("get_finimize_userData/", views.get_finimize_userData, name="get_finimize_userData"),
+    path("get_finimize_users_count/", views.get_finimize_users_count, name="get_finimize_users_count"),
 ]

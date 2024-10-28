@@ -1494,8 +1494,51 @@ def get_event_info(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
 
+def get_finimize_userData(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+    os_type = request_data.get("os_type")
 
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM finimizeios_user_data WHERE os_type ="{}" AND NOT isUsed=1 ORDER BY user_id DESC'''.format(os_type))
+        data = cursor.fetchall()
+        user_id = data[0][1]
+        extra_details = data[0][2]
+        subs_type = data[0][5]
+        data = {"user_id": user_id, "extra_details": extra_details, "subs_type": subs_type}
 
-    
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE finimizeios_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
+            conn.commit()
 
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
 
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_finimize_users_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM finimizeios_user_data WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
