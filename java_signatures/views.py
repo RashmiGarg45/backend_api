@@ -1460,7 +1460,24 @@ def put_data(request):
                                                      VALUES ('{}',0, '{}')'''.format(created_at, json.dumps(user_id)))
                     conn.commit()
 
+        elif camp_name == "finimize":
+            cursor.execute('''SELECT DISTINCT user_id FROM finimizeios_user_data''')
+            sql_data = cursor.fetchall()
 
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for d in data:
+                user_id = d.get("user_id")
+                subs_type = d.get("subs_type")
+                os_type = d.get("os_type")
+                user_details = d.get("user_details")
+                if str(user_id) not in already_present_user_ids:
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO finimizeios_user_data (createdAt, isUsed, user_id,extra_details,subs_type,os_type)
+                                                                     VALUES ('{}',0,'{}','{}','{}','{}')'''.format(created_at,user_id,json.dumps(user_details),subs_type,os_type))
+                    conn.commit()
 
         response_code = 200
         message = "success"
