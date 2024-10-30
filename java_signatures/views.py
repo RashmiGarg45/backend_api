@@ -1445,6 +1445,20 @@ def put_data(request):
                               VALUES ('{}', '{}', '{}', '{}','{}', 0, '{}')'''.format(order_id, order_total, order_date, system_order_id ,created_at , AWB))
                     conn.commit()
 
+        elif camp_name == "flappdeals":
+            cursor.execute('''SELECT DISTINCT order_id FROM flappdeals_orderIds''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for user_id in data:
+                if str(user_id) not in already_present_user_ids:
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO flappdeals_orderIds (created_at, isUsed, order_id)
+                                                     VALUES ('{}',0, '{}')'''.format(created_at, json.dumps(user_id)))
+                    conn.commit()
 
 
 
