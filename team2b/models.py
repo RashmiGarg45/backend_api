@@ -78,8 +78,8 @@ class McdeliveryScriptOrderIds(models.Model):
     user_id = models.TextField(default='')
     order_no = models.TextField(default='')
     amount = models.FloatField(default=0)
-    payment_order_id = models.CharField(max_length=50)
-    order_id = models.CharField(max_length=50)
+    payment_order_id = models.CharField(max_length=50, default='')
+    order_id = models.CharField(max_length=50, default='')
     payment_method = models.CharField(max_length=50,blank=True, null=True)
 
     
