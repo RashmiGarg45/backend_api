@@ -529,6 +529,7 @@ class Mcdelivery(APIView):
         query.payment_method=request.data.get('payment_method')
         query.payment_order_id = request.data.get('payment_order_id')
         query.payment_status = request.data.get('payment_status')
+        query.user_id = request.data.get('user_id')
         query.used_at = None
         try:
             query.save()
