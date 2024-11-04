@@ -15,7 +15,7 @@ from django.db.models import Avg
 class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
             # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
@@ -112,7 +112,7 @@ class GenericScriptFunctions(APIView):
 class GenericUnusedIdScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
-            # 'mcdeliverymodd':McdeliveryScriptOrderIds,
+            'mcdeliverymodd':McdeliveryScriptOrderIds,
             # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
@@ -521,16 +521,15 @@ class Mcdelivery(APIView):
     def put(self, request):
         query = McdeliveryScriptOrderIds()
         query.campaign_name = request.data.get('camp_name','mcdeliverymodd')
-        query.id = request.data.get('order_id')
-        invoice_date = request.data.get('invoice_date')
-        if request.data.get('invoice_time'):
-            invoice_date += ' '+request.data.get('invoice_time')
-        query.invoice_date_time = invoice_date
-        query.address=request.data.get('address')
-        query.gross_amount=request.data.get('gross_amount')
-        query.member_name=request.data.get('member_name')
+        query.id = request.data.get('id')
+        query.amount = request.data.get('amount')
+        query.payment_mode = request.data.get('payment_mode',{})
+        query.order_id=request.data.get('order_id')
+        query.order_no=request.data.get('order_no')
+        query.payment_method=request.data.get('payment_method')
+        query.payment_order_id = request.data.get('payment_order_id')
+        query.payment_status = request.data.get('payment_status')
         query.used_at = None
-        query.extra_details = request.data.get('other_details',{})
         try:
             query.save()
             return Response({
@@ -544,16 +543,20 @@ class Mcdelivery(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = McdeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-invoice_date_time')[0:50].first()
+        query = McdeliveryScriptOrderIds.objects.filter(used_at=None).order_by('-created_at').first()
         
         data = {
-                'order_id':query.id,
-                'invoice_date':query.invoice_date_time.strftime('%Y-%m-%d'),
-                'address':query.address,
-                'gross_amount':query.gross_amount,
-                'member_name':query.member_name,
+                'id': query.id,
+                'amount': query.amount,
+                'payment_mode':query.payment_mode,
+                'order_id':query.order_id,
+                'order_no':query.order_no,
+                'payment_method':query.payment_method,
+                'payment_order_id':query.payment_order_id,
+                'payment_status':query.payment_status,
+                'user_id': query.user_id,
                 'used_at':query.used_at,
-                'extra_details':query.extra_details,
+                
         }
         if setUsed:
             query = McdeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))

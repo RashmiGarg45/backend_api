@@ -81,6 +81,7 @@ class McdeliveryScriptOrderIds(models.Model):
     payment_order_id = models.CharField(max_length=50, default='')
     order_id = models.CharField(max_length=50, default='')
     payment_method = models.CharField(max_length=50,blank=True, null=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
 
     
     class Meta:
