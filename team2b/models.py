@@ -69,21 +69,23 @@ class IgpScriptOrderIds(models.Model):
 class McdeliveryScriptOrderIds(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='mcdeliverymodd')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
-    invoice_date_time = models.DateTimeField(blank=True, null=True)
-    address = models.CharField(max_length=500,blank=True, null=True)
-    gross_amount = models.FloatField(default=0)
-    member_name = models.CharField(max_length=100,blank=True, null=True)
-    used_at = models.DateTimeField(default = None,blank=True, null=True)
-    extra_details = models.JSONField(default=dict)
+    payment_status = models.CharField(max_length=50,blank=True, null=True)
+    payment_mode = models.JSONField(default=dict)
+    user_id = models.TextField(default='')
+    order_no = models.TextField(default='')
+    amount = models.FloatField(default=0)
+    payment_order_id = models.CharField(max_length=50)
+    order_id = models.CharField(max_length=50)
+    payment_method = models.CharField(max_length=50,blank=True, null=True)
+
     
     class Meta:
         indexes = [
-            models.Index(fields=['id']),
-            models.Index(fields=['invoice_date_time'])
+            models.Index(fields=['id'])
         ]
 
 class LightInTheBox(models.Model):
