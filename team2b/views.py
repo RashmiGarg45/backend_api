@@ -16,7 +16,7 @@ class GenericScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
             'mcdeliverymodd':McdeliveryScriptOrderIds,
-            # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'watchomodd':WatchoOrderIdsMining,
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
@@ -113,7 +113,7 @@ class GenericUnusedIdScriptFunctions(APIView):
     def get(self, request):
         tablesDict = {
             'mcdeliverymodd':McdeliveryScriptOrderIds,
-            # 'dominosindomodd':DominosIndodeliveryScriptOrderIds,
+            'dominosindomodd':DominosIndodeliveryScriptOrderIds,
             'pepperfrymodd':PepperfryOrderIds,
             # 'habibmodd':HabibScriptOrderIdsConstants,
             # 'tripsygamesmodd': TripsygamesOrderIds,
