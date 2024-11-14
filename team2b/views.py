@@ -38,7 +38,7 @@ class GenericScriptFunctions(APIView):
             'khiladiaddamodd': KhiladiaddaUserId,
             'datingglobalt2modd': DatingGlobalUserId,
             'Subs_datingglobalt2modd': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd': IndigoV2Mining
+            'indigomoddteam2modd': IndigoV2Mining,
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             'damnraymodd':DamnrayOrderIds,
@@ -134,7 +134,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'khiladiaddamodd': KhiladiaddaUserId,
             'datingglobalt2modd': DatingGlobalUserId,
             'Subs_datingglobalt2modd': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd': IndigoV2Mining
+            'indigomoddteam2modd': IndigoV2Mining,
             # 'emailIds_Mined': EmailIdMining
 
             # 'samsclubmodd': SamsclubMemberIds,
