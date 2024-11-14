@@ -41,7 +41,7 @@ class GenericScriptFunctions(APIView):
             'indigomoddteam2modd': IndigoV2Mining
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
-            # 'damnraymodd':DamnrayOrderIds,
+            'damnraymodd':DamnrayOrderIds,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
         }
@@ -139,7 +139,7 @@ class GenericUnusedIdScriptFunctions(APIView):
 
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
-            # 'damnraymodd':DamnrayOrderIds,
+            'damnraymodd':DamnrayOrderIds,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
         }
