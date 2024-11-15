@@ -58,4 +58,6 @@ urlpatterns = [
     path("get_event_info/", views.get_event_info, name="get_event_info"),
     path("get_finimize_userData/", views.get_finimize_userData, name="get_finimize_userData"),
     path("get_finimize_users_count/", views.get_finimize_users_count, name="get_finimize_users_count"),
+    path("get_rentomojo_userId/", views.get_rentomojo_userId, name="get_rentomojo_userId"),
+    path("get_rentomojo_users_count/", views.get_rentomojo_users_count, name="get_rentomojo_users_count"),
 ]
