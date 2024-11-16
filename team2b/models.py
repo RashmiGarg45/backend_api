@@ -531,6 +531,8 @@ class IndigoV2Mining(models.Model):
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     departure_date = models.DateTimeField(blank=False, null=True)
     booking_date = models.DateTimeField(blank=True, null=True)
+    fare = models.CharField(default='', blank=True, max_length=40)
+    currency = models.CharField(default='', blank=True, max_length=3)
 
     class Meta:
         indexes = [

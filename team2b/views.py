@@ -1683,6 +1683,8 @@ class IndigoV2MiningAPI(APIView):
         query.email = request.data.get('email')
         query.company=request.data.get('company')
         query.extra_details=request.data.get('extra_details',{})
+        query.fare = request.data.get('extra_details',{}).get('fare')
+        query.currency = request.data.get('extra_details',{}).get('currency')
         query.used_at = None
         try:
             query.save()
