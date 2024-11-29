@@ -60,4 +60,6 @@ urlpatterns = [
     path("get_finimize_users_count/", views.get_finimize_users_count, name="get_finimize_users_count"),
     path("get_rentomojo_userId/", views.get_rentomojo_userId, name="get_rentomojo_userId"),
     path("get_rentomojo_users_count/", views.get_rentomojo_users_count, name="get_rentomojo_users_count"),
+    path("get_muthoot_userId/", views.get_muthoot_userId, name="get_muthoot_userId"),
+    path("get_muthoot_users_count/", views.get_muthoot_users_count, name="get_muthoot_users_count"),
 ]
