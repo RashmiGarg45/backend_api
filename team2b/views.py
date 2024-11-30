@@ -1855,7 +1855,7 @@ class ScriptRealtimeChecker2(APIView):
         from tabulate import tabulate
         import pandas
 
-        aov_data_dict = {'Script Name':[],'Channel':[],'Network':[],'Offer ID':[],'Currency':[],'AOV':[],'Total Revenue':[],'Count':[]}
+        aov_data_dict = {'Script Name':[],'Channel':[],'Network':[],'Offer ID':[],'Currency':[],'AOV':[],'Total Revenue':[],'Count':[], "Event": []}
         arpu_data_list = []
         event_percent_list = []
 
