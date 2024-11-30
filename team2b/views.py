@@ -1895,7 +1895,7 @@ class ScriptRealtimeChecker2(APIView):
             # tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github", showindex=False)
             # tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
             for msg in messages:
-                _tag = yesterday_date
+                _tag = campaign_name + yesterday_date
                 send_to_gchat(msg,_tag,'https://chat.googleapis.com/v1/spaces/AAAANOdNOZI/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=f2Kn_uo_ns6EYCN9EtVR_jZDEniZ-QC1Hi120vjZ3rM')
 
         
