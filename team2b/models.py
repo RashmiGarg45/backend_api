@@ -578,6 +578,18 @@ class ScriptChecks(models.Model):
             models.Index(fields=['campaign_name']),
         ]
 
+class CountChecks(models.Model):
+
+    campaign_name = models.CharField(primary_key=True, max_length=100, editable=True)
+    AOV_check = models.BooleanField(default=False)
+    ARPU_check = models.BooleanField(default=False)
+    event_percent_check = models.BooleanField(default=False)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name']),
+        ]
+
 class ghnUserId(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)

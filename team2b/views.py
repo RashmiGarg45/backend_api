@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks
 from team2b.services.redis import Redis
 
 from datetime import datetime,timedelta,date
@@ -1847,7 +1847,53 @@ class ScriptRealtimeChecker(APIView):
         except:
             return Response({
             })
+
+class ScriptRealtimeChecker2(APIView):
+
+    def get(self, request):
+        from django.db.models import F, Sum, FloatField, Avg
+        from tabulate import tabulate
+        import pandas
+
+        aov_data_dict = {'Script Name':[],'Channel':[],'Network':[],'Offer ID':[],'Currency':[],'AOV':[],'Total Revenue':[],'Count':[]}
+        arpu_data_list = []
+        event_percent_list = []
+
+        yesterday_date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
+        data = CountChecks.objects.all()
+        for item in data:   
+            campaign_name = item.campaign_name
+            aov_check = item.AOV_check
+            arpu_check = item.ARPU_check
+            event_percent_check = item.event_percent_check
+            if aov_check:
+                data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('currency','channel','network','offer_id').annotate(count=Count(F('event_name')),total_revenue=Sum(F('revenue')),revenue=Avg(F('revenue')))
+                for cc in data:
+                    aov_data_dict['Script Name'].append(campaign_name)
+                    aov_data_dict['Channel'].append(cc.get('channel'))
+                    aov_data_dict['Network'].append(cc.get('network'))
+                    aov_data_dict['Offer ID'].append(cc.get('offer_id'))
+                    aov_data_dict['Event'].append(cc.get('event_name'))
+                    # aov_data_dict['Currency'].append(cc.get('currency'))
+                    # aov_data_dict['AOV'].append(int(cc.get('revenue')))
+                    # aov_data_dict['Total Revenue'].append(int(cc.get('total_revenue')))
+                    aov_data_dict['Count'].append(cc.get('count'))
+
+        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).to_dict(orient="list"), headers="keys", tablefmt="github")
+        tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
+
+        _tag = yesterday_date
+        send_to_gchat(tabular_string,_tag,'https://chat.googleapis.com/v1/spaces/AAAANOdNOZI/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=f2Kn_uo_ns6EYCN9EtVR_jZDEniZ-QC1Hi120vjZ3rM')
+
         
+        try:
+            return Response({
+                'data':aov_data_dict,
+            })
+        except:
+            return Response({
+            })
+            
 
 class ResetOrderId(APIView):
 
