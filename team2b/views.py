@@ -1876,7 +1876,7 @@ class ScriptRealtimeChecker2(APIView):
                     aov_data_dict['Offer ID'].append(cc.get('offer_id'))                    
                     aov_data_dict['Count'].append(cc.get('count'))
 
-        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github")
+        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github", showindex=False)
         tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
 
         _tag = yesterday_date
