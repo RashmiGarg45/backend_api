@@ -1868,16 +1868,16 @@ class ScriptRealtimeChecker2(APIView):
             event_percent_check = item.event_percent_check
             if aov_check:
                 data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('event_name','channel','network','offer_id').annotate(count=Count('id'))
-                for cc in data:
-                    aov_data_dict['Script Name'].append(campaign_name)
-                    aov_data_dict['Channel'].append(cc.get('channel'))
-                    aov_data_dict['Network'].append(cc.get('network'))
-                    aov_data_dict['Offer ID'].append(cc.get('offer_id'))
-                    aov_data_dict['Event'].append(cc.get('event_name'))
-                    # aov_data_dict['Currency'].append(cc.get('currency'))
-                    # aov_data_dict['AOV'].append(int(cc.get('revenue')))
-                    # aov_data_dict['Total Revenue'].append(int(cc.get('total_revenue')))
-                    aov_data_dict['Count'].append(cc.get('count'))
+                # for cc in data:
+                #     aov_data_dict['Script Name'].append(campaign_name)
+                #     aov_data_dict['Channel'].append(cc.get('channel'))
+                #     aov_data_dict['Network'].append(cc.get('network'))
+                #     aov_data_dict['Offer ID'].append(cc.get('offer_id'))
+                #     aov_data_dict['Event'].append(cc.get('event_name'))
+                #     # aov_data_dict['Currency'].append(cc.get('currency'))
+                #     # aov_data_dict['AOV'].append(int(cc.get('revenue')))
+                #     # aov_data_dict['Total Revenue'].append(int(cc.get('total_revenue')))
+                #     aov_data_dict['Count'].append(cc.get('count'))
 
         tabular_string = tabulate(pandas.DataFrame(aov_data_dict).to_dict(orient="list"), headers="keys", tablefmt="github")
         tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
@@ -1888,7 +1888,7 @@ class ScriptRealtimeChecker2(APIView):
         
         try:
             return Response({
-                'data':aov_data_dict,
+                'data':data,
             })
         except:
             return Response({
