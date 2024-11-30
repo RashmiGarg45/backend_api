@@ -1855,7 +1855,7 @@ class ScriptRealtimeChecker2(APIView):
         from tabulate import tabulate
         import pandas
 
-        aov_data_dict = {'Script Name':[],'Channel':[],'Network':[],'Offer ID':[],'Count':[], "Event": []}
+        aov_data_dict = {'Script Name':[], "Event": [],'Channel':[],'Network':[],'Offer ID':[],'Count':[]}
         arpu_data_list = []
         event_percent_list = []
 
@@ -1870,13 +1870,13 @@ class ScriptRealtimeChecker2(APIView):
                 data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('event_name','channel','network','offer_id').annotate(count=Count('id'))
                 for cc in data:
                     aov_data_dict['Script Name'].append(campaign_name)
+                    aov_data_dict['Event'].append(cc.get('event_name'))
                     aov_data_dict['Channel'].append(cc.get('channel'))
                     aov_data_dict['Network'].append(cc.get('network'))
-                    aov_data_dict['Offer ID'].append(cc.get('offer_id'))
-                    aov_data_dict['Event'].append(cc.get('event_name'))
+                    aov_data_dict['Offer ID'].append(cc.get('offer_id'))                    
                     aov_data_dict['Count'].append(cc.get('count'))
 
-        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).to_dict(orient="list"), headers="keys", tablefmt="github")
+        tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github")
         tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
 
         _tag = yesterday_date
