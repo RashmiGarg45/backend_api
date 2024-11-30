@@ -1862,6 +1862,7 @@ class ScriptRealtimeChecker2(APIView):
         yesterday_date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
         data = CountChecks.objects.all()
         for item in data:   
+            aov_data_dict = {'Script Name':[], "Event": [],'Channel':[],'Network':[],'Offer ID':[],'Count':[]}
             campaign_name = item.campaign_name
             aov_check = item.AOV_check
             arpu_check = item.ARPU_check
