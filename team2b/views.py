@@ -1867,7 +1867,7 @@ class ScriptRealtimeChecker2(APIView):
             arpu_check = item.ARPU_check
             event_percent_check = item.event_percent_check
             if aov_check:
-                data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('currency','channel','network','offer_id').annotate(count=Count(F('event_name')),total_revenue=Sum(F('revenue')),revenue=Avg(F('revenue')))
+                data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=yesterday_date).values('event_name','channel','network','offer_id').annotate(count=Count('id'))
                 for cc in data:
                     aov_data_dict['Script Name'].append(campaign_name)
                     aov_data_dict['Channel'].append(cc.get('channel'))
