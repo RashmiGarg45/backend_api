@@ -1896,7 +1896,7 @@ class ScriptRealtimeChecker2(APIView):
             # tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
             for msg in messages:
                 _tag = campaign_name + yesterday_date
-                send_to_gchat(msg,_tag,'https://chat.googleapis.com/v1/spaces/AAAANOdNOZI/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=f2Kn_uo_ns6EYCN9EtVR_jZDEniZ-QC1Hi120vjZ3rM')
+                send_to_gchat(msg,_tag,'https://chat.googleapis.com/v1/spaces/AAAAFdZDsFE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=GRQ8zGftP_Icrs7bsgNhFoLgV1LFrmChBJO7J5U5kis')
 
         
         try:
