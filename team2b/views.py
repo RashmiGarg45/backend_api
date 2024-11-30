@@ -1876,27 +1876,27 @@ class ScriptRealtimeChecker2(APIView):
                     aov_data_dict['Offer ID'].append(cc.get('offer_id'))                    
                     aov_data_dict['Count'].append(cc.get('count'))
 
-        df = pandas.DataFrame(aov_data_dict)
+            df = pandas.DataFrame(aov_data_dict)
 
-        messages = []
+            messages = []
 
-        for offer_id, group in df.groupby("Offer ID"):
-            sorted_group = group.sort_values(by=["Event"])
-            tabular_string = tabulate(
-                sorted_group.to_dict(orient="list"),
-                headers="keys",
-                tablefmt="github",
-                showindex=False
-                )
-            message = f"*AOV for Offer ID {offer_id} on {yesterday_date}*\n\n```{tabular_string}```"
-            messages.append(message)
+            for offer_id, group in df.groupby("Offer ID"):
+                sorted_group = group.sort_values(by=["Count"] , ascending=False)
+                tabular_string = tabulate(
+                    sorted_group.to_dict(orient="list"),
+                    headers="keys",
+                    tablefmt="github",
+                    showindex=False
+                    )
+                message = f"*Offer ID {offer_id} on {yesterday_date}*\n\n```{tabular_string}```"
+                messages.append(message)
 
 
-        # tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github", showindex=False)
-        # tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
-        for msg in messages:
-            _tag = yesterday_date
-            send_to_gchat(msg,_tag,'https://chat.googleapis.com/v1/spaces/AAAANOdNOZI/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=f2Kn_uo_ns6EYCN9EtVR_jZDEniZ-QC1Hi120vjZ3rM')
+            # tabular_string = tabulate(pandas.DataFrame(aov_data_dict).sort_values(by=["Offer ID"]).to_dict(orient="list"), headers="keys", tablefmt="github", showindex=False)
+            # tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
+            for msg in messages:
+                _tag = yesterday_date
+                send_to_gchat(msg,_tag,'https://chat.googleapis.com/v1/spaces/AAAANOdNOZI/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=f2Kn_uo_ns6EYCN9EtVR_jZDEniZ-QC1Hi120vjZ3rM')
 
         
         try:
