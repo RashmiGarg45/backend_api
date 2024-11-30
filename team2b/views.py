@@ -1862,7 +1862,7 @@ class ScriptRealtimeChecker2(APIView):
         yesterday_date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
         data = CountChecks.objects.all()
         for item in data:   
-            aov_data_dict = {'Script Name':[], "Event": [],'Channel':[],'Network':[],'Offer ID':[],'Count':[]}
+            aov_data_dict = {'Script Name':[], "Event": [],'Count':[],'Channel':[],'Network':[],'Offer ID':[]}
             campaign_name = item.campaign_name
             aov_check = item.AOV_check
             arpu_check = item.ARPU_check
@@ -1872,10 +1872,11 @@ class ScriptRealtimeChecker2(APIView):
                 for cc in data:
                     aov_data_dict['Script Name'].append(campaign_name)
                     aov_data_dict['Event'].append(cc.get('event_name'))
+                    aov_data_dict['Count'].append(cc.get('count'))
                     aov_data_dict['Channel'].append(cc.get('channel'))
                     aov_data_dict['Network'].append(cc.get('network'))
                     aov_data_dict['Offer ID'].append(cc.get('offer_id'))                    
-                    aov_data_dict['Count'].append(cc.get('count'))
+                    
 
             df = pandas.DataFrame(aov_data_dict)
 
