@@ -1557,6 +1557,7 @@ class PumaMiningAPI(APIView):
         query = PumaOrderId()
         query.campaign_name = request.data.get('camp_name','pumaauto')
         query.id = request.data.get('id')
+        query.price = request.data.get('price')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
         try:
