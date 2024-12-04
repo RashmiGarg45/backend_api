@@ -1584,7 +1584,8 @@ class PumaMiningAPI(APIView):
         data = {
                 'id':query.id,
                 'used_at':query.used_at,
-                'extra_details':query.extra_details
+                'extra_details':query.extra_details,
+                'price': query.price
         }
         if setUsed:
             query = PumaOrderId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
