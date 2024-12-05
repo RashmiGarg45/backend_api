@@ -62,4 +62,6 @@ urlpatterns = [
     path("get_rentomojo_users_count/", views.get_rentomojo_users_count, name="get_rentomojo_users_count"),
     path("get_muthoot_userId/", views.get_muthoot_userId, name="get_muthoot_userId"),
     path("get_muthoot_users_count/", views.get_muthoot_users_count, name="get_muthoot_users_count"),
+    path("get_bottles_orderId/", views.get_bottles_orderId, name="get_bottles_orderId"),
+    path("get_bottles_orders_count/", views.get_bottles_orders_count, name="get_bottles_orders_count"),
 ]

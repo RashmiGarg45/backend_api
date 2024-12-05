@@ -1444,6 +1444,58 @@ def get_muthoot_users_count(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
 
+def get_bottles_orderId(request):
+    request_data = json.loads(request.body)
+    user_type = request_data.get("user_type")
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()  
+        
+        cursor.execute('''SELECT * FROM bottles_order_data WHERE NOT isUsed=1 ORDER BY order_id ASC''')
+        data = cursor.fetchall()
+        order_id = data[0][1]
+        order_total = data[0][2]
+        order_date = data[0][3]
+        data = {"order_id": order_id, "order_total": order_total, "order_date": order_date}
+        
+
+        # cursor.execute('''SELECT * FROM samco_userIds WHERE order_id = "{}"'''.format(order_id))
+        # data = cursor.fetchall()
+
+        if user_type == "server":
+            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            cursor.execute("UPDATE bottles_order_data SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
+            conn.commit()
+
+        response_code = 200
+        message = "success"
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_bottles_orders_count(request):
+
+    try:
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()    
+        
+        cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM bottles_order_data WHERE NOT isUsed=1''')
+        data = cursor.fetchall()
+        count = data[0]   
+        response_code = 200
+        message = "success"
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        count = None
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_orders": count}))
+
 
 @api_view(['PUT'])
 def put_data(request):
@@ -1514,6 +1566,24 @@ def put_data(request):
                     created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO toonsutra_user_data (user_id, extra_details, createdAt, isUsed)
                                         VALUES ('{}','{}', '{}', 0)'''.format(user_id , json.dumps(details),created_at ))
+                    conn.commit()
+
+        elif camp_name == "bottles":
+            cursor.execute('''SELECT DISTINCT order_id FROM bottles_order_data''')
+            sql_data = cursor.fetchall()
+
+            already_present_user_ids = []
+            for row in sql_data:
+                already_present_user_ids.append(str(row[0]))
+
+            for d in data:
+                order_id = d.get("order_id")
+                order_total = d.get("order_total")
+                order_date = d.get("order_date")
+                if str(order_id) not in already_present_user_ids:
+                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    cursor.execute('''INSERT INTO bottles_order_data (order_id, order_total, order_date, createdAt, isUsed)
+                                        VALUES ('{}','{}','{}', '{}', 0)'''.format(order_id , order_total, order_date,created_at ))
                     conn.commit()
 
         elif camp_name == "lenskart":
