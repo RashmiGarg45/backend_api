@@ -591,6 +591,32 @@ class LightInTheBoxAPI(APIView):
             'body':data,
         })
 
+class Bluerewards(APIView):
+    def put(self, request):
+        query = Bluerewards()
+        query.campaign_name = request.data.get('camp_name','bluerewardsauto')
+        query.id = request.data.get('user_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = Bluerewards.objects.order_by('-created_at').last()
+        
+        data = {
+                'user_id':query.id,
+        }
+        if setUsed:
+            query = Bluerewards.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
 
 class DominosIndo(APIView):
     def put(self, request):
