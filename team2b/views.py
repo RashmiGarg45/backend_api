@@ -606,7 +606,7 @@ class Bluerewards(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = Bluerewards.objects.order_by('-created_at').last()
+        query = Bluerewards.objects.order_by('-created_at')
         
         data = {
                 'user_id':query.id,
