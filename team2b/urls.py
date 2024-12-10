@@ -51,6 +51,7 @@ urlpatterns = [
     path("script_checks2", views.ScriptRealtimeChecker2.as_view(), name="restart_id_service"),
     path("id/reset", views.ResetOrderId.as_view(), name="restart_id_service"),
     path("bluerewards", views.BluerewardsAPI.as_view(), name="cru_bluerewards"),
+    path("holodilink", views.holodilinkAPI.as_view(), name="cru_holodilink"),
 
     
 ]
