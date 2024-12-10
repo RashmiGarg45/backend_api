@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink
 from team2b.services.redis import Redis
 
+from decimal import Decimal
 from datetime import datetime,timedelta,date
 import json, time, random
 import requests
@@ -1631,7 +1632,7 @@ class PumaMiningAPI(APIView):
             setUsed = False
         
         filter_dict = {}
-        query = PumaOrderId.objects.filter(used_at=None, price__gte=1000.0,**filter_dict).order_by('-created_at')[0:50].first()
+        query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-price', '-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
