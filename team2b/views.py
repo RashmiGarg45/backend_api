@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId
 from team2b.services.redis import Redis
 
 from decimal import Decimal
@@ -43,6 +43,7 @@ class GenericScriptFunctions(APIView):
             # 'samsclubmodd': SamsclubMemberIds,
             # 'mumzworldautoios':MumzworldOrderIds,
             'damnraymodd':DamnrayOrderIds,
+            'rentmojomodd':RentomojoUserId,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
         }
@@ -143,6 +144,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'damnraymodd':DamnrayOrderIds,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
+            'rentmojomodd': RentomojoUserId
         }
         ids_mined = {}
         for key in tablesDict.keys():
@@ -314,7 +316,8 @@ class SimulatedIdFunction(APIView):
             raise ValidationError({
                 'error':'Need 2 rows for id simulation'
             })
-        
+
+
 class AppsForSimulation(APIView):
     def get(self, request):
         url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today(),date.today())
@@ -402,6 +405,7 @@ class AppsForSimulation(APIView):
             'message':'Successfully stored the app.'
             })
     
+
 class Indigo(APIView):
     def put(self, request):
         query = IndigoScriptOrderIds()
@@ -477,6 +481,7 @@ class Indigo(APIView):
             'pnr':pnr
         })
 
+
 class IGP(APIView):
     def put(self, request):
         query = IgpScriptOrderIds()
@@ -517,6 +522,7 @@ class IGP(APIView):
             query.save()
         return Response({
         })
+
 
 class Mcdelivery(APIView):
     def put(self, request):
@@ -566,6 +572,7 @@ class Mcdelivery(APIView):
             'body':data,
         })
 
+
 class LightInTheBoxAPI(APIView):
     def put(self, request):
         query = LightInTheBox()
@@ -592,6 +599,7 @@ class LightInTheBoxAPI(APIView):
             'body':data,
         })
 
+
 class BluerewardsAPI(APIView):
     def put(self, request):
         query = Bluerewards()
@@ -617,7 +625,8 @@ class BluerewardsAPI(APIView):
         return Response({
             'body':data,
         })
-    
+
+
 class holodilinkAPI(APIView):
     def put(self, request):
         query = Holodilink()
@@ -689,7 +698,6 @@ class DominosIndo(APIView):
         })
 
 
-
 class OstinShop(APIView):
     def put(self, request):
         query = OstinShopScriptOrderIds()
@@ -729,6 +737,7 @@ class OstinShop(APIView):
         return Response({
             'body':data,
         })
+
 
 class HabibOrderIdConstants(APIView):
     def put(self, request):
@@ -772,6 +781,7 @@ class HabibOrderIdConstants(APIView):
         return Response({
             'body':data,
         })
+
 
 class DamnRayMiningAPI(APIView):
     def put(self, request):
@@ -852,6 +862,7 @@ class WatchoOrderIdsMiningAPI(APIView):
         return Response({
             'body':data,
         })
+
 
 class WatchoOrderIdsMiningAPIV2(APIView):
     def get(self, request):
@@ -975,7 +986,6 @@ class DamnRayMiningAPI(APIView):
         })
 
 
-
 class PepperfryMiningAPI(APIView):
     def put(self, request):
         query = PepperfryOrderIds()
@@ -1073,6 +1083,7 @@ class PepperfryMiningAPI(APIView):
             return Response({
             })
 
+
 class MumzworldAPI(APIView):
     def put(self, request):
         query = MumzworldOrderIds()
@@ -1103,6 +1114,7 @@ class MumzworldAPI(APIView):
         return Response({
             'body':data,
         })
+
 
 class TripsygamesAPI(APIView):
     def put(self, request):
@@ -1459,6 +1471,7 @@ class OkeyvipMiningAPI(APIView):
             'body':data,
         })
 
+
 class SephoraMiningAPI(APIView):
     def put(self, request):
         query = SephoraOrderId()
@@ -1497,6 +1510,7 @@ class SephoraMiningAPI(APIView):
         return Response({
             'body':data,
         })
+
 
 class SephoraMiningAPIV2(APIView):
     def put(self, request):
@@ -1605,6 +1619,7 @@ class SephoraMiningAPIV2(APIView):
             'body':{},
         })
 
+
 class PumaMiningAPI(APIView):
     def put(self, request):
         query = PumaOrderId()
@@ -1632,7 +1647,7 @@ class PumaMiningAPI(APIView):
             setUsed = False
         
         filter_dict = {}
-        query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-price', '-created_at')[0:50].first()
+        query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal('1500.0'),**filter_dict).order_by('-price', '-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
@@ -1727,6 +1742,7 @@ class EmailIdMiningAPI(APIView):
         return Response({
             'body':data,
         })
+
 
 class IndigoV2MiningAPI(APIView):
     def put(self, request):
@@ -1847,7 +1863,6 @@ class RevenueHelperAPI(APIView):
             })
         
 
-
 def send_to_gchat(_msg,_tag,webhook_url):
     params = { 
             "threadKey": _tag,
@@ -1902,6 +1917,7 @@ class ScriptRealtimeChecker(APIView):
         except:
             return Response({
             })
+
 
 class ScriptRealtimeChecker2(APIView):
 
@@ -2040,6 +2056,7 @@ class GhnMiningAPI(APIView):
             'body':data,
         })
 
+
 class RummytimeMiningAPI(APIView):
     def put(self, request):
         query = RummytimeUserId()
@@ -2121,7 +2138,6 @@ class IndigoTokenRefresh(APIView):
         })
     
 
-
 class ScoreoneMiningAPI(APIView):
     def put(self, request):
         query = ScoreoneUserId()
@@ -2158,8 +2174,6 @@ class ScoreoneMiningAPI(APIView):
         return Response({
             'body':data,
         })
-
-
 
 
 class TrackScript(APIView):
@@ -2372,3 +2386,37 @@ class DatingGlobalSubscribedMiningAPI(APIView):
             'body':data,
         })
 
+class RentomojoMiningAPI(APIView):
+    def put(self, request):
+        query = RentomojoUserId()
+        query.campaign_name = request.data.get('camp_name','rentmojomodd')
+        query.id = request.data.get('id')
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        query = RentomojoUserId.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'id':query.id,
+                'used_at':query.used_at,
+        }
+        if setUsed:
+            query = RentomojoUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })

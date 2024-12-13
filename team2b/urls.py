@@ -52,6 +52,7 @@ urlpatterns = [
     path("id/reset", views.ResetOrderId.as_view(), name="restart_id_service"),
     path("bluerewards", views.BluerewardsAPI.as_view(), name="cru_bluerewards"),
     path("holodilink", views.holodilinkAPI.as_view(), name="cru_holodilink"),
+    path("rentomojo", views.RentomojoMiningAPI.as_view(), name='cru_rentomojo'),
 
     
 ]
