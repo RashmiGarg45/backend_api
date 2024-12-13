@@ -2410,6 +2410,33 @@ class RentomojoMiningAPI(APIView):
         
         filter_dict = {}
         query = RentomojoUserId.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+
+        if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
+            used_count = RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
+            bt2_count = RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel="adshustle").count()
+            bt2_count += RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel="vestaapps").count()
+            bt2_count += RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel="appsfollowing").count()
+            if not unused_count:
+                unused_count = RentomojoUserId.objects.filter(used_at=None).count()
+            if used_count:
+                other_bt_count = used_count - bt2_count
+
+                if other_bt_count > (used_count + unused_count)/3:
+                    return Response({'body':{"status": "Not Allowed"}})
+                
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            bt3_count = RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
+            print (bt3_count)
+
+            if bt3_count > 40:
+                return Response({'body':{"status": "Not Allowed"}})
+
+        elif channel in ["quasarmobi", "offersinfinite", "mobiaviator"]:
+            bt1_count = RentomojoUserId.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("quasarmobi", "offersinfinite", "mobiaviator")).count()
+            print (bt1_count)
+            if bt1_count > 40:
+                return Response({'body':{"status": "Not Allowed"}})
+
         
         data = {
                 'id':query.id,
