@@ -53,6 +53,8 @@ urlpatterns = [
     path("bluerewards", views.BluerewardsAPI.as_view(), name="cru_bluerewards"),
     path("holodilink", views.holodilinkAPI.as_view(), name="cru_holodilink"),
     path("rentomojo", views.RentomojoMiningAPI.as_view(), name='cru_rentomojo'),
+    path("shahid", views.shahidAPI.as_view(), name="cru_shahid"),
+    path("eztravel", views.eztravelAPI.as_view(), name="cru_eztravel"),
 
     
 ]
