@@ -1707,6 +1707,10 @@ def get_event_info(request):
 
         if total_revenue is None:
             total_revenue = 0.00001
+        if install_count is None:
+            install_count = 0
+        if event_count is None:
+            event_count = 0
         data = {"install_count": install_count, "event_count": event_count, "total_revenue": total_revenue}
 
     except Exception as e:
