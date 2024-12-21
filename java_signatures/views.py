@@ -1716,7 +1716,7 @@ def get_event_info(request):
     except Exception as e:
         response_code = 500
         message = str(e)
-        data = {}
+        data = {"install_count": 0, "event_count": 0, "total_revenue": 0.00001}
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
 
