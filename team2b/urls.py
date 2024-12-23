@@ -55,6 +55,7 @@ urlpatterns = [
     path("rentomojo", views.RentomojoMiningAPI.as_view(), name='cru_rentomojo'),
     path("shahid", views.shahidAPI.as_view(), name="cru_shahid"),
     path("eztravel", views.eztravelAPI.as_view(), name="cru_eztravel"),
+    path("betwinner", views.betwinnerAPI.as_view(), name="cru_betwinner"),
 
     
 ]
