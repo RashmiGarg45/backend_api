@@ -46,11 +46,15 @@ class GenericScriptFunctions(APIView):
             'rentmojomodd':RentomojoUserId,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
+            'ladygentlemanmodd': Ladygentleman,
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
         for key,value in tablesDict.items():
             ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
+
+            if key == "indigomoddteam2modd":
+                ids_mined[key] = tablesDict[key].objects.filter(company__in=("Company", "None"), created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
         from data_tracking.util import googleChatBot_send_message
         space_name = "AAAAh8zMzAw"
@@ -149,6 +153,10 @@ class GenericUnusedIdScriptFunctions(APIView):
         ids_mined = {}
         for key in tablesDict.keys():
             ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
+
+            if key == "indigomoddteam2modd":
+                ids_mined[key] = tablesDict[key].objects.filter(company__in=("Company", "None"), used_at = None).count()
+
 
         from data_tracking.util import googleChatBot_send_message
         space_name = "AAAAh8zMzAw"
