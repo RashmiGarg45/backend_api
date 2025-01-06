@@ -819,3 +819,32 @@ class Ladygentleman(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class Tajrummy(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='tajrummymodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)    
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class Bet22(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='bet22modd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)
+    price = models.CharField(max_length=50)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
