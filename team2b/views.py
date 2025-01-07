@@ -2582,20 +2582,25 @@ class TajrummyAPI(APIView):
         })
 
     def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
-        
-        query = Tajrummy.objects.latest('created_at')
+
+        query = Tajrummy.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
+                'used_at':query.used_at,
         }
         if setUsed:
-            query = Tajrummy.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Tajrummy.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
+            
 
 class Bet22API(APIView):
     def put(self, request):
@@ -2609,17 +2614,23 @@ class Bet22API(APIView):
         })
 
     def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
+
         
-        query = Bet22.objects.latest('created_at')
+        query = Bet22.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
         }
         if setUsed:
-            query = Bet22.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bet22.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
+    
