@@ -47,6 +47,8 @@ class GenericScriptFunctions(APIView):
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
             'ladygentlemanmodd': Ladygentleman,
+            'tajrummymodd': Tajrummy,
+            'bet22modd': Bet22
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -148,7 +150,10 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'damnraymodd':DamnrayOrderIds,
             # 'indigomodd':IndigoScriptOrdersIds,
             # 'lightinthebox':LightInTheBox,
-            'rentmojomodd': RentomojoUserId
+            'rentmojomodd': RentomojoUserId,
+            'ladygentlemanmodd': Ladygentleman,
+            'tajrummymodd': Tajrummy,
+            'bet22modd': Bet22
         }
         ids_mined = {}
         for key in tablesDict.keys():
