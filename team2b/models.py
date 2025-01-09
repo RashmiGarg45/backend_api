@@ -872,7 +872,7 @@ class PepperFry(models.Model):
             models.Index(fields=['id']),
         ]
 
-class IGP(models.Model):
+class Igpmodd(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='igpmodd')
