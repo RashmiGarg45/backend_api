@@ -2669,7 +2669,7 @@ class pepperfryAPI(APIView):
 class igpAPI(APIView):
     def put(self, request):
         query = IGP()
-        query.campaign_name = request.data.get('camp_name','igp')
+        query.campaign_name = request.data.get('camp_name','igpmodd')
         query.id = request.data.get('user_id')
         query.used_at = None
         query.save()
