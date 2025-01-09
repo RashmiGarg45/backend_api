@@ -59,7 +59,7 @@ urlpatterns = [
     path("tajrummy", views.TajrummyAPI.as_view(), name="cru_tajrummy"),
     path("bet22", views.Bet22API.as_view(), name="cru_bet22"),
     path("ladygentleman", views.ladygentlemanAPI.as_view(), name="cru_ladygentleman"),
-    path("igp_idhelper", views.igpAPI.as_view(), name="cru_igp"),
+    path("igp_idhelper", views.igpAPI.as_view(), name="cru_igp_helper"),
     path("pepperfry_idhelper", views.pepperfryAPI.as_view(), name="cru_pepperfry")
 
     
