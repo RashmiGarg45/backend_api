@@ -61,7 +61,7 @@ urlpatterns = [
     path("ladygentleman", views.ladygentlemanAPI.as_view(), name="cru_ladygentleman"),
     path("igp_idhelper", views.igpAPI.as_view(), name="cru_igp_helper"),
     path("pepperfry_idhelper", views.pepperfryAPI.as_view(), name="cru_pepperfry"),
-    path("travelata", views.travelataAPI.as_view(), name="cru_travelata"),
+    path("travelata", views.TravelataAPI.as_view(), name="cru_travelata"),
 
     
 ]
