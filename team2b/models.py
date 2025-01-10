@@ -885,3 +885,24 @@ class Igpmodd(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class Travelata(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='tajrummymodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)    
+    booking_type = models.CharField(default='', blank=True, max_length=100)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    price = models.FloatField(default=0)
+    number = models.CharField(default='', blank=True, max_length=20)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
