@@ -62,6 +62,7 @@ urlpatterns = [
     path("igp_idhelper", views.igpAPI.as_view(), name="cru_igp_helper"),
     path("pepperfry_idhelper", views.pepperfryAPI.as_view(), name="cru_pepperfry"),
     path("travelata", views.TravelataAPI.as_view(), name="cru_travelata"),
+    path("ontime", views.OntimeAPI.as_view(), name="cru_ontime"),
 
     
 ]
