@@ -35,7 +35,7 @@ class GenericScriptFunctions(APIView):
             # 'sephoramodd': SephoraOrderIdV2,
             'pumaauto': PumaOrderId, 
             # 'timoclubauto': TimoclubUserId,
-            'apnatimeauto': ApnatimeUserId,
+            # 'apnatimeauto': ApnatimeUserId,
             'khiladiaddamodd': KhiladiaddaUserId,
             # 'datingglobalt2modd': DatingGlobalUserId,
             # 'Subs_datingglobalt2modd': DatingGlobalSubscribedUserId,
@@ -48,7 +48,9 @@ class GenericScriptFunctions(APIView):
             # 'lightinthebox':LightInTheBox,
             'ladygentlemanmodd': Ladygentleman,
             'tajrummymodd': Tajrummy,
-            'bet22modd': Bet22
+            'bet22modd': Bet22,
+            'travelataappmodd': Travelata,
+            'ontimeautoios': Ontime
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -138,7 +140,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'sephoramodd': SephoraOrderIdV2,
             'pumaauto': PumaOrderId,
             # 'timoclubauto': TimoclubUserId,
-            'apnatimeauto': ApnatimeUserId,
+            # 'apnatimeauto': ApnatimeUserId,
             'khiladiaddamodd': KhiladiaddaUserId,
             # 'datingglobalt2modd': DatingGlobalUserId,
             # 'Subs_datingglobalt2modd': DatingGlobalSubscribedUserId,
@@ -153,7 +155,9 @@ class GenericUnusedIdScriptFunctions(APIView):
             'rentmojomodd': RentomojoUserId,
             'ladygentlemanmodd': Ladygentleman,
             'tajrummymodd': Tajrummy,
-            'bet22modd': Bet22
+            'bet22modd': Bet22,
+            'travelataappmodd': Travelata,
+            'ontimeautoios': Ontime
         }
         ids_mined = {}
         for key in tablesDict.keys():
