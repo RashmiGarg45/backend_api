@@ -64,6 +64,11 @@ urlpatterns = [
     path("travelata", views.TravelataAPI.as_view(), name="cru_travelata"),
     path("ontime", views.OntimeAPI.as_view(), name="cru_ontime"),
     path("mcd", views.mcdAPI.as_view(), name="cru_mcd"),
+    path("tips_aos_valid", views.tipsAosValidAPI.as_view(), name="cru_tipsAosValidAPI"),
+    path("tips_aos_cancelled", views.tipsAosCancelledAPI.as_view(), name="cru_tipsAosCancelledAPI"),
+    path("tips_ios_valid", views.tipsIosValidAPI.as_view(), name="cru_tipsIosValidAPI"),
+    path("tips_ios_cancelled", views.tipsIosCancelledAPI.as_view(), name="cru_tipsIosCancelledAPI"),
+    
 
     
 ]
