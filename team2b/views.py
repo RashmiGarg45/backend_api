@@ -33,7 +33,7 @@ class GenericScriptFunctions(APIView):
             # 'ghnmodd': ghnUserId,
             # 'rummytimemodd': RummytimeUserId,
             # 'sephoramodd': SephoraOrderIdV2,
-            # 'pumaauto': PumaOrderId, 
+            'pumaauto': PumaOrderId, 
             # 'timoclubauto': TimoclubUserId,
             # 'apnatimeauto': ApnatimeUserId,
             'khiladiaddamodd': KhiladiaddaUserId,
@@ -138,7 +138,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'fantosst2modd': FantossUserIds,
             # 'okeyvipmodd': OkeyvipUserId,
             # 'sephoramodd': SephoraOrderIdV2,
-            # 'pumaauto': PumaOrderId,
+            'pumaauto': PumaOrderId,
             # 'timoclubauto': TimoclubUserId,
             # 'apnatimeauto': ApnatimeUserId,
             'khiladiaddamodd': KhiladiaddaUserId,
@@ -156,8 +156,9 @@ class GenericUnusedIdScriptFunctions(APIView):
             'ladygentlemanmodd': Ladygentleman,
             'tajrummymodd': Tajrummy,
             'bet22modd': Bet22,
-            'travelataappmodd': Travelata,
-            'ontimeautoios': Ontime
+            # 'travelataappmodd': Travelata,
+            'ontimeautoios': Ontime,
+            'watchomodd':WatchoOrderIdsMining,
         }
         ids_mined = {}
         for key in tablesDict.keys():
