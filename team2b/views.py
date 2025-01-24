@@ -1834,19 +1834,19 @@ class IndigoV2MiningAPI(APIView):
             bt3_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
             print (bt3_count)
 
-            if bt3_count > 85:
+            if bt3_count > 25:
                 return Response({'body':{"status": "Not Allowed"}})
 
         elif channel in ["quasarmobi", "offersinfinite", "mobiaviator"]:
             bt1_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("quasarmobi", "offersinfinite", "mobiaviator")).count()
             print (bt1_count)
-            if bt1_count > 85:
+            if bt1_count > 25:
                 return Response({'body':{"status": "Not Allowed"}})
 
         elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
             bt2_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
             print (bt2_count)
-            if bt2_count > 160:
+            if bt2_count > 50:
                 return Response({'body':{"status": "Not Allowed"}})
 
 
