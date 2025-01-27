@@ -49,8 +49,8 @@ class GenericScriptFunctions(APIView):
             'ladygentlemanmodd': Ladygentleman,
             'tajrummymodd': Tajrummy,
             'bet22modd': Bet22,
-            'travelataappmodd': Travelata,
-            'ontimeautoios': Ontime
+            # 'travelataappmodd': Travelata,
+            # 'ontimeautoios': Ontime
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -157,7 +157,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'tajrummymodd': Tajrummy,
             'bet22modd': Bet22,
             # 'travelataappmodd': Travelata,
-            'ontimeautoios': Ontime,
+            # 'ontimeautoios': Ontime,
             'watchomodd':WatchoOrderIdsMining,
         }
         ids_mined = {}
