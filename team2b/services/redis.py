@@ -8,7 +8,7 @@ class Redis:
         self.connection = get_redis_connection()
     
     def save(self, key, value, ttl=24*60*60):
-        print('[{}] Saving {}:{} to redis'.format(datetime.now(),key,value))
+        # print('[{}] Saving {}:{} to redis'.format(datetime.now(),key,value))
         if isinstance(value,list) or isinstance(value,dict):
             value = json.dumps(value)
         self.connection.set(key, value, ttl)
@@ -16,7 +16,7 @@ class Redis:
     def retrieve_data(self,key):
         print('[{}] Getting {} from redis'.format(datetime.now(),key))
         raw_data = self.connection.get(key)
-        print(raw_data)
+        # print(raw_data)
         try:
             data = json.loads(raw_data)
             return data
