@@ -68,6 +68,7 @@ urlpatterns = [
     path("tips_aos_cancelled", views.tipsAosCancelledAPI.as_view(), name="cru_tipsAosCancelledAPI"),
     path("tips_ios_valid", views.tipsIosValidAPI.as_view(), name="cru_tipsIosValidAPI"),
     path("tips_ios_cancelled", views.tipsIosCancelledAPI.as_view(), name="cru_tipsIosCancelledAPI"),
+    path("skyline", views.skylineAPI.as_view(), name="cru_skyline"),
     
 
     
