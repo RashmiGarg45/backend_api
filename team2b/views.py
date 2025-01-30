@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva
 from team2b.services.redis import Redis
 
 from decimal import Decimal
@@ -49,6 +49,7 @@ class GenericScriptFunctions(APIView):
             'ladygentlemanmodd': Ladygentleman,
             'tajrummymodd': Tajrummy,
             'bet22modd': Bet22,
+            'reservamodd': Reserva,
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime
         }
@@ -159,6 +160,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime,
             'watchomodd':WatchoOrderIdsMining,
+            'reservamodd': Reserva,
         }
         ids_mined = {}
         for key in tablesDict.keys():
@@ -1809,14 +1811,14 @@ class IndigoV2MiningAPI(APIView):
         
         cc = 21
         if not unused_count:
-            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date').count()
+            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date').count()
         
         if unused_count or (not unused_count and cc>20):
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('created_at', 'departure_date')[0:50].first()
         
         if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
@@ -2949,3 +2951,37 @@ class skylineAPI(APIView):
         return Response({
             'body':data,
         })
+
+class ReservaAPI(APIView):
+    def put(self, request):
+        query = Reserva()
+        query.campaign_name = request.data.get('camp_name','reservamodd')
+        query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        
+        query = Reserva.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'user_id':query.id,
+                'extra_details':query.extra_details, 
+        }
+        if setUsed:
+            query = Reserva.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+  
