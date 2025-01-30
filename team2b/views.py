@@ -2958,6 +2958,7 @@ class ReservaAPI(APIView):
         query.campaign_name = request.data.get('camp_name','reservamodd')
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
+        query.profile_details = request.data.get('profile_details',{})
         query.used_at = None
         query.save()
         return Response({
