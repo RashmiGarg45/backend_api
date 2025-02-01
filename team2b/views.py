@@ -853,6 +853,7 @@ class WatchoOrderIdsMiningAPI(APIView):
         query.id = request.data.get('order_id')
         query.order_status=request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
+        query.spdn = request.data.get("spdn")
         query.used_at = None
         try:
             query.save()
@@ -871,7 +872,7 @@ class WatchoOrderIdsMiningAPI(APIView):
         filter_dict = {}
         if order_status:
             filter_dict['order_status'] = order_status
-        query = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
+        query = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).exclude(spdn="Coupon").order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
