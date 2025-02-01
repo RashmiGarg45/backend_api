@@ -164,7 +164,7 @@ class WatchoOrderIdsMining(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
-    spdn = models.CharField(max_length=50,unique=True)
+    spdn = models.CharField(max_length=50,default='',blank=True,)
     order_status = models.CharField(default=0,max_length=100)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
