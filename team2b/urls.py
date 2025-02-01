@@ -71,6 +71,7 @@ urlpatterns = [
     path("skyline", views.skylineAPI.as_view(), name="cru_skyline"),
     path("reserva", views.ReservaAPI.as_view(), name="cru_reserva"),
     path("gurushort", views.GurushortAPI.as_view(), name="cru_gurushort"),
+    path("gurushort_unSubs", views.GurushortNotPremiumAPI.as_view(), name="cru_gurushort_unsubs"),
     
 
     
