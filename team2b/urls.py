@@ -75,6 +75,7 @@ urlpatterns = [
     path("gurushort_orderid", views.GurushortOrderIdAPI.as_view(), name="cru_gurushort_orderid"),
     path("gurushort_validid", views.GurushortValidAPI.as_view(), name="cru_gurushort_validid"),
     path("credito", views.creditoAPI.as_view(), name="cru_credito"),
+    path("ajio", views.AjioAPI.as_view(), name="cru_ajio"),
 
     
 ]
