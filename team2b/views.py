@@ -913,6 +913,7 @@ class WatchoOrderIdsMiningAPIV2(APIView):
         exclude_dict['channel_list__contains'] = channel
         exclude_dict['network_list__contains'] = network
         exclude_dict['offer_id_list__contains'] = offer_id
+        exclude_dict['spdn__contains'] = 'Coupon'
 
         query_list = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
         if not query_list:
