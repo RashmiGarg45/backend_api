@@ -53,6 +53,7 @@ class GenericScriptFunctions(APIView):
             'gurushortmodd': GuruShort,
             'order_gurushortmodd': GuruShortOrderId,
             'ajiomodd': Ajio,
+            'jungleepokerauto': Jungleepoker,
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime
         }
@@ -167,6 +168,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'gurushortmodd': GuruShort,
             'order_gurushortmodd': GuruShortOrderId,
             'ajiomodd': Ajio,
+            'jungleepokerauto': Jungleepoker,
         }
         ids_mined = {}
         for key in tablesDict.keys():
