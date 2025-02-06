@@ -51,6 +51,7 @@ class GenericScriptFunctions(APIView):
             'bet22modd': Bet22,
             'reservamodd': Reserva,
             'gurushortmodd': GuruShort,
+            'order_gurushortmodd': GuruShortOrderId,
             'ajiomodd': Ajio,
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime
@@ -164,6 +165,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'watchomodd':WatchoOrderIdsMining,
             'reservamodd': Reserva,
             'gurushortmodd': GuruShort,
+            'order_gurushortmodd': GuruShortOrderId,
             'ajiomodd': Ajio,
         }
         ids_mined = {}
