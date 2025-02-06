@@ -1819,14 +1819,14 @@ class IndigoV2MiningAPI(APIView):
         
         cc = 21
         if not unused_count:
-            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date').count()
+            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at','departure_date').count()
         
         if unused_count or (not unused_count and cc>20):
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at','departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('created_at','departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('created_at','departure_date')[0:50].first()
         
         if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
@@ -3181,6 +3181,39 @@ class AjioAPI(APIView):
         }
         if setUsed:
             query = Ajio.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+    
+class JungleepokerAPI(APIView):
+    def put(self, request):
+        query = Ajio()
+        query.campaign_name = request.data.get('camp_name','jungleepokerauto')
+        query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        
+        query = Ajio.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'user_id':query.id,
+                'extra_details':query.extra_details, 
+        }
+        if setUsed:
+            query = Ajio.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
