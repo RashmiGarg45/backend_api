@@ -921,7 +921,10 @@ class WatchoOrderIdsMiningAPIV2(APIView):
         exclude_dict['offer_id_list__contains'] = offer_id
         exclude_dict['spdn__contains'] = 'Coupon'
 
-        query_list = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:25].all()
+        exclude_dict_1 = {}
+        exclude_dict_1['spdn__contains'] = 'Coupon'
+
+        query_list = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()
         if not query_list:
             query_list = WatchoOrderIdsMining.objects.filter(**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
