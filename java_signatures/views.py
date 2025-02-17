@@ -1692,44 +1692,44 @@ def get_event_info(request):
         conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="123admin!", database="techteam")
         cursor = conn.cursor()
 
-        # cursor.execute('''SELECT COUNT(*) FROM team2b_revenuehelper WHERE event_name = "Install" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at > "{}"'''.format(campaign_name, channel, network, offer_id, date_))
-        # data = cursor.fetchall()
-        # install_count = data[0][0]
+        cursor.execute('''SELECT COUNT(*) FROM team2b_revenuehelper WHERE event_name = "Install" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at > "{}"'''.format(campaign_name, channel, network, offer_id, date_))
+        data = cursor.fetchall()
+        install_count = data[0][0]
 
 
-        # cursor.execute('''SELECT SUM(revenue), COUNT(revenue) FROM team2b_revenuehelper WHERE event_name = "{}" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at > "{}"'''.format(event_name, campaign_name, channel, network, offer_id, date_))
-        # data = cursor.fetchall()
+        cursor.execute('''SELECT SUM(revenue), COUNT(revenue) FROM team2b_revenuehelper WHERE event_name = "{}" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at > "{}"'''.format(event_name, campaign_name, channel, network, offer_id, date_))
+        data = cursor.fetchall()
         
-        # total_revenue = data[0][0]
-        # event_count = data[0][1]
-        # response_code = 200
-        # message = "success"
+        total_revenue = data[0][0]
+        event_count = data[0][1]
+        response_code = 200
+        message = "success"
 
-        # if total_revenue is None:
-        #     total_revenue = 0.00001
-        # if install_count is None:
-        #     install_count = 0
-        # if event_count is None:
-        #     event_count = 0
+        if total_revenue is None:
+            total_revenue = 0.00001
+        if install_count is None:
+            install_count = 0
+        if event_count is None:
+            event_count = 0
 
-        query = '''
-            SELECT 
-                SUM(CASE WHEN event_name = "Install" THEN 1 ELSE 0 END) AS install_count,
-                SUM(CASE WHEN event_name = %s THEN 1 ELSE 0 END) AS event_count,
-                COALESCE(SUM(revenue), 0.00001) AS total_revenue
-            FROM team2b_revenuehelper
-            WHERE campaign_name = %s
-            AND channel = %s
-            AND network = %s
-            AND offer_id = %s
-            AND created_at > %s
-        '''
+        # query = '''
+        #     SELECT 
+        #         SUM(CASE WHEN event_name = "Install" THEN 1 ELSE 0 END) AS install_count,
+        #         SUM(CASE WHEN event_name = %s THEN 1 ELSE 0 END) AS event_count,
+        #         COALESCE(SUM(revenue), 0.00001) AS total_revenue
+        #     FROM team2b_revenuehelper
+        #     WHERE campaign_name = %s
+        #     AND channel = %s
+        #     AND network = %s
+        #     AND offer_id = %s
+        #     AND created_at > %s
+        # '''
 
-        params = (event_name, campaign_name, channel, network, offer_id, date_)
-        cursor.execute(query, params)
-        data = cursor.fetchone()
+        # params = (event_name, campaign_name, channel, network, offer_id, date_)
+        # cursor.execute(query, params)
+        # data = cursor.fetchone()
 
-        install_count, event_count, total_revenue = data
+        # install_count, event_count, total_revenue = data
 
         data = {"install_count": install_count or 0, "event_count": event_count or 0, "total_revenue": total_revenue or 0.00001}
 
