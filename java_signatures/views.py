@@ -1702,6 +1702,10 @@ def get_event_info(request):
         
         total_revenue = data[0][0]
         event_count = data[0][1]
+
+        print (event_count)
+        print (install_count)
+
         response_code = 200
         message = "success"
 
@@ -1734,7 +1738,7 @@ def get_event_info(request):
         cursor.close()
         conn.close()
 
-        data = {"install_count": install_count or 0, "event_count": event_count or 0, "total_revenue": total_revenue or 0.00001}
+        data = {"install_count": install_count , "event_count": event_count , "total_revenue": total_revenue }
 
     except Exception as e:
         response_code = 500
