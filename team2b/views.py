@@ -6,6 +6,7 @@ from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,Damn
 from team2b.services.redis import Redis
 
 from decimal import Decimal
+from django.db.models import Q
 from datetime import datetime,timedelta,date
 import json, time, random
 import requests
@@ -926,9 +927,9 @@ class WatchoOrderIdsMiningAPIV2(APIView):
         exclude_dict_1 = {}
         exclude_dict_1['spdn__contains'] = 'Coupon'
 
-        query_list = WatchoOrderIdsMining.objects.filter(used_at=None,**filter_dict).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()
+        query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"), used_at=None,**filter_dict).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()
         if not query_list:
-            query_list = WatchoOrderIdsMining.objects.filter(**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+            query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"),**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
