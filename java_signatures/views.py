@@ -1731,6 +1731,9 @@ def get_event_info(request):
 
         # install_count, event_count, total_revenue = data
 
+        cursor.close()
+        conn.close()
+
         data = {"install_count": install_count or 0, "event_count": event_count or 0, "total_revenue": total_revenue or 0.00001}
 
     except Exception as e:
