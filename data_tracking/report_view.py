@@ -16,8 +16,12 @@ from operator import itemgetter
 from data_tracking.models import revenueReport,installReport,combined_app_data
 from data_tracking.serializer import revenueReportSerializer
 from data_tracking.helper.sheetbot import google_sheet
+from data_tracking.util import get_credential
 
 from data_tracking.util import get_list_data_from_raw,googleChatBot_send_message
+
+from team2b.models import WatchoOrderIdsMining
+
 
 class Report6Stats(APIView):
     def get(self, request):        
@@ -428,3 +432,27 @@ class ChatBotNotRunLastTwoMonthLevel2(APIView):
             'data':resp_dict,
             'total_row':total_row
         })
+
+
+class WatchoUpdateSheet(APIView):
+    def get(self,request):
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1Wwzxg1wIsrnr1FD74DYIgzissUlziGcZJ8H2xsbpnt4/edit?gid=0#gid=0'
+        subsheet_name = 'OrderIDs'
+
+        credentials = get_credential()
+
+        Sheet_credential = gspread.service_account_from_dict(credentials)
+        spreadsheet = Sheet_credential.open_by_url(sheet_url)
+        worksheet = spreadsheet.worksheet(subsheet_name)
+        
+        data = WatchoOrderIdsMining.objects.values_list("created_at", "id", "used_at", "spdn")
+
+        headers = ["created_at", "id", "used_at", "spdn"]
+        worksheet.update("A1", [headers]) 
+
+        worksheet.update(f"A2", list(data))
+
+
+        return HttpResponse(json.dumps({
+            'result':'updated',
+        }))
