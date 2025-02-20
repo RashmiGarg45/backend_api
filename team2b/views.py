@@ -3288,8 +3288,9 @@ class navrangAPI(APIView):
             plan = "Month"
         else:
             plan = "Year"
+        print (plan)
 
-        query = Navrang.objects.filter(used_at=None, extra_details__plan_name=plan).order_by('-created_at')[0:50].first()   
+        query = Navrang.objects.filter(used_at=None, extra_details__icontains='"plan_name": "'+plan+'"').order_by('-created_at')[0:50].first()   
         
         # query = Navrang.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
