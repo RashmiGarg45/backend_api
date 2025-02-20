@@ -56,6 +56,7 @@ class GenericScriptFunctions(APIView):
             'ajiomodd': Ajio,
             'jungleepokerauto': Jungleepoker,
             'gamerummyprimemodd': GameRummy,
+            'navrangmodd': Navrang,
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime
         }
@@ -172,6 +173,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'ajiomodd': Ajio,
             'jungleepokerauto': Jungleepoker,
             'gamerummyprimemodd': GameRummy,
+            'navrangmodd': Navrang,
         }
         ids_mined = {}
         for key in tablesDict.keys():
