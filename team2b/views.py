@@ -3281,8 +3281,18 @@ class navrangAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
+        r = random.randint(1,100)
+        if r<= 40:
+            plan = "Week"
+        elif r<= 90:
+            plan = "Month"
+        else:
+            plan = "Year"
+
+        query = Navrang.objects.filter(used_at=None, extra_details__contains=plan).order_by('-created_at')[0:50].first()   
+
         
-        query = Navrang.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        # query = Navrang.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
                 'user_id':query.id,
