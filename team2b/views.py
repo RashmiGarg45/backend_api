@@ -3332,7 +3332,7 @@ class Lotter38API(APIView):
     
 class Lotter69API(APIView):
     def put(self, request):
-        query = Lotter38()
+        query = Lotter69()
         query.campaign_name = request.data.get('camp_name','Lotter69')
         query.id = request.data.get('order_id')
         query.used_at = None
