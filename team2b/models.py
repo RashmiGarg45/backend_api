@@ -1204,10 +1204,10 @@ class Navrang(models.Model):
             models.Index(fields=['id']),
         ]
 
-class Lotter69(models.Model):
+class Lotter_a(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='lotter_69')
+    campaign_name = models.CharField(max_length=20,default='lotter_a')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -1218,10 +1218,10 @@ class Lotter69(models.Model):
             models.Index(fields=['id']),
         ]
 
-class Lotter38(models.Model):
+class Lotter_b(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='lotter_38')
+    campaign_name = models.CharField(max_length=20,default='lotter_b')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
