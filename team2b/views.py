@@ -3381,7 +3381,7 @@ class ChaleeSultanAPI(APIView):
         
         data = {
                 'user_id':query.id,
-                'extra_details':query.extra_details, 
+                # 'extra_details':query.extra_details, 
         }
         if setUsed:
             query = ChaleeSultan.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
