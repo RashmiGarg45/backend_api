@@ -82,6 +82,7 @@ urlpatterns = [
     path("lotter38", views.Lotter38API.as_view(), name="cru_lotter38"),
     path("lotter69", views.Lotter69API.as_view(), name="cru_lotter69"),
     path("chaleesultan", views.ChaleeSultanAPI.as_view(), name="cru_chaleesultan"),
+    path("ejaby", views.EjabyAPI.as_view(), name="cru_ejaby"),
 
     
 ]
