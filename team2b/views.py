@@ -1703,7 +1703,7 @@ class PumaMiningAPI(APIView):
         # query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal(min_price), price__lte=Decimal(max_price),**filter_dict).order_by('-created_at')[0:50].first()
 
         # if not query:
-        query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal('4000.0'),**filter_dict).order_by('-created_at')[0:50].first()
+        query = PumaOrderId.objects.filter(used_at=None, price__gte=Decimal('5000.0'),**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
