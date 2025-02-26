@@ -85,6 +85,7 @@ urlpatterns = [
     path("ejaby", views.EjabyAPI.as_view(), name="cru_ejaby"),
     path("flappdeals", views.FlappdealsAPI.as_view(), name="cru_flappdeals"),
     path("laundrymate", views.LaundrymateAPI.as_view(), name="cru_laundrymate"),
+    path("parimatch", views.ParimatchAPI.as_view(), name="cru_parimatch"),
 
     
 ]
