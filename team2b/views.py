@@ -58,6 +58,7 @@ class GenericScriptFunctions(APIView):
             'gamerummyprimemodd': GameRummy,
             'navrangmodd': Navrang,
             'flappdealsmodd':Flappdeals,
+            'laundrymateauto': Laundrymate,
             # 'travelataappmodd': Travelata,
             # 'ontimeautoios': Ontime
         }
@@ -176,6 +177,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'gamerummyprimemodd': GameRummy,
             'navrangmodd': Navrang,
             'flappdealsmodd':Flappdeals,
+            'laundrymateauto': Laundrymate,
         }
         ids_mined = {}
         for key in tablesDict.keys():
