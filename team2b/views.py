@@ -3186,6 +3186,8 @@ class AjioAPI(APIView):
         query.campaign_name = request.data.get('camp_name','ajiomodd')
         query.id = request.data.get('order_id')
         query.extra_details = request.data.get('extra_details',{})
+        query.brand = request.data.get('brand', '')
+        query.price = request.data.get('price')
         query.used_at = None
         query.save()
         return Response({
