@@ -382,9 +382,9 @@ class AppsForSimulation(APIView):
 
             data[app] = {}
 
-            if today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2'):
+            if today_r6_data.get(app,{}).get(str(date.today()),{}).get('TR'):
                 data[app] = {}
-                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('i2')
+                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('TR')
             
             key = app +'_'+type
             if redis_obj.retrieve_data(key=key):
