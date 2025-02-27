@@ -359,7 +359,7 @@ class SimulatedIdFunction(APIView):
 
 class AppsForSimulation(APIView):
     def get(self, request):
-        url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today(),date.today())
+        url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today() - timedelta(days=1),date.today() - timedelta(days=1))
         today_r6_data = requests.get(url).json()
         apps_list_query = IDHelperApps.objects.all()
         apps_list_dict = {}
@@ -384,9 +384,9 @@ class AppsForSimulation(APIView):
 
             data[app] = {}
 
-            if today_r6_data.get(app,{}).get(str(date.today()),{}).get('TR'):
+            if today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=1)),{}).get('TR'):
                 data[app] = {}
-                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today()),{}).get('TR')
+                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=1)),{}).get('TR')
             
             key = app +'_'+type
             if redis_obj.retrieve_data(key=key):
