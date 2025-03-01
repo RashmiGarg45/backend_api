@@ -3547,6 +3547,7 @@ class KisanKonnectAPI(APIView):
         query.id = request.data.get('order_id')
         query.extra_details = request.data.get('extra_details',{})
         query.price = request.data.get('price')
+        query.payment_type = request.data.get('payment_type')
         query.used_at = None
         query.save()
         return Response({

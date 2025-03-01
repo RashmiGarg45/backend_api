@@ -1327,6 +1327,7 @@ class KisanKonnect(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=50,unique=True)    
     price = models.FloatField(default=0)
+    payment_type = models.CharField(default='', blank=True, max_length=100)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)    
     used_at = models.DateTimeField(default = None,blank=True, null=True)
