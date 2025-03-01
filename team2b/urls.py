@@ -87,6 +87,7 @@ urlpatterns = [
     path("laundrymate", views.LaundrymateAPI.as_view(), name="cru_laundrymate"),
     path("parimatch", views.ParimatchAPI.as_view(), name="cru_parimatch"),
     path("kisankonnect", views.KisanKonnectAPI.as_view(), name="cru_kisankonnect"),
+    path("epocosmetic", views.EpoCosmeticAPI.as_view(), name="cru_epocosmetic"),
 
     
 ]
