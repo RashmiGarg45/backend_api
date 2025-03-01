@@ -3209,7 +3209,7 @@ class AjioAPI(APIView):
             setUsed = False
 
         
-        query = Ajio.objects.filter(used_at=None, price__gte=Decimal('4000.0')).order_by('-created_at')[0:50].first()
+        query = Ajio.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
