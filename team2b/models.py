@@ -548,6 +548,7 @@ class RevenueHelper(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
     created_at = models.DateTimeField(auto_now_add=True)
+    day = models.IntegerField(default=100, blank=True)
     c_day = models.IntegerField(default=100, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     channel = models.CharField(default='', blank=True, max_length=100)
