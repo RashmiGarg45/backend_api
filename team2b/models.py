@@ -548,6 +548,7 @@ class RevenueHelper(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
     created_at = models.DateTimeField(auto_now_add=True)
+    day = models.IntegerField(default='', blank=True, max_length=10)
     updated_at = models.DateTimeField(auto_now=True)
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
@@ -559,7 +560,7 @@ class RevenueHelper(models.Model):
     event_name = models.CharField(default='', blank=True, max_length=100)
     event_value = models.JSONField(default = dict,blank=True, null=True)
     app_version = models.TextField(blank=True, null=True)
-    script_version = models.TextField(blank=True, null=True)
+    script_version = models.TextField(blank=True, null=True)    
 
 
     class Meta:

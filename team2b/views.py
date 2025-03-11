@@ -1922,6 +1922,7 @@ class RevenueHelperAPI(APIView):
         query.event_value = request.data.get('event_value', {})
         query.app_version = request.data.get('app_version', '')
         query.script_version = request.data.get('script_version', '')
+        query.day = request.data.get("day")
         try:
             query.save()
             return Response({
