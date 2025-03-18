@@ -1303,7 +1303,7 @@ class BharatmatrimonyAPI(APIView):
         data = {
                 'user_id':query.id,
                 'used_at':query.used_at,
-                'extra_details':{"age": query.age, "gender": json.loads(query.extra_details).get("viewProfile").get("gender")}
+                'extra_details':{"age": query.age, "gender": query.extra_details.get("viewProfile").get("gender")}
         }
         if setUsed:
             query = BharatmatrimonyUserIds.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
