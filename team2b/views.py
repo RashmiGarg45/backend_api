@@ -1278,6 +1278,9 @@ class BharatmatrimonyAPI(APIView):
         query.campaign_name = request.data.get('camp_name','bharatmatrimonymodd')
         query.id = request.data.get('user_id')
         query.extra_details=request.data.get('extra_details',{})
+        query.state = request.data.get('state', '')
+        query.age = request.data.get('age', '')
+        query.is_paid = request.data.get('is_paid', '')
         query.used_at = None
         try:
             query.save()

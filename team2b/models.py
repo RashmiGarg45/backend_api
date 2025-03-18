@@ -289,6 +289,9 @@ class BharatmatrimonyUserIds(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=20,unique=True)
+    state = models.CharField(max_length=20,blank=True)
+    is_paid = models.CharField(max_length=20,blank=True)
+    age = models.CharField(max_length=20,blank=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     
