@@ -1940,7 +1940,7 @@ class RevenueHelperAPI(APIView):
         channel = request.GET.get('channel')
         network = request.GET.get('network')
         offer_id = request.GET.get('offer_id')
-        date_ = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        date_ = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         event_name = request.GET.get('event_name')
 
 
