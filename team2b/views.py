@@ -1958,7 +1958,7 @@ class RevenueHelperAPI(APIView):
                         output_field=FloatField(),
                     )
                 ),
-                specific_event_count=Count(
+                event_count=Count(
                     Case(
                         When(event_name=event_name, then=1),
                         output_field=IntegerField(),
