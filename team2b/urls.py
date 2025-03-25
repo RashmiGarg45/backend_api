@@ -92,6 +92,7 @@ urlpatterns = [
     path("underarmour", views.UnderarmourAPI.as_view(), name="cru_underarmour"),
     path("underarmourOID", views.UnderarmourOIDAPI.as_view(), name="cru_underarmourOID"),
     path("ping", views.pingAPI.as_view(), name="cru_ping"),
+    path("pinoypeso", views.PinoypesoAPI.as_view(), name="cru_pinoypeso"),
 
     
 ]
