@@ -11,7 +11,7 @@ from datetime import datetime,timedelta,date
 import json, time, random
 import requests
 
-from django.db.models import Count
+from django.db.models import Count, Sum, Case, When, IntegerField, FloatField
 from django.db.models import Avg
 
 class GenericScriptFunctions(APIView):
@@ -1934,6 +1934,59 @@ class RevenueHelperAPI(APIView):
         except:
             return Response({
             })
+        
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        channel = request.GET.get('channel')
+        network = request.GET.get('network')
+        offer_id = request.GET.get('offer_id')
+        date_ = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        event_name = request.GET.get('event_name')
+
+
+        revenue_data = (
+            RevenueHelper.objects.filter(
+                campaign_name=campaign_name,
+                channel=channel,
+                network=network,
+                offer_id=offer_id,
+                created_at__gt=date_,
+            ).aggregate(
+                total_revenue=Sum(
+                    Case(
+                        When(event_name=event_name, then="revenue"),
+                        output_field=FloatField(),
+                    )
+                ),
+                specific_event_count=Count(
+                    Case(
+                        When(event_name=event_name, then=1),
+                        output_field=IntegerField(),
+                    )
+                ),
+                install_count=Count(
+                    Case(
+                        When(event_name="Install", then=1),
+                        output_field=IntegerField(),
+                    )
+                ),
+            )
+        )
+
+        total_revenue = revenue_data["total_revenue"]  # Sum of revenue for given event_name
+        event_count = revenue_data["event_count"]  # Count of given event_name
+        install_count = revenue_data["install_count"]  # Count of "Install"
+
+        if total_revenue is None:
+            total_revenue = 0.00001
+        if install_count is None:
+            install_count = 0
+        if event_count is None:
+            event_count = 0
+
+        return Response({"install_count": install_count , "event_count": event_count , "total_revenue": total_revenue })
+
+
         
 
 def send_to_gchat(_msg,_tag,webhook_url):
