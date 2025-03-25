@@ -3696,3 +3696,7 @@ class UnderarmourOIDAPI(APIView):
         return Response({
             'body':data,
         })
+    
+class pingAPI(APIView):
+    def get(self, request):
+        return Response({"status_code": 200})
