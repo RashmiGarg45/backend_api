@@ -1944,38 +1944,66 @@ class RevenueHelperAPI(APIView):
         event_name = request.GET.get('event_name')
 
 
+        # revenue_data = (
+        #     RevenueHelper.objects.filter(
+        #         campaign_name=campaign_name,
+        #         channel=channel,
+        #         network=network,
+        #         offer_id=offer_id,
+        #         created_at__gt=date_,
+        #     ).aggregate(
+        #         total_revenue=Sum(
+        #             Case(
+        #                 When(event_name=event_name, then="revenue"),
+        #                 output_field=FloatField(),
+        #             )
+        #         ),
+        #         event_count=Count(
+        #             Case(
+        #                 When(event_name=event_name, then=1),
+        #                 output_field=IntegerField(),
+        #             )
+        #         ),
+        #         install_count=Count(
+        #             Case(
+        #                 When(event_name="Install", then=1),
+        #                 output_field=IntegerField(),
+        #             )
+        #         ),
+        #     )
+        # )
+
+        # from django.db.models import Sum, Count
+
+        install_count = (
+            RevenueHelper.objects.filter(
+                event_name="Install",
+                campaign_name=campaign_name,
+                channel=channel,
+                network=network,
+                offer_id=offer_id,
+                created_at__gt=date_,
+            ).count()
+        )
+
         revenue_data = (
             RevenueHelper.objects.filter(
+                event_name=event_name,
                 campaign_name=campaign_name,
                 channel=channel,
                 network=network,
                 offer_id=offer_id,
                 created_at__gt=date_,
             ).aggregate(
-                total_revenue=Sum(
-                    Case(
-                        When(event_name=event_name, then="revenue"),
-                        output_field=FloatField(),
-                    )
-                ),
-                event_count=Count(
-                    Case(
-                        When(event_name=event_name, then=1),
-                        output_field=IntegerField(),
-                    )
-                ),
-                install_count=Count(
-                    Case(
-                        When(event_name="Install", then=1),
-                        output_field=IntegerField(),
-                    )
-                ),
+                total_revenue=Sum("revenue"),
+                event_count=Count("event_name")
             )
         )
 
-        total_revenue = revenue_data["total_revenue"]  # Sum of revenue for given event_name
-        event_count = revenue_data["event_count"]  # Count of given event_name
-        install_count = revenue_data["install_count"]  # Count of "Install"
+
+        total_revenue = revenue_data["total_revenue"]
+        event_count = revenue_data["event_count"]
+        install_count = revenue_data["install_count"]
 
         if total_revenue is None:
             total_revenue = 0.00001
