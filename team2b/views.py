@@ -2003,7 +2003,6 @@ class RevenueHelperAPI(APIView):
 
         total_revenue = revenue_data["total_revenue"]
         event_count = revenue_data["event_count"]
-        install_count = revenue_data["install_count"]
 
         if total_revenue is None:
             total_revenue = 0.00001
