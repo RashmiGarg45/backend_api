@@ -323,6 +323,12 @@ class SimulatedIdFunction(APIView):
         scriptname = request.GET.get('scriptname')
         type = request.GET.get('type','order_id')
 
+        for item in ['scriptname','type']:
+            if not request.data.get(item):
+                raise ValidationError({
+                    'error':item+' was not provided.'
+                })
+
         redis_obj = Redis()
         data_list = redis_obj.retrieve_data(key=scriptname+'_'+type)
 
@@ -1942,38 +1948,6 @@ class RevenueHelperAPI(APIView):
         offer_id = request.GET.get('offer_id')
         date_ = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         event_name = request.GET.get('event_name')
-
-
-        # revenue_data = (
-        #     RevenueHelper.objects.filter(
-        #         campaign_name=campaign_name,
-        #         channel=channel,
-        #         network=network,
-        #         offer_id=offer_id,
-        #         created_at__gt=date_,
-        #     ).aggregate(
-        #         total_revenue=Sum(
-        #             Case(
-        #                 When(event_name=event_name, then="revenue"),
-        #                 output_field=FloatField(),
-        #             )
-        #         ),
-        #         event_count=Count(
-        #             Case(
-        #                 When(event_name=event_name, then=1),
-        #                 output_field=IntegerField(),
-        #             )
-        #         ),
-        #         install_count=Count(
-        #             Case(
-        #                 When(event_name="Install", then=1),
-        #                 output_field=IntegerField(),
-        #             )
-        #         ),
-        #     )
-        # )
-
-        # from django.db.models import Sum, Count
 
         install_count = (
             RevenueHelper.objects.filter(
