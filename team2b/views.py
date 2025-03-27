@@ -322,12 +322,12 @@ class SimulatedIdFunction(APIView):
     def get(self, request):
         scriptname = request.GET.get('scriptname')
         type = request.GET.get('type','order_id')
+        print scriptname
 
-        for item in ['scriptname','type']:
-            if not request.data.get(item):
-                raise ValidationError({
-                    'error':item+' was not provided.'
-                })
+        if not scriptname:
+            print "No script name"
+
+        
 
         redis_obj = Redis()
         data_list = redis_obj.retrieve_data(key=scriptname+'_'+type)
