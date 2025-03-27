@@ -322,7 +322,7 @@ class SimulatedIdFunction(APIView):
     def get(self, request):
         scriptname = request.GET.get('scriptname')
         type = request.GET.get('type','order_id')
-        print scriptname
+        print (scriptname)
 
         if not scriptname:
             print "No script name"
