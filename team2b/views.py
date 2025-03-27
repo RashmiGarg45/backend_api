@@ -325,7 +325,7 @@ class SimulatedIdFunction(APIView):
         print (scriptname)
 
         if not scriptname:
-            print "No script name"
+            print ("No script name")
 
         
 
