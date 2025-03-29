@@ -65,6 +65,5 @@ class EventInfo(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['id']),
             models.Index(fields=['campaign_name','channel','network','offer_id']),
         ]
