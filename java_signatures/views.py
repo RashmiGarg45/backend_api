@@ -1850,3 +1850,29 @@ def get_tajrummy_users_count(request):
         count = None
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "total_users": count}))
+
+def get_data(request):
+    campaign_name = request.GET.get('campaign_name')
+    date_ = request.GET.get('date')
+
+    try:
+        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="123admin!", database="techteam")
+        cursor = conn.cursor()
+
+        cursor.execute('''SELECT * FROM team2b_revenuehelper WHERE campaign_name = "{}" AND DATE(created_at) = "{}"'''.format(campaign_name, date_))
+        data = cursor.fetchall()        
+
+        response_code = 200
+        message = "success"
+
+        cursor.close()
+        conn.close()
+
+        data = {"data": data }
+
+    except Exception as e:
+        response_code = 500
+        message = str(e)
+        data = {"data": {}}
+
+    return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
