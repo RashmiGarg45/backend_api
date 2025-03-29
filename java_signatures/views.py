@@ -1136,6 +1136,8 @@ def get_galaxychat_userData(request):
             cursor.execute("UPDATE galaxy_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
+        conn.close()
+
         response_code = 200
         message = "success"
     except Exception as e:
@@ -1156,6 +1158,8 @@ def get_galaxychat_users_count(request):
         count = data[0]   
         response_code = 200
         message = "success"
+
+        conn.close()
 
     except Exception as e:
         response_code = 500
@@ -1416,6 +1420,8 @@ def get_muthoot_userId(request):
             cursor.execute("UPDATE muthootfino_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
+        conn.close()
+
         response_code = 200
         message = "success"
     except Exception as e:
@@ -1436,6 +1442,8 @@ def get_muthoot_users_count(request):
         count = data[0]   
         response_code = 200
         message = "success"
+
+        conn.close()
 
     except Exception as e:
         response_code = 500
@@ -1670,6 +1678,7 @@ def put_data(request):
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
 
+        conn.close()
         response_code = 200
         message = "success"
 
