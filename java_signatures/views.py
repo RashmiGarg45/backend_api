@@ -1860,7 +1860,9 @@ def get_data(request):
         cursor = conn.cursor()
 
         cursor.execute('''SELECT * FROM team2b_revenuehelper WHERE campaign_name = "{}" AND DATE(created_at) = "{}"'''.format(campaign_name, date_))
-        data = cursor.fetchall()        
+        data = cursor.fetchall()  
+
+        print (data)      
 
         response_code = 200
         message = "success"
