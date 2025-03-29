@@ -93,6 +93,7 @@ urlpatterns = [
     path("underarmourOID", views.UnderarmourOIDAPI.as_view(), name="cru_underarmourOID"),
     path("ping", views.pingAPI.as_view(), name="cru_ping"),
     path("pinoypeso", views.PinoypesoAPI.as_view(), name="cru_pinoypeso"),
+    path("ohi", views.OhiAPI.as_view(), name="cru_ohi"),
 
     
 ]
