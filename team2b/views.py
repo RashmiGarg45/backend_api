@@ -881,6 +881,8 @@ class WatchoOrderIdsMiningAPI(APIView):
         query.order_status=request.data.get('order_status')
         query.extra_details=request.data.get('extra_details',{})
         query.spdn = request.data.get("spdn")
+        query.amount = request.data.get("amount")
+        query.extra_details2 = request.data.get("extra_details2")
         query.used_at = None
         try:
             query.save()
