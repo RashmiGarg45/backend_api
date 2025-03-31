@@ -884,10 +884,10 @@ class WatchoOrderIdsMiningAPI(APIView):
         query.amount = request.data.get("amount")
         query.extra_details2 = request.data.get("extra_details2")
         query.used_at = None
-        try:
-            query.save()
-            return Response({
-            })
+        # try:
+        query.save()
+        return Response({
+        })
         except:
             return Response({
             })
