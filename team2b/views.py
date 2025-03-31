@@ -888,9 +888,9 @@ class WatchoOrderIdsMiningAPI(APIView):
         query.save()
         return Response({
         })
-        except:
-            return Response({
-            })
+        # except:
+        #     return Response({
+        #     })
         
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
