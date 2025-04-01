@@ -94,6 +94,7 @@ urlpatterns = [
     path("ping", views.pingAPI.as_view(), name="cru_ping"),
     path("pinoypeso", views.PinoypesoAPI.as_view(), name="cru_pinoypeso"),
     path("ohi", views.OhiAPI.as_view(), name="cru_ohi"),
+    path("fivepaisa", views.FivepaisaAPI.as_view(), name="cru_fivepaisa"),
 
     
 ]
