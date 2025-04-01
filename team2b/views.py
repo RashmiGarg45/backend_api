@@ -946,10 +946,12 @@ class WatchoOrderIdsMiningAPIV2(APIView):
 
         exclude_dict_1 = {}
         exclude_dict_1['spdn__contains'] = 'Coupon'
+        amount_values = [299.0, 2499.0, 309.0, 2599.0, 229.0, 1999.0, 399.0]
 
-        query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"), used_at=None,**filter_dict).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()
+        query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"), used_at=None,amount__in=amount_values,**filter_dict).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
-            query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"),**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+            return None
+            # query_list = WatchoOrderIdsMining.objects.filter(~Q(spdn="Coupon"),**filter_dict).exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
