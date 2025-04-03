@@ -62,7 +62,7 @@ class InstallInfo(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['campaign_name','channel','network','offer_id']),
+            models.Index(fields=['campaign_name','offer_details']),
         ]
 
 class EventInfo(models.Model):
@@ -79,5 +79,6 @@ class EventInfo(models.Model):
 
     class Meta:
         indexes = [
-            models.Index(fields=['campaign_name','channel','network','offer_id']),
+            models.Index(fields=['campaign_name','offer_serial', 'event_name']),
+            models.Index(fields=['campaign_name','offer_serial']),
         ]
