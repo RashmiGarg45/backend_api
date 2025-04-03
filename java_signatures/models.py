@@ -58,7 +58,7 @@ class InstallInfo(models.Model):
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
     offer_details = models.TextField(default='')  
     installs = models.IntegerField(default=0)
-    currency = models.CharField(default='USD')
+    currency = models.CharField(default='USD', max_length=10)
 
     class Meta:
         indexes = [
@@ -70,7 +70,7 @@ class EventInfo(models.Model):
     offer_serial = models.ForeignKey(InstallInfo, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
-    event_name = models.CharField()
+    event_name = models.CharField(max_length=50)
     event_count = models.IntegerField(default=0)
     event_day = models.IntegerField(default=0)
     event_value = models.JSONField(default = dict,blank=True, null=True)
