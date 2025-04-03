@@ -65,9 +65,22 @@ class InstallInfo(models.Model):
             models.Index(fields=['campaign_name','offer_details']),
         ]
 
+class InstallData(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False, unique=True)
+    created_at = models.DateField(auto_now_add=True)
+    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
+    offer_details = models.TextField(default='')  
+    installs = models.IntegerField(default=0)
+    currency = models.CharField(default='USD', max_length=10)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name','offer_details']),
+        ]
+
 class EventInfo(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
-    offer_serial = models.ForeignKey(InstallInfo, to_field='serial', on_delete=models.CASCADE, default=0)
+    offer_serial = models.ForeignKey(InstallData, to_field='serial', on_delete=models.CASCADE, default=0)
     created_at = models.DateField(auto_now_add=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
     event_name = models.CharField(default='',max_length=50)
