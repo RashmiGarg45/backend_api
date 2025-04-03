@@ -80,7 +80,7 @@ class InstallData(models.Model):
 
 class EventInfo(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
-    offer_serial = models.ForeignKey(InstallData, to_field='serial', on_delete=models.CASCADE, default=0)
+    offer_serial = models.ForeignKey(InstallData, to_field='serial', on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
     event_name = models.CharField(default='',max_length=50)
