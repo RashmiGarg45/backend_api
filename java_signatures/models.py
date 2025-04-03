@@ -70,7 +70,7 @@ class EventInfo(models.Model):
     offer_serial = models.ForeignKey(InstallInfo, on_delete=models.CASCADE)
     created_at = models.DateField(auto_now_add=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
-    event_name = models.CharField(max_length=50)
+    event_name = models.CharField(default='',max_length=50)
     event_count = models.IntegerField(default=0)
     event_day = models.IntegerField(default=0)
     event_value = models.JSONField(default = dict,blank=True, null=True)
