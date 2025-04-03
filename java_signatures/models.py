@@ -52,16 +52,30 @@ class RevenueHelper(models.Model):
             models.Index(fields=['id']),
         ]
 
+class InstallInfo(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False)
+    created_at = models.DateField(auto_now_add=True)
+    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
+    offer_details = models.TextField(default='')  
+    installs = models.IntegerField(default=0)
+    currency = models.CharField(default='USD')
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name','channel','network','offer_id']),
+        ]
+
 class EventInfo(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    install_date = models.DateField()
-    channel = models.CharField(default='', blank=True, max_length=100)
-    network = models.CharField(default='', blank=True, max_length=100)
-    offer_id = models.CharField(default='', blank=True, max_length=100)
-    stats = models.JSONField(default = dict,blank=True, null=True)
+    offer_serial = models.ForeignKey(InstallInfo, on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
+    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
+    event_name = models.CharField()
+    event_count = models.IntegerField(default=0)
+    event_day = models.IntegerField(default=0)
+    event_value = models.JSONField(default = dict,blank=True, null=True)
+    revenue = models.FloatField(default=0)
+    
 
     class Meta:
         indexes = [
