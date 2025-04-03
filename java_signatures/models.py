@@ -69,7 +69,7 @@ class InstallData(models.Model):
     serial = models.AutoField(primary_key=True, editable=False, unique=True)
     created_at = models.DateField(auto_now_add=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
-    offer_details = models.TextField(default='')  
+    offer_details = models.TextField(default='', max_length=100)  
     installs = models.IntegerField(default=0)
     currency = models.CharField(default='USD', max_length=10)
 
