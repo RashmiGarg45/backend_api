@@ -1914,7 +1914,7 @@ class TrackInstalls(APIView):
         currency = request.GET.get("currency", "USD")
         # offer_details = channel + "::" + network + "::" + offer_id
 
-        install_data = InstallData(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
+        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
 
         if not install_data:
             install_data = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
