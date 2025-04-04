@@ -9,6 +9,7 @@ import datetime
 import time
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 
 from java_signatures.models import InstallData
 from rest_framework.response import Response
@@ -1903,24 +1904,26 @@ def get_data(request):
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
 
-def get_data(request):
-    campaign_name = request.GET.get('campaign_name')
-    channel = request.GET.get("channel")
-    network = request.GET.get("network")
-    offer_id = request.GET.get("offer_id")
-    currency = request.GET.get("currency", "USD")
-    # offer_details = channel + "::" + network + "::" + offer_id
 
-    install_data = InstallData(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
+class TrackInstalls(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        channel = request.GET.get("channel")
+        network = request.GET.get("network")
+        offer_id = request.GET.get("offer_id")
+        currency = request.GET.get("currency", "USD")
+        # offer_details = channel + "::" + network + "::" + offer_id
 
-    if not install_data:
-        install_data = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
-    else:
-        install_details = install_data.get()
-        install_details.installs += 1
-        install_details.save()
+        install_data = InstallData(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
 
-    current_install_count = install_data.installs
+        if not install_data:
+            install_data = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+        else:
+            install_details = install_data.get()
+            install_details.installs += 1
+            install_details.save()
 
-    return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": current_install_count}})
+        current_install_count = install_data.installs
+
+        return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": current_install_count}})
 
