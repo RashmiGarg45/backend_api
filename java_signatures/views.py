@@ -11,7 +11,7 @@ import mysql.connector as mysql
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
-from java_signatures.models import InstallData
+from java_signatures.models import InstallData, EventInfo
 from rest_framework.response import Response
 
 
@@ -1915,7 +1915,6 @@ class TrackInstalls(APIView):
         # offer_details = channel + "::" + network + "::" + offer_id
 
         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
-        print (install_data)
 
         if not install_data:
             install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
@@ -1923,6 +1922,28 @@ class TrackInstalls(APIView):
             install_details = install_data.get()
             install_details.installs += 1
         install_details.save()
-        
+
         return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": install_details.installs, "serial": install_details.serial}})
+
+class TrackEvents(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        offer_serial = request.GET.get("offer_serial")
+        event_day = request.GET.get("event_day")
+        event_value = request.GET.get("event_value")
+        revenue = request.GET.get("revenue")
+        # offer_details = channel + "::" + network + "::" + offer_id
+
+        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
+
+        if not event_data:
+            event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
+        else:
+            event_details = event_data.get()
+            event_details.event_count += 1
+            event_details.revenue += revenue
+        event_details.save()
+        
+        return Response({"status": 200, "msg": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
