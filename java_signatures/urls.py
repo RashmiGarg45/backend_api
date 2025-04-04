@@ -68,4 +68,5 @@ urlpatterns = [
     path("get_tajrummy_users_count/", views.get_tajrummy_users_count, name="get_tajrummy_users_count"),
     path("get_event_data/", views.get_data, name="get_data"),
     path("track_install", views.TrackInstalls.as_view(), name="save_install"),
+    path("track_event", views.TrackEvents.as_view(), name="save_event"),
 ]
