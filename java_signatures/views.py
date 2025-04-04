@@ -1915,13 +1915,14 @@ class TrackInstalls(APIView):
         # offer_details = channel + "::" + network + "::" + offer_id
 
         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
+        print (install_data)
 
         if not install_data:
-            install_data = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+            install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
         else:
             install_details = install_data.get()
             install_details.installs += 1
-            install_details.save()
+        install_details.save()
 
         current_install_count = install_data.installs
 
