@@ -1924,7 +1924,7 @@ class TrackInstalls(APIView):
             install_details.installs += 1
         install_details.save()
 
-        current_install_count = install_data.installs
+        current_install_count = install_details.installs
 
         return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": current_install_count}})
 
