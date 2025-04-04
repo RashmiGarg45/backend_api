@@ -10,6 +10,9 @@ import time
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
 
+from java_signatures.models import InstallData
+from rest_framework.response import Response
+
 
 def get_signtaure(request):
     data = json.loads(request.body)
@@ -1862,7 +1865,28 @@ def get_data(request):
         cursor.execute('''SELECT * FROM team2b_revenuehelper WHERE campaign_name = "{}" AND DATE(created_at) = "{}"'''.format(campaign_name, date_))
         data = cursor.fetchall()  
 
-        print (data)      
+        entry_data = {"installs": 0, "event_stats": {}}
+
+        for d in data:
+            campaign_name, date, _, _, channel, network, offer_id, _, revenue, _, _, event_name,_,_,_,_ = d
+
+            if event_name == "Install":
+                entry_data["installs"] += 1
+
+            event_data = entry_data["event_stats"].setdefault(event_name, {"count": 0, "revenue": 0})
+            event_data["count"] += 1
+            event_data["revenue"] += revenue
+
+        final_output = {
+            "campaign_name": campaign_name,
+            "date": date,
+            "channel": channel,
+            "network": network,
+            "offer_id": offer_id,
+            "entry_data": entry_data
+        }   
+
+
 
         response_code = 200
         message = "success"
@@ -1878,3 +1902,25 @@ def get_data(request):
         data = {"data": {}}
 
     return HttpResponse(json.dumps({"response_code": response_code, "message": message, "data": data}))
+
+def get_data(request):
+    campaign_name = request.GET.get('campaign_name')
+    channel = request.GET.get("channel")
+    network = request.GET.get("network")
+    offer_id = request.GET.get("offer_id")
+    currency = request.GET.get("currency", "USD")
+    # offer_details = channel + "::" + network + "::" + offer_id
+
+    install_data = InstallData(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
+
+    if not install_data:
+        install_data = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+    else:
+        install_details = install_data.get()
+        install_details.installs += 1
+        install_details.save()
+
+    current_install_count = install_data.installs
+
+    return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": current_install_count}})
+
