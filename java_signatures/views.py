@@ -1906,15 +1906,15 @@ def get_data(request):
 
 
 class TrackInstalls(APIView):
-    def get(self, request):
+    def put(self, request):
         campaign_name = request.GET.get('campaign_name')
         channel = request.GET.get("channel")
         network = request.GET.get("network")
         offer_id = request.GET.get("offer_id")
         currency = request.GET.get("currency", "USD")
-        # offer_details = channel + "::" + network + "::" + offer_id
+        date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
 
-        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at="2025-04-04", channel=channel, network=network, offer_id=offer_id)
+        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
 
         if not install_data:
             install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
@@ -1926,7 +1926,7 @@ class TrackInstalls(APIView):
         return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": install_details.installs, "serial": install_details.serial}})
 
 class TrackEvents(APIView):
-    def get(self, request):
+    def put(self, request):
         campaign_name = request.GET.get('campaign_name')
         event_name = request.GET.get("event_name")
         offer_serial = request.GET.get("offer_serial")
