@@ -1936,10 +1936,10 @@ class TrackEvents(APIView):
         
         offer_serial = InstallData(offer_serial)
 
-        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
+        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day)
 
         if not event_data:
-            event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day__lte=event_day, revenue=revenue)
+            event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
         else:
             event_details = event_data.get()
             event_details.event_count += 1
