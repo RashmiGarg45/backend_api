@@ -1934,6 +1934,8 @@ class TrackEvents(APIView):
         event_value = request.GET.get("event_value")
         revenue = request.GET.get("revenue")
         # offer_details = channel + "::" + network + "::" + offer_id
+        offer_serial = InstallData(offer_serial)
+        print (offer_serial)
 
         event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
 
