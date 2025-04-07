@@ -1932,8 +1932,9 @@ class TrackEvents(APIView):
         offer_serial = request.GET.get("offer_serial")
         event_day = request.GET.get("event_day")
         event_value = request.GET.get("event_value")
-        revenue = request.GET.get("revenue")
+        revenue = float(request.GET.get("revenue", 0))
         # offer_details = channel + "::" + network + "::" + offer_id
+        
         offer_serial = InstallData(offer_serial)
         print (offer_serial)
 
