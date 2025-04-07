@@ -1936,7 +1936,7 @@ class TrackEvents(APIView):
         
         offer_serial = InstallData(offer_serial)
 
-        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day)
+        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
 
         if not event_data:
             event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
@@ -1948,3 +1948,13 @@ class TrackEvents(APIView):
         
         return Response({"status": 200, "msg": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
+# class checkEligibility(APIView):
+#     def get(self, request):
+#         campaign_name = request.GET.get('campaign_name')
+#         event_name = request.GET.get("event_name")
+#         offer_serial = request.GET.get("offer_serial")
+#         event_day = request.GET.get("event_day")
+
+#         offer_serial = InstallData(offer_serial)
+
+#         insta
