@@ -1952,9 +1952,6 @@ class TrackEvents(APIView):
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "boylesportstmodd" and event_name == "n_ftd":
         return {0: 17, 1:17} #add event token flexibility
-    
-    elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
-        return {0: 17, 1:17} #add event token flexibility
 
 class checkEligibility(APIView):
     def get(self, request):
