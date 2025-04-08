@@ -1986,6 +1986,7 @@ class checkEligibility(APIView):
         if not day_wise_stats:
             return Response({"status": 400, "message": "Requirements not found", "data": {}})
         else:
+            status = 500
             min_day = min(day_wise_stats.keys())
             # max_day = max(day_wise_stats.keys())
 
@@ -1997,7 +1998,7 @@ class checkEligibility(APIView):
                 required_installs = day_wise_stats[target_day]
 
             if install_count > required_installs:
-                event_details = TrackEvents.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+                event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
                 total_event_count = sum((event['event_count'] for event in event_details))
                 required_event_count = install_count / required_installs
                 is_eligible = total_event_count < required_event_count
