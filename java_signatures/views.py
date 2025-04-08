@@ -2008,19 +2008,13 @@ class checkEligibility(APIView):
         target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
         required_installs = day_wise_stats[target_day]
 
-        print (install_count)
-        print (required_installs)
-
         is_eligible = False
 
         if install_count > required_installs:
             event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
             total_event_count = sum((event['event_count'] for event in event_details))
-            print (total_event_count)
-            required_event_count = install_count / required_installs
-            print (required_event_count)
+            required_event_count = int(install_count / required_installs)
             is_eligible = total_event_count < required_event_count
-            print (is_eligible)
 
             if is_eligible:
                 event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
@@ -2029,7 +2023,7 @@ class checkEligibility(APIView):
                     event_details.event_count += 1
                     event_details.revenue += revenue
                     event_details.save()
-
+                    
             status = 200
         
         return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
