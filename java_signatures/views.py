@@ -1962,17 +1962,24 @@ class checkEligibility(APIView):
         event_name = request.GET.get("event_name")
         offer_serial = request.GET.get("offer_serial")
         event_day = request.GET.get("event_day")
+        revenue = request.GET.get("revenue", 0)
 
-        if not event_day:
-            return Response({"status": 400, "message": "Event day is mandatory", "data": {}})
-        
-        event_day = int(event_day)
+        if not all([campaign_name, event_name, offer_serial, event_day]):
+            return Response({"status": 400,"message": "Missing required parameters","data": {}})
 
-        if event_day >= 7:
+        try:
+            event_day = int(event_day)
+        except ValueError:
+            return Response({"status": 400,"message": "Invalid event_day. It must be an integer.","data": {}})
+
+        if event_day > 7:
             return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
 
-        install_details = InstallData.objects.get(serial=offer_serial)
+        try:
+            install_details = InstallData.objects.get(serial=offer_serial)
+        except InstallData.DoesNotExist:
+            return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
 
         channel = install_details.channel
         network = install_details.network
@@ -1988,24 +1995,36 @@ class checkEligibility(APIView):
 
         if not day_wise_stats:
             return Response({"status": 400, "message": "Requirements not found", "data": {}})
-        else:
-            status = 500
-            min_day = min(day_wise_stats.keys())
-            # max_day = max(day_wise_stats.keys())
 
-            if event_day < min_day:
-                return Response({"status": 500, "message": "Min day should be "+ str(min_day), "data": {}})
-            else:
-                days = day_wise_stats.keys()
-                target_day =  max((d for d in days if d <= event_day), default=min_day)
-                required_installs = day_wise_stats[target_day]
+        status = 500
+        
+        stat_days = list(day_wise_stats.keys())
+        min_day = min(stat_days)
+        # max_day = max(day_wise_stats.keys())
 
-            if install_count > required_installs:
-                event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
-                total_event_count = sum((event['event_count'] for event in event_details))
-                required_event_count = install_count / required_installs
-                is_eligible = total_event_count < required_event_count
+        if event_day < min_day:
+            return Response({"status": 500, "message": "Min day should be "+ str(min_day), "data": {}})
+        
+        target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
+        required_installs = day_wise_stats[target_day]
 
-                status = 200
-            
-            return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
+        is_eligible = False
+
+        if install_count > required_installs:
+            event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+            total_event_count = sum((event['event_count'] for event in event_details))
+            required_event_count = install_count / required_installs
+            is_eligible = total_event_count < required_event_count
+
+            if is_eligible:
+                event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
+
+                if not created:
+                    event_details.event_count += 1
+                    event_details.revenue += revenue
+                    event_details.save()
+                    
+            status = 200
+        
+        return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
+
