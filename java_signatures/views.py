@@ -1952,6 +1952,9 @@ class TrackEvents(APIView):
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "boylesportstmodd" and event_name == "n_ftd":
         return {0: 17, 1:17} #add event token flexibility
+    
+    elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
+        return {0: 17, 1:17} #add event token flexibility
 
 class checkEligibility(APIView):
     def get(self, request):
@@ -1966,7 +1969,7 @@ class checkEligibility(APIView):
         event_day = int(event_day)
 
         if event_day >= 7:
-            return Response({"status": 400, "message": "Not eligible event to track", "data": {}})
+            return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
 
         install_details = InstallData.objects.get(serial=offer_serial)
