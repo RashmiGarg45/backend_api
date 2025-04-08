@@ -1969,7 +1969,7 @@ class checkEligibility(APIView):
             return Response({"status": 400, "message": "Not eligible event to track", "data": {}})
 
 
-        install_details = InstallData.objects.get(offer_serial=offer_serial)
+        install_details = InstallData.objects.get(serial=offer_serial)
 
         channel = install_details.channel
         network = install_details.network
