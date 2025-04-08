@@ -1948,13 +1948,51 @@ class TrackEvents(APIView):
         
         return Response({"status": 200, "msg": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
-# class checkEligibility(APIView):
-#     def get(self, request):
-#         campaign_name = request.GET.get('campaign_name')
-#         event_name = request.GET.get("event_name")
-#         offer_serial = request.GET.get("offer_serial")
-#         event_day = request.GET.get("event_day")
 
-#         offer_serial = InstallData(offer_serial)
+def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
+    if campaign_name == "boylesportstmodd" and event_name == "n_ftd":
+        return {0: 17, 1:17} #add event token flexibility
 
-#         insta
+class checkEligibility(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        offer_serial = request.GET.get("offer_serial")
+        event_day = request.GET.get("event_day")
+
+        if event_day >= 7:
+            return Response({"status": 400, "msg": "Not eligible event to track", "data": {}})
+
+
+        install_details = InstallData(offer_serial).values('installs', 'channel', 'network', 'offer_id').get()
+
+        channel = install_details['channel']
+        network = install_details['network']
+        offer_id = install_details['offer_id']
+        install_count = install_details['installs']
+        offer_serial = install_details["serial"]
+        
+        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id)
+
+        if not day_wise_stats:
+            return Response({"status": 400, "msg": "Requirements not found", "data": {}})
+        else:
+            min_day = min(day_wise_stats.keys())
+            # max_day = max(day_wise_stats.keys())
+
+            if event_day < min_day:
+                return Response({"status": 500, "msg": "Min day should be "+ str(min_day), "data": {}})
+            else:
+                days = day_wise_stats.keys()
+                target_day =  max((d for d in days if d <= event_day), default=min_day)
+                required_installs = day_wise_stats[target_day]
+
+            if install_count > required_installs:
+                event_details = TrackEvents.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+                total_event_count = sum((event['event_count'] for event in event_details))
+                required_event_count = install_count / required_installs
+                is_eligible = total_event_count < required_event_count
+
+                status = 200
+            
+            return Response({"status": status, "msg": "Success", "data": {"is_allowed": is_eligible}})

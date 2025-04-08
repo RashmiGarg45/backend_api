@@ -69,4 +69,5 @@ urlpatterns = [
     path("get_event_data/", views.get_data, name="get_data"),
     path("track_install", views.TrackInstalls.as_view(), name="save_install"),
     path("track_event", views.TrackEvents.as_view(), name="save_event"),
+    path("is_event_allowed", views.checkEligibility.as_view(), name="check_eligibility"),
 ]
