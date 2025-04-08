@@ -2018,7 +2018,7 @@ class checkEligibility(APIView):
 
                 if not created:
                     event_details.event_count += 1
-                    event_details.revenue += revenue
+                    event_details.revenue += float(revenue)
                     event_details.save()
                     
             status = 200
