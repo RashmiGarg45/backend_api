@@ -1923,7 +1923,7 @@ class TrackInstalls(APIView):
             install_details.installs += 1
         install_details.save()
 
-        return Response({"status": 200, "msg": "Install Tracked", "status": 200, "data": {"count": install_details.installs, "serial": install_details.serial}})
+        return Response({"status": 200, "message": "Install Tracked", "status": 200, "data": {"count": install_details.installs, "serial": install_details.serial}})
 
 class TrackEvents(APIView):
     def put(self, request):
@@ -1946,7 +1946,7 @@ class TrackEvents(APIView):
             event_details.revenue += revenue
         event_details.save()
         
-        return Response({"status": 200, "msg": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
+        return Response({"status": 200, "message": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
@@ -1960,8 +1960,13 @@ class checkEligibility(APIView):
         offer_serial = request.GET.get("offer_serial")
         event_day = request.GET.get("event_day")
 
+        if not event_day:
+            return Response({"status": 400, "message": "Event day is mandatory", "data": {}})
+        
+        event_day = int(event_day)
+
         if event_day >= 7:
-            return Response({"status": 400, "msg": "Not eligible event to track", "data": {}})
+            return Response({"status": 400, "message": "Not eligible event to track", "data": {}})
 
 
         install_details = InstallData(offer_serial).values('installs', 'channel', 'network', 'offer_id').get()
@@ -1975,13 +1980,13 @@ class checkEligibility(APIView):
         day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id)
 
         if not day_wise_stats:
-            return Response({"status": 400, "msg": "Requirements not found", "data": {}})
+            return Response({"status": 400, "message": "Requirements not found", "data": {}})
         else:
             min_day = min(day_wise_stats.keys())
             # max_day = max(day_wise_stats.keys())
 
             if event_day < min_day:
-                return Response({"status": 500, "msg": "Min day should be "+ str(min_day), "data": {}})
+                return Response({"status": 500, "message": "Min day should be "+ str(min_day), "data": {}})
             else:
                 days = day_wise_stats.keys()
                 target_day =  max((d for d in days if d <= event_day), default=min_day)
@@ -1995,4 +2000,4 @@ class checkEligibility(APIView):
 
                 status = 200
             
-            return Response({"status": status, "msg": "Success", "data": {"is_allowed": is_eligible}})
+            return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
