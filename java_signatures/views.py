@@ -1976,6 +1976,10 @@ class checkEligibility(APIView):
         offer_id = install_details.offer_id
         install_count = install_details.installs
         offer_serial = install_details.serial
+
+        if install_details.campaign_name != campaign_name:
+            return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
+
         
         day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id)
 
