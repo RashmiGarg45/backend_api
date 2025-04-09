@@ -1914,7 +1914,7 @@ class TrackInstalls(APIView):
         currency = request.GET.get("currency", "USD")
         date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
 
-        if not all([campaign_name, channel, network, offer_id]):
+        if not any([campaign_name, channel, network, offer_id]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
 
         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
@@ -1937,7 +1937,7 @@ class TrackEvents(APIView):
         event_value = request.GET.get("event_value")
         revenue = float(request.GET.get("revenue", 0))
 
-        if not all([campaign_name, event_name, offer_serial, event_day]):
+        if not any([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
         offer_serial = InstallData(offer_serial)
@@ -1977,7 +1977,7 @@ class checkEligibility(APIView):
         event_day = request.GET.get("event_day")
         revenue = request.GET.get("revenue", 0)
 
-        if not all([campaign_name, event_name, offer_serial, event_day]):
+        if not any([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
 
         try:
