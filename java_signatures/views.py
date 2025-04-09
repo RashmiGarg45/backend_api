@@ -1953,6 +1953,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "boylesportstmodd" and event_name == "n_ftd":
         return {0: 17, 1:17} #add event token flexibility
 
+    elif campaign_name == "singamodd" and event_name=="risk-control":
+        return {0: 27, 1:27}
+    
+    elif campaign_name == "singamodd" and event_name=="loanapplied":
+        return {0: 32}
+    
+
 class checkEligibility(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
