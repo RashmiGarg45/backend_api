@@ -1957,25 +1957,25 @@ class TrackEvents(APIView):
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "boylesportstmodd" and event_name == "n_ftd":
-        return {0: 17, 1:17} #add event token flexibility
+        return {0: 17, 1:17}
 
     elif campaign_name == "singamodd" and event_name=="risk-control":
-        return {0: 27, 1:27}
+        return {0: 41, 1:27}
     
     elif campaign_name == "singamodd" and event_name=="loanapplied":
-        return {0: 32}
+        return {0: 43, 1: 43}
 
     elif campaign_name == "leonrutmodd" and event_name=="af_first_deposit":
-        return {0: 27, 1: 51, 2: 51}
+        return {0: 27, 1: 22, 2: 18}
     
     elif campaign_name == "ikukuruuiosauto" and event_name == "mcaw45":
-        return {0:6, 1:9}
+        return {0:6, 1:6}
     
     elif campaign_name == "ikukuruuiosauto" and event_name == "wvzrbc":
         return {0:12, 1:12}
 
     elif campaign_name == "juanhandmodd" and event_name == "af_fst_insbrw_suss":
-        return {0:35, 1: 45, 2: 70, 3: 75, 4: 90}
+        return {0:45, 1: 35, 2: 25, 3: 20, 4: 16}
     
 
 class checkEligibility(APIView):
@@ -2030,12 +2030,13 @@ class checkEligibility(APIView):
         target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
         required_installs = day_wise_stats[target_day]
 
+
         is_eligible = False
 
         if install_count > required_installs:
             event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
             total_event_count = sum((event['event_count'] for event in event_details))
-            required_event_count = int(install_count / required_installs)
+            required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
 
             if is_eligible:
