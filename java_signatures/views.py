@@ -1988,6 +1988,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "moovauto" and event_name == "ggjyhe":
         return {0:26, 1:26}
+
+    elif campaign_name == "ucuzabiletauto" and event_name == "vnc85a":
+        return {0:20, 1:12.5, 2:10, 3: 8.7}
     
 
     
