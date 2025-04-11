@@ -97,6 +97,7 @@ urlpatterns = [
     path("fivepaisa", views.FivepaisaAPI.as_view(), name="cru_fivepaisa"),
     path("adda", views.AddaAPI.as_view(), name="cru_adda"),
     path("addaOID", views.AddaorderIdAPI.as_view(), name="cru_addaOID"),
+    path("bambootauto", views.BambootautoAPI.as_view(), name="cru_bambootauto"),
 
     
 ]
