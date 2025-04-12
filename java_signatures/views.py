@@ -10,6 +10,9 @@ import time
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from collections import defaultdict
+from datetime import timedelta
+from django.utils import timezone
 
 from java_signatures.models import InstallData, EventInfo
 from rest_framework.response import Response
@@ -2075,3 +2078,45 @@ class checkEligibility(APIView):
         
         return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
 
+class camps_running_status(APIView):
+    def get(self, request):        
+
+        today = timezone.now().date()
+        start_date = today - timedelta(days=6)
+
+        # Helper for nested default dicts
+        def nested_dict():
+            return defaultdict(nested_dict)
+
+        result = {"data": {"offer_info": nested_dict()}}
+
+        # Get InstallData
+        installs = InstallData.objects.filter(
+            created_at__date__range=(start_date, today)
+        ).values("campaign_name", "network", "offer_id", "created_at", "installs")
+
+        for row in installs:
+            offer_key = f"{row['campaign_name']}::{row['network']}::{row['offer_id']}"
+            date_key = row["created_at"].date().isoformat()
+            result["data"]["offer_info"][offer_key][date_key]["install_count"] += row["installs"]
+
+        # Get EventInfo
+        events = EventInfo.objects.filter(
+            created_at__date__range=(start_date, today)
+        ).values("campaign_name", "network", "offer_id", "created_at", "event_name", "event_day", "event_count")
+
+        for event in events:
+            offer_key = f"{event['campaign_name']}::{event['network']}::{event['offer_id']}"
+            date_key = event["created_at"].date().isoformat()
+            event_name = event["event_name"]
+            event_day = str(event["event_day"])
+
+            result["data"]["offer_info"][offer_key][date_key]["event_info"][event_name][event_day] += event["event_count"]
+
+        # Convert defaultdicts to dict
+        def to_dict(obj):
+            if isinstance(obj, defaultdict):
+                return {k: to_dict(v) for k, v in obj.items()}
+            return obj
+
+        return to_dict(result)
