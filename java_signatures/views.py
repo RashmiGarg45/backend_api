@@ -2097,7 +2097,7 @@ class camps_running_status(APIView):
 
         for row in installs:
             offer_key = f"{row['campaign_name']}::{row['network']}::{row['offer_id']}"
-            date_key = row["created_at"].date().isoformat()
+            date_key = row["created_at"].isoformat()
             result["data"]["offer_info"][offer_key][date_key]["install_count"] += row["installs"]
 
         # Get EventInfo
@@ -2107,7 +2107,7 @@ class camps_running_status(APIView):
 
         for event in events:
             offer_key = f"{event['campaign_name']}::{event['network']}::{event['offer_id']}"
-            date_key = event["created_at"].date().isoformat()
+            date_key = event["created_at"].isoformat()
             event_name = event["event_name"]
             event_day = str(event["event_day"])
 
