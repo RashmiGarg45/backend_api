@@ -2092,7 +2092,7 @@ class camps_running_status(APIView):
 
         # Get InstallData
         installs = InstallData.objects.filter(
-            created_at__date__range=(start_date, today)
+            created_at__range=(start_date, today)
         ).values("campaign_name", "network", "offer_id", "created_at", "installs")
 
         for row in installs:
@@ -2102,7 +2102,7 @@ class camps_running_status(APIView):
 
         # Get EventInfo
         events = EventInfo.objects.filter(
-            created_at__date__range=(start_date, today)
+            created_at__range=(start_date, today)
         ).values("campaign_name", "network", "offer_id", "created_at", "event_name", "event_day", "event_count")
 
         for event in events:
