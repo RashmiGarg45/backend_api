@@ -1994,6 +1994,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "profit2modd" and event_name == "ActionNewOrder":
         return {0:10, 1:8.3, 2: 7.14, 3: 6.6}
+
+    elif campaign_name == "dupoiniosauto" and event_name == "7py4mn":
+        return {0:23, 1:16.6, 2: 12.5, 3: 10}
+
     
 
     
