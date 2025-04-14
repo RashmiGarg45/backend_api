@@ -1961,16 +1961,16 @@ class TrackEvents(APIView):
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     if campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "xgivki":
-        return {0: 25, 1:25}
+        return {0: 4, 1:4}
     
     elif campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "ld4kw6":
-        return {0: 5, 1:5}
+        return {0: 19, 1:19}
 
     if campaign_name == "moovauto" and channel == "test" and network == "test" and offer_id == "test" and event_name == "xgivki":
-        return {0: 25, 1:25}
+        return {0: 4, 1:4}
     
     elif campaign_name == "moovauto" and channel == "test" and network == "test" and offer_id == "test" and event_name == "ld4kw6":
-        return {0: 5, 1:5}
+        return {0: 19, 1:19}
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_ftd":
         return {0: 17, 1:17}
