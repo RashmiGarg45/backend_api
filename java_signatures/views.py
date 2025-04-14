@@ -2019,6 +2019,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":
         return {0:68, 1: 45, 2:30 }
+    
+    elif campaign_name == "moneycolorauto" and event_name == "revenue_199":
+        return {0:10, 1: 6.6, 2:5.5, 3:4.76, 4:4.16, 5:3.84, 6:3.44, 7:3.22}
+    
+    elif campaign_name == "moneycolorauto" and event_name == "revenue_499":
+        return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.5, 6:5, 7:4.54 }
 
     
 
