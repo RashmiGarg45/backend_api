@@ -2015,10 +2015,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:23, 1:16.6, 2: 12.5, 3: 10}
     
     elif campaign_name == "loveparadaiseauto" and event_name == "revenue_199":
-        return {0:25, 1: 16, 2:12.5, 3:11.11}
+        return {0:25, 1: 20, 2:16.6, 3:14.2, 4:12.5, 5:11.11}
     
     elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":
-        return {0:68, 1: 45, 2:3 }
+        return {0:68, 1: 45, 2:30 }
 
     
 
