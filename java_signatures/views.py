@@ -2013,6 +2013,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "dupoiniosauto" and event_name == "7py4mn":
         return {0:23, 1:16.6, 2: 12.5, 3: 10}
+    
+    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_199":
+        return {0:25, 1: 16, 2:12.5, 3:11.11}
+    
+    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":
+        return {0:68, 1: 45, 2:3 }
 
     
 
