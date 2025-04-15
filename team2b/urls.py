@@ -99,6 +99,7 @@ urlpatterns = [
     path("addaOID", views.AddaorderIdAPI.as_view(), name="cru_addaOID"),
     path("bambootauto", views.BambootautoAPI.as_view(), name="cru_bambootauto"),
     path("paynearbyauto", views.PaynearbyAPI.as_view(), name="cru_paynearbyauto"),
+    path("in2x", views.in2XAPI.as_view(), name="cru_in2x"),
 
     
 ]
