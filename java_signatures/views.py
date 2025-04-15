@@ -2017,7 +2017,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "loveparadaiseauto" and event_name == "revenue_199":
         return {0:25, 1: 20, 2:16.6, 3:14.2, 4:12.5, 5:11.11}
     
-    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":
+    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":  
         return {0:68, 1: 45, 2:30 }
     
     elif campaign_name == "moneycolorauto" and event_name == "revenue_199":
@@ -2026,11 +2026,17 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "moneycolorauto" and event_name == "revenue_499":
         return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.5, 6:5, 7:4.54 }
 
+    # elif campaign_name == "dailysolitaremodd" and event_name == "revenue_099":
+    #     return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.88, 6:5.5, 7:5.26 }
+    
+    # elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
+    #     return {0:25, 1:14.2, 2:12.5, 3:11.1, 4:10, 5:9, 6:8.3, 7:8.3}
+    
     elif campaign_name == "dailysolitaremodd" and event_name == "revenue_099":
-        return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.88, 6:5.5, 7:5.26 }
+        return {0:13, 1: 10, 3:7.5, 4:6, 6:4, 7:3.5}
     
     elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
-        return {0:25, 1:14.2, 2:5.5, 3:11.1, 4:10, 5:9, 6:8.3, 7:8.3}
+        return {0:16, 1:9, 2:7, 3:6, 4:5, 5:4.28}
 
     
 
