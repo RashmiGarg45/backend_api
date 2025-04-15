@@ -2026,6 +2026,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "moneycolorauto" and event_name == "revenue_499":
         return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.5, 6:5, 7:4.54 }
 
+    elif campaign_name == "dailysolitaremodd" and event_name == "revenue_099":
+        return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.88, 6:5.5, 7:5.26 }
+    
+    elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
+        return {0:25, 1:14.2, 2:5.5, 3:11.1, 4:10, 5:9, 6:8.3, 7:8.3}
+
     
 
     
