@@ -2053,6 +2053,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "axisinvestmodd" and event_name == "TXN Successful":
         return {0:29, 1:26, 2:20, 3:16.6, 4:14.28, 5:12.5, 6:12.5}
 
+    elif campaign_name == "moneymetmodd" and event_name == "LoanApplicationV2.ApplicationSent.View":
+        return {0:70, 1:50, 2:33, 3:33}
+
     
 
     
