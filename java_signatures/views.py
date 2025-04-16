@@ -2038,6 +2038,18 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
         return {0:7.5, 1:7.5, 2:7, 3:6, 4:5, 5:4.28}
 
+    elif campaign_name == "tikettmodd" and event_name == "af_purchase":
+        return {0:50, 1:50, 2:33.3}
+    
+    elif campaign_name == "tikettmodd" and event_name == "af_purchase_toDO":
+        return {0:16.6, 1:12.5, 2:10, 3:8.3}
+    
+    elif campaign_name == "tikettmodd" and event_name == "af_purchase_hotel":
+        return {0:16.6, 1:12.5, 2:10, 3:8.3}
+    
+    elif campaign_name == "tikettmodd" and event_name == "af_purchase_flight":
+        return {0:16.6, 1:12.5, 2:10, 3:8.3}
+
     
 
     
