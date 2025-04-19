@@ -101,6 +101,7 @@ urlpatterns = [
     path("paynearbyauto", views.PaynearbyAPI.as_view(), name="cru_paynearbyauto"),
     path("in2x", views.in2XAPI.as_view(), name="cru_in2x"),
     path("bluerewardsauto", views.BluerewardsV2API.as_view(), name="cru_bluerewards"),
+    path("signnowmodd", views.SignnowAPI.as_view(), name="cru_signnow"),
 
     
 ]
