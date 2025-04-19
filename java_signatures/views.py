@@ -7,6 +7,7 @@ import random
 import execjs
 import datetime
 import time
+import requests
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -14,7 +15,7 @@ from collections import defaultdict
 from datetime import timedelta
 from django.utils import timezone
 
-from java_signatures.models import InstallData, EventInfo
+from java_signatures.models import InstallData, EventInfo, ExchangeRate
 from rest_framework.response import Response
 
 
@@ -2071,9 +2072,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "signnowmodd" and event_name == "af_subscribe":
         return {8:50, 9:50}
 
-    
-
-    
 
 class checkEligibility(APIView):
     def get(self, request):
@@ -2190,3 +2188,47 @@ class camps_running_status(APIView):
             return obj
 
         return to_dict(result)
+
+
+
+API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
+
+class CurrencyConvertAPIView(APIView):
+    def post(self, request):
+        from_currency = request.data.get("from_currency")
+        to_currency = request.data.get("to_currency")
+        amount = float(request.data.get("amount", 0))
+
+        url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/pair/{from_currency}/{to_currency}"
+        response = requests.get(url)
+
+        if response.status_code != 200:
+            return Response({"error": "Failed to fetch exchange rate"}, status=500)
+
+        data = response.json()
+
+        record = ExchangeRate.objects.create(
+            from_currency=from_currency,
+            to_currency=to_currency,
+            amount=amount,
+            raw_response=data
+        )
+
+        return Response({
+            "message": "Exchange rate saved successfully",
+            "id": record.id
+        }, status=201)
+
+    def get(self, request):
+        records = ExchangeRate.objects.all().order_by("-timestamp")
+        result = []
+        for r in records:
+            result.append({
+                "id": r.id,
+                "from_currency": r.from_currency,
+                "to_currency": r.to_currency,
+                "amount": r.amount,
+                "timestamp": r.timestamp,
+                "raw_response": r.raw_response
+            })
+        return Response(result, status=200)
