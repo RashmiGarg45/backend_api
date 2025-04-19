@@ -2195,9 +2195,6 @@ API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
 
 class CurrencyConvertAPIView(APIView):
     def post(self, request):
-        from_currency = request.data.get("from_currency")
-        to_currency = request.data.get("to_currency")
-        amount = float(request.data.get("amount", 0))
 
         url = "https://v6.exchangerate-api.com/v6/2a8fad1896a9d051d5ed1763/latest/USD"
         response = requests.get(url)
@@ -2208,9 +2205,9 @@ class CurrencyConvertAPIView(APIView):
         data = response.json()
 
         record = ExchangeRate.objects.create(
-            from_currency=from_currency,
-            to_currency=to_currency,
-            amount=amount,
+            from_currency="USD",
+            to_currency="INR",
+            amount=1,
             raw_response=data
         )
 
