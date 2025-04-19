@@ -2058,6 +2058,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "moneymetmodd" and event_name == "LoanApplicationV2.ApplicationSent.View":
         return {0:70, 1:50, 2:33, 3:33}
+    
+    elif campaign_name == "moneycatmxmodd" and event_name == "NEW_LOAN":
+        return {0:150, 1:150}
 
     
 
