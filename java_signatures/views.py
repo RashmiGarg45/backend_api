@@ -2061,6 +2061,15 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "moneycatmxmodd" and event_name == "NEW_LOAN":
         return {0:150, 1:150}
+    
+    elif campaign_name == "signnowmodd" and event_name == "af_start_trial":
+        return {0:20, 1:14.2, 2:11.11, 3:10}
+    
+    elif campaign_name == "signnowmodd" and event_name == "af_purchase":
+        return {2:100, 3:100}
+    
+    elif campaign_name == "signnowmodd" and event_name == "af_subscribe":
+        return {8:50, 9:50}
 
     
 
