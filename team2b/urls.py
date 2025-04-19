@@ -102,6 +102,7 @@ urlpatterns = [
     path("in2x", views.in2XAPI.as_view(), name="cru_in2x"),
     path("bluerewardsauto", views.BluerewardsV2API.as_view(), name="cru_bluerewards"),
     path("signnowmodd", views.SignnowAPI.as_view(), name="cru_signnow"),
+    path("sixerdream11", views.SixerDreamAPI.as_view(), name="cru_sixer"),
 
     
 ]
