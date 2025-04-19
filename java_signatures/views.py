@@ -2199,7 +2199,7 @@ class CurrencyConvertAPIView(APIView):
         to_currency = request.data.get("to_currency")
         amount = float(request.data.get("amount", 0))
 
-        url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/pair/{from_currency}/{to_currency}"
+        url = "https://v6.exchangerate-api.com/v6/2a8fad1896a9d051d5ed1763/latest/USD"
         response = requests.get(url)
 
         if response.status_code != 200:
