@@ -97,3 +97,13 @@ class EventInfo(models.Model):
             models.Index(fields=['campaign_name','offer_serial', 'event_name']),
             models.Index(fields=['campaign_name','offer_serial']),
         ]
+
+class ExchangeRate(models.Model):
+    from_currency = models.CharField(max_length=3)
+    to_currency = models.CharField(max_length=3)
+    amount = models.FloatField()
+    raw_response = models.JSONField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.amount} {self.from_currency} → {self.to_currency}"
