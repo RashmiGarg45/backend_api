@@ -103,6 +103,7 @@ urlpatterns = [
     path("bluerewardsauto", views.BluerewardsV2API.as_view(), name="cru_bluerewards"),
     path("signnowmodd", views.SignnowAPI.as_view(), name="cru_signnow"),
     path("sixerdream11", views.SixerDreamAPI.as_view(), name="cru_sixer"),
+    path("westernunion", views.WesternUnionAPI.as_view(), name="cru_western"),
 
     
 ]
