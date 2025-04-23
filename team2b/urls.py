@@ -104,6 +104,8 @@ urlpatterns = [
     path("signnowmodd", views.SignnowAPI.as_view(), name="cru_signnow"),
     path("sixerdream11", views.SixerDreamAPI.as_view(), name="cru_sixer"),
     path("westernunion", views.WesternUnionAPI.as_view(), name="cru_western"),
+    path("stolotoUID", views.StolotoUserIdAPI.as_view(), name="cru_stolotoUID"),
+    path("stolotoOID", views.StolotoOrderIdAPI.as_view(), name="cru_stolotoOID"),
 
     
 ]
