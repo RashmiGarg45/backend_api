@@ -106,6 +106,7 @@ urlpatterns = [
     path("westernunion", views.WesternUnionAPI.as_view(), name="cru_western"),
     path("stolotoUID", views.StolotoUserIdAPI.as_view(), name="cru_stolotoUID"),
     path("stolotoOID", views.StolotoOrderIdAPI.as_view(), name="cru_stolotoOID"),
+    path("paysettUID", views.PaysettUserIdAPI.as_view(), name="cru_paysettUID"),
 
     
 ]
