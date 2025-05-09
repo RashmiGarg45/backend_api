@@ -107,6 +107,9 @@ urlpatterns = [
     path("stolotoUID", views.StolotoUserIdAPI.as_view(), name="cru_stolotoUID"),
     path("stolotoOID", views.StolotoOrderIdAPI.as_view(), name="cru_stolotoOID"),
     path("paysettUID", views.PaysettUserIdAPI.as_view(), name="cru_paysettUID"),
+    path("shopeevnUID", views.ShopeevnuidAPI.as_view(), name="cru_shopeevnUID"),
+    path("shopeevnOID", views.ShopeevnoidAPI.as_view(), name="cru_shopeevnOID"),
+    path("poppolivetmodd", views.PoppoliveAPI.as_view(), name="cru_poppolivetmodd"),
 
     
 ]
