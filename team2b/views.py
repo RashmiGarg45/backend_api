@@ -4500,7 +4500,7 @@ class MoglixAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Moglix.objects.filter(used_at=None, price__lte=Decimal('100.0'), price__gte=Decimal('30000.0')).order_by('-created_at')[0:50].first()
+        query = Moglix.objects.filter(used_at=None, price__gte=Decimal('100.0'), price__lte=Decimal('30000.0')).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
