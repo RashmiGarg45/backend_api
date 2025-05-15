@@ -114,6 +114,6 @@ urlpatterns = [
     path("shopeemyOID", views.ShopeemyoidAPI.as_view(), name="cru_shopeemyOID"),
     path("shiprocketcouriert", views.ShiprocketAPI.as_view(), name="cru_shiprocketcouriert"),
     path("novawater", views.NovawaterAPI.as_view(), name="cru_novawater"),
-
+    path("moglix", views.MoglixAPI.as_view(), name="cru_moglix"),
     
 ]
