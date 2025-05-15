@@ -4485,6 +4485,7 @@ class MoglixAPI(APIView):
         query.campaign_name = request.data.get('camp_name','moglixauto')
         query.id = request.data.get('order_id')
         query.extra_details = request.data.get('extra_details',{})
+        query.price = request.data.get('price')
         query.used_at = None
         query.save()
         return Response({
@@ -4499,7 +4500,7 @@ class MoglixAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Moglix.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        query = Moglix.objects.filter(used_at=None, price__lte=Decimal('100.0'), price__gte=Decimal('30000.0')).order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
