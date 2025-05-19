@@ -2117,6 +2117,18 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "cubiosmodd" and event_name == "esign_View_ActivateCL":
         return {0:85, 1:80, 2:60, 3:45, 4: 33}
 
+    elif campaign_name == "bingofrenzytmodd" and event_name == "1_99":
+        return {0:41, 1:41}
+    
+    elif campaign_name == "bingofrenzytmodd" and event_name == "19_99":
+        return {1:68, 2:68, 3:41, 4:41}
+    
+    elif campaign_name == "bingofrenzytmodd" and event_name == "4_99":
+        return {0:44, 1:44, 2:33, 3:33}
+    
+    elif campaign_name == "bingofrenzytmodd" and event_name == "9_99":
+        return {0:33, 3:25, 4:20, 5:16.6, 6:14.2, 7:12.5}
+
 
 class checkEligibility(APIView):
     def get(self, request):
