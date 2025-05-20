@@ -115,5 +115,6 @@ urlpatterns = [
     path("shiprocketcouriert", views.ShiprocketAPI.as_view(), name="cru_shiprocketcouriert"),
     path("novawater", views.NovawaterAPI.as_view(), name="cru_novawater"),
     path("moglix", views.MoglixAPI.as_view(), name="cru_moglix"),
+    path("viu", views.ViuAPI.as_view(), name="cru_viu"),
     
 ]
