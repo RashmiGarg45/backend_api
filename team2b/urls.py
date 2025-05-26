@@ -116,5 +116,7 @@ urlpatterns = [
     path("novawater", views.NovawaterAPI.as_view(), name="cru_novawater"),
     path("moglix", views.MoglixAPI.as_view(), name="cru_moglix"),
     path("viu", views.ViuAPI.as_view(), name="cru_viu"),
+    path("betr", views.BetrAPI.as_view(), name="cru_betr"),
+    path("shopeeidUID", views.ShopeeidUIDAPI.as_view(), name="cru_shopeeidUID"),
     
 ]
