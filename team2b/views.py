@@ -4624,7 +4624,7 @@ class ShopeeidUIDAPI(APIView):
         })
     
     def post(self, request):
-        query = ShopeemyOID.objects.order_by('-id').first()
+        query = ShopeeidUID.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
