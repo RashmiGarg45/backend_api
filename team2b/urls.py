@@ -118,5 +118,6 @@ urlpatterns = [
     path("viu", views.ViuAPI.as_view(), name="cru_viu"),
     path("betr", views.BetrAPI.as_view(), name="cru_betr"),
     path("shopeeidUID", views.ShopeeidUIDAPI.as_view(), name="cru_shopeeidUID"),
+    path("dupoin", views.DupoinAPI.as_view(), name="cru_dupoin"),
     
 ]
