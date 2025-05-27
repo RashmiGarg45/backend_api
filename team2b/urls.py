@@ -119,5 +119,6 @@ urlpatterns = [
     path("betr", views.BetrAPI.as_view(), name="cru_betr"),
     path("shopeeidUID", views.ShopeeidUIDAPI.as_view(), name="cru_shopeeidUID"),
     path("dupoin", views.DupoinAPI.as_view(), name="cru_dupoin"),
+    path("shopeephUID", views.ShopeephUIDAPI.as_view(), name="cru_shopeephUID"),
     
 ]
