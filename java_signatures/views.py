@@ -2290,7 +2290,7 @@ class Running_camps_stats(APIView):
         output_data = {}
 
 
-        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), campaign_name=campaign_name).values("campaign_name", "network", "offer_id", "created_at", "installs")
+        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), campaign_name=campaign_name).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
 
         for row in installs:
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
