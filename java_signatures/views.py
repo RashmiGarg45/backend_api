@@ -1720,9 +1720,6 @@ def get_event_info(request):
         total_revenue = data[0][0]
         event_count = data[0][1]
 
-        print (event_count)
-        print (install_count)
-
         response_code = 200
         message = "success"
 
@@ -2303,12 +2300,8 @@ class Running_camps_stats(APIView):
         if event_name:
             ev_filter_dict["event_name"] = event_name
 
-        print (from_date)
-        print (to_date)
-
         installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
 
-        print (installs)
 
         for row in installs:
             camp_name = row["campaign_name"]
@@ -2316,7 +2309,6 @@ class Running_camps_stats(APIView):
                 output_data[camp_name] = {}
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
             date_key = row["created_at"].isoformat()
-            print (row["created_at"])
 
             if offer_key not in output_data[camp_name]:
                 output_data[camp_name][offer_key] = {}
@@ -2328,7 +2320,6 @@ class Running_camps_stats(APIView):
             event_data = {}
             if events:
                 for event in events:
-                    # date_key = event["created_at"].isoformat()
                     event_name = event["event_name"]
                     event_day = str(event["event_day"])
 
