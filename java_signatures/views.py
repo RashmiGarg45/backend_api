@@ -2310,6 +2310,12 @@ class Running_camps_stats(APIView):
                     event_name = event["event_name"]
                     event_day = str(event["event_day"])
 
+                    if date_key not in event_data:
+                        event_data[date_key] = {}
+
+                    if event_name not in event_data[date_key]:
+                        event_data[date_key][event_name] = {}
+
                     event_data[date_key][event_name][event_day]= event["event_count"]
 
             output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"], "events": event_data}
