@@ -2289,7 +2289,6 @@ class Running_camps_stats(APIView):
 
         output_data = {}
 
-
         installs = InstallData.objects.filter(created_at__range=(from_date, to_date), campaign_name=campaign_name).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
 
         for row in installs:
@@ -2302,7 +2301,16 @@ class Running_camps_stats(APIView):
             if date_key not in output_data[offer_key]:
                 output_data[offer_key][date_key] = {}
 
-            output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"]}
+            events = EventInfo.objects.filter(serial=row["serial"]).values("event_name", "event_day", "event_count", "revenue")
+            event_data = {}
+            for event in events:
+                date_key = event["created_at"].isoformat()
+                event_name = event["event_name"]
+                event_day = str(event["event_day"])
+
+                event_data[date_key][event_name][event_day]= event["event_count"]
+
+            output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"], "events": event_data}
 
         
         return Response({"status": 200, "message": "Success", "data": output_data})
