@@ -2295,7 +2295,7 @@ class Running_camps_stats(APIView):
         for row in installs:
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
             date_key = row["created_at"].isoformat()
-            output_data["data"][offer_key][date_key]["install_count"] = {"installs" : row["installs"], "serial": row["serial"]}
+            output_data[offer_key][date_key]["install_count"] = {"installs" : row["installs"], "serial": row["serial"]}
 
         
         return Response({"status": 200, "message": "Success", "data": output_data})
