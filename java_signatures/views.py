@@ -2289,7 +2289,21 @@ class Running_camps_stats(APIView):
 
         output_data = {}
 
-        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), campaign_name=campaign_name).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
+        filter_dict = {}
+        if channel:
+            filter_dict["channel"] = channel
+        if network:
+            filter_dict["network"] = network
+        if offer_id:
+            filter_dict["offer_id"] = offer_id
+        if campaign_name:
+            filter_dict["campaign_name"] = campaign_name
+
+        ev_filter_dict = {}
+        if event_name:
+            ev_filter_dict["event_name"] = event_name
+
+        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
 
         for row in installs:
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
@@ -2301,7 +2315,7 @@ class Running_camps_stats(APIView):
             if date_key not in output_data[offer_key]:
                 output_data[offer_key][date_key] = {}
 
-            events = EventInfo.objects.filter(offer_serial_id=row["serial"]).values("event_name", "event_day", "event_count", "revenue", "created_at")
+            events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
             event_data = {}
             if events:
                 for event in events:
@@ -2316,7 +2330,6 @@ class Running_camps_stats(APIView):
 
             output_data[offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
 
-        
         return Response({"status": 200, "message": "Success", "data": output_data})
 
         
