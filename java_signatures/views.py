@@ -2270,7 +2270,37 @@ class camps_running_status(APIView):
 
         return to_dict(result)
 
+class Running_camps_stats(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        from_date = request.GET.get("from_date")
+        to_date = request.GET.get("to_date")
+        channel = request.GET.get("channel")
+        network = request.GET.get("network")
+        offer_id = request.GET.get("offer_id")
 
+        if not from_date:
+            today = timezone.now().date()
+            from_date = today - timedelta(days=6)
+        
+        if not to_date:
+            to_date = timezone.now().date()
+
+        output_data = {}
+
+
+        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), campaign_name=campaign_name).values("campaign_name", "network", "offer_id", "created_at", "installs")
+
+        for row in installs:
+            offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
+            date_key = row["created_at"].isoformat()
+            output_data["data"][offer_key][date_key]["install_count"] = {"installs" : row["installs"], "serial": row["serial"]}
+
+        
+        return Response({"status": 200, "message": "Success", "data": output_data})
+
+        
 
 API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
 
