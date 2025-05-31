@@ -2303,7 +2303,12 @@ class Running_camps_stats(APIView):
         if event_name:
             ev_filter_dict["event_name"] = event_name
 
+        print (from_date)
+        print (to_date)
+
         installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
+
+        print (installs)
 
         for row in installs:
             camp_name = row["campaign_name"]
