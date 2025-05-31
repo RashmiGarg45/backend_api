@@ -2301,7 +2301,7 @@ class Running_camps_stats(APIView):
             if date_key not in output_data[offer_key]:
                 output_data[offer_key][date_key] = {}
 
-            events = EventInfo.objects.filter(serial=row["serial"]).values("event_name", "event_day", "event_count", "revenue")
+            events = EventInfo.objects.filter(serial=row["serial"]).values("event_name", "event_day", "event_count", "revenue", "created_at")
             event_data = {}
             if events:
                 for event in events:
