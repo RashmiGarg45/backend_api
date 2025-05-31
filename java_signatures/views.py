@@ -2316,6 +2316,7 @@ class Running_camps_stats(APIView):
                 output_data[camp_name] = {}
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
             date_key = row["created_at"].isoformat()
+            print (row["created_at"])
 
             if offer_key not in output_data[camp_name]:
                 output_data[camp_name][offer_key] = {}
@@ -2327,7 +2328,7 @@ class Running_camps_stats(APIView):
             event_data = {}
             if events:
                 for event in events:
-                    date_key = event["created_at"].isoformat()
+                    # date_key = event["created_at"].isoformat()
                     event_name = event["event_name"]
                     event_day = str(event["event_day"])
 
