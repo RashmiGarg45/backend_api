@@ -2305,6 +2305,7 @@ class Running_camps_stats(APIView):
             event_data = {}
             if events:
                 for event in events:
+                    print (event)
                     date_key = event["created_at"].isoformat()
                     event_name = event["event_name"]
                     event_day = str(event["event_day"])
