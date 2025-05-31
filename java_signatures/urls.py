@@ -72,5 +72,5 @@ urlpatterns = [
     path("is_event_allowed", views.checkEligibility.as_view(), name="check_eligibility"),
     path("camps_running_status", views.camps_running_status.as_view(), name="check_status"),
     path('api/convert/', views.CurrencyConvertAPIView.as_view(), name='currency-convert'),
-    path("/stats", views.Running_camps_stats.as_view(), name="check_stats"),
+    path("stats", views.Running_camps_stats.as_view(), name="check_stats"),
 ]
