@@ -2303,12 +2303,13 @@ class Running_camps_stats(APIView):
 
             events = EventInfo.objects.filter(serial=row["serial"]).values("event_name", "event_day", "event_count", "revenue")
             event_data = {}
-            for event in events:
-                date_key = event["created_at"].isoformat()
-                event_name = event["event_name"]
-                event_day = str(event["event_day"])
+            if events:
+                for event in events:
+                    date_key = event["created_at"].isoformat()
+                    event_name = event["event_name"]
+                    event_day = str(event["event_day"])
 
-                event_data[date_key][event_name][event_day]= event["event_count"]
+                    event_data[date_key][event_name][event_day]= event["event_count"]
 
             output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"], "events": event_data}
 
