@@ -89,7 +89,6 @@ class GenericScriptFunctions(APIView):
                 ids_mined[key] = tablesDict[key].objects.filter(company__in=("Company", "None"), created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
         from data_tracking.util import googleChatBot_send_message
-        space_name = "AAAAh8zMzAw"
         message = {
                         "cardsV2": [
                             {
@@ -139,7 +138,8 @@ class GenericScriptFunctions(APIView):
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
         # print(json.dumps(message['cardsV2'][0]['card'],indent=4))
-        googleChatBot_send_message(space_name=space_name,message=message)    
+        googleChatBot_send_message(space_name="AAAAg5ty-9s",message=message)   
+        googleChatBot_send_message(space_name="AAAA1fvzWdY",message=message)   
         googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
@@ -271,7 +271,8 @@ class GenericUnusedIdScriptFunctions(APIView):
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
 
-        googleChatBot_send_message(space_name=space_name,message=message)    
+        googleChatBot_send_message(space_name="AAAAg5ty-9s",message=message)   
+        googleChatBot_send_message(space_name="AAAA1fvzWdY",message=message)  
         googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
@@ -2070,7 +2071,7 @@ class ScriptRealtimeChecker(APIView):
         tabular_string = f"*AOV - {yesterday_date}*\n\n```{tabular_string}```"
 
         _tag = yesterday_date
-        send_to_gchat(tabular_string,_tag,'https://chat.googleapis.com/v1/spaces/AAAAh8zMzAw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=gzewsbx9lIeHlzEa5j5c1K7eqOS60AevmzgPe1UpZJc')
+        # send_to_gchat(tabular_string,_tag,'https://chat.googleapis.com/v1/spaces/AAAAh8zMzAw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=gzewsbx9lIeHlzEa5j5c1K7eqOS60AevmzgPe1UpZJc')
 
         
         try:
