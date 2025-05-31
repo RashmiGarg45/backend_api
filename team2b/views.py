@@ -4712,7 +4712,7 @@ class ShopeephUIDAPI(APIView):
     
 class EpikoddAPI(APIView):
     def put(self, request):
-        query = ShopeephUID()
+        query = Epikodd()
         query.campaign_name = request.data.get('camp_name','epikoddiosmodd')
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
