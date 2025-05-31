@@ -2305,18 +2305,14 @@ class Running_camps_stats(APIView):
             event_data = {}
             if events:
                 for event in events:
-                    print (event)
                     date_key = event["created_at"].isoformat()
                     event_name = event["event_name"]
                     event_day = str(event["event_day"])
 
-                    if date_key not in event_data:
-                        event_data[date_key] = {}
+                    if event_name not in event_data:
+                        event_data[event_name] = {}
 
-                    if event_name not in event_data[date_key]:
-                        event_data[date_key][event_name] = {}
-
-                    event_data[date_key][event_name][event_day]= event["event_count"]
+                    event_data[event_name][event_day]= event["event_count"]
 
             output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"], "events": event_data}
 
