@@ -2295,7 +2295,14 @@ class Running_camps_stats(APIView):
         for row in installs:
             offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
             date_key = row["created_at"].isoformat()
-            output_data[offer_key][date_key]["install_count"] = {"installs" : row["installs"], "serial": row["serial"]}
+
+            if offer_key not in output_data:
+                output_data[offer_key] = {}
+
+            if date_key not in output_data[offer_key]:
+                output_data[offer_key][date_key] = {}
+
+            output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"]}
 
         
         return Response({"status": 200, "message": "Success", "data": output_data})
