@@ -2314,7 +2314,7 @@ class Running_camps_stats(APIView):
 
                     event_data[event_name][event_day]= event["event_count"]
 
-            output_data[offer_key][date_key] = {"installs" : row["installs"], "serial": row["serial"], "events": event_data}
+            output_data[offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
 
         
         return Response({"status": 200, "message": "Success", "data": output_data})
