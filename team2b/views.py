@@ -72,7 +72,8 @@ class GenericScriptFunctions(APIView):
             'viuhkmodd_UID': Viu,
             'dupoin_UID': Dupoin,
             'shopeephtauto_UID' : ShopeephUID,
-            'ontimeautoios_UID': Ontime
+            'ontimeautoios_UID': Ontime,
+            'stolototmodd_UID': Stoloto,
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -199,7 +200,8 @@ class GenericUnusedIdScriptFunctions(APIView):
             'viuhkmodd_UID': Viu,
             'dupoin_UID': Dupoin,
             'shopeephtauto_UID' : ShopeephUID,
-            'ontimeautoios_UID': Ontime
+            'ontimeautoios_UID': Ontime,
+            'stolototmodd_UID': Stoloto,
         }
         ids_mined = {}
         for key in tablesDict.keys():
