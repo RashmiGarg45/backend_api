@@ -4744,7 +4744,7 @@ class StolotoAPI(APIView):
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
-        query.payment_data = request.data.get('payoutDate')
+        query.payment_data = request.data.get('extra_details',{}).get('payoutDate')
         query.save()
         return Response({
         })
