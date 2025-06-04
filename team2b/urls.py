@@ -122,5 +122,8 @@ urlpatterns = [
     path("shopeephUID", views.ShopeephUIDAPI.as_view(), name="cru_shopeephUID"),
     path("epikodd", views.EpikoddAPI.as_view(), name="cru_epikodd"),
     path("stoloto", views.StolotoAPI.as_view(), name="cru_stoloto"),
+    path("casinopluss", views.CasinoplussAPI.as_view(), name="cru_casinopluss"),
+    path("storyland", views.StorylandAPI.as_view(), name="cru_storyland"),
+    path("homiedev", views.HomiedevAPI.as_view(), name="cru_homiedev"),
     
 ]
