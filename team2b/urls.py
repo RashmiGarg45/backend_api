@@ -125,5 +125,7 @@ urlpatterns = [
     path("casinopluss", views.CasinoplussAPI.as_view(), name="cru_casinopluss"),
     path("storyland", views.StorylandAPI.as_view(), name="cru_storyland"),
     path("homiedev", views.HomiedevAPI.as_view(), name="cru_homiedev"),
+    path("tikett", views.TikettOIDAPI.as_view(), name="cru_tikett"),
+    path("apnatimeUID", views.ApnaTimeAPI.as_view(), name="cru_apna"),
     
 ]
