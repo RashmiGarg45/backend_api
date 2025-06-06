@@ -2145,7 +2145,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["mcdeliverymodd"]#["galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "opaymodd"]
+        scripts_list = ["galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "opaymodd"]
 
         output = {}
         for campaign_name in scripts_list:
@@ -2169,9 +2169,9 @@ class ConversionStats(APIView):
             output[campaign_name] = d
             output["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
 
-            return Response({
-                'data':output,
-            })
+        return Response({
+            'data':output,
+        })
             
 
 class ResetOrderId(APIView):
