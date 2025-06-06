@@ -4938,11 +4938,12 @@ class TikettOIDAPI(APIView):
         with transaction.atomic():
             query = TikettOID.objects.select_for_update().filter(used_at=None).order_by('-created_at').first()
 
-            data = {'order_id':query.id,}
+            data = {'order_id':query.id}
+            next_id = query.id + random.randint(1,2)
 
             query = TikettOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-            next_id = query.id + random.randint(1,2)
+            
 
             new_ticket = TikettOID.objects.create(id=next_id,campaign_name=request.data.get('camp_name', 'tikettmodd'),used_at=None)
 
