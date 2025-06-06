@@ -2138,7 +2138,7 @@ class ScriptRealtimeChecker2(APIView):
 class ConversionStats(APIView):
     def get(self, request):
 
-        data_type = request.params.get("type")
+        data_type = request.GET.get("type")
 
         if data_type == "yesterday":
             date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
