@@ -2151,15 +2151,23 @@ class ConversionStats(APIView):
         for campaign_name in scripts_list:
 
             data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=date, event_name__in=("Non-organic", "Organic")).values('event_name').annotate(count=Count('id'))
-            
+            organic_count = 0
+            non_organic_count = 0
             d = {}
             for i in data:
                 name = i["event_name"]
                 count = i["count"]
 
+                if name == "Organic":
+                    organic_count = count
+                elif name == "Non-organic":
+                    non_organic_count =  count
+
+
                 d[name] =count
 
             output[campaign_name] = d
+            output["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
 
             return Response({
                 'data':output,
