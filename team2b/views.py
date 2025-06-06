@@ -2166,10 +2166,10 @@ class ConversionStats(APIView):
 
                 d[name] =count
 
-            if non_organic_count:
+            if non_organic_count or organic_count:
                 d["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
 
-            output[campaign_name] = d
+                output[campaign_name] = d
 
         message_lines = ["*RR Summary:*"]
         header = f"{'Campaign':<20} {'Non-Organic':>12} {'Organic':>10} {'RR (%)':>10}"
