@@ -4933,7 +4933,7 @@ class TikettOIDAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = TikettOID.objects.filter(used_at=None).latest('created_at')
+        query = TikettOID.objects.filter(used_at=None).order_by('-created_at').first()
         
         data = {
                 'order_id':query.id,
