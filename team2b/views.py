@@ -4919,7 +4919,6 @@ class HomiedevAPI(APIView):
     
 class TikettOIDAPI(APIView):
     def put(self, request):
-        time.sleep(random.randint(5,20))
         query = TikettOID()
         query.campaign_name = request.data.get('camp_name','tikettmodd')
         query.id = request.data.get('order_id')
@@ -4929,7 +4928,7 @@ class TikettOIDAPI(APIView):
         })
 
     def get(self, request):
-        time.sleep(random.randint(5,20))
+        time.sleep(random.randint(10,30))
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
