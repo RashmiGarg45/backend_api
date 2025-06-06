@@ -4936,6 +4936,7 @@ class TikettOIDAPI(APIView):
         #     setUsed = False
 
         with transaction.atomic():
+            time.sleep(random.randint(10,30))
             query = TikettOID.objects.select_for_update().filter(used_at=None).order_by('-created_at').first()
 
             data = {'order_id':query.id}
