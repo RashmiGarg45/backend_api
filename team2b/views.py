@@ -2165,10 +2165,12 @@ class ConversionStats(APIView):
 
 
                 d[name] =count
+                
+            if non_organic_count:
+                d["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
 
             output[campaign_name] = d
-            if non_organic_count:
-                output["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
+            
 
         return Response({
             'data':output,
