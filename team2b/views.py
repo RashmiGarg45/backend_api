@@ -2172,7 +2172,7 @@ class ConversionStats(APIView):
                 output[campaign_name] = d
 
         header = f"{'Campaign':<20} {'Non-Organic':>12} {'Organic':>10} {'RR (%)':>10}"
-        lines = [data_type + "*RR Summary:*", header, "-" * len(header)]
+        lines = ["*"+data_type + "RR Summary:*", header, "-" * len(header)]
         for campaign, stats in output.items():
             non_org = stats.get("Non-organic", stats.get("non-organic", 0))
             org = stats.get("Organic", stats.get("organic", 0))
@@ -2187,7 +2187,7 @@ class ConversionStats(APIView):
             "text": formatted_table
         }
 
-        webhook_url = 'https://chat.googleapis.com/v1/spaces/AAAAFdZDsFE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=GRQ8zGftP_Icrs7bsgNhFoLgV1LFrmChBJO7J5U5kis'
+        webhook_url = 'https://chat.googleapis.com/v1/spaces/AAQAU-R97AU/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=OqUekeKK07KIs1KJvUSmFhhk4NJS4H4PEDbklzGEY0M'
 
 
         response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
