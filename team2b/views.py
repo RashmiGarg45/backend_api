@@ -2165,11 +2165,34 @@ class ConversionStats(APIView):
 
 
                 d[name] =count
-                
+
             if non_organic_count:
                 d["RR"] = (non_organic_count / (organic_count+non_organic_count))*100
 
             output[campaign_name] = d
+
+        message_lines = ["*RR Summary:*"]
+        for campaign, stats in output.items():
+            line = f"\n*{campaign}*"
+            for key, value in stats.items():
+                line += f"\n- {key}: {value}"
+            message_lines.append(line)
+
+        formatted_message = "\n".join(message_lines)
+
+        payload = {
+            "text": formatted_message
+        }
+
+        webhook_url = 'https://chat.googleapis.com/v1/spaces/AAAAFdZDsFE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=GRQ8zGftP_Icrs7bsgNhFoLgV1LFrmChBJO7J5U5kis'
+        
+
+        response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+
+        if response.status_code == 200:
+            print("Message sent successfully.")
+        else:
+            print(f"Failed to send message: {response.status_code} - {response.text}")
             
 
         return Response({
