@@ -2150,7 +2150,8 @@ class ConversionStats(APIView):
         for campaign_name in scripts_list:
 
             data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=date).values('event_name').annotate(count=Count('id'))
-
+            
+            print (data)
             return Response({
                 'data':data,
             })
