@@ -4928,7 +4928,7 @@ class TikettOIDAPI(APIView):
         })
 
     def get(self, request):
-        time.sleep(random.randint(10,30))
+        time.sleep(random.randint(15,40))
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
