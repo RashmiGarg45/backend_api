@@ -2172,20 +2172,24 @@ class ConversionStats(APIView):
             output[campaign_name] = d
 
         message_lines = ["*RR Summary:*"]
+        header = f"{'Campaign':<20} {'Non-Organic':>12} {'Organic':>10} {'RR (%)':>10}"
+        lines = [header, "-" * len(header)]
         for campaign, stats in output.items():
-            line = f"\n*{campaign}*"
-            for key, value in stats.items():
-                line += f"\n- {key}: {value}"
-            message_lines.append(line)
+            non_org = stats.get("Non-organic", stats.get("non-organic", 0))
+            org = stats.get("Organic", stats.get("organic", 0))
+            rr = stats.get("RR", "")
+            line = f"{campaign:<20} {non_org:>12} {org:>10} {rr:>10.2f}" if rr != "" else f"{campaign:<20} {non_org:>12} {org:>10} {'':>10}"
+            lines.append(line)
 
-        formatted_message = "\n".join(message_lines)
+        formatted_table = "```\n" + "\n".join(lines) + "\n```"
 
+        # Send to Google Chat
         payload = {
-            "text": formatted_message
+            "text": formatted_table
         }
 
         webhook_url = 'https://chat.googleapis.com/v1/spaces/AAAAFdZDsFE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=GRQ8zGftP_Icrs7bsgNhFoLgV1LFrmChBJO7J5U5kis'
-        
+
 
         response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
 
