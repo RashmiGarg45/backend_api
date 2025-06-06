@@ -4870,6 +4870,7 @@ class HomiedevAPI(APIView):
     
 class TikettOIDAPI(APIView):
     def put(self, request):
+        time.sleep(random.randint(2,15))
         query = TikettOID()
         query.campaign_name = request.data.get('camp_name','tikettmodd')
         query.id = request.data.get('order_id')
