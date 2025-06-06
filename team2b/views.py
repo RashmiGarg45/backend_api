@@ -2140,7 +2140,7 @@ class ConversionStats(APIView):
 
         data_type = request.GET.get("type")
 
-        if data_type == "yesterday":
+        if data_type == "Yesterday":
             date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
@@ -2171,9 +2171,8 @@ class ConversionStats(APIView):
 
                 output[campaign_name] = d
 
-        message_lines = ["*RR Summary:*"]
         header = f"{'Campaign':<20} {'Non-Organic':>12} {'Organic':>10} {'RR (%)':>10}"
-        lines = [header, "-" * len(header)]
+        lines = [data_type + "*RR Summary:*", header, "-" * len(header)]
         for campaign, stats in output.items():
             non_org = stats.get("Non-organic", stats.get("non-organic", 0))
             org = stats.get("Organic", stats.get("organic", 0))
