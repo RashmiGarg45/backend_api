@@ -2134,6 +2134,24 @@ class ScriptRealtimeChecker2(APIView):
         except:
             return Response({
             })
+        
+class ConversionStats(APIView):
+    def get(self, request):
+
+        data_type = request.params.get("type")
+
+        if data_type == "yesterday":
+            date = (datetime.now()-timedelta(days=1)).strftime("%Y-%m-%d")
+        else:
+            date = (datetime.now()).strftime("%Y-%m-%d")
+
+        scripts_list = ["mcdeliverymodd"]#["galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "opaymodd"]
+
+        for campaign_name in scripts_list:
+
+            data = RevenueHelper.objects.filter(campaign_name=campaign_name,created_at__contains=date).values('event_name').annotate(count=Count('id'))
+
+            print (data)
             
 
 class ResetOrderId(APIView):

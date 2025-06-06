@@ -127,5 +127,6 @@ urlpatterns = [
     path("homiedev", views.HomiedevAPI.as_view(), name="cru_homiedev"),
     path("tikett", views.TikettOIDAPI.as_view(), name="cru_tikett"),
     path("apnatimeUID", views.ApnaTimeAPI.as_view(), name="cru_apna"),
+    path("rr_stats", views.ConversionStats.as_view(), name="cru_rr"),
     
 ]
