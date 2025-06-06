@@ -4884,7 +4884,7 @@ class TikettOIDAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        query = TikettOID.objects.latest('created_at')
+        query = TikettOID.objects.filter(used_at__isnull=False).latest('created_at')
         
         data = {
                 'order_id':query.id,
