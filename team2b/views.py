@@ -13,6 +13,7 @@ import requests
 
 from django.db.models import Count, Sum, Case, When, IntegerField, FloatField
 from django.db.models import Avg
+from django.db import transaction
 
 class GenericScriptFunctions(APIView):
     def get(self, request):
@@ -4919,6 +4920,7 @@ class HomiedevAPI(APIView):
     
 class TikettOIDAPI(APIView):
     def put(self, request):
+        pass
         query = TikettOID()
         query.campaign_name = request.data.get('camp_name','tikettmodd')
         query.id = request.data.get('order_id')
@@ -4928,21 +4930,25 @@ class TikettOIDAPI(APIView):
         })
 
     def get(self, request):
-        time.sleep(random.randint(15,40))
-        setUsed = request.GET.get('set_used',True)
-        if setUsed and (setUsed == 'False' or setUsed == 'false'):
-            setUsed = False
-        
-        query = TikettOID.objects.filter(used_at=None).order_by('-created_at').first()
-        
-        data = {
-                'order_id':query.id,
-        }
-        if setUsed:
+        # time.sleep(random.randint(15,40))
+        # setUsed = request.GET.get('set_used',True)
+        # if setUsed and (setUsed == 'False' or setUsed == 'false'):
+        #     setUsed = False
+
+        with transaction.atomic():
+            query = TikettOID.objects.select_for_update().filter(used_at=None).order_by('-created_at').first()
+
+            data = {'order_id':query.id,}
+
             query = TikettOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        return Response({
-            'body':data,
-        })
+
+            next_id = query.id + random.randint(1,2)
+
+            new_ticket = TikettOID.objects.create(id=next_id,campaign_name=request.data.get('camp_name', 'tikettmodd'),used_at=None)
+
+            return Response({
+                'body':data,
+            })
     
 class ApnaTimeAPI(APIView):
     def put(self, request):
