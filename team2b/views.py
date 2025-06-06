@@ -4939,7 +4939,7 @@ class TikettOIDAPI(APIView):
             query = TikettOID.objects.select_for_update().filter(used_at=None).order_by('-created_at').first()
 
             data = {'order_id':query.id}
-            next_id = query.id + random.randint(1,2)
+            next_id = int(query.id) + random.randint(1,2)
 
             query = TikettOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
