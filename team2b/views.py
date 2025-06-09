@@ -2172,6 +2172,8 @@ class ConversionStats(APIView):
 
                 output[campaign_name] = d
 
+        output = dict(sorted(output.items(), key=lambda x: x[1].get("RR", 0), reverse=True))
+
         header = f"{'Campaign':<20} {'Non-Organic':>12} {'Organic':>10} {'RR (%)':>10}"
         lines = ["*"+data_type + "RR Summary:*", header, "-" * len(header)]
         for campaign, stats in output.items():
