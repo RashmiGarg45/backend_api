@@ -2162,6 +2162,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
         return {0: 7.7, 1:5.8, 2: 5}
+    
+    elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
+        return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
 
 
 class checkEligibility(APIView):
