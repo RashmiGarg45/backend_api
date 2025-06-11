@@ -1879,7 +1879,11 @@ class IndigoV2MiningAPI(APIView):
             'EasyTripPlanners',
             'travelmaster.in',
             'NUPUR TRAVELS',
-            'Yatra Online Pvt Ltd'
+            'Yatra Online Pvt Ltd',
+            'M**********************D',
+            'E********p',
+            'P***m',
+            'E**************s'
         ]
         
         filter_dict = {}
