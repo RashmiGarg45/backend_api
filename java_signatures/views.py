@@ -2177,6 +2177,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "breakthroughkingdommodd" and event_name == "5_47":
         return {0:10, 3:33, 5:25, 7:20}
+    
+    elif campaign_name == "kriptoauto" and event_name == "lpfhv5":
+        return {0:33, 1:20, 3:16}
 
 
 class checkEligibility(APIView):
