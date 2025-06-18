@@ -129,5 +129,6 @@ urlpatterns = [
     path("apnatimeUID", views.ApnaTimeAPI.as_view(), name="cru_apna"),
     path("motilal", views.MotiLalAPI.as_view(), name="cru_motilal"),
     path("rr_stats", views.ConversionStats.as_view(), name="cru_rr"),
+    path("frendipay", views.FrendipayAPI.as_view(), name="cru_frendipay"),
     
 ]
