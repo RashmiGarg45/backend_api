@@ -1891,14 +1891,14 @@ class IndigoV2MiningAPI(APIView):
         
         cc = 21
         if not unused_count:
-            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date').count()
+            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date', 'created_at').count()
         
         if unused_count or (not unused_count and cc>20):
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('departure_date', 'created_at')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date', 'created_at')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:20].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date', 'created_at')[0:50].first()
         
         if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
@@ -2150,7 +2150,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "opaymodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd"]
+        scripts_list = ["galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "opaymodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd", "intercopromodd"]
 
         output = {}
         for campaign_name in scripts_list:
