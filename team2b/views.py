@@ -1898,7 +1898,7 @@ class IndigoV2MiningAPI(APIView):
         if not query:
             query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:50].first()
+            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date')[0:20].first()
         
         if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
