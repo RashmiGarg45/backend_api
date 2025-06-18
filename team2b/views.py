@@ -14,6 +14,7 @@ import requests
 from django.db.models import Count, Sum, Case, When, IntegerField, FloatField
 from django.db.models import Avg
 from django.db import transaction
+from django.db.models.functions import Cast
 
 class GenericScriptFunctions(APIView):
     def get(self, request):
@@ -1898,7 +1899,7 @@ class IndigoV2MiningAPI(APIView):
         if not query:
             query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='Company',**filter_dict).order_by('departure_date', 'created_at')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict).exclude(company__in=private_companies).order_by('departure_date', 'created_at')[0:50].first()
+            query = IndigoV2Mining.objects.annotate(fare_float=Cast('fare', FloatField())).filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict, fare_float__gt=1000.0).exclude(company__in=private_companies).order_by('departure_date', 'created_at')[0:50].first()
         
         if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
             used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
