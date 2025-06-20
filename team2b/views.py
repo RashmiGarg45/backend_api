@@ -79,11 +79,28 @@ class GenericScriptFunctions(APIView):
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
+
+        private_companies = [
+            'MAKEMYTRIP INDIA PVT LTD',
+            'Paytm',
+            'Cleartrip Private Limited',
+            'CLEARTRIP TRAVELS PVT LTD',
+            'EaseMyTrip',
+            'EasyTripPlanners',
+            'travelmaster.in',
+            'NUPUR TRAVELS',
+            'Yatra Online Pvt Ltd',
+            'M**********************D',
+            'E********p',
+            'P***m',
+            'E**************s'
+        ]
+
         for key,value in tablesDict.items():
             ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
-            if key == "indigomoddteam2modd":
-                ids_mined[key] = tablesDict[key].objects.filter(company__in=("Company", "None"), created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
+            if key == "indigomoddteam2modd":           
+                ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
 
         from data_tracking.util import googleChatBot_send_message
         message = {
@@ -205,12 +222,27 @@ class GenericUnusedIdScriptFunctions(APIView):
             'ontimeautoios_UID': Ontime,
             'stolototmodd_UID': Stoloto,
         }
+        private_companies = [
+            'MAKEMYTRIP INDIA PVT LTD',
+            'Paytm',
+            'Cleartrip Private Limited',
+            'CLEARTRIP TRAVELS PVT LTD',
+            'EaseMyTrip',
+            'EasyTripPlanners',
+            'travelmaster.in',
+            'NUPUR TRAVELS',
+            'Yatra Online Pvt Ltd',
+            'M**********************D',
+            'E********p',
+            'P***m',
+            'E**************s'
+        ]
         ids_mined = {}
         for key in tablesDict.keys():
             ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
 
             if key == "indigomoddteam2modd":
-                ids_mined[key] = tablesDict[key].objects.filter(company__in=("Company", "None"), used_at = None).count()
+                ids_mined[key] = ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
 
 
         from data_tracking.util import googleChatBot_send_message
