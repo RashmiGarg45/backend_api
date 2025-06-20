@@ -99,7 +99,7 @@ class GenericScriptFunctions(APIView):
         for key,value in tablesDict.items():
             ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
-            if key == "indigomoddteam2modd":           
+            if key == "indigomoddteam2modd_OID":           
                 ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
 
         from data_tracking.util import googleChatBot_send_message
@@ -241,7 +241,7 @@ class GenericUnusedIdScriptFunctions(APIView):
         for key in tablesDict.keys():
             ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
 
-            if key == "indigomoddteam2modd":
+            if key == "indigomoddteam2modd_OID":
                 ids_mined[key] = ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
 
 
