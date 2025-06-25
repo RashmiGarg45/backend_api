@@ -2202,16 +2202,16 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "tejimaandiauto" and event_name == "csqfum":
         return {0:20, 1:16.6, 2: 14.28, 3:12.5}
 
-    elif campaign_name == "friendipayomauto" and event_name == "0_36":
+    elif campaign_name == "teenpatiauto" and event_name == "0_36":
         return {0:20}
     
-    elif campaign_name == "friendipayomauto" and event_name == "1_08":
+    elif campaign_name == "teenpatiauto" and event_name == "1_08":
         return {0:38, }
     
-    elif campaign_name == "friendipayomauto" and event_name == "3_6":
+    elif campaign_name == "teenpatiauto" and event_name == "3_6":
         return {0:41, 1: 29}
     
-    elif campaign_name == "friendipayomauto" and event_name == "10_79":
+    elif campaign_name == "teenpatiauto" and event_name == "10_79":
         return {1:41, 3:41}
 
 
