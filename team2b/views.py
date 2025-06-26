@@ -5089,7 +5089,7 @@ class MagiclandAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Magicland.objects.filter(used_at=None)[0:50].first()
+        query = Magicland.objects.filter(used_at=None).first()
         
         data = {
                 'user_id':query.id,
