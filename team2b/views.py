@@ -3468,6 +3468,9 @@ class GameRummyAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
+        if channel in ["quasarmobi", "offersinfinite", "mobiaviator"]:
+            return Response({'body':{}})
+
         
         query = GameRummy.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
