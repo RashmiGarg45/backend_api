@@ -76,6 +76,7 @@ class GenericScriptFunctions(APIView):
             'shopeephtauto_UID' : ShopeephUID,
             'ontimeautoios_UID': Ontime,
             'stolototmodd_UID': Stoloto,
+            'magiclandmodd': Magicland
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -221,6 +222,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'shopeephtauto_UID' : ShopeephUID,
             'ontimeautoios_UID': Ontime,
             'stolototmodd_UID': Stoloto,
+            'magiclandmodd': Magicland
         }
         private_companies = [
             'MAKEMYTRIP INDIA PVT LTD',
