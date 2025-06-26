@@ -5076,7 +5076,6 @@ class MagiclandAPI(APIView):
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
-        query.payment_data = request.data.get('extra_details',{}).get('payoutDate')
         query.save()
         return Response({
         })
@@ -5090,7 +5089,7 @@ class MagiclandAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Magicland.objects.filter(used_at=None).order_by('-payment_data')[0:50].first()
+        query = Magicland.objects.filter(used_at=None)[0:50].first()
         
         data = {
                 'user_id':query.id,
