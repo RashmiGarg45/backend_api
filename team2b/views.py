@@ -3475,6 +3475,19 @@ class GameRummyAPI(APIView):
 
         
         query = GameRummy.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            bt3_count = GameRummy.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
+            print (bt3_count)
+
+            if bt3_count > 10:
+                return Response({'body':{"status": "Not Allowed", "current_count": bt3_count}})
+
+        elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
+            bt2_count = GameRummy.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
+            print (bt2_count)
+            if bt2_count > 10:
+                return Response({'body':{"status": "Not Allowed","current_count": bt2_count}})
         
         data = {
                 'user_id':query.id,
