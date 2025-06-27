@@ -2040,7 +2040,7 @@ class FoxtaleOrderId(models.Model):
     price = models.FloatField(default=0)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
-    order_placed_date = models.DateTimeField(default='',blank=True)
+    order_placed_date = models.DateTimeField(default=None,blank=True, null=True)
     
     class Meta:
         indexes = [
