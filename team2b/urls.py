@@ -132,5 +132,6 @@ urlpatterns = [
     path("frendipay", views.FrendipayAPI.as_view(), name="cru_frendipay"),
     path("magicland", views.MagiclandAPI.as_view(), name="cru_magicland"),
     path("foxtale", views.FoxtaleMiningAPI.as_view(), name="cru_foxtale"),
+    path("hoteltonight", views.HoteltonightAPI.as_view(), name="cru_hoteltonight"),
     
 ]
