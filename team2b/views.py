@@ -5153,7 +5153,9 @@ class FoxtaleMiningAPI(APIView):
         
         filter_dict = {}
 
-        query = FoxtaleOrderId.objects.filter(used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
+        today = datetime.now().strftime('%Y-%m-%d')
+
+        query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(today),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
