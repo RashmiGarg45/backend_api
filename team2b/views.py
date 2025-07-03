@@ -155,7 +155,7 @@ class GenericScriptFunctions(APIView):
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
         # print(json.dumps(message['cardsV2'][0]['card'],indent=4))
 
-        googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)   
+        # googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)   
         googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
@@ -299,7 +299,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                             }
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
-        googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
+        # googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
         googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
