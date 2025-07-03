@@ -2187,7 +2187,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "paymayamodd", "opaymodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd", "intercopromodd", "opaynewmodd"]
+        scripts_list = ["raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "mxplayertmodd", "paymayamodd", "opaymodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd", "intercopromodd", "opaynewmodd"]
 
         output = {}
         for campaign_name in scripts_list:
