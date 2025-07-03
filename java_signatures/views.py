@@ -2214,17 +2214,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "teenpatiauto" and event_name == "10_79":
         return {1:41, 3:41}
 
-    elif campaign_name == "istanbulairportauto" and event_name == "pykeub":
-        return {0:1.3, 1:1.3}
-    
-    elif campaign_name == "istanbulairportauto" and event_name == "5pfocr":
-        return {0:7, 1:7}
-    
-    elif campaign_name == "istanbulairportauto" and event_name == "a4f948":
-        return {0:7, 1:7}
-    
-    elif campaign_name == "istanbulairportauto" and event_name == "xsq5zp":
-        return {1:7}
+    elif campaign_name == "alphabetoftastemodd" and event_name == "purchase_start":
+        return {0:50, 1:33, 3:25, 4:20}
 
 
 class checkEligibility(APIView):
