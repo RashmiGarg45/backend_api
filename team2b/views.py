@@ -21,7 +21,7 @@ class GenericScriptFunctions(APIView):
         tablesDict = {
             # 'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
             # 'watchomodd_OID':WatchoOrderIdsMining,
-            # 'pepperfrymodd_OID':PepperfryOrderIds,
+            'pepperfryyauto_OID':PepperfryOrderIds,
             # 'tripsygamesmodd_OID': TripsygamesOrderIds,
             # 'ostinshopmodd_OID': OstinShopScriptOrderIds,
             # 'lazuritappmetrica_OID': LazuritOrderIds,
@@ -168,7 +168,7 @@ class GenericUnusedIdScriptFunctions(APIView):
         tablesDict = {
             # 'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
             # 'watchomodd_OID':WatchoOrderIdsMining,
-            # 'pepperfrymodd_OID':PepperfryOrderIds,
+            'pepperfryyauto_OID':PepperfryOrderIds,
             # 'tripsygamesmodd_OID': TripsygamesOrderIds,
             # 'ostinshopmodd_OID': OstinShopScriptOrderIds,
             # 'lazuritappmetrica_OID': LazuritOrderIds,
