@@ -2088,6 +2088,7 @@ class Yesmadam(models.Model):
     booking_date = models.DateTimeField(default=None,blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    price = models.FloatField(default=0)
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
