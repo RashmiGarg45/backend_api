@@ -2239,7 +2239,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:65, 1:40}
 
     elif campaign_name == "vpnpantheriosmodd" and event_name == "trial converted":
-        return {0:20, 1:14.2, 2:12.5, 3:11.1}
+        return {2:33, 3:20, 4:14.28, 5:12.5, 6:11.1}
 
 
 class checkEligibility(APIView):
