@@ -134,4 +134,5 @@ urlpatterns = [
     path("foxtale", views.FoxtaleMiningAPI.as_view(), name="cru_foxtale"),
     path("hoteltonight", views.HoteltonightAPI.as_view(), name="cru_hoteltonight"),
     path("stoloto_cif", views.stolotoCIFAPI.as_view(), name="cru_stoloto_cif"),
+    path("yesmadam", views.YesmadamAPI.as_view(), name="cru_yesmadam"),
 ]
