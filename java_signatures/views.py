@@ -1957,7 +1957,7 @@ class TrackEvents(APIView):
 
 def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "kfcmexicotmodd":
-        return 22
+        return 16 #percentage
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
@@ -2313,9 +2313,10 @@ class checkEligibility(APIView):
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
 
-            completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", event_day__lte=event_day).values("event_count")
+            today = datetime.now().strftime('%Y-%m-%d')
+            completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
             completed_event_count = sum((event['event_count'] for event in completed_event_count))
-            if required_events and completed_event_count >= required_events:
+            if required_events and (completed_event_count/install_count)*100 >= required_events:
                 is_eligible = False
             
             if is_eligible:
