@@ -136,4 +136,5 @@ urlpatterns = [
     path("stoloto_cif", views.stolotoCIFAPI.as_view(), name="cru_stoloto_cif"),
     path("yesmadam", views.YesmadamAPI.as_view(), name="cru_yesmadam"),
     path("beymen", views.BeymenAPI.as_view(), name="cru_beymen"),
+    path("bnc", views.BncAPI.as_view(), name="cru_bnc"),
 ]
