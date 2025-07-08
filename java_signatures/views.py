@@ -2314,6 +2314,7 @@ class checkEligibility(APIView):
             is_eligible = total_event_count < required_event_count
 
             completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", event_day__lte=event_day).values("event_count")
+            completed_event_count = sum((event['event_count'] for event in completed_event_count))
             if required_events and completed_event_count >= required_events:
                 is_eligible = False
             
