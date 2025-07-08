@@ -2217,11 +2217,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "alphabetoftastemodd" and event_name == "purchase_start":
         return {0:50, 1:33, 3:25, 4:20}
 
-    elif campaign_name == "kafimodd" and event_name == "deposit_Trade_succeeded":
-        return {0:68, 2:44, 3:29}
+    elif campaign_name == "kafimodd" and event_name == "stock_order_matching":
+        return {0:41, 1:33, 2:25, 3:20}
     
-    elif campaign_name == "kafitradeiosmodd" and event_name == "deposit_Trade_succeeded":
-        return {0:68, 2:44, 3:29}
+    elif campaign_name == "kafitradeiosmodd" and event_name == "stock_order_matching":
+        return {0:41, 1:33, 2:25, 3:20}
 
     elif campaign_name == "mcdeliverymodd" and event_name == "af_purchase_delivery":
         return {0:8, 1:7, 2:6, 3:5.55}
