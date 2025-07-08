@@ -1955,6 +1955,9 @@ class TrackEvents(APIView):
         
         return Response({"status": 200, "message": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
+def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
+    if campaign_name == "kfcmexicotmodd":
+        return 22
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
@@ -2200,7 +2203,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:10, 1:7, 2:5, 3:4.34, 4:3.8}
     
     elif campaign_name == "kfcmexicotmodd" and event_name == "first_purchase":
-        return {0:9, 3:5}
+        return {0:5, 3:5}
     
     elif campaign_name == "tejimaandiauto" and event_name == "csqfum":
         return {0:20, 1:16.6, 2: 14.28, 3:12.5}
@@ -2300,6 +2303,7 @@ class checkEligibility(APIView):
         target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
         required_installs = day_wise_stats[target_day]
 
+        required_events = events_per_day_stats(campaign_name, event_name, channel, network, offer_id)
 
         is_eligible = False
 
@@ -2309,6 +2313,10 @@ class checkEligibility(APIView):
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
 
+            completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", event_day__lte=event_day).values("event_count")
+            if required_events and completed_event_count >= required_events:
+                is_eligible = False
+            
             if is_eligible:
                 event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
 
