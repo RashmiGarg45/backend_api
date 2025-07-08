@@ -78,7 +78,8 @@ class GenericScriptFunctions(APIView):
             # 'stolototmodd_UID': Stoloto,
             # 'magiclandmodd': Magicland,
             'foxtalemodd': FoxtaleOrderId,
-            'yesmadammodd': Yesmadam
+            'yesmadammodd': Yesmadam,
+            'hoteltonight': Hoteltonight,
         }
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -226,7 +227,8 @@ class GenericUnusedIdScriptFunctions(APIView):
             'stolototmodd_UID': Stoloto,
             # 'magiclandmodd': Magicland,
             'foxtalemodd': FoxtaleOrderId,
-            'yesmadammodd': Yesmadam
+            'yesmadammodd': Yesmadam,
+            'hoteltonight': Hoteltonight,
         }
         private_companies = [
             'MAKEMYTRIP INDIA PVT LTD',
