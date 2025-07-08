@@ -2313,11 +2313,13 @@ class checkEligibility(APIView):
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
 
-            today = datetime.now().strftime('%Y-%m-%d')
-            completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
-            completed_event_count = sum((event['event_count'] for event in completed_event_count))
-            if required_events and (completed_event_count/install_count)*100 >= required_events:
-                is_eligible = False
+            if required_events:
+                from datetime import datetime
+                today = datetime.now().strftime('%Y-%m-%d')
+                completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                completed_event_count = sum((event['event_count'] for event in completed_event_count))
+                if (completed_event_count/install_count)*100 >= required_events:
+                    is_eligible = False
             
             if is_eligible:
                 event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
