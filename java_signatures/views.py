@@ -2258,6 +2258,7 @@ class checkEligibility(APIView):
         offer_serial = request.GET.get("offer_serial")
         event_day = request.GET.get("event_day")
         revenue = request.GET.get("revenue", 0)
+        track_only = request.GET.get("track_only", False)
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
@@ -2321,7 +2322,7 @@ class checkEligibility(APIView):
                 if (completed_event_count/install_count)*100 >= required_events:
                     is_eligible = False
             
-            if is_eligible:
+            if is_eligible and not track_only:
                 event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
 
                 if not created:
