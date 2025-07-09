@@ -5354,10 +5354,36 @@ class BncAPI(APIView):
         query = Bncauto.objects.latest('created_at')
         
         data = {
-                'order_id':query.id,
+                'user_id':query.id,
         }
         if setUsed:
             query = Bncauto.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+class KfcAPI(APIView):
+    def put(self, request):
+        query = Kfcmexico()
+        query.campaign_name = request.data.get('camp_name','kfcmexicotmodd')
+        query.id = request.data.get('order_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = Kfcmexico.objects.latest('created_at')
+        
+        data = {
+                'order_id':query.id,
+        }
+        if setUsed:
+            query = Kfcmexico.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
         })

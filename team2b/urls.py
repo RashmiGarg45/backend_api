@@ -137,4 +137,5 @@ urlpatterns = [
     path("yesmadam", views.YesmadamAPI.as_view(), name="cru_yesmadam"),
     path("beymen", views.BeymenAPI.as_view(), name="cru_beymen"),
     path("bnc", views.BncAPI.as_view(), name="cru_bnc"),
+    path("kfc", views.KfcAPI.as_view(), name="cru_kfc"),
 ]
