@@ -2174,6 +2174,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
         return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
+
+    elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase" and channel in ["mobpine", "77ads", "appamplify"]:
+        return {0:20, 1:17, 2:14}
     
     elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase":
         return {0: 9, 1:8.33, 2: 7.14}
@@ -2255,9 +2258,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "dupointmodd" and event_name == "yh7wzr":
         return {0:33, 1:22, 2:18, 3:16}
-
-    elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase" and channel in ["mobpine", "77ads", "appamplify"]:
-        return {0:20, 1:17, 2:14}
 
 
 class checkEligibility(APIView):
