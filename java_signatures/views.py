@@ -2334,6 +2334,81 @@ class checkEligibility(APIView):
         
         return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
 
+class EventCount(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        offer_serial = request.GET.get("offer_serial")
+        event_day = request.GET.get("event_day")
+        revenue = request.GET.get("revenue", 0)
+        track_only = request.GET.get("track_only", False)
+
+        if not all([campaign_name, event_name, offer_serial, event_day]):
+            return Response({"status": 400,"message": "Missing required parameters","data": {}})
+
+        try:
+            event_day = int(event_day)
+        except ValueError:
+            return Response({"status": 400,"message": "Invalid event_day. It must be an integer.","data": {}})
+
+        if event_day > 7:
+            return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
+
+
+        try:
+            install_details = InstallData.objects.get(serial=offer_serial)
+        except InstallData.DoesNotExist:
+            return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
+
+        channel = install_details.channel
+        network = install_details.network
+        offer_id = install_details.offer_id
+        install_count = install_details.installs
+        offer_serial = install_details.serial
+
+        if install_details.campaign_name != campaign_name:
+            return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
+
+        
+        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id)
+
+        if not day_wise_stats:
+            return Response({"status": 400, "message": "Requirements not found", "data": {}})
+
+        status = 500
+        
+        stat_days = list(day_wise_stats.keys())
+        min_day = min(stat_days)
+        # max_day = max(day_wise_stats.keys())
+
+        if event_day < min_day:
+            return Response({"status": 500, "message": "Min day should be "+ str(min_day), "data": {}})
+        
+        target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
+        required_installs = day_wise_stats[target_day]
+
+        required_events = events_per_day_stats(campaign_name, event_name, channel, network, offer_id)
+
+        is_eligible = False
+
+        if install_count > required_installs:
+            # event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+            # total_event_count = sum((event['event_count'] for event in event_details))
+            # required_event_count = int(round(install_count / required_installs))
+            # is_eligible = total_event_count < required_event_count
+
+            if required_events:
+                from datetime import datetime
+                today = datetime.now().strftime('%Y-%m-%d')
+                completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                completed_event_count = sum((event['event_count'] for event in completed_event_count))
+                if (completed_event_count/install_count)*100 <= required_events:
+                    is_eligible = True            
+                    
+            status = 200
+        
+        return Response({"status": status, "message": "Success", "data": {"is_allowed": is_eligible}})
+
 class camps_running_status(APIView):
     def get(self, request):        
 
