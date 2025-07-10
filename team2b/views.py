@@ -1898,8 +1898,8 @@ class IndigoV2MiningAPI(APIView):
             query.save()
             return Response({
             })
-        except:
-            return Response({
+        except Exception as e:
+            return Response({"error": str(e)
             })
 
     def get(self, request):
