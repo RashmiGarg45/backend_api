@@ -2258,6 +2258,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "dupointmodd" and event_name == "yh7wzr":
         return {0:33, 1:22, 2:18, 3:16}
+    
+    elif campaign_name == "youset2modd" and event_name == "generate_proposal_auto":
+        return {0:33, 1:22, 2:18}
+    
+    elif campaign_name == "youset2modd" and event_name == "generate_proposal_home":
+        return {0:41, 1:33}
 
 
 class checkEligibility(APIView):
