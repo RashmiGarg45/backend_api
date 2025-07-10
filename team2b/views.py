@@ -16,71 +16,109 @@ from django.db.models import Avg
 from django.db import transaction
 from django.db.models.functions import Cast
 
+def mining_apps():
+    from datetime import datetime,timedelta
+
+    d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'gomcdoauto/mcdot2ios_OID': ['gomcdoauto', 'mcdot2ios'], 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'apnatimeauto_UID': 'apnatimeauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios']}
+
+    running_apps = []
+    from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    to_date = (datetime.now() - timedelta(days=0)).strftime('%Y-%m-%d')
+
+    report6Data = requests.get('https://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}'.format(from_date,to_date)).json()
+
+    running_apps = []
+
+    for key, value in report6Data.items():
+        yesterday_i2 = value.get(from_date, {}).get("i1")
+        today_i2 = value.get(to_date, {}).get("i1")
+
+        if yesterday_i2 or today_i2:
+            running_apps.append(key) 
+
+    output = []
+    for key, value in d.items():
+        if isinstance(value, list):
+            for i in value:
+                if i in running_apps:
+                    output.append(key)
+        else:
+            if value in running_apps:
+                output.append(key)
+
+    return output
+
 class GenericScriptFunctions(APIView):
     def get(self, request):
-        tablesDict = {
-            # 'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
-            # 'watchomodd_OID':WatchoOrderIdsMining,
+        all_apps = {
+            'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
+            'watchomodd_OID':WatchoOrderIdsMining,
             'pepperfryyauto_OID':PepperfryOrderIds,
-            # 'tripsygamesmodd_OID': TripsygamesOrderIds,
-            # 'ostinshopmodd_OID': OstinShopScriptOrderIds,
-            # 'lazuritappmetrica_OID': LazuritOrderIds,
+            'tripsygamesmodd_OID': TripsygamesOrderIds,
+            'ostinshopmodd_OID': OstinShopScriptOrderIds,
+            'lazuritappmetrica_OID': LazuritOrderIds,
             'gomcdoauto/mcdot2ios_OID': GomcdOrderIds,
-            # 'bharatmatrimonymodd_UID': BharatmatrimonyUserIds,
-            # 'weworldauto_UID': WeWorldIds,
-            # 'fantosst2modd_UID': FantossUserIds,
-            # 'okeyvipmodd_UID': OkeyvipUserId,
-            # 'scoreone_UID': ScoreoneUserId,
-            # 'ghnmodd_UID': ghnUserId,
+            'bharatmatrimonymodd_UID': BharatmatrimonyUserIds,
+            'weworldauto_UID': WeWorldIds,
+            'fantosst2modd_UID': FantossUserIds,
+            'okeyvipmodd_UID': OkeyvipUserId,
+            'scoreone_UID': ScoreoneUserId,
+            'ghnmodd_UID': ghnUserId,
             'rummytimemodd_UID': RummytimeUserId,
-            # 'sephoramodd_OID': SephoraOrderIdV2,
-            # 'pumaauto_OID': PumaOrderId, 
-            # 'timoclubauto_UID': TimoclubUserId,
-            # 'apnatimeauto_UID': ApnatimeUserId,
-            # 'khiladiaddamodd_UID': KhiladiaddaUserId,
-            # 'datingglobalt2modd_UID': DatingGlobalUserId,
-            # 'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
+            'sephoramodd_OID': SephoraOrderIdV2,
+            'pumaauto_OID': PumaOrderId, 
+            'timoclubauto_UID': TimoclubUserId,
+            'apnatimeauto_UID': ApnatimeUserId,
+            'khiladiaddamodd_UID': KhiladiaddaUserId,
+            'datingglobalt2modd_UID': DatingGlobalUserId,
+            'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
             'indigomoddteam2modd_OID': IndigoV2Mining,
-            # 'samsclubmodd_UID': SamsclubMemberIds,
-            # 'mumzworldautoios_OID':MumzworldOrderIds,
-            # 'damnraymodd_OID':DamnrayOrderIds,
-            # 'rentmojomodd_UID':RentomojoUserId,
-            # 'lightinthebox_OID':LightInTheBox,
-            # 'ladygentlemanmodd_OID': Ladygentleman,
-            # 'tajrummymodd_UID': Tajrummy,
-            # 'bet22modd/planbetmodd_UID': Bet22,
-            # 'reservamodd_UID': Reserva,
-            # 'gurushortmodd_UID': GuruShort,
-            # 'gurushortmodd_OID': GuruShortOrderId,
-            # 'jungleepokerauto_UID': Jungleepoker,
+            'samsclubmodd_UID': SamsclubMemberIds,
+            'mumzworldautoios_OID':MumzworldOrderIds,
+            'damnraymodd_OID':DamnrayOrderIds,
+            'rentmojomodd_UID':RentomojoUserId,
+            'lightinthebox_OID':LightInTheBox,
+            'ladygentlemanmodd_OID': Ladygentleman,
+            'tajrummymodd_UID': Tajrummy,
+            'bet22modd/planbetmodd_UID': Bet22,
+            'reservamodd_UID': Reserva,
+            'gurushortmodd_UID': GuruShort,
+            'gurushortmodd_OID': GuruShortOrderId,
+            'jungleepokerauto_UID': Jungleepoker,
             'gamerummyprimemodd_UID': GameRummy,
-            # 'navrangmodd_UID': Navrang,
-            # 'flappdealsmodd_OID':Flappdeals,
-            # 'laundrymateauto_OID': Laundrymate,
-            # 'parimatchmodd_UID': Parimatch,
-            # 'epocosmeticmodd': EpoCosmetic,
-            # 'kisankonnectmodd_OID': KisanKonnect,
-            # 'ohiauto_UID': Ohi,
-            # 'adda52_UID': Adda,
-            # 'adda52_OID': AddaOrderId,
-            # 'shopeevn_UID': ShopeevnUID,
-            # 'shopeevn_OID': ShopeevnOID,
+            'navrangmodd_UID': Navrang,
+            'flappdealsmodd_OID':Flappdeals,
+            'laundrymateauto_OID': Laundrymate,
+            'parimatchmodd_UID': Parimatch,
+            'epocosmeticmodd': EpoCosmetic,
+            'kisankonnectmodd_OID': KisanKonnect,
+            'ohiauto_UID': Ohi,
+            'adda52_UID': Adda,
+            'adda52_OID': AddaOrderId,
+            'shopeevn_UID': ShopeevnUID,
+            'shopeevn_OID': ShopeevnOID,
             'poppolivetmodd_UID': Poppolive,
-            # 'shopeemy_UID': ShopeemyUID,
+            'shopeemy_UID': ShopeemyUID,
             'shopeeid_UID': ShopeeidUID,
-            # 'shiprocketcouriert_UID': Shiprocket,
-            # 'novawateriosmodd_OID': Novawater,
-            # 'moglixauto_OID': Moglix,
+            'shiprocketcouriert_UID': Shiprocket,
+            'novawateriosmodd_OID': Novawater,
+            'moglixauto_OID': Moglix,
             'viuhkmodd_UID': Viu,
             'dupoin_UID': Dupoin,
             'shopeephtauto_UID' : ShopeephUID,
-            # 'ontimeautoios_UID': Ontime,
-            # 'stolototmodd_UID': Stoloto,
-            # 'magiclandmodd': Magicland,
+            'ontimeautoios_UID': Ontime,
+            'stolototmodd_UID': Stoloto,
+            'magiclandmodd': Magicland,
             'foxtalemodd': FoxtaleOrderId,
             'yesmadammodd': Yesmadam,
             'hoteltonight': Hoteltonight,
         }
+
+        running_apps = mining_apps()
+        tablesDict = {}
+        for i in running_apps:
+            tablesDict[i] = all_apps.get(key)
+
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
 
@@ -167,69 +205,75 @@ class GenericScriptFunctions(APIView):
 
 class GenericUnusedIdScriptFunctions(APIView):
     def get(self, request):
-        tablesDict = {
-            # 'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
-            # 'watchomodd_OID':WatchoOrderIdsMining,
+        all_apps = {
+            'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
+            'watchomodd_OID':WatchoOrderIdsMining,
             'pepperfryyauto_OID':PepperfryOrderIds,
-            # 'tripsygamesmodd_OID': TripsygamesOrderIds,
-            # 'ostinshopmodd_OID': OstinShopScriptOrderIds,
-            # 'lazuritappmetrica_OID': LazuritOrderIds,
+            'tripsygamesmodd_OID': TripsygamesOrderIds,
+            'ostinshopmodd_OID': OstinShopScriptOrderIds,
+            'lazuritappmetrica_OID': LazuritOrderIds,
             'gomcdoauto/mcdot2ios_OID': GomcdOrderIds,
-            # 'bharatmatrimonymodd_UID': BharatmatrimonyUserIds,
-            # 'weworldauto_UID': WeWorldIds,
-            # 'fantosst2modd_UID': FantossUserIds,
-            # 'okeyvipmodd_UID': OkeyvipUserId,
-            # 'scoreone_UID': ScoreoneUserId,
-            # 'ghnmodd_UID': ghnUserId,
+            'bharatmatrimonymodd_UID': BharatmatrimonyUserIds,
+            'weworldauto_UID': WeWorldIds,
+            'fantosst2modd_UID': FantossUserIds,
+            'okeyvipmodd_UID': OkeyvipUserId,
+            'scoreone_UID': ScoreoneUserId,
+            'ghnmodd_UID': ghnUserId,
             'rummytimemodd_UID': RummytimeUserId,
-            # 'sephoramodd_OID': SephoraOrderIdV2,
-            # 'pumaauto_OID': PumaOrderId, 
-            # 'timoclubauto_UID': TimoclubUserId,
-            # 'apnatimeauto_UID': ApnatimeUserId,
-            # 'khiladiaddamodd_UID': KhiladiaddaUserId,
-            # 'datingglobalt2modd_UID': DatingGlobalUserId,
-            # 'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
+            'sephoramodd_OID': SephoraOrderIdV2,
+            'pumaauto_OID': PumaOrderId, 
+            'timoclubauto_UID': TimoclubUserId,
+            'apnatimeauto_UID': ApnatimeUserId,
+            'khiladiaddamodd_UID': KhiladiaddaUserId,
+            'datingglobalt2modd_UID': DatingGlobalUserId,
+            'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
             'indigomoddteam2modd_OID': IndigoV2Mining,
-            # 'samsclubmodd_UID': SamsclubMemberIds,
-            # 'mumzworldautoios_OID':MumzworldOrderIds,
-            # 'damnraymodd_OID':DamnrayOrderIds,
-            # 'rentmojomodd_UID':RentomojoUserId,
-            # 'lightinthebox_OID':LightInTheBox,
-            # 'ladygentlemanmodd_OID': Ladygentleman,
-            # 'tajrummymodd_UID': Tajrummy,
-            # 'bet22modd/planbetmodd_UID': Bet22,
-            # 'reservamodd_UID': Reserva,
-            # 'gurushortmodd_UID': GuruShort,
-            # 'gurushortmodd_OID': GuruShortOrderId,
-            # 'jungleepokerauto_UID': Jungleepoker,
+            'samsclubmodd_UID': SamsclubMemberIds,
+            'mumzworldautoios_OID':MumzworldOrderIds,
+            'damnraymodd_OID':DamnrayOrderIds,
+            'rentmojomodd_UID':RentomojoUserId,
+            'lightinthebox_OID':LightInTheBox,
+            'ladygentlemanmodd_OID': Ladygentleman,
+            'tajrummymodd_UID': Tajrummy,
+            'bet22modd/planbetmodd_UID': Bet22,
+            'reservamodd_UID': Reserva,
+            'gurushortmodd_UID': GuruShort,
+            'gurushortmodd_OID': GuruShortOrderId,
+            'jungleepokerauto_UID': Jungleepoker,
             'gamerummyprimemodd_UID': GameRummy,
-            # 'navrangmodd_UID': Navrang,
-            # 'flappdealsmodd_OID':Flappdeals,
-            # 'laundrymateauto_OID': Laundrymate,
-            # 'parimatchmodd_UID': Parimatch,
-            # 'epocosmeticmodd': EpoCosmetic,
-            # 'kisankonnectmodd_OID': KisanKonnect,
-            # 'ohiauto_UID': Ohi,
-            # 'adda52_UID': Adda,
-            # 'adda52_OID': AddaOrderId,
-            # 'shopeevn_UID': ShopeevnUID,
-            # 'shopeevn_OID': ShopeevnOID,
+            'navrangmodd_UID': Navrang,
+            'flappdealsmodd_OID':Flappdeals,
+            'laundrymateauto_OID': Laundrymate,
+            'parimatchmodd_UID': Parimatch,
+            'epocosmeticmodd': EpoCosmetic,
+            'kisankonnectmodd_OID': KisanKonnect,
+            'ohiauto_UID': Ohi,
+            'adda52_UID': Adda,
+            'adda52_OID': AddaOrderId,
+            'shopeevn_UID': ShopeevnUID,
+            'shopeevn_OID': ShopeevnOID,
             'poppolivetmodd_UID': Poppolive,
-            # 'shopeemy_UID': ShopeemyUID,
+            'shopeemy_UID': ShopeemyUID,
             'shopeeid_UID': ShopeeidUID,
-            # 'shiprocketcouriert_UID': Shiprocket,
-            # 'novawateriosmodd_OID': Novawater,
-            # 'moglixauto_OID': Moglix,
+            'shiprocketcouriert_UID': Shiprocket,
+            'novawateriosmodd_OID': Novawater,
+            'moglixauto_OID': Moglix,
             'viuhkmodd_UID': Viu,
             'dupoin_UID': Dupoin,
             'shopeephtauto_UID' : ShopeephUID,
-            # 'ontimeautoios_UID': Ontime,
+            'ontimeautoios_UID': Ontime,
             'stolototmodd_UID': Stoloto,
-            # 'magiclandmodd': Magicland,
+            'magiclandmodd': Magicland,
             'foxtalemodd': FoxtaleOrderId,
             'yesmadammodd': Yesmadam,
             'hoteltonight': Hoteltonight,
         }
+
+        running_apps = mining_apps()
+        tablesDict = {}
+        for i in running_apps:
+            tablesDict[i] = all_apps.get(key)
+            
         private_companies = [
             'MAKEMYTRIP INDIA PVT LTD',
             'Paytm',
