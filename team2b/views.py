@@ -117,7 +117,7 @@ class GenericScriptFunctions(APIView):
         running_apps = mining_apps()
         tablesDict = {}
         for i in running_apps:
-            tablesDict[i] = all_apps.get(key)
+            tablesDict[i] = all_apps.get(i)
 
         today = datetime.now().strftime('%Y-%m-%d')
         ids_mined = {}
@@ -272,8 +272,8 @@ class GenericUnusedIdScriptFunctions(APIView):
         running_apps = mining_apps()
         tablesDict = {}
         for i in running_apps:
-            tablesDict[i] = all_apps.get(key)
-            
+            tablesDict[i] = all_apps.get(i)
+
         private_companies = [
             'MAKEMYTRIP INDIA PVT LTD',
             'Paytm',
