@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash
 from team2b.services.redis import Redis
 
 from decimal import Decimal
@@ -19,7 +19,7 @@ from django.db.models.functions import Cast
 def mining_apps():
     from datetime import datetime,timedelta
 
-    d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'gomcdoauto/mcdot2ios_OID': ['gomcdoauto', 'mcdot2ios'], 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'apnatimeauto_UID': 'apnatimeauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios']}
+    d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'gomcdoauto/mcdot2ios_OID': ['gomcdoauto', 'mcdot2ios'], 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'apnatimeauto_UID': 'apnatimeauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios'], "jazzcash_UID": "jazzcashmodd"}
 
     running_apps = []
     from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -51,6 +51,7 @@ def mining_apps():
 class GenericScriptFunctions(APIView):
     def get(self, request):
         all_apps = {
+            'jazzcash_UID': Jazzcash,
             'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
             'watchomodd_OID':WatchoOrderIdsMining,
             'pepperfryyauto_OID':PepperfryOrderIds,
@@ -206,6 +207,7 @@ class GenericScriptFunctions(APIView):
 class GenericUnusedIdScriptFunctions(APIView):
     def get(self, request):
         all_apps = {
+            'jazzcash_UID': Jazzcash,
             'dominosindomodd_OID':DominosIndodeliveryScriptOrderIds,
             'watchomodd_OID':WatchoOrderIdsMining,
             'pepperfryyauto_OID':PepperfryOrderIds,
@@ -5431,3 +5433,78 @@ class KfcAPI(APIView):
         return Response({
             'body':data,
         })
+
+class JazzcashAPI(APIView):
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        channel = request.GET.get('channel',True)
+        network = request.GET.get('network',True)
+        offer_id = request.GET.get('offer_id',True)
+        
+        # if not channel or not network or not offer_id:
+        #     return Response({
+        #                 'body':'error',
+        #                 'message':'channel,offer_id,network id missing.'
+        #             })
+        
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        exclude_dict = {}
+        exclude_dict['channel_list__contains'] = channel
+        exclude_dict['network_list__contains'] = network
+        exclude_dict['offer_id_list__contains'] = offer_id
+
+        exclude_dict_1 = {}
+
+        query_list = Jazzcash.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        if not query_list:
+            query_list = Jazzcash.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        
+        if query_list:
+            for i in range(3):
+                query = random.choice(query_list)
+
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
+
+                # if not query.network_list:
+                #     new_network_list = [network]
+                # else:
+                #     if network in query.network_list:
+                #         continue
+                #     new_network_list = query.network_list
+                #     new_network_list.append(network)
+
+                # if not query.offer_id_list:
+                #     new_offer_id_list = [offer_id]
+                # else:
+                #     if offer_id in query.offer_id_list:
+                #         continue
+                #     new_offer_id_list = query.offer_id_list
+                #     new_offer_id_list.append(offer_id)
+
+                data = {
+                        'user_id':query.id,
+                }
+                if setUsed:
+                    query = Jazzcash.objects.filter(id=data.get('user_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        # network_list=new_network_list,
+                        # offer_id_list=new_offer_id_list,
+                        )
+                return Response({
+                    'body':data,
+                })
+
+        return Response({
+            'body':'error',
+            'message':'no id found'
+        })
+

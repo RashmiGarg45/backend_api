@@ -138,4 +138,5 @@ urlpatterns = [
     path("beymen", views.BeymenAPI.as_view(), name="cru_beymen"),
     path("bnc", views.BncAPI.as_view(), name="cru_bnc"),
     path("kfc", views.KfcAPI.as_view(), name="cru_kfc"),
+    path("jazzcash", views.JazzcashAPI.as_view(), name="cru_jazz"),
 ]
