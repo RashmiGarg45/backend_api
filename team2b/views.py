@@ -5466,8 +5466,8 @@ class JazzcashAPI(APIView):
 
         exclude_dict = {}
         exclude_dict['channel_list__contains'] = channel
-        exclude_dict['network_list__contains'] = network
-        exclude_dict['offer_id_list__contains'] = offer_id
+        # exclude_dict['network_list__contains'] = network
+        # exclude_dict['offer_id_list__contains'] = offer_id
 
         exclude_dict_1 = {}
 
@@ -5487,21 +5487,21 @@ class JazzcashAPI(APIView):
                     new_channel_list = query.channel_list
                     new_channel_list.append(channel)
 
-                # if not query.network_list:
-                #     new_network_list = [network]
-                # else:
-                #     if network in query.network_list:
-                #         continue
-                #     new_network_list = query.network_list
-                #     new_network_list.append(network)
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
 
-                # if not query.offer_id_list:
-                #     new_offer_id_list = [offer_id]
-                # else:
-                #     if offer_id in query.offer_id_list:
-                #         continue
-                #     new_offer_id_list = query.offer_id_list
-                #     new_offer_id_list.append(offer_id)
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
 
                 data = {
                         'user_id':query.id,
@@ -5510,8 +5510,8 @@ class JazzcashAPI(APIView):
                     query = Jazzcash.objects.filter(id=data.get('user_id')).update(
                         used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                         channel_list=new_channel_list,
-                        # network_list=new_network_list,
-                        # offer_id_list=new_offer_id_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
                         )
                 return Response({
                     'body':data,
