@@ -5435,6 +5435,20 @@ class KfcAPI(APIView):
         })
 
 class JazzcashAPI(APIView):
+
+    def put(self, request):
+        query = Jazzcash()
+        query.campaign_name = request.data.get('camp_name','jazzcashmodd')
+        query.id = request.data.get('user_id')
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
         channel = request.GET.get('channel',True)
