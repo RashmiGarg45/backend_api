@@ -5334,8 +5334,21 @@ class YesmadamAPI(APIView):
         filter_dict = {}
 
         today = datetime.now().strftime('%Y-%m-%d')
+        r = random.randint(1,100)
+        if r<= 20:
+            min_price = '250.0'
+            max_price = '500.0'
+        elif r<= 50:
+            min_price = '500.0'
+            max_price = '1000.0'
+        else:
+            min_price = '1000.0'
+            max_price = '10000.0'
 
-        query = Yesmadam.objects.filter(used_at=None, **filter_dict).order_by('-created_at')[0:50].first()
+        query = Yesmadam.objects.filter(used_at=None, price__gte=Decimal(min_price), price__lte=Decimal(max_price),**filter_dict).order_by('-created_at')[0:50].first()
+
+        if not query:
+            query = Yesmadam.objects.filter(used_at=None, **filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
