@@ -5454,6 +5454,9 @@ class JazzcashAPI(APIView):
         channel = request.GET.get('channel',True)
         network = request.GET.get('network',True)
         offer_id = request.GET.get('offer_id',True)
+        if offer_id.isdecimal():
+            return Response({'body':'error','message':'panel offer not allowed'})
+
         
         # if not channel or not network or not offer_id:
         #     return Response({
