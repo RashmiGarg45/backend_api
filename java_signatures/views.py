@@ -2176,7 +2176,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
 
     elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase" and channel in ["mobpine", "77ads", "appamplify"]:
-        return {0:20, 1:17, 2:14}
+        return {0:14, 1:11, 2:10}
     
     elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase":
         return {0: 9, 1:8.33, 2: 7.14}
