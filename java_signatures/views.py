@@ -2572,15 +2572,30 @@ class Compare_event_stats(APIView):
             if rows.get("event_name") not in output_data.get(offer_serial):
                 output_data[offer_serial][rows.get("event_name")] = rows.get("event_count")
 
-
+        updated_entries = {}
         for key, value in output_data.items():
             event_count = value.get(event_name, 0)
             done_event_count = value.get(event_name_2, 0)
-            # print (key, value)
-            print (event_count, done_event_count, done_event_count - event_count)
 
-            if event_count - done_event_count > 1:
-                print (key, value)
+            if event_count - done_event_count > 5:
+                updated_entries[key] = value
+                events = EventInfo.objects.filter(offer_serial = key).get()
+                events.event_count += 1
+                events.save()
+
+
+
+
+
+        #         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
+
+        # if not install_data:
+        #     install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+        # else:
+        #     install_details = install_data.get()
+        #     install_details.installs += 1
+        # install_details.save()
+                
 
 
 
@@ -2613,7 +2628,7 @@ class Compare_event_stats(APIView):
 
         #     output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
 
-        return Response({"status": 200, "message": "Success", "data": output_data})
+        return Response({"status": 200, "message": "Success", "data": updated_entries})
 
 
 API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
