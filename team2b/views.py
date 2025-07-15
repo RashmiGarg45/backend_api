@@ -5544,7 +5544,7 @@ class PetbookAPI(APIView):
     def put(self, request):
         query = Petbook()
         query.campaign_name = request.data.get('camp_name','petbookappmetrica')
-        query.id = request.data.get('id')
+        query.id = request.data.get('order_id')
         query.used_at = None
         try:
             query.save()
@@ -5567,11 +5567,11 @@ class PetbookAPI(APIView):
         query = Petbook.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
-                'id':query.id,
+                'order_id':query.id,
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = Petbook.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Petbook.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
