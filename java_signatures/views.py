@@ -2557,6 +2557,7 @@ class Compare_event_stats(APIView):
         event_name_2 = request.GET.get("event_name_2")        
         event_day = request.GET.get("event_day")
 
+        from datetime import datetime
         created_at = datetime.now().strftime('%Y-%m-%d')
 
         output_data = {}
