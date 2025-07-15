@@ -2570,6 +2570,10 @@ class Compare_event_stats(APIView):
             if rows.get("event_name") not in output_data.get(offer_serial):
                 output_data[offer_serial][rows.get("event_name")] = rows.get("event_count")
 
+
+        for key, value in output_data.items():
+            print (key, value)
+
         # for row in installs:
         #     camp_name = row["campaign_name"]
         #     if camp_name not in output_data:
