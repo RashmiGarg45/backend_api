@@ -2558,14 +2558,12 @@ class Compare_event_stats(APIView):
         created_at = request.GET.get("created_at")
         event_day = request.GET.get("created_at")
 
-
         output_data = {}
 
-        installs = InstallData.objects.filter(campaign_name=campaign_name,created_at=created_at).values("serial")
+        events = EventInfo.objects.filter(campaign_name=campaign_name,created_at=created_at, event_day=event_day).values("event_name", "event_count")
 
-        for row in installs:
-            print (row)
-
+        for rows in events:
+            print (rows)
 
         # for row in installs:
         #     camp_name = row["campaign_name"]
