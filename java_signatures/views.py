@@ -2560,10 +2560,15 @@ class Compare_event_stats(APIView):
 
         output_data = {}
 
-        events = EventInfo.objects.filter(campaign_name=campaign_name,created_at=created_at, event_day=event_day).values("event_name", "event_count")
+        events = EventInfo.objects.filter(campaign_name=campaign_name,created_at=created_at, event_day=event_day).values("event_name", "event_count", "offer_serial")
 
         for rows in events:
-            print (rows)
+            offer_serial = rows.get("offer_serial")
+            if offer_serial not in output_data:
+                output_data[offer_serial] = {}
+
+            if rows.get("event_name") not in output_data.get(offer_serial):
+                output_data[offer_serial][rows.get("event_name")] = rows.get("event_count")
 
         # for row in installs:
         #     camp_name = row["campaign_name"]
@@ -2592,7 +2597,7 @@ class Compare_event_stats(APIView):
 
         #     output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
 
-        return Response({"status": 200, "message": "Success", "data": {}})
+        return Response({"status": 200, "message": "Success", "data": output_data})
 
 
 API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
