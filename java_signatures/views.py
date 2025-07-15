@@ -2561,7 +2561,7 @@ class Compare_event_stats(APIView):
 
         output_data = {}
 
-        installs = InstallData.objects.filter(created_at=created_at).values("serial")
+        installs = InstallData.objects.filter(campaign_name=campaign_name,created_at=created_at).values("serial")
 
         for row in installs:
             print (row)
