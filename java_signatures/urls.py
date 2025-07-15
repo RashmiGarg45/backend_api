@@ -74,4 +74,5 @@ urlpatterns = [
     path("camps_running_status", views.camps_running_status.as_view(), name="check_status"),
     path('api/convert/', views.CurrencyConvertAPIView.as_view(), name='currency-convert'),
     path("stats", views.Running_camps_stats.as_view(), name="check_stats"),
+    path("compare_stats", views.Compare_event_stats.as_view(), name="compare_stats"),
 ]

@@ -2549,7 +2549,53 @@ class Running_camps_stats(APIView):
 
         return Response({"status": 200, "message": "Success", "data": output_data})
 
-        
+
+class Compare_event_stats(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        event_name_2 = request.GET.get("event_name_2")
+        created_at = request.GET.get("created_at")
+        event_day = request.GET.get("created_at")
+
+
+        output_data = {}
+
+        installs = InstallData.objects.filter(created_at=created_at).values("serial")
+
+        for row in installs:
+            print (row)
+
+
+        # for row in installs:
+        #     camp_name = row["campaign_name"]
+        #     if camp_name not in output_data:
+        #         output_data[camp_name] = {}
+        #     offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
+        #     date_key = row["created_at"].isoformat()
+
+        #     if offer_key not in output_data[camp_name]:
+        #         output_data[camp_name][offer_key] = {}
+
+        #     if date_key not in output_data[camp_name][offer_key]:
+        #         output_data[camp_name][offer_key][date_key] = {}
+
+        #     events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
+        #     event_data = {}
+        #     if events:
+        #         for event in events:
+        #             event_name = event["event_name"]
+        #             event_day = str(event["event_day"])
+
+        #             if event_name not in event_data:
+        #                 event_data[event_name] = {}
+
+        #             event_data[event_name][event_day]= event["event_count"]
+
+        #     output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
+
+        return Response({"status": 200, "message": "Success", "data": {}})
+
 
 API_KEY = "2a8fad1896a9d051d5ed1763"  # Replace with your actual API key
 
