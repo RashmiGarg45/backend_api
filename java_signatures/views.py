@@ -2554,9 +2554,10 @@ class Compare_event_stats(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
         event_name = request.GET.get("event_name")
-        event_name_2 = request.GET.get("event_name_2")
-        created_at = request.GET.get("created_at")
+        event_name_2 = request.GET.get("event_name_2")        
         event_day = request.GET.get("event_day")
+
+        created_at = datetime.now().strftime('%Y-%m-%d')
 
         output_data = {}
 
@@ -2572,7 +2573,15 @@ class Compare_event_stats(APIView):
 
 
         for key, value in output_data.items():
-            print (key, value)
+            event_count = value.get(event_name, 0)
+            done_event_count = value.get(event_name_2, 0)
+
+            if done_event_count - event_count > 1:
+                print (key, value)
+
+
+
+
 
         # for row in installs:
         #     camp_name = row["campaign_name"]
