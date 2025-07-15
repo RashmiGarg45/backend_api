@@ -2577,7 +2577,7 @@ class Compare_event_stats(APIView):
             event_count = value.get(event_name, 0)
             done_event_count = value.get(event_name_2, 0)
 
-            if event_count - done_event_count > 5:
+            if event_count - done_event_count > 2:
                 updated_entries[key] = value
                 events = EventInfo.objects.filter(event_name=event_name,offer_serial = key, event_day=event_day).get()
                 events.event_count = value.get(event_name_2, 0) + 1
