@@ -2576,6 +2576,8 @@ class Compare_event_stats(APIView):
         for key, value in output_data.items():
             event_count = value.get(event_name, 0)
             done_event_count = value.get(event_name_2, 0)
+            print (key, value)
+            print (event_count, done_event_count, done_event_count - event_count)
 
             if done_event_count - event_count > 1:
                 print (key, value)
