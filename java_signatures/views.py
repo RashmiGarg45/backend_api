@@ -2556,7 +2556,7 @@ class Compare_event_stats(APIView):
         event_name = request.GET.get("event_name")
         event_name_2 = request.GET.get("event_name_2")
         created_at = request.GET.get("created_at")
-        event_day = request.GET.get("created_at")
+        event_day = request.GET.get("event_day")
 
         output_data = {}
 
