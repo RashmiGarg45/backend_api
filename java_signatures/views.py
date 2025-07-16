@@ -1960,8 +1960,19 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
         return 16 #percentage
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
+    if campaign_name == "ragnarokmodd" and event_name == "revenue_490":
+        return {0: 40, 2:30}
 
-    if campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "xgivki":
+    elif campaign_name == "ragnarokmodd" and event_name == "revenue_1500":
+        return {0: 15}
+
+    elif campaign_name == "ragnarokmodd" and event_name == "revenue_1000":
+        return {1: 40, 4:30}
+
+    elif campaign_name == "ragnarokmodd" and event_name == "revenue_100":
+    return {3: 40, 5:30}
+
+    elif campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "xgivki":
         return {0: 4, 1:4}
     
     elif campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "ld4kw6":
