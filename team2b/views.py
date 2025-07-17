@@ -2288,6 +2288,9 @@ class ConversionStats(APIView):
 
         response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
 
+        webhook_url = 'https://chat.googleapis.com/v1/spaces/AAQAt2N77EQ/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=qo95hAebwGohxef2ePz_vr1ADP6xOjOAk4MfhWrYEqw'
+        response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+
         if response.status_code == 200:
             print("Message sent successfully.")
         else:
