@@ -5631,3 +5631,95 @@ class tejimaandiAPI(APIView):
         return Response({
             'id':query.id,
         })
+
+
+class TejimaandinewAPI(APIView):
+
+    def put(self, request):
+        query = Tejimaandinew()
+        query.campaign_name = request.data.get('camp_name','tejimaandiauto')
+        query.id = request.data.get('user_id')
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        channel = request.GET.get('channel',True)
+        network = request.GET.get('network',True)
+        offer_id = request.GET.get('offer_id',True)
+        if offer_id.isdecimal():
+            return Response({'body':'error','message':'panel offer not allowed'})
+
+        
+        # if not channel or not network or not offer_id:
+        #     return Response({
+        #                 'body':'error',
+        #                 'message':'channel,offer_id,network id missing.'
+        #             })
+        
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        exclude_dict = {}
+        exclude_dict['channel_list__contains'] = channel
+        # exclude_dict['network_list__contains'] = network
+        # exclude_dict['offer_id_list__contains'] = offer_id
+
+        exclude_dict_1 = {}
+
+        query_list = Tejimaandinew.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        if not query_list:
+            query_list = Tejimaandinew.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        
+        if query_list:
+            for i in range(3):
+                query = random.choice(query_list)
+
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
+
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
+
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
+
+                data = {
+                        'user_id':query.id,
+                }
+                if setUsed:
+                    query = Tejimaandinew.objects.filter(id=data.get('user_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
+                        )
+                return Response({
+                    'body':data,
+                })
+
+        return Response({
+            'body':'error',
+            'message':'no id found'
+        })
