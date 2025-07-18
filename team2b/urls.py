@@ -143,4 +143,5 @@ urlpatterns = [
     path("tejimaandi", views.tejimaandiAPI.as_view(), name="cru_tejimaandi"),
     path("tejimaandinew", views.TejimaandinewAPI.as_view(), name="cru_tejimaandinew"),
     path("paytmmoneyt", views.PaytmmoneytAPI.as_view(), name="cru_paytmmoneyt"),
+    path("anqgoldrewards", views.AnqgoldrewardsAPI.as_view(), name="cru_paytmmoneyt"),
 ]

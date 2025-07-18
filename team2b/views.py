@@ -5750,3 +5750,29 @@ class PaytmmoneytAPI(APIView):
         return Response({
             'body':data,
         })
+
+class AnqgoldrewardsAPI(APIView):
+    def put(self, request):
+        query = Anqgoldrewards()
+        query.campaign_name = request.data.get('camp_name','anqgoldrewardsmodd')
+        query.id = request.data.get('user_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = Anqgoldrewards.objects.latest('created_at')
+        
+        data = {
+                'user_id':query.id,
+        }
+        if setUsed:
+            query = Anqgoldrewards.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
