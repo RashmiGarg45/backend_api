@@ -2303,6 +2303,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "otpbankappmetrica" and event_name == "screen__dc_success_courier":
         return {1:70, 2:23, 3:14, 4:11, 5:10}
 
+    elif campaign_name == "byutmodd" and event_name == "purchase_iJoin":
+        return {0:20, 1:14.28, 2:12.5, 3:11.11, 4:10}
+
 
 class checkEligibility(APIView):
     def get(self, request):
