@@ -2296,6 +2296,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         
     elif campaign_name == "bigloanmodd" and event_name == "issueNewCPA":
         return {0:20, 1:14.28, 2:12.5, 3:11.11}
+    
+    elif campaign_name == "bigloanmodd" and event_name == "minconditionsapprove":
+        return {0:45, 1:30}
 
     elif campaign_name == "otpbankappmetrica" and event_name == "screen__dc_success_courier":
         return {1:70, 2:23, 3:14, 4:11, 5:10}
