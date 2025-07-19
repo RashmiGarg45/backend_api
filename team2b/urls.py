@@ -145,4 +145,5 @@ urlpatterns = [
     path("paytmmoneyt", views.PaytmmoneytAPI.as_view(), name="cru_paytmmoneyt"),
     path("anqgoldrewards", views.AnqgoldrewardsAPI.as_view(), name="cru_paytmmoneyt"),
     path("anqgoldrewardscuid", views.AnqgoldrewardscuidAPI.as_view(), name="cru_paytmmoneyt"),
+    path("anqgoldrewardsoid", views.AnqgoldrewardsoidAPI.as_view(), name="cru_paytmmoneyt"),
 ]
