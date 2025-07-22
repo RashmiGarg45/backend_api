@@ -1612,6 +1612,7 @@ class OkeyvipMiningAPI(APIView):
         query.id = request.data.get('id')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
+        query.save()
         try:
             query.save()
             return Response({
