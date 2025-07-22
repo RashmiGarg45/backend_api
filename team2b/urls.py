@@ -89,6 +89,7 @@ urlpatterns = [
     path("kisankonnect", views.KisanKonnectAPI.as_view(), name="cru_kisankonnect"),
     path("epocosmetic", views.EpoCosmeticAPI.as_view(), name="cru_epocosmetic"),
     path("ebebek", views.EbebekAPI.as_view(), name="cru_ebebek"),
+    path("ebebekuid", views.EbebekuidAPI.as_view(), name="cru_ebebek"),
     path("underarmour", views.UnderarmourAPI.as_view(), name="cru_underarmour"),
     path("underarmourOID", views.UnderarmourOIDAPI.as_view(), name="cru_underarmourOID"),
     path("ping", views.pingAPI.as_view(), name="cru_ping"),
