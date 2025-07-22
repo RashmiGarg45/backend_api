@@ -5863,7 +5863,11 @@ class OkeyvipAPI(APIView):
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
-        query.save()
+
+        try:
+            query.save()
+        except Exception as e:
+            print (e)
         return Response({
         })
 
