@@ -2285,7 +2285,7 @@ class Anqgoldrewardsoid(models.Model):
 class OkeyvipMining(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='shopeevntauto')
+    campaign_name = models.CharField(max_length=20,default='okeyvipmodd')
     created_at = models.DateTimeField(auto_now_add=True)
     id = models.CharField(max_length=50,unique=True)    
     extra_details = models.JSONField(default = dict,blank=True, null=True)
