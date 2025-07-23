@@ -2242,7 +2242,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "jazzcashmodd", "mxplayertmodd", "bigloanmodd", "paymayamodd", "opaymodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd", "intercopromodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd"]
+        scripts_list = ["raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd", "jazzcashmodd", "mxplayertmodd", "bigloanmodd", "paymayamodd", "opaymodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "indigomoddteam2modd", "cryptocomtmodd", "intercopromodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd"]
 
         output = {}
         for campaign_name in scripts_list:
