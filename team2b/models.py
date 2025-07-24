@@ -296,7 +296,6 @@ class BharatmatrimonyUserIds(models.Model):
     age = models.CharField(max_length=20,blank=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
-    mother_tongue = models.CharField(max_length=20,blank=True)
     
     class Meta:
         indexes = [
@@ -2295,6 +2294,20 @@ class OkeyvipMining(models.Model):
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class Moneymetmodduid(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='moneymetmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
     
     class Meta:
         indexes = [
