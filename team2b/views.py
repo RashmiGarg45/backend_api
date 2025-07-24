@@ -1417,10 +1417,12 @@ class BharatmatrimonyAPI(APIView):
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
+        mother_tongue = request.GET.get("mother_tongue")
+        is_paid = request.GET.get("is_paid")
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        filter_dict = {}
+        filter_dict = {"mother_tongue": mother_tongue, "is_paid": is_paid}
         query = BharatmatrimonyUserIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
