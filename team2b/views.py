@@ -1403,6 +1403,7 @@ class BharatmatrimonyAPI(APIView):
         query.state = request.data.get('state', '')
         query.age = request.data.get('age', '')
         query.is_paid = request.data.get('is_paid', '')
+        query.mother_tongue = request.data.get('mother_tongue', '')
         query.used_at = None
         try:
             query.save()
