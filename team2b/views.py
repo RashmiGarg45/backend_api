@@ -1422,8 +1422,8 @@ class BharatmatrimonyAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
         
-        # filter_dict = {"mother_tongue": mother_tongue, "is_paid": is_paid}
-        query = BharatmatrimonyUserIds.objects.filter(used_at=None,mother_tongue=mother_tongue, is_paid=is_paid).order_by('-created_at')[0:50].first()
+        filter_dict = {"mother_tongue": mother_tongue, "is_paid": is_paid}
+        query = BharatmatrimonyUserIds.objects.filter(used_at=None,**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'user_id':query.id,
