@@ -296,6 +296,7 @@ class BharatmatrimonyUserIds(models.Model):
     age = models.CharField(max_length=20,blank=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
+    mother_tongue = models.CharField(max_length=20,blank=True)
     
     class Meta:
         indexes = [
