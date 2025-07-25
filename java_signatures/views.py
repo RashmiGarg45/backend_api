@@ -2094,6 +2094,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "signnowmodd" and event_name == "af_subscribe":
         return {8:50, 9:50}
+
+    elif campaign_name == "opaymodd" and channel == "77ads" and network == "dopemobi" and offer_id in ["7dope-opayy", "7dope-opayy2", "7dope-opayy3", "7dope-opayy4", "7dope-opayy5"] and event_name == "signup_success":
+        return {0:3.7, 1:3.3, 2:3, 3:2.85}
     
     elif campaign_name == "opaymodd" and event_name == "signup_success":
         return {0:3.7, 1:3.44, 2:3.3}
