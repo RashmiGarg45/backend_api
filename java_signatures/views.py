@@ -1963,6 +1963,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
         return {0: 10, 1:6.6, 2:4, 3:3.44}
 
+    elif campaign_name == "moomootrademodd" and event_name == "af_ss_event_202":
+        return {1: 41, 2:33, 3:23, 4:19}
+
     elif campaign_name == "ragnarokmodd" and event_name == "revenue_490":
         return {0: 40, 2:30}
 
