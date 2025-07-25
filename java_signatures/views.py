@@ -2316,16 +2316,22 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:80, 1:33.33}
 
     elif campaign_name == "imagineartautoios" and event_name == "pdc6m9":
-        return {0:80,1:50}
+        return {0:80, 1:50}
 
     elif campaign_name == "betrmodd" and event_name == "af_purchase":
-        return {0:80,1:50,2:33.33}
+        return {0:80, 1:50, 2:33.33}
 
     elif campaign_name == "uiuxmobileauto" and event_name == "rmlund":
-        return {0:45,1:33.33,2:25,3:20}
+        return {0:45, 1:33.33, 2:25, 3:20}
     
     elif campaign_name == "uiuxmobileauto" and event_name == "jjww2u":
         return {0:80}
+    
+    elif campaign_name == "garantiauto" and event_name == "otpgdr":
+        return {0:30, 1:16.66, 2:12.5}
+    
+    elif campaign_name == "garantiauto" and event_name == "gr546v":
+        return {0:30, 1:16.66, 2:12.5}
 
 
 class checkEligibility(APIView):
