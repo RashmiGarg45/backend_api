@@ -150,4 +150,5 @@ urlpatterns = [
     path("okeyvip2", views.OkeyvipAPI.as_view(), name="cru_okeyvip"),
     path("moneymet", views.MoneymetmodduidAPI.as_view(), name="cru_moneymet"),
     path("imagineart", views.ImagineartAPI.as_view(), name="cru_imagineart"),
+    path("parimatchth", views.ParimatchthAPI.as_view(), name="cru_parimatchth"),
 ]
