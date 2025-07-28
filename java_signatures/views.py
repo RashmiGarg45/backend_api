@@ -2338,6 +2338,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "comparemodd" and event_name == "mfoDealConfirmed":
         return {0:33.33, 1:20, 2:16.66, 3:14.28, 4:12.25}
+    
+    elif campaign_name == "melivemodd" and event_name == "af_revenue":
+        return {0:33.33, 1:25, 2:20}
+
+    elif campaign_name == "metlivemodd" and event_name == "af_revenue":
+        return {0:33.33, 1:25, 2:20}
 
 
 class checkEligibility(APIView):
