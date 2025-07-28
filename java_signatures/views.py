@@ -2340,10 +2340,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:33.33, 1:20, 2:16.66, 3:14.28, 4:12.25}
     
     elif campaign_name == "melivemodd" and event_name == "af_revenue":
-        return {0:30, 1:25, 2:20}
+        return {0:15, 1:12.5, 2:10}
 
     elif campaign_name == "metlivemodd" and event_name == "af_revenue":
-        return {0:30, 1:25, 2:20}
+        return {0:15, 1:12.5, 2:10}
     
     elif campaign_name == "globusappmetrica" and event_name == "purchaseEvent":
         return {0:45, 1:30}
