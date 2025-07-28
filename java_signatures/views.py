@@ -2348,6 +2348,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "globusappmetrica" and event_name == "purchaseEvent":
         return {0:45, 1:30}
 
+    elif campaign_name == "parimatchthmodd" and event_name == "Deposit Successful First":
+        return {0:25, 1:20, 2:16}
+        
 
 class checkEligibility(APIView):
     def get(self, request):
