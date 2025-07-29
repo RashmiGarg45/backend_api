@@ -2016,7 +2016,7 @@ class IndigoV2MiningAPI(APIView):
             bt3_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
             print (bt3_count)
 
-            if bt3_count > 190:
+            if bt3_count > 300:
                 return Response({'body':{"status": "Not Allowed"}})
 
         # elif channel in ["quasarmobi", "offersinfinite", "mobiaviator"]:
