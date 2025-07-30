@@ -153,4 +153,6 @@ urlpatterns = [
     path("parimatchth", views.ParimatchthAPI.as_view(), name="cru_parimatchth"),
     path("melive", views.MeliveAPI.as_view(), name="cru_melivemodd"),
     path("metlive", views.MetliveAPI.as_view(), name="cru_metlivemodd"),
+    path("melive_uid", views.MeliveUidAPI.as_view(), name="cru_melivemodd"),
+    path("metlive_uid", views.MetliveUidAPI.as_view(), name="cru_metlivemodd"),
 ]
