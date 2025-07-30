@@ -2350,6 +2350,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "parimatchthmodd" and event_name == "Deposit Successful First":
         return {0:25, 1:20, 2:16}
+
+    elif campaign_name == "bd678auto" and event_name == "8jcdcl":
+        return {0:14.28, 1:11.11, 2:9.09, 3: 8.33}
+
+    elif campaign_name == "fb77auto" and event_name == "f80wwq":
+        return {0:14.28, 1:12.5, 2:11.11, 3:10}
         
 
 class checkEligibility(APIView):
