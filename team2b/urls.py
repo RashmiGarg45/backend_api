@@ -155,4 +155,5 @@ urlpatterns = [
     path("metlive", views.MetliveAPI.as_view(), name="cru_metlivemodd"),
     path("melive_uid", views.MeliveUidAPI.as_view(), name="cru_melivemodd"),
     path("metlive_uid", views.MetliveUidAPI.as_view(), name="cru_metlivemodd"),
+    path("opay", views.OpayAPI.as_view(), name="cru_opay"),
 ]
