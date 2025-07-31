@@ -2375,8 +2375,8 @@ class checkEligibility(APIView):
             event_day = int(event_day)
         except ValueError:
             return Response({"status": 400,"message": "Invalid event_day. It must be an integer.","data": {}})
-
-        if event_day > 7:
+        
+        if not campaign_name in ["bigloanmodd"] and event_day>7:
             return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
 
