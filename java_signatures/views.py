@@ -2364,6 +2364,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "spinnytauto" and event_name == "cqjxvf":
         return {0:45, 1:30, 2:25}
 
+    elif campaign_name == "shienindiamodd" and event_name == "af_purchase":
+        return {0:30, 1:25, 2:20}
+
     elif campaign_name == "heliummobilemodd" and event_name == "app_purchase_free" and offer_id:
         if offer_id.isdecimal():
             return {0:5, 1:4.5}
