@@ -1956,7 +1956,11 @@ class TrackEvents(APIView):
         return Response({"status": 200, "message": "Event Tracked", "status": 200, "data": {"count": event_details.event_count, "revenue": event_details.revenue}})
 
 def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
-    if campaign_name == "kfcmexicotmodd":
+
+    if campaign_name == "kfcmexicotmodd" and channel in ["adshustle"] and offer_id in ["kfcaosneommp", "kfcmxneommp"]:
+        return 10
+    
+    elif campaign_name == "kfcmexicotmodd":
         return 16 #percentage
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
