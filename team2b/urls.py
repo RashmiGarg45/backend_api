@@ -158,4 +158,5 @@ urlpatterns = [
     path("opay", views.OpayAPI.as_view(), name="cru_opay"),
     path("bevietnames", views.BevietnamesAPI.as_view(), name="cru_bevietnames"),
     path("boost", views.BoostAPI.as_view(), name="cru_boost"),
+    path("cimbthai", views.CimbthaiAPI.as_view(), name="cru_cimbthai"),
 ]
