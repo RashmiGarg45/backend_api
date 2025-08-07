@@ -549,6 +549,32 @@ class IndigoV2Mining(models.Model):
         ]
 
 
+class IndigoV3Mining(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='indigomoddteam2modd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    company = models.CharField(default='', blank=True, max_length=100)
+    pnr = models.CharField(max_length=20,unique=True)
+    email = models.CharField(max_length=100, unique=False)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    departure_date = models.DateTimeField(blank=False, null=True)
+    booking_date = models.DateTimeField(blank=True, null=True)
+    fare = models.CharField(default='', blank=True, max_length=40)
+    currency = models.CharField(default='', blank=True, max_length=3)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['serial']),
+            models.Index(fields=['company','departure_date']),
+        ]
+
+
 class RevenueHelper(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
