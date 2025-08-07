@@ -1965,7 +1965,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
-        return {0: 10, 1:6.6, 2:4, 3:3.44}
+        return {0: 41, 1:24, 2:19, 3:16.6}
 
     elif campaign_name == "moomootrademodd" and event_name == "af_ss_event_202":
         return {1: 41, 2:33, 3:23, 4:19}
