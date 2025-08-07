@@ -2378,6 +2378,15 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "woolsocksmodd" and event_name == "3ts38m":
         return {0:15, 1:11, 2:10, 3:9}
 
+    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Deposit_Open_Speed-d-plus_Success_Viewed":
+        return {0:45, 1:30, 2:25}
+    
+    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Deposit_Open_Chill-d_Success_Viewed":
+        return {0:45, 1:30, 2:25}
+
+    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Mutual_Fund_Account_Opening_Open_Deposit_And_MF_Account_Success_Viewed":
+        return {0:90, 1:50, 2:33}
+
     elif campaign_name == "heliummobilemodd" and event_name == "app_purchase_free" and offer_id:
         if offer_id.isdecimal():
             return {0:5, 1:4.5}
