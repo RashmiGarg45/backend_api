@@ -2387,6 +2387,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "cimbthaimodd" and event_name == "NTB_Mutual_Fund_Open_Deposit_And_MF_Success":
         return {0:70, 1:50, 2:33}
 
+    elif campaign_name == "robotzaimerrmodd" and event_name == "signContractFirst":
+            return {0:45, 1:30, 2:25}
+
     elif campaign_name == "heliummobilemodd" and event_name == "app_purchase_free" and offer_id:
         if offer_id.isdecimal():
             return {0:5, 1:4.5}
