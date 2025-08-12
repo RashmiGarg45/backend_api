@@ -160,4 +160,5 @@ urlpatterns = [
     path("boost", views.BoostAPI.as_view(), name="cru_boost"),
     path("cimbthai", views.CimbthaiAPI.as_view(), name="cru_cimbthai"),
     path("myauchan", views.MyauchanAPI.as_view(), name="cru_myauchan"),
+    path("ikea", views.IkeaAPI.as_view(), name="cru_ikea"),
 ]
