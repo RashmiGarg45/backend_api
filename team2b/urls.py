@@ -161,4 +161,5 @@ urlpatterns = [
     path("cimbthai", views.CimbthaiAPI.as_view(), name="cru_cimbthai"),
     path("myauchan", views.MyauchanAPI.as_view(), name="cru_myauchan"),
     path("ikea", views.IkeaAPI.as_view(), name="cru_ikea"),
+    path("shopeebrUID", views.ShopeebrUIDAPI.as_view(), name="cru_shopeebrUID"),
 ]
