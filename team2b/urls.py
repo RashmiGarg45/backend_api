@@ -163,5 +163,5 @@ urlpatterns = [
     path("ikea", views.IkeaAPI.as_view(), name="cru_ikea"),
     path("shopeebrUID", views.ShopeebrUIDAPI.as_view(), name="cru_shopeebrUID"),
     path("shopeeth", views.ShopeethUIDAPI.as_view(), name="cru_shopeethUID"),
-    path("anqgoldrewards", views.AnqgoldrewardsAPI.as_view(), name="cru_anqgoldrewards"),
+    path("anqgoldrewardsnew", views.AnqgoldrewardsAPI.as_view(), name="cru_anqgoldrewardsnew"),
 ]

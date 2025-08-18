@@ -2577,7 +2577,7 @@ class ShopeethUID(models.Model):
         ]
 
 
-class Anqgoldrewards(models.Model):
+class Anqgoldrewardsnew(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='anqgoldrewardsmodd')
