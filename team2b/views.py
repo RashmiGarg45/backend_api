@@ -120,7 +120,7 @@ class GenericScriptFunctions(APIView):
             "melivemodd": MeliveUID,
             "melivemodd_recharged": Melive,
             "opaynewmodd": Opay,
-            'anqgoldrewardsmodd': Anqgoldrewardsnew
+            'anqgoldrewardsmodd_uid': Anqgoldrewardsnew
         }
 
         running_apps = mining_apps()
@@ -284,7 +284,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             "melivemodd": MeliveUID,
             "melivemodd_recharged": Melive,
             "opaynewmodd": Opay,
-            'anqgoldrewardsmodd': Anqgoldrewardsnew
+            'anqgoldrewardsmodd_uid': Anqgoldrewardsnew
         }
 
         running_apps = mining_apps()
