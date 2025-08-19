@@ -286,7 +286,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             "melivemodd": MeliveUID,
             "melivemodd_recharged": Melive,
             "opaynewmodd": Opay,
-            'anqgoldrewardsmodd_uid': Anqgoldrewardsnew
+            'anqgoldrewardsmodd_uid': Anqgoldrewardsnew,
             'myfriendauto_uid':MyfriendUID,
             'shopeet_uid':ShopeethUID
         }
