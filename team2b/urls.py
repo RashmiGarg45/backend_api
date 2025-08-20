@@ -163,6 +163,7 @@ urlpatterns = [
     path("ikea", views.IkeaAPI.as_view(), name="cru_ikea"),
     path("shopeebrUID", views.ShopeebrUIDAPI.as_view(), name="cru_shopeebrUID"),
     path("shopeeth", views.ShopeethUIDAPI.as_view(), name="cru_shopeethUID"),
+    path("shopeethios", views.ShopeethiosUIDAPI.as_view(), name="cru_shopeethiosUID"),
     path("anqgoldrewardsnew", views.AnqgoldrewardsnewAPI.as_view(), name="cru_anqgoldrewardsnew"),
     path("myfriend", views.MyfriendUIDAPI.as_view(), name="cru_myfriend"),
     path("myfriendoid", views.MyfriendOIDAPI.as_view(), name="cru_myfriendoid"),
