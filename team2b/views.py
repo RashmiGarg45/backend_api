@@ -6838,7 +6838,7 @@ class GalaxyChatAPI(APIView):
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
-                        bt_bt_list =  new_bt_list
+                        bt_list =  new_bt_list
                         )
                 return Response({
                     'body':data,
