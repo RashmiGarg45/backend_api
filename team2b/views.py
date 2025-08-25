@@ -6820,12 +6820,12 @@ class GalaxyChatAPI(APIView):
                     new_offer_id_list.append(offer_id)
 
                 if not query.bt_list:
-                    new_bt_list = [offer_id]
+                    new_bt_list = [BT]
                 else:
                     if offer_id in query.bt_list:
                         continue
                     new_bt_list = query.bt_list
-                    new_bt_list.append(offer_id)
+                    new_bt_list.append(BT)
 
                 data = {
                         'user_id':query.id,
