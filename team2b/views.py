@@ -124,7 +124,7 @@ class GenericScriptFunctions(APIView):
             'myfriendauto_uid':MyfriendUID,
             'shopeet_uid':ShopeethUID,
             'shopeetios_uid': ShopeethiosUID,
-            'mambda_uid': MambaUID,
+            # 'mambda_uid': MambaUID,
         }
 
         running_apps = mining_apps()
@@ -292,7 +292,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'myfriendauto_uid':MyfriendUID,
             'shopeet_uid':ShopeethUID,
             'shopeetios_uid': ShopeethiosUID,
-            'mambda_uid': MambaUID,
+            # 'mambda_uid': MambaUID,
         }
 
         running_apps = mining_apps()
