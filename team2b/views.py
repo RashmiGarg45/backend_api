@@ -148,7 +148,8 @@ class GenericScriptFunctions(APIView):
             'M**********************D',
             'E********p',
             'P***m',
-            'E**************s'
+            'E**************s',
+            'C***********************D'
         ]
 
         for key,value in tablesDict.items():
@@ -313,7 +314,8 @@ class GenericUnusedIdScriptFunctions(APIView):
             'M**********************D',
             'E********p',
             'P***m',
-            'E**************s'
+            'E**************s',
+            'C***********************D'
         ]
         ids_mined = {}
         for key in tablesDict.keys():
@@ -2015,7 +2017,8 @@ class IndigoV2MiningAPI(APIView):
             'M**********************D',
             'E********p',
             'P***m',
-            'E**************s'
+            'E**************s',
+            'C***********************D'
         ]
         
         filter_dict = {}
