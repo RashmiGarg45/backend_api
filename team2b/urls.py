@@ -169,4 +169,5 @@ urlpatterns = [
     path("myfriendoid", views.MyfriendOIDAPI.as_view(), name="cru_myfriendoid"),
     path("mamba", views.MambaUIDAPI.as_view(), name="cru_mamba"),
     path("galaxychat", views.GalaxyChatAPI.as_view(), name="cru_galaxychat"),
+    path("alphacapital", views.AlphacapitalAPI.as_view(), name="cru_alphacapital"),
 ]
