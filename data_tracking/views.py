@@ -12,18 +12,18 @@ from rest_framework.decorators import api_view
 #     print ((bs - len(s) % bs) * chr(bs - len(s) % bs))
 #     return s + (bs - len(s) % bs) * chr(bs - len(s) % bs)
 
-# @api_view(['POST', 'GET'])
-# def tracking(request, package_name, path):
-#     import base64
-#     if request.body:
-#         d = request.body
+@api_view(['POST', 'GET'])
+def tracking(request, package_name, path):
+    import base64
+    if request.body:
+        d = request.body
 
-#         key = "VToVBTxx6TJUB4H6fNkdWE".encode("utf-8")
-#         key = pbkdf2_hmac(hash_name='sha1', password=bytes(key), salt=bytearray([0] * 8), iterations=10000, dklen=16)
-#         cipher = AES.new(key, AES.MODE_CBC, iv=d[-24:-8])
-#         data = pad(d, 16)
-#         new_data = cipher.decrypt(data)#.replace('\n', '')
+        key = "VToVBTxx6TJUB4H6fNkdWE".encode("utf-8")
+        key = pbkdf2_hmac(hash_name='sha1', password=bytes(key), salt=bytearray([0] * 8), iterations=10000, dklen=16)
+        cipher = AES.new(key, AES.MODE_CBC, iv=d[-24:-8])
+        data = pad(d, 16)
+        new_data = cipher.decrypt(data)#.replace('\n', '')
 
-#         print (new_data)
+        print (new_data)
 
-#     return HttpResponse(json.dumps({"package_name": package_name, "path": path}))
+    return HttpResponse(json.dumps({"package_name": package_name, "path": path}))

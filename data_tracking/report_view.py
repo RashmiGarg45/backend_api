@@ -462,7 +462,7 @@ class UpdateValidationSheet(APIView):
 
 
         sheet_url = 'https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit?pli=1&gid=1655049812#gid=1655049812'
-        subsheet_name = request.get("subsheet_name")
+        subsheet_name = request.data.get("subsheet_name")
 
         credentials = get_credential()
 
