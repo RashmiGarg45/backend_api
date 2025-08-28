@@ -2408,6 +2408,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "888casinomodd" and event_name == "MB_First_Deposit":
         return {0:80, 1:55}
+    
+    elif campaign_name == "istanbulairportauto" and event_name == "duf9j9":
+        return {0:4.4, 1:3.8, 2:3.5}
+    
+    elif campaign_name == "istanbulairportauto" and event_name == "pykeub":
+        return {0:2.2, 1:2, 2:1.8}
         
 
 class checkEligibility(APIView):
