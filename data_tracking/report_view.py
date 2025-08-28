@@ -464,6 +464,7 @@ class UpdateValidationSheet(APIView):
         sheet_url = 'https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit?pli=1&gid=1655049812#gid=1655049812'
         subsheet_name = request.data.get("subsheet_name")
         month = request.data.get("month")
+        token = request.data.get("token")
 
         credentials = get_credential_2()
 
@@ -474,7 +475,7 @@ class UpdateValidationSheet(APIView):
         import requests
 
         url = "http://52.66.249.84/api/report/feedback?start_month=2025-"+ month + "&end_month=2025-"+month+"&sorting_key=conversions_verified__sum&sorting_order=desc&team=Team2"
-        headers = {"Authorization": "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwidXNlcl90eXBlIjoiZW1wbG95ZWUiLCJkZXZpY2VfaWQiOiIxMjcuMC4wLjEiLCJjdXN0b21fZGF0YSI6e30sInNlc3Npb25faWQiOiIwMzFiOWFlMDFmOGY4YWQwNTE2NTc4YTg3OTkwZmU3ZSIsImV4cCI6MTc1NjM5OTg1MywiaWF0IjoxNzU2MzU2NjUzfQ.Qyw1VeliAQhTkYb-e0P3aVfnpEW-C90dwALII3jz_S4"}
+        headers = {"Authorization": "Token "+ token}
         resp = requests.get(url, headers=headers).json().get("data")
         data = []
         for i in resp:
