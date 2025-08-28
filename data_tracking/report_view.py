@@ -465,41 +465,49 @@ class UpdateValidationSheet(APIView):
         subsheet_name = request.data.get("subsheet_name")
         month = request.data.get("month")
         token = request.data.get("token")
+        update_all = request.data.get("update_all", False)
 
         credentials = get_credential_2()
 
         Sheet_credential = gspread.service_account_from_dict(credentials)
         spreadsheet = Sheet_credential.open_by_url(sheet_url)
-        worksheet = spreadsheet.worksheet(subsheet_name)
+        
 
         import requests
 
-        url = "http://52.66.249.84/api/report/feedback?start_month=2025-"+ month + "&end_month=2025-"+month+"&sorting_key=conversions_verified__sum&sorting_order=desc&team=Team2"
-        headers = {"Authorization": "Token "+ token}
-        resp = requests.get(url, headers=headers).json().get("data")
-        data = []
-        for i in resp:
 
-            i = (i.get("total"))
+        if update_all:
+            month_li = ["01", "02", "03", "04", "05", "06", "07"]
+            subsheet_li = ["Jan-25", "Feb-25", "Mar-25", "Apr-25", "May-25", "June-25", "July-25"]
 
-            app_name = i.get("custom_text")[0].get("app_name")
+        else:
+            month_li = [month]
+            subsheet_li = [subsheet_li]
 
-            d = {"Package Name": i.get("package_name"), "App Name":app_name, "Verified Revenue": float(i.get("conversions_verified__sum")), "Approved Revenue": i.get("manager_approved_revenue__sum"), "Validation Percentage": float(i.get("validation_percentage_effective_manual")), "Validation Percentage Effective": float(i.get("validation_percentage_effective_delivered")), "Deduction": float(i.get("deduction_revenue_manual")), "Pending": float(i.get("pending_revenue_manual"))}
+        for m in range(len(month_li)):
+
+            worksheet = spreadsheet.worksheet(subsheet_li[m])
+
+            url = "http://52.66.249.84/api/report/feedback?start_month=2025-"+ month_li[m] + "&end_month=2025-"+month_li[m]+"&sorting_key=conversions_verified__sum&sorting_order=desc&team=Team2"
+            headers = {"Authorization": "Token "+ token}
+            resp = requests.get(url, headers=headers).json().get("data")
+            data = []
+            for i in resp:
+
+                i = (i.get("total"))
+
+                app_name = i.get("custom_text")[0].get("app_name")
+
+                d = {"Package Name": i.get("package_name"), "App Name":app_name, "Verified Revenue": float(i.get("conversions_verified__sum")), "Approved Revenue": i.get("manager_approved_revenue__sum"), "Validation Percentage": float(i.get("validation_percentage_effective_manual")), "Validation Percentage Effective": float(i.get("validation_percentage_effective_delivered")), "Deduction": float(i.get("deduction_revenue_manual")), "Pending": float(i.get("pending_revenue_manual"))}
 
 
-            data.append(d)     
+                data.append(d)     
 
+            headers = list(data[0].keys())
+            rows = [[row[h] for h in headers] for row in data]
+            values = [headers] + rows
 
-        # headers = ["Package Name", "App Name", "Tech Sub Team", "Verified Revenue", "Approved Revenue", "Validation Percentage", "Validation Percentage Effective", "Deduction", "Pending"]
-        # worksheet.update("A1", [headers]) 
-
-        # worksheet.update(f"A2", list(data))
-
-        headers = list(data[0].keys())
-        rows = [[row[h] for h in headers] for row in data]
-        values = [headers] + rows
-
-        worksheet.update(values)
+            worksheet.update(values)
 
 
 
