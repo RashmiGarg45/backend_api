@@ -6855,7 +6855,6 @@ class GalaxyChatAPI(APIView):
         })
 
 
-
 class AlphacapitalAPI(APIView):
 
     def put(self, request):
@@ -6946,3 +6945,18 @@ class AlphacapitalAPI(APIView):
             'body':'error',
             'message':'no id found'
         })
+    
+
+class ReminderAPI(APIView):
+    def get(self, request):
+
+        payload = {
+            "text": "@all Pls check if there is any cust pending"
+        }
+
+        webhook_url = 'https://chat.googleapis.com/v1/spaces/AAQAVUzsCsk/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=r0B3mMVHqu1xlCzgw5zW1IiOKIokeIcJUrWhAOTTM_k'
+
+
+        response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
+
+        return {"status": "success"}
