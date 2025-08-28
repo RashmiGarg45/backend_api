@@ -16,7 +16,7 @@ from operator import itemgetter
 from data_tracking.models import revenueReport,installReport,combined_app_data
 from data_tracking.serializer import revenueReportSerializer
 from data_tracking.helper.sheetbot import google_sheet
-from data_tracking.util import get_credential
+from data_tracking.util import get_credential, get_credential_2
 
 from data_tracking.util import get_list_data_from_raw,googleChatBot_send_message
 
@@ -464,7 +464,7 @@ class UpdateValidationSheet(APIView):
         sheet_url = 'https://docs.google.com/spreadsheets/d/1hWMKvd3_uWyMn0dUFg04jT4XEyLr8MZUWiNHoYOiKVk/edit?pli=1&gid=1655049812#gid=1655049812'
         subsheet_name = request.data.get("subsheet_name")
 
-        credentials = get_credential()
+        credentials = get_credential_2()
 
         Sheet_credential = gspread.service_account_from_dict(credentials)
         spreadsheet = Sheet_credential.open_by_url(sheet_url)
