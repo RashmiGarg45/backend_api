@@ -2108,6 +2108,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "signnowmodd" and event_name == "af_subscribe":
         return {8:50, 9:50}
 
+    elif campaign_name == "opaymodd" and channel == "adshustle" and offer_id in ["opymobmmp"] and event_name == "signup_success":
+        return {0:1.5, 1:1.4, 2:3, 3:2.85}
+    
+    elif campaign_name == "opaymodd" and channel == "adshustle" and offer_id in ["opymobmmp"] and event_name == "first_transaction":
+        return {0:5, 1:4.5, 2:5.67, 3:5}
+
     elif campaign_name == "opaymodd" and channel == "77ads" and network == "dopemobi" and offer_id in ["7dope-opayy", "7dope-opayy2", "7dope-opayy3", "7dope-opayy4", "7dope-opayy5", "7dope-opayy6", "7dope-opayy7"] and event_name == "signup_success":
         return {0:3.7, 1:3.3, 2:3, 3:2.85}
     
@@ -2401,7 +2407,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
                 
     elif campaign_name == "heliummobilemodd" and event_name == "app_purchase_free" and offer_id:
         if offer_id.isdecimal():
-            return {0:3.5, 1:4.5}
+            return {0:3.5, 1:4.5} # {0:5, 1:4.5}
 
     elif campaign_name == "duittmodd" and event_name == "Successful_loan":
         return {0:90, 1:30, 2:20, 3:16}
