@@ -2109,19 +2109,19 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {8:50, 9:50}
 
     elif campaign_name == "opaymodd" and channel == "77ads" and network == "dopemobi" and offer_id in ["7dope-opayy", "7dope-opayy2", "7dope-opayy3", "7dope-opayy4", "7dope-opayy5", "7dope-opayy6", "7dope-opayy7"] and event_name == "signup_success":
-        return {0:3.7, 1:3, 2:2.5, 3:2} #{0:3.7, 1:3.3, 2:3, 3:2.85}
+        return {0:3.7, 1:3.3, 2:3, 3:2.85} #{0:3.7, 1:3.3, 2:3, 3:2.85}
     
     elif campaign_name == "opaymodd" and event_name == "signup_success":
-        return {0:3.7, 1:3, 2:2.5, 3:2} # {0:3.7, 1:3.44, 2:3.3}
+        return {0:3.7, 1:3.44, 2:3.3} # {0:3.7, 1:3.44, 2:3.3}
     
     elif campaign_name == "opaymodd" and channel == "adshustle" and network == "leanmobi" and offer_id in ["noplenmmp"] and event_name == "first_transaction":
-        return {0:7.14, 1:5, 2:4.67, 3:4} #{0:7.14, 1:6.25, 2:5.67, 3:5}
+        return {0:7.14, 1:6.25, 2:5.67, 3:5} #{0:7.14, 1:6.25, 2:5.67, 3:5}
     
     elif campaign_name == "opaymodd" and event_name == "first_transaction":
-        return {0:16.6, 1:7, 2:6.5, 3:6} #{0:16.6, 1:10, 2:7.69, 3:7.14}
+        return {0:16.6, 1:10, 2:7.69, 3:7.14} #{0:16.6, 1:10, 2:7.69, 3:7.14}
     
     elif campaign_name == "opaymodd" and event_name == "total_transaction":
-        return {0:28.5, 1:13, 2:11} #{0:28.5, 1:18.18, 2:13.33}
+        return {0:28.5, 1:18.18, 2:13.33} #{0:28.5, 1:18.18, 2:13.33}
     
     elif campaign_name == "hoteltonightautoios" and channel == "adshustle" and network == "advivifymedia" and offer_id in ["21653946", "21676889"] and event_name == "pey3pd":
         return {0: 12.5, 1:9, 2:7.14, 3:6.25}
