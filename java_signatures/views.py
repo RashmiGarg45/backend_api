@@ -2028,7 +2028,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:47, 1: 33, 2: 24, 3: 20, 4: 15}
 
     elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
-        return {0:2.3, 1: 2.1}
+        return {0:2.3, 1: 1.4} #{0:2.3, 1: 2.1}
 
     elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
         return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2} #{0:2.5, 1:2, 2: 1.96, 3: 1.78, 4: 1.7}
