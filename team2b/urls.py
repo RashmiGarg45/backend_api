@@ -171,4 +171,5 @@ urlpatterns = [
     path("galaxychat", views.GalaxyChatAPI.as_view(), name="cru_galaxychat"),
     path("alphacapital", views.AlphacapitalAPI.as_view(), name="cru_alphacapital"),
     path("reminder", views.ReminderAPI.as_view(), name="cru_reminder"),
+    path("bigloan", views.bigloanAPI.as_view(), name="cru_bigloan"),
 ]
