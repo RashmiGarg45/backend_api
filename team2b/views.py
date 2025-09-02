@@ -5308,6 +5308,7 @@ class FoxtaleMiningAPI(APIView):
         query.price = request.data.get('price')
         query.extra_details=request.data.get('extra_details',{})
         query.order_placed_date = request.data.get('order_placed_date', "")
+        query.is_new = request.data.get('is_new', 0)
         query.used_at = None
         try:
             query.save()
