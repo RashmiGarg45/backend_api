@@ -172,4 +172,5 @@ urlpatterns = [
     path("alphacapital", views.AlphacapitalAPI.as_view(), name="cru_alphacapital"),
     path("reminder", views.ReminderAPI.as_view(), name="cru_reminder"),
     path("bigloan", views.bigloanAPI.as_view(), name="cru_bigloan"),
+    path("indigov3", views.IndigoV3MiningAPI.as_view(), name="cru_indigo"),
 ]

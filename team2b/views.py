@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID, GalaxyChat,Alphacapital,Bigloan
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID, GalaxyChat,Alphacapital,Bigloan,IndigoV4Mining
 from team2b.services.redis import Redis
 
 from decimal import Decimal
@@ -73,7 +73,7 @@ class GenericScriptFunctions(APIView):
             'khiladiaddamodd_UID': KhiladiaddaUserId,
             'datingglobalt2modd_UID': DatingGlobalUserId,
             'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd_OID': IndigoV2Mining,
+            'indigomoddteam2modd_OID': IndigoV3Mining,
             'samsclubmodd_UID': SamsclubMemberIds,
             'mumzworldautoios_OID':MumzworldOrderIds,
             'damnraymodd_OID':DamnrayOrderIds,
@@ -157,7 +157,7 @@ class GenericScriptFunctions(APIView):
             ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
             if key == "indigomoddteam2modd_OID":           
-                ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).exclude(company__in=private_companies).count()
+                ids_mined[key] = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).exclude(company__in=private_companies).count()
 
         from data_tracking.util import googleChatBot_send_message
         message = {
@@ -243,7 +243,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'khiladiaddamodd_UID': KhiladiaddaUserId,
             'datingglobalt2modd_UID': DatingGlobalUserId,
             'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd_OID': IndigoV2Mining,
+            'indigomoddteam2modd_OID': IndigoV3Mining,
             'samsclubmodd_UID': SamsclubMemberIds,
             'mumzworldautoios_OID':MumzworldOrderIds,
             'damnraymodd_OID':DamnrayOrderIds,
@@ -324,7 +324,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
 
             if key == "indigomoddteam2modd_OID":
-                ids_mined[key] = ids_mined[key] = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
+                ids_mined[key] = ids_mined[key] = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
 
 
         from data_tracking.util import googleChatBot_send_message
@@ -2028,15 +2028,15 @@ class IndigoV2MiningAPI(APIView):
         
         cc = 21
         if not unused_count:
-            cc = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date').count()
+            cc = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date').count()
         
         if unused_count or (not unused_count and cc>20):
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
+            query = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='None',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
         if not query:
-            query = IndigoV2Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='C*****y',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
+            query = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),company='C*****y',**filter_dict).order_by('created_at', 'departure_date')[0:50].first()
         if not query:
-            # query = IndigoV2Mining.objects.annotate(fare_float=Cast('fare', FloatField())).filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict, fare_float__gt=1000.0).exclude(company__in=private_companies).order_by('departure_date', 'created_at')[0:50].first()
-            query = IndigoV2Mining.objects.annotate(fare_float=Cast('fare', FloatField())).filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict, fare_float__gt=1000.0).exclude(company__in=private_companies).order_by('created_at', 'departure_date')[0:50].first()
+            # query = IndigoV3Mining.objects.annotate(fare_float=Cast('fare', FloatField())).filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict, fare_float__gt=1000.0).exclude(company__in=private_companies).order_by('departure_date', 'created_at')[0:50].first()
+            query = IndigoV3Mining.objects.annotate(fare_float=Cast('fare', FloatField())).filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),**filter_dict, fare_float__gt=1000.0).exclude(company__in=private_companies).order_by('created_at', 'departure_date')[0:50].first()
         
         # if channel not in ["adshustle", "vestaapps", "appsfollowing"]:
         #     used_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d')).count()
@@ -2051,20 +2051,14 @@ class IndigoV2MiningAPI(APIView):
         #         if other_bt_count > (used_count + unused_count)/2:
         #             return Response({'body':{"status": "Not Allowed"}})
         if channel in ["mobpine", "77ads", "appamplify"]:
-            bt3_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
+            bt3_count = IndigoV3Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
             print (bt3_count)
 
             if bt3_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
 
-        # elif channel in ["quasarmobi", "offersinfinite", "mobiaviator"]:
-        #     bt1_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("quasarmobi", "offersinfinite", "mobiaviator")).count()
-        #     print (bt1_count)
-        #     if bt1_count > 10:
-        #         return Response({'body':{"status": "Not Allowed"}})
-
         elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
-            bt2_count = IndigoV2Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
+            bt2_count = IndigoV3Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
             print (bt2_count)
             if bt2_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
@@ -2077,11 +2071,62 @@ class IndigoV2MiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = IndigoV2Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = IndigoV3Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
 
+class IndigoV3MiningAPI(APIView):
+    def put(self, request):
+        query = IndigoV4Mining()
+        query.campaign_name = request.data.get('camp_name','indigomoddteam2modd')
+        query.pnr = request.data.get('pnr')
+        query.departure_date = request.data.get('departure_date')
+        query.booking_date = request.data.get('booking_date')
+        query.extra_details=request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+
+    def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        filter_dict = {}
+        
+        query = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at', 'departure_date').count()
+        
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            bt3_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
+            print (bt3_count)
+
+            if bt3_count > 100:
+                return Response({'body':{"status": "Not Allowed"}})
+
+
+        elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
+            bt2_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
+            print (bt2_count)
+            if bt2_count > 100:
+                return Response({'body':{"status": "Not Allowed"}})
+
+
+        data = {
+                'pnr':query.pnr,
+                'used_at':query.used_at,
+                'extra_details':query.extra_details
+        }
+        if setUsed:
+            query = IndigoV4Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
 
 class RevenueHelperAPI(APIView):
     def put(self, request):
