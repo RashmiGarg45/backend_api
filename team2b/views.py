@@ -4543,7 +4543,7 @@ class ShopeevnuidAPI(APIView):
         })
     
     def post(self, request):
-        query = ShopeevnOID.objects.order_by('-id').first()
+        query = ShopeevnUID.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
