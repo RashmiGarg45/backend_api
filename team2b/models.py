@@ -2735,5 +2735,5 @@ class IndigoV4Mining(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=['serial']),
-            models.Index(fields=['company','departure_date']),
+            models.Index(fields=['departure_date']),
         ]
