@@ -2078,6 +2078,7 @@ class FoxtaleOrderId(models.Model):
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
     id = models.CharField(max_length=50,unique=True)
+    is_new = models.IntegerField(default=0)
     price = models.FloatField(default=0)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
