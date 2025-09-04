@@ -24,7 +24,7 @@ def get_signtaure(request):
     args_list = data.get("args")
     script_name = data.get("script_name")
     encrypted_data = execute_java(script_name, argument_list=args_list)
-    return HttpResponse({"data":encrypted_data})
+    return Response({"data":encrypted_data})
 
 def execute_java(java_file, argument_list=[]):
     cmd = ['java', java_file]
