@@ -5,6 +5,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.ByteArrayOutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
+import java.util.Base64;
+import java.nio.charset.StandardCharsets;
 
 public class hopego {
 
@@ -115,7 +117,11 @@ public class hopego {
 
         // Encrypt + Send
         String encryptedStr = send(originalJson);
-        System.out.println("Encrypted string (ISO-8859-1): " + encryptedStr);
+        
+        byte[] encrypted = encryptedStr.getBytes(StandardCharsets.UTF_8);
+        
+        String base64Encoded = Base64.getEncoder().encodeToString(encrypted);
+        System.out.println(base64Encoded);
         
         // System.out.println("Encrypted string UTF-8): " + encryptedStr.getBytes(StandardCharsets.UTF_8));
         
