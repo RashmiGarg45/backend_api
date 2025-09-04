@@ -115,9 +115,9 @@ public class hopego {
 
         // Encrypt + Send
         String encryptedStr = send(originalJson);
-        // System.out.println("Encrypted string (ISO-8859-1): " + encryptedStr);
+        System.out.println("Encrypted string (ISO-8859-1): " + encryptedStr);
         
-        System.out.println("Encrypted string UTF-8): " + encryptedStr.getBytes(StandardCharsets.UTF_8));
+        // System.out.println("Encrypted string UTF-8): " + encryptedStr.getBytes(StandardCharsets.UTF_8));
         
         // byte[] encrypted = encryptedStr.getBytes(StandardCharsets.UTF_8);
 
