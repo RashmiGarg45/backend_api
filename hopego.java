@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-public class Main {
+public class hopego {
 
     static final String AES_ALGORITHM = "AES/CBC/PKCS5Padding";
     static final String AES_NAME = "AES";
