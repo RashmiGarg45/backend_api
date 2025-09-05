@@ -1957,8 +1957,8 @@ class TrackEvents(APIView):
 
 def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
 
-    if campaign_name == "kfcmexicotmodd" and channel in ["adshustle"] and offer_id in ["kfcaosneommp", "kfcmxneommp", "kfcneomacmmp", "kfcneozigmmp"]:
-        return 9
+    if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcaosneommp", "kfcmxneommp", "kfcneomacmmp", "kfcneozigmmp"]:
+        return 7
     
     elif campaign_name == "kfcmexicotmodd":
         return 15 #percentage
