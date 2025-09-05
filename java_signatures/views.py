@@ -2439,6 +2439,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "bingoplustmodd" and event_name == "bingoplus_first_deposit":
         return {0:90, 1:45, 2:30}
 
+    elif campaign_name == "myshiftappmetricat" and event_name == "ShiftCatalogShiftDetails_shift_booked":
+        return {0:45, 1:25, 2:20}
+
 class checkEligibility(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
