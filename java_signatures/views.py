@@ -2442,6 +2442,24 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "myshiftappmetricat" and event_name == "ShiftCatalogShiftDetails_shift_booked":
         return {0:45, 1:25, 2:20}
 
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_3499":
+        return {0:45}
+    
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_4999":
+        return {0:30}
+
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_9999":
+        return {0:16}
+
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_349":
+        return {1:90}
+    
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_499":
+        return {2:90}
+    
+    elif campaign_name == "shorttvtmodd" and event_name == "revenue_999":
+        return {3:90}
+
 class checkEligibility(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
