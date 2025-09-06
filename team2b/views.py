@@ -16,6 +16,9 @@ from django.db.models import Avg
 from django.db import transaction
 from django.db.models.functions import Cast
 
+def db_controlled_apps():
+    li = ["TikettUIDAPI", "CoinmenaAPI", "bigloanAPI", "MyfriendOIDAPI", "IkeaAPI", "MyauchanAPI", "CimbthaiAPI", "BevietnamesAPI", "ImagineartAPI", "MoneymetmodduidAPI", "AnqgoldrewardsoidAPI", "AnqgoldrewardscuidAPI", "PaytmmoneytAPI", "KfcAPI", "BncAPI", "BeymenAPI", "FrendipayAPI", "MotiLalAPI", "ApnaTimeAPI", "HomiedevAPI", "StorylandAPI", "CasinoplussAPI", "BetrAPI", "PaysettUserIdAPI", "StolotoOrderIdAPI", "WesternUnionAPI", "SignnowAPI", "BluerewardsV2API", "PaynearbyAPI", "BambootautoAPI", "FivepaisaAPI", "PinoypesoAPI", "UnderarmourOIDAPI", "UnderarmourAPI", "EbebekuidAPI", "EbebekAPI", "ParimatchAPI", "EjabyAPI", "ChaleeSultanAPI", "Lotter69API", "Lotter38API", "creditoAPI", "skylineAPI", "mcdAPI", "igpAPI", "pepperfryAPI", "betwinnerAPI", "eztravelAPI", "shahidAPI"]
+
 def mining_apps():
     from datetime import datetime,timedelta
 
@@ -6995,15 +6998,6 @@ class AlphacapitalAPI(APIView):
 
 class ReminderAPI(APIView):
     def get(self, request):
-
-        # payload = {
-        #     "text": "@all Pls check if there is any cust pending"
-        # }
-
-        # webhook_url = 'https://chat.googleapis.com/v1/spaces/AAQAVUzsCsk/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=r0B3mMVHqu1xlCzgw5zW1IiOKIokeIcJUrWhAOTTM_k'
-
-
-        # response = requests.post(webhook_url, data=json.dumps(payload), headers={"Content-Type": "application/json"})
 
         message = {
         "text": "<users/all> Pls check if there is any cust pending",
