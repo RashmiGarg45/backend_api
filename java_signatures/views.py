@@ -1918,11 +1918,11 @@ class TrackInstalls(APIView):
             if updated_timezone:
                 if '-' in updated_timezone:
                     updated_timezone=updated_timezone.split('-')[1]
-                    date = (datetime.datetime.utcnow() - datetime.timedelta(hours=updated_timezone)).strftime("%Y-%m-%d")
+                    date = (datetime.datetime.utcnow() - datetime.timedelta(hours=int(updated_timezone))).strftime("%Y-%m-%d")
                 else:
                     if '+' in updated_timezone:
                         updated_timezone=updated_timezone.split('+')[1]
-                    date = (datetime.datetime.utcnow() - datetime.timedelta(hours=updated_timezone)).strftime("%Y-%m-%d")
+                    date = (datetime.datetime.utcnow() - datetime.timedelta(hours=int(updated_timezone))).strftime("%Y-%m-%d")
             else:
                 date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         except:
