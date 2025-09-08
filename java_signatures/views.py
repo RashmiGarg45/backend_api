@@ -1913,8 +1913,9 @@ class TrackInstalls(APIView):
         network = request.GET.get("network")
         offer_id = request.GET.get("offer_id")
         currency = request.GET.get("currency", "USD")
-        updated_timezone = request.GET.get("updated_timezone", None)
         try:
+            updated_timezone = request.GET.get("updated_timezone", None)
+        
             if updated_timezone:
                 if '-' in updated_timezone:
                     updated_timezone=updated_timezone.split('-')[1]
