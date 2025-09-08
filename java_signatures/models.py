@@ -65,6 +65,21 @@ class RevenueHelper(models.Model):
 #             models.Index(fields=['campaign_name','offer_details']),
 #         ]
 
+class InstallDataTZ(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False, unique=True)
+    created_at = models.DateField(default='')
+    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100) 
+    installs = models.IntegerField(default=0)
+    currency = models.CharField(default='USD', max_length=10)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name','channel','network','offer_id']),
+        ]
+
 class InstallData(models.Model):
     serial = models.AutoField(primary_key=True, editable=False, unique=True)
     created_at = models.DateField(auto_now_add=True)
