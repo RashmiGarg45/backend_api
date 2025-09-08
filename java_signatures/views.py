@@ -1918,8 +1918,10 @@ class TrackInstalls(APIView):
         if required_timezone:
             try:
                 import pytz
+                print (required_timezone)
                 tz = pytz.timezone(required_timezone)
                 date = datetime.now(tz).strftime("%Y-%m-%d")
+                print (date)
             except Exception as e:
                 print (e)
                 date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
