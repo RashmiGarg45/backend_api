@@ -1917,7 +1917,6 @@ class TrackInstalls(APIView):
 
         if required_timezone:
             try:
-                import datetime
                 import pytz
                 print (required_timezone)
                 tz = pytz.timezone(required_timezone)
