@@ -1913,10 +1913,11 @@ class TrackInstalls(APIView):
         network = request.GET.get("network")
         offer_id = request.GET.get("offer_id")
         currency = request.GET.get("currency", "USD")
-        required_timezone = request.GET.get("required_timezone", "UTC")
+        required_timezone = request.GET.get("required_timezone")
 
         if required_timezone:
             try:
+                import datetime
                 import pytz
                 print (required_timezone)
                 tz = pytz.timezone(required_timezone)
