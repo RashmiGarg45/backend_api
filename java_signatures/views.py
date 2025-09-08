@@ -1921,6 +1921,8 @@ class TrackInstalls(APIView):
                     date = datetime.datetime.utcnow() - datetime.timedelta(hours=offset)
                 else:
                     date = datetime.datetime.utcnow() + datetime.timedelta(hours=offset)
+            else:
+                date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         except:
             date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
 
