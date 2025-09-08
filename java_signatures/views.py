@@ -1915,17 +1915,12 @@ class TrackInstalls(APIView):
         currency = request.GET.get("currency", "USD")
         try:
             updated_timezone = request.GET.get("updated_timezone", None)
-        
             if updated_timezone:
+                offset = int(updated_timezone.replace("+", "").replace("-", ""))
                 if '-' in updated_timezone:
-                    updated_timezone=updated_timezone.split('-')[1]
-                    date = (datetime.datetime.utcnow() - datetime.timedelta(hours=int(updated_timezone))).strftime("%Y-%m-%d")
+                    date = datetime.datetime.utcnow() - datetime.timedelta(hours=offset)
                 else:
-                    if '+' in updated_timezone:
-                        updated_timezone=updated_timezone.split('+')[1]
-                    date = (datetime.datetime.utcnow() + datetime.timedelta(hours=int(updated_timezone))).strftime("%Y-%m-%d")
-            else:
-                date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+                    date = datetime.datetime.utcnow() + datetime.timedelta(hours=offset)
         except:
             date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
 
