@@ -1913,7 +1913,17 @@ class TrackInstalls(APIView):
         network = request.GET.get("network")
         offer_id = request.GET.get("offer_id")
         currency = request.GET.get("currency", "USD")
-        date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        updated_timezone = request.GET.get("updated_timezone", None)
+        if updated_timezone:
+            if '-' in updated_timezone:
+                updated_timezone=updated_timezone.split('-')[1]
+                date = (datetime.datetime.utcnow() - datetime.timedelta(hours=updated_timezone)).strftime("%Y-%m-%d")
+            else:
+                if '+' in updated_timezone:
+                    updated_timezone=updated_timezone.split('+')[1]
+                date = (datetime.datetime.utcnow() - datetime.timedelta(hours=updated_timezone)).strftime("%Y-%m-%d")
+        else:
+            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
 
         if not all([campaign_name, channel, network, offer_id]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
