@@ -175,4 +175,5 @@ urlpatterns = [
     path("indigov3", views.IndigoV3MiningAPI.as_view(), name="cru_indigo"),
     path("coinmena", views.CoinmenaAPI.as_view(), name="cru_coinmena"),
     path("tikettUID", views.TikettUIDAPI.as_view(), name="cru_tikettUID"),
+    path("cabst13", views.Cabst13API.as_view(), name="cru_cabst13"),
 ]
