@@ -2043,10 +2043,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:47, 1: 33, 2: 24, 3: 20, 4: 15}
 
     elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
-        return {0:2.3, 1: 1.4} #{0:2.3, 1: 2.1}
+        return {0:2.3, 1: 2}
 
     elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
-        return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2} #{0:2.5, 1:2, 2: 1.96, 3: 1.78, 4: 1.7}
+        return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
 
     elif campaign_name == "moovauto" and event_name == "ld4kw6":
         return {0:11, 1:8.3 , 2: 6.6, 3: 6.6}
@@ -2427,7 +2427,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "garantiauto" and event_name == "rmq154" and offer_id:
         if offer_id.isdecimal():
-            return {0:2.5, 1:2.5} # {0:5, 1:4.5}
+            return {0:2.5, 1:2.5}
 
     elif campaign_name == "duittmodd" and event_name == "Successful_loan":
         return {0:90, 1:30, 2:20, 3:16}
