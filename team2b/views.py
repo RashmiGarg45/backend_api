@@ -76,7 +76,7 @@ class GenericScriptFunctions(APIView):
             'khiladiaddamodd_UID': KhiladiaddaUserId,
             'datingglobalt2modd_UID': DatingGlobalUserId,
             'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd_OID': IndigoV3Mining,
+            'indigomoddteam2modd_OID': IndigoV4Mining,
             'samsclubmodd_UID': SamsclubMemberIds,
             'mumzworldautoios_OID':MumzworldOrderIds,
             'damnraymodd_OID':DamnrayOrderIds,
@@ -160,7 +160,7 @@ class GenericScriptFunctions(APIView):
             ids_mined[key] = tablesDict[key].objects.filter(created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
             if key == "indigomoddteam2modd_OID":           
-                ids_mined[key] = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now(),created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).exclude(company__in=private_companies).count()
+                ids_mined[key] = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
         from data_tracking.util import googleChatBot_send_message
         message = {
@@ -246,7 +246,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'khiladiaddamodd_UID': KhiladiaddaUserId,
             'datingglobalt2modd_UID': DatingGlobalUserId,
             'Subs_datingglobalt2modd_UID': DatingGlobalSubscribedUserId,
-            'indigomoddteam2modd_OID': IndigoV3Mining,
+            'indigomoddteam2modd_OID': IndigoV4Mining,
             'samsclubmodd_UID': SamsclubMemberIds,
             'mumzworldautoios_OID':MumzworldOrderIds,
             'damnraymodd_OID':DamnrayOrderIds,
@@ -327,7 +327,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
 
             if key == "indigomoddteam2modd_OID":
-                ids_mined[key] = ids_mined[key] = IndigoV3Mining.objects.filter(used_at=None, currency="INR",departure_date__gte=datetime.now()).exclude(company__in=private_companies).count()
+                ids_mined[key] = ids_mined[key] = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).count()
 
 
         from data_tracking.util import googleChatBot_send_message
