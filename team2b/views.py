@@ -6864,9 +6864,11 @@ class GalaxyChatAPI(APIView):
 
         query_list = GalaxyChat.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
+            print ("Galaxy in not function")
             query_list = GalaxyChat.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
 
         if query_list:
+            print ("Galzxy found query")
             for i in range(3):
                 query = random.choice(query_list)
 
@@ -6908,6 +6910,7 @@ class GalaxyChatAPI(APIView):
                         'city': query.city
                 }
                 if setUsed:
+                    print ("galaxy success")
                     query = GalaxyChat.objects.filter(id=data.get('user_id')).update(
                         used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                         channel_list=new_channel_list,
