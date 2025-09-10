@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino
 from team2b.services.redis import Redis
 
 from decimal import Decimal
@@ -22,7 +22,7 @@ def db_controlled_apps():
 def mining_apps():
     from datetime import datetime,timedelta
 
-    d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios'], "jazzcash_UID": "jazzcashmodd", "petbookappmetrica": "petbookappmetrica", "tejimaandiauto": "tejimaandiauto", "metlivemodd": "metlivemodd", "melivemodd": "melivemodd", "metlivemodd_recharged": "metlivemodd", "melivemodd_recharged": "melivemodd", "opaynewmodd": "opaynewmodd", 'anqgoldrewardsmodd_uid': 'anqgoldrewardsmodd', 'shopeet_uid': 'shopeet', 'myfriendauto_uid': 'myfriendauto','alphacapital_num':'alphacapitalmodd'}
+    d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios'], "jazzcash_UID": "jazzcashmodd", "petbookappmetrica": "petbookappmetrica", "tejimaandiauto": "tejimaandiauto", "metlivemodd": "metlivemodd", "melivemodd": "melivemodd", "metlivemodd_recharged": "metlivemodd", "melivemodd_recharged": "melivemodd", "opaynewmodd": "opaynewmodd", 'anqgoldrewardsmodd_uid': 'anqgoldrewardsmodd', 'shopeet_uid': 'shopeet', 'myfriendauto_uid': 'myfriendauto','alphacapital_num':'alphacapitalmodd', "r888casinomodd_uid": 'r888casinomodd'}
 
     running_apps = []
     from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -128,7 +128,8 @@ class GenericScriptFunctions(APIView):
             'shopeet_uid':ShopeethUID,
             # 'shopeetios_uid': ShopeethiosUID,
             # 'mambda_uid': MambaUID,
-            'alphacapital_num':Alphacapital
+            'alphacapital_num':Alphacapital,
+            'r888casinomodd_uid': R888casino,
         }
 
         running_apps = mining_apps()
@@ -298,7 +299,8 @@ class GenericUnusedIdScriptFunctions(APIView):
             'shopeet_uid':ShopeethUID,
             # 'shopeetios_uid': ShopeethiosUID,
             # 'mambda_uid': MambaUID,
-            'alphacapital_num':Alphacapital
+            'alphacapital_num':Alphacapital,
+            'r888casinomodd_uid': R888casino,
         }
 
         running_apps = mining_apps()
@@ -7131,4 +7133,43 @@ class Cabst13API(APIView):
             query = Cabst13.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
+        })
+
+class R888casinoAPI(APIView):
+    def put(self, request):
+        query = R888casino()
+        query.campaign_name = request.data.get('camp_name','r888casinomodd')
+        query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        query = R888casino.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'user_id':query.id,
+                # 'extra_details':query.extra_details,
+        }
+        if setUsed:
+            query = R888casino.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+    
+    def post(self, request):
+        query = R888casino.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
         })

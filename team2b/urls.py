@@ -176,4 +176,5 @@ urlpatterns = [
     path("coinmena", views.CoinmenaAPI.as_view(), name="cru_coinmena"),
     path("tikettUID", views.TikettUIDAPI.as_view(), name="cru_tikettUID"),
     path("cabst13", views.Cabst13API.as_view(), name="cru_cabst13"),
+    path("888", views.R888casinoAPI.as_view(), name="cru_r888"),
 ]
