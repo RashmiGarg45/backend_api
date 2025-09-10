@@ -2489,7 +2489,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "etomomodd" and event_name == "loan_requested":
         return {0:7}
     
-    elif campaign_name == "cryptocomtmodd" and event_name == "kyc_approved_push_sent":
+    elif campaign_name == "cryptocomtmodd" and event_name == "mktg:kyc_approved_push_sent":
         return {0:7}
 
 class checkEligibility(APIView):
