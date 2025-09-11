@@ -1941,7 +1941,7 @@ class TrackInstalls(APIView):
 
         if not install_data:
             if required_timezone:
-                install_details = InstallDataTZ(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+                install_details = InstallDataTZ(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
             else:
                 install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
         else:
