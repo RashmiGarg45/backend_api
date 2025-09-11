@@ -1964,19 +1964,32 @@ class TrackEvents(APIView):
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
+        if required_timezone:
+            try:
+                import pytz
+                print (required_timezone)
+                tz = pytz.timezone(required_timezone)
+                date = datetime.datetime.now(tz).date()
+                print ("kfc", date)
+            except Exception as e:
+                print (e)
+                date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        else:
+            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        
         if required_timezone: 
             offer_serial = InstallDataTZ(offer_serial)
         else:       
             offer_serial = InstallData(offer_serial)
 
         if required_timezone:
-            event_data = EventInfoTZ.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
+            event_data = EventInfoTZ.objects.filter(created_at=date,campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
         else:
             event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
 
         if not event_data:
             if required_timezone:
-                event_details = EventInfoTZ(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
+                event_details = EventInfoTZ(created_at=date, campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
             else:
                 event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
         else:
