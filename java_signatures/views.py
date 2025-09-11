@@ -1934,6 +1934,7 @@ class TrackInstalls(APIView):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
         if required_timezone:
+            print ("kfc", date)
             install_data = InstallDataTZ.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
         else:
             install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
