@@ -67,7 +67,7 @@ class RevenueHelper(models.Model):
 
 class InstallDataTZ(models.Model):
     serial = models.AutoField(primary_key=True, editable=False, unique=True)
-    created_at = models.DateField(default='')
+    created_at = models.DateField(null=True, blank=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
@@ -83,7 +83,7 @@ class InstallDataTZ(models.Model):
 class EventInfoTZ(models.Model):
     serial = models.AutoField(primary_key=True, editable=False)
     offer_serial = models.ForeignKey(InstallDataTZ, to_field='serial', on_delete=models.CASCADE)
-    created_at = models.DateField(default='')
+    created_at = models.DateField(null=True, blank=True)
     campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
     event_name = models.CharField(default='',max_length=50)
     event_count = models.IntegerField(default=0)
