@@ -2115,8 +2115,8 @@ class IndigoV3MiningAPI(APIView):
                 return Response({'body':{"status": "Not Allowed"}})
 
 
-        elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
-            bt2_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
+        elif channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
+            bt2_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing", "appsatiate")).count()
             print (bt2_count)
             if bt2_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
@@ -3640,8 +3640,8 @@ class GameRummyAPI(APIView):
             if bt3_count > 60:
                 return Response({'body':{"status": "Not Allowed", "current_count": bt3_count}})
 
-        elif channel in ["adshustle", "vestaapps", "appsfollowing"]:
-            bt2_count = GameRummy.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing")).count()
+        elif channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
+            bt2_count = GameRummy.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing", "appsatiate")).count()
             print (bt2_count)
             if bt2_count > 60:
                 return Response({'body':{"status": "Not Allowed","current_count": bt2_count}})
@@ -6817,7 +6817,7 @@ class GalaxyChatAPI(APIView):
             return Response({'body':'error','message':'panel offer not allowed'})
         
 
-        if channel in ['adshustle', 'appsfollowing', 'vestaapps']:
+        if channel in ['adshustle', 'appsfollowing', 'vestaapps', "appsatiate"]:
             BT = "BT2"
             other_BT = "BT3"
         elif channel in ['mobpine', '77ads', 'appamplify']:
