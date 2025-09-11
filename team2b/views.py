@@ -510,6 +510,8 @@ class AppsForSimulation(APIView):
     def get(self, request):
         url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today() - timedelta(days=1),date.today() - timedelta(days=1))
         today_r6_data = requests.get(url).json()
+
+        print (today_r6_data)
         apps_list_query = IDHelperApps.objects.all()
         apps_list_dict = {}
         for item in apps_list_query:
