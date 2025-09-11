@@ -80,6 +80,24 @@ class InstallDataTZ(models.Model):
             models.Index(fields=['campaign_name','channel','network','offer_id']),
         ]
 
+class EventInfoTZ(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False)
+    offer_serial = models.ForeignKey(InstallDataTZ, to_field='serial', on_delete=models.CASCADE)
+    created_at = models.DateField(default='')
+    campaign_name = models.CharField(max_length=50,default='pepperfryyauto')    
+    event_name = models.CharField(default='',max_length=50)
+    event_count = models.IntegerField(default=0)
+    event_day = models.IntegerField(default=0)
+    event_value = models.JSONField(default = dict,blank=True, null=True)
+    revenue = models.FloatField(default=0)
+    
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['campaign_name','offer_serial', 'event_name']),
+            models.Index(fields=['campaign_name','offer_serial']),
+        ]
+
 class InstallData(models.Model):
     serial = models.AutoField(primary_key=True, editable=False, unique=True)
     created_at = models.DateField(auto_now_add=True)

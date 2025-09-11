@@ -15,7 +15,7 @@ from collections import defaultdict
 from datetime import timedelta
 from django.utils import timezone
 
-from java_signatures.models import InstallData, EventInfo, ExchangeRate
+from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
 
 
@@ -1932,11 +1932,17 @@ class TrackInstalls(APIView):
 
         if not all([campaign_name, channel, network, offer_id]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
-
-        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
+        
+        if required_timezone:
+            install_data = InstallDataTZ.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
+        else:
+            install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
 
         if not install_data:
-            install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+            if required_timezone:
+                install_details = InstallDataTZ(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+            else:
+                install_details = InstallData(campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
         else:
             install_details = install_data.get()
             install_details.installs += 1
@@ -1952,16 +1958,26 @@ class TrackEvents(APIView):
         event_day = request.GET.get("event_day")
         event_value = request.GET.get("event_value")
         revenue = float(request.GET.get("revenue", 0))
+        required_timezone = request.GET.get("required_timezone")
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
-        offer_serial = InstallData(offer_serial)
+        if required_timezone: 
+            offer_serial = InstallDataTZ(offer_serial)
+        else:       
+            offer_serial = InstallData(offer_serial)
 
-        event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
+        if required_timezone:
+            event_data = EventInfoTZ.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
+        else:
+            event_data = EventInfo.objects.filter(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_day=event_day)
 
         if not event_data:
-            event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
+            if required_timezone:
+                event_details = EventInfoTZ(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
+            else:
+                event_details = EventInfo(campaign_name=campaign_name, offer_serial=offer_serial, event_name=event_name, event_count=1, event_day=event_day, revenue=revenue)
         else:
             event_details = event_data.get()
             event_details.event_count += 1
@@ -2503,6 +2519,7 @@ class checkEligibility(APIView):
         event_day = request.GET.get("event_day")
         revenue = request.GET.get("revenue", 0)
         track_only = request.GET.get("track_only", False)
+        required_timezone = request.GET.get("required_timezone")
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
@@ -2515,11 +2532,16 @@ class checkEligibility(APIView):
         if not campaign_name in ["bigloanmodd"] and event_day>7:
             return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
-
-        try:
-            install_details = InstallData.objects.get(serial=offer_serial)
-        except InstallData.DoesNotExist:
-            return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
+        if required_timezone:
+            try:
+                install_details = InstallDataTZ.objects.get(serial=offer_serial)
+            except InstallDataTZ.DoesNotExist:
+                return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
+        else:
+            try:
+                install_details = InstallData.objects.get(serial=offer_serial)
+            except InstallData.DoesNotExist:
+                return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
 
         channel = install_details.channel
         network = install_details.network
@@ -2553,7 +2575,10 @@ class checkEligibility(APIView):
         is_eligible = False
 
         if install_count > required_installs:
-            event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+            if required_timezone:
+                event_details = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+            else:
+                event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
             total_event_count = sum((event['event_count'] for event in event_details))
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
@@ -2561,13 +2586,20 @@ class checkEligibility(APIView):
             if required_events:
                 from datetime import datetime
                 today = datetime.now().strftime('%Y-%m-%d')
-                completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                if required_timezone:
+                    completed_event_count = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                else:
+                    completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
                 if (completed_event_count/install_count)*100 >= required_events:
                     is_eligible = False
             
             if is_eligible and not track_only:
-                event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
+                if required_timezone:
+                    event_details, created = EventInfoTZ.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
+
+                else:
+                    event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
 
                 if not created:
                     event_details.event_count += 1
@@ -2586,6 +2618,7 @@ class EventCount(APIView):
         event_day = request.GET.get("event_day")
         revenue = request.GET.get("revenue", 0)
         track_only = request.GET.get("track_only", False)
+        required_timezone = request.GET.get("required_timezone")
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
@@ -2598,11 +2631,16 @@ class EventCount(APIView):
         if event_day > 7:
             return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
-
-        try:
-            install_details = InstallData.objects.get(serial=offer_serial)
-        except InstallData.DoesNotExist:
-            return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
+        if required_timezone:
+            try:
+                install_details = InstallDataTZ.objects.get(serial=offer_serial)
+            except InstallDataTZ.DoesNotExist:
+                return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
+        else:
+            try:
+                install_details = InstallData.objects.get(serial=offer_serial)
+            except InstallData.DoesNotExist:
+                return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
 
         channel = install_details.channel
         network = install_details.network
@@ -2644,7 +2682,10 @@ class EventCount(APIView):
             if required_events:
                 from datetime import datetime
                 today = datetime.now().strftime('%Y-%m-%d')
-                completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                if required_timezone:
+                    completed_event_count = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
+                else:
+                    completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
                 if (completed_event_count/install_count)*100 <= required_events:
                     is_eligible = True            
