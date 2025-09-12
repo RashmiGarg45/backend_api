@@ -1926,32 +1926,18 @@ class TrackInstalls(APIView):
                 print (e)
                 date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         else:
-            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
-        
+            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")       
 
 
         if not all([campaign_name, channel, network, offer_id]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
-        # if required_timezone:
-        #     print ("kfc2", date, type(date))
-        #     install_data = InstallDataTZ.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
-        # else:
-        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
-
         if required_timezone:
             install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at__gte=str(date), channel=channel, network=network, offer_id=offer_id)
         else:
-            install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
-
-
-            
+            install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)            
 
         if not install_data:
-            print ("kfc2", date, type(date))
-            # if required_timezone:
-            #     install_details = InstallDataTZ(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
-            # else:
             install_details = InstallData(created_at=date, campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
         else:
             install_details = install_data.get()
