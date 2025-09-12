@@ -2006,7 +2006,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
         return 11
     
     elif campaign_name == "kfcmexicotmodd" and offer_id in ["kfcneozigmmp"]:
-        return 9
+        return 10
     
     elif campaign_name == "kfcmexicotmodd":
         return 15 #percentage
