@@ -1940,7 +1940,7 @@ class TrackInstalls(APIView):
         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
 
         if required_timezone:
-            install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=str(date), channel=channel, network=network, offer_id=offer_id)
+            install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at__gte=str(date), channel=channel, network=network, offer_id=offer_id)
         else:
             install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
 
