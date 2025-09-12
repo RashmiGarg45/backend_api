@@ -1940,6 +1940,7 @@ class TrackInstalls(APIView):
         install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)
 
         if not install_data:
+            print ("kfc2", date, type(date))
             # if required_timezone:
             #     install_details = InstallDataTZ(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
             # else:
