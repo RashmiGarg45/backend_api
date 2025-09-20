@@ -1998,7 +1998,7 @@ class TrackEvents(APIView):
 def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
 
     if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcaosneommp", "kfcmxneommp", "kfcneomacmmp", "kfcneozigmmp", "kfcdormmp", 'test']:
-        return 10
+        return 11
 
     if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcnapmmp"]:
         return 12
