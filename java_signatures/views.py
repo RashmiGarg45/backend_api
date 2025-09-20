@@ -2311,6 +2311,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase":
         return {0: 9, 1:8.33, 2: 7.14}
     
+    elif campaign_name == "cloneindigomoddteam2modd" and event_name == "af_purchase":
+        return {0: 9, 1:8.33, 2: 7.14}
+    
     elif campaign_name == "breakthroughkingdommodd" and event_name == "1_09":
         return {0:10, 1:20, 4:16.67, 5:14.28, 6:12.5, 7:14.28}
     
