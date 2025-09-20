@@ -178,4 +178,5 @@ urlpatterns = [
     path("tikettUID", views.TikettUIDAPI.as_view(), name="cru_tikettUID"),
     path("cabst13", views.Cabst13API.as_view(), name="cru_cabst13"),
     path("888", views.R888casinoAPI.as_view(), name="cru_r888"),
+    path("joybuy", views.JoybuyAPI.as_view(), name="cru_joybuy"),
 ]
