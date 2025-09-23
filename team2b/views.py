@@ -5342,6 +5342,9 @@ class FoxtaleMiningAPI(APIView):
         if offer_id and random.randint(1,100)<=100:
             
             query = FoxtaleOrderId.objects.filter(created_at__lte=str(date_),offer_id=offer_id)
+            print ("*"*100)
+            print (query)
+            print ("*"*100)
             if query:
                 print ("new offer_id")
 
