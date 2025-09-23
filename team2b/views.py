@@ -5345,7 +5345,7 @@ class FoxtaleMiningAPI(APIView):
             print ("*"*100)
             print (query)
             print ("*"*100)
-            if query:
+            if not query:
                 print ("new offer_id")
 
                 from datetime import timedelta
