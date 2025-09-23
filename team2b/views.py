@@ -5343,7 +5343,6 @@ class FoxtaleMiningAPI(APIView):
             
             query = FoxtaleOrderId.objects.filter(created_at__lte=str(date_),offer_id=offer_id)
             print ("*"*100)
-            print (query)
             print ("*"*100)
             if query:
                 print ("old offer_id")
