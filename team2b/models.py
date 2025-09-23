@@ -2858,3 +2858,31 @@ class Joybuy(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class Atomepht2uid(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='atomepht2modd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class Atomepht2aid(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='atomepht2modd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
