@@ -2709,6 +2709,28 @@ class GalaxyChatCountry(models.Model):
             models.Index(fields=['id']),
         ]
 
+
+class GalaxyChatRU(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='galaxychatappmetrica')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    username = models.CharField(max_length=30)
+    city = models.CharField(max_length=30, default='')
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel_list = models.JSONField(default = list,blank=True, null=True)
+    network_list = models.JSONField(default = list,blank=True, null=True)
+    offer_id_list = models.JSONField(default = list,blank=True, null=True)
+    bt_list = models.JSONField(default = list,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+
 class Alphacapital(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
