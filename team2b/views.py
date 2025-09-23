@@ -5349,12 +5349,11 @@ class FoxtaleMiningAPI(APIView):
                 print ("old offer_id")
 
                 from datetime import timedelta
-                date_ = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-                print (date_)
+                old_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
                 print ("*"*100)
 
-                query = FoxtaleOrderId.objects.filter(order_placed_date__lte=str(date_),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
-        
+                query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(old_date), order_placed_date__lte=str(date_),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
+                print (query)
         if not query:
             query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(date_),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
         
