@@ -5352,7 +5352,7 @@ class FoxtaleMiningAPI(APIView):
                 old_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
                 print ("*"*100)
 
-                start_of_yesterday = datetime.combine(old_date, datetime.min.time()
+                start_of_yesterday = datetime.combine(old_date, datetime.min.time())
                 end_of_yesterday = datetime.combine(old_date, datetime.max.time())
 
 
