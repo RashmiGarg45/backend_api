@@ -5345,7 +5345,7 @@ class FoxtaleMiningAPI(APIView):
             if query:
                 print ("new offer_id")
 
-                from datetime import datetime, timedelta
+                from datetime import timedelta
                 date_ = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
 
         query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(date_),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
