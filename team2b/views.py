@@ -5337,9 +5337,18 @@ class FoxtaleMiningAPI(APIView):
         
         filter_dict = {}
 
-        today = datetime.now().strftime('%Y-%m-%d')
+        date_ = datetime.now().strftime('%Y-%m-%d')
 
-        query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(today),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
+        if offer_id and random.randint(1,100)<=100:
+            
+            query = FoxtaleOrderId.objects.filter(created_at__lte=str(date_),offer_id=offer_id)
+            if query:
+                print ("new offer_id")
+
+                from datetime import datetime, timedelta
+                date_ = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+
+        query = FoxtaleOrderId.objects.filter(order_placed_date__gte=str(date_),used_at=None, price__gte=Decimal('1000.0'),**filter_dict).order_by('-created_at')[0:50].first()
         
         data = {
                 'id':query.id,
