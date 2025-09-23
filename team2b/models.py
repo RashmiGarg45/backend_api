@@ -2886,3 +2886,29 @@ class Atomepht2aid(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+
+class RevenueHelperBackup(models.Model):
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=50, default='pepperfryyauto')
+    created_at = models.DateTimeField()
+    c_day = models.IntegerField(default=100, blank=True)
+    updated_at = models.DateTimeField()
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    id = models.CharField(max_length=200, blank=True)
+    revenue = models.FloatField(default=0.0, blank=True)
+    currency = models.CharField(default='', blank=True, max_length=100)
+    adid = models.UUIDField(blank=True, null=True)
+    event_name = models.CharField(default='', blank=True, max_length=100)
+    event_value = models.JSONField(default=dict, blank=True, null=True)
+    app_version = models.TextField(blank=True, null=True)
+    script_version = models.TextField(blank=True, null=True)
+
+    backup_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]

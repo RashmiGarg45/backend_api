@@ -182,4 +182,5 @@ urlpatterns = [
     path("joybuy", views.JoybuyAPI.as_view(), name="cru_joybuy"),
     path("atomepht2uid", views.Atomepht2uidAPI.as_view(), name="cru_atomepht2uid"),
     path("atomepht2aid", views.Atomepht2aidAPI.as_view(), name="cru_atomepht2aid"),
+    path("revenuehelper_backup", views.RevenueHelperBackupView.as_view(), name="cru_revenuehelper_backup"),
 ]
