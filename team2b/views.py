@@ -2340,7 +2340,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["ocbcmodd", "raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "gsmtmodd", "jazzcashmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "paymayamodd", "opaymodd", "jupitertmodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd"]
+        scripts_list = ["ocbcmodd", "raisinggoblinmodd", "galaxytmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "gsmtmodd", "jazzcashmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "paymayamodd", "opaymodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd"]
 
         output = {}
         for campaign_name in scripts_list:
@@ -7521,40 +7521,48 @@ class RevenueHelperBackupView(APIView):
         last_month_end = first_day_this_month - timedelta(days=1)
         last_month_start = last_month_end.replace(day=1)
 
-        queryset = RevenueHelper.objects.filter(
-            created_at__gte=last_month_start,
-            created_at__lte=last_month_end,
-        )
+        # queryset = RevenueHelper.objects.filter(
+        #     created_at__gt=last_month_start,
+        #     created_at__lt=last_month_end,
+        # )
 
-        objs = []
-        for obj in queryset:
-            objs.append(
-                RevenueHelperBackup(
-                    campaign_name=obj.campaign_name,
-                    created_at=obj.created_at,
-                    c_day=obj.c_day,
-                    updated_at=obj.updated_at,
-                    channel=obj.channel,
-                    network=obj.network,
-                    offer_id=obj.offer_id,
-                    id=obj.id,
-                    revenue=obj.revenue,
-                    currency=obj.currency,
-                    adid=obj.adid,
-                    event_name=obj.event_name,
-                    event_value=obj.event_value,
-                    app_version=obj.app_version,
-                    script_version=obj.script_version,
-                )
-            )
+        # objs = []
+        # for obj in queryset:
+        #     objs.append(
+        #         RevenueHelperBackup(
+        #             campaign_name=obj.campaign_name,
+        #             created_at=obj.created_at,
+        #             c_day=obj.c_day,
+        #             updated_at=obj.updated_at,
+        #             channel=obj.channel,
+        #             network=obj.network,
+        #             offer_id=obj.offer_id,
+        #             id=obj.id,
+        #             revenue=obj.revenue,
+        #             currency=obj.currency,
+        #             adid=obj.adid,
+        #             event_name=obj.event_name,
+        #             event_value=obj.event_value,
+        #             app_version=obj.app_version,
+        #             script_version=obj.script_version,
+        #         )
+        #     )
 
-        RevenueHelperBackup.objects.bulk_create(objs)
+        # RevenueHelperBackup.objects.bulk_create(objs)
 
-        serializer = RevenueHelperBackupSerializer(objs, many=True)
+        # serializer = RevenueHelperBackupSerializer(objs, many=True)
+        # return Response(
+        #     {
+        #         "message": f"Backed up {len(objs)} rows from {last_month_start.date()} to {last_month_end.date()}",
+        #         "data": serializer.data,
+        #     },
+        #     status=status.HTTP_201_CREATED,
+        # )
+
         return Response(
             {
-                "message": f"Backed up {len(objs)} rows from {last_month_start.date()} to {last_month_end.date()}",
-                "data": serializer.data,
+                "message": f"rows from {last_month_start.date()} to {last_month_end.date()}",
+                "data": {},
             },
             status=status.HTTP_201_CREATED,
         )
