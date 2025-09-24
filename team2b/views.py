@@ -7521,10 +7521,10 @@ class RevenueHelperBackupView(APIView):
         last_month_end = first_day_this_month - timedelta(days=1)
         last_month_start = last_month_end.replace(day=1)
 
-        # queryset = RevenueHelper.objects.filter(
-        #     created_at__gt=last_month_start,
-        #     created_at__lt=last_month_end,
-        # )
+        queryset = RevenueHelper.objects.filter(
+            created_at__gte=last_month_start,
+            created_at__lte=last_month_end,
+        )
 
         # objs = []
         # for obj in queryset:
@@ -7562,6 +7562,7 @@ class RevenueHelperBackupView(APIView):
         return Response(
             {
                 "message": f"rows from {last_month_start.date()} to {last_month_end.date()}",
+                'revenue_data': queryset[0],
                 "data": {},
             },
         )
