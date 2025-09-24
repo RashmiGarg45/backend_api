@@ -7562,7 +7562,7 @@ class RevenueHelperBackupView(APIView):
         return Response(
             {
                 "message": f"rows from {last_month_start.date()} to {last_month_end.date()}",
-                'revenue_data': queryset[0],
+                'revenue_data': queryset.values().first(),
                 "data": {},
             },
         )
