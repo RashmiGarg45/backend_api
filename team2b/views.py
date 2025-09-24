@@ -7564,5 +7564,4 @@ class RevenueHelperBackupView(APIView):
                 "message": f"rows from {last_month_start.date()} to {last_month_end.date()}",
                 "data": {},
             },
-            status=status.HTTP_201_CREATED,
         )
