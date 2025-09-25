@@ -184,4 +184,5 @@ urlpatterns = [
     path("atomepht2aid", views.Atomepht2aidAPI.as_view(), name="cru_atomepht2aid"),
     path("revenuehelper_backup", views.RevenueHelperBackupView.as_view(), name="cru_revenuehelper_backup"),
     path("myshift", views.MyshiftAPI.as_view(), name="cru_myshift"),
+    path("clubeextra", views.ClubeextraAPI.as_view(), name="cru_clubeextra"),
 ]
