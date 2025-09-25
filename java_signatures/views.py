@@ -2551,7 +2551,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:3.33, 1:2.85, 2:2.63, 3:2.5}
 
     elif campaign_name == "gsmtmodd" and event_name == "order_completed_1st_time":
-        return {0:11.11, 1:8.33,2:7.14, 3: 6.66}
+        return {0:10, 1:8,2:7, 3: 6}
 
     elif campaign_name == "bollingerauto" and event_name == "l1swxm":
         return {0:90, 1:50}
