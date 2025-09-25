@@ -2576,6 +2576,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "kotak811mbtmodd" and event_name == "AccountOTP_OTP_Acq":
         return {0:30}
+    
+    elif campaign_name == "mylingueautoios" and event_name == "y3ahlf":
+        return {0:3.33, 1:2.77, 2:2.43, 3:2.22}
+
         
 class checkEligibility(APIView):
     def get(self, request):
