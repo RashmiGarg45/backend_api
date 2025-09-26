@@ -2596,13 +2596,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:2, 1:1.78, 2:1.6}
 
     elif campaign_name == "nouslibauto" and event_name == "purchase":
-        return {0:24, 1:16}
+        return {0:21, 1:16}
 
     elif campaign_name == "nouslibt2autoios" and event_name == "chju3f":
         return {0:2, 1:1.78, 2:1.6}
 
     elif campaign_name == "nouslibt2autoios" and event_name == "purchase":
-        return {0:24, 1:16}
+        return {0:21, 1:16}
 
 
         
