@@ -2131,10 +2131,10 @@ class IndigoV3MiningAPI(APIView):
                 print ("indigo inside")
                 offer_id_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), offer_id=offer_id).count()
                 print ("indigo count", offer_id_count)
-                if offer_id_count > 5:
+                if offer_id_count > 6:
                     return Response({'body':{"status": "Not Allowed"}})
                 
-            if bt2_count > 100:
+            elif bt2_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
 
 
