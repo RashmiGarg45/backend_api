@@ -2128,8 +2128,9 @@ class IndigoV3MiningAPI(APIView):
             print (bt2_count)
 
             if offer_id in ["idgafsmmp", "idgmedmmp"]:
+                print ("indigo inside")
                 offer_id_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), offer_id=offer_id).count()
-
+                print ("indigo count", offer_id_count)
                 if offer_id_count > 5:
                     return Response({'body':{"status": "Not Allowed"}})
                 
