@@ -185,4 +185,5 @@ urlpatterns = [
     path("revenuehelper_backup", views.RevenueHelperBackupView.as_view(), name="cru_revenuehelper_backup"),
     path("myshift", views.MyshiftAPI.as_view(), name="cru_myshift"),
     path("clubeextra", views.ClubeextraAPI.as_view(), name="cru_clubeextra"),
+    path("clubeextracid", views.ClubeextracidAPI.as_view(), name="cru_clubeextracid"),
 ]
