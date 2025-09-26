@@ -2126,6 +2126,13 @@ class IndigoV3MiningAPI(APIView):
         elif channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
             bt2_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("adshustle", "vestaapps", "appsfollowing", "appsatiate")).count()
             print (bt2_count)
+
+            if offer_id in ["idgafsmmp", "idgmedmmp"]:
+                offer_id_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), offer_id=offer_id).count()
+
+                if offer_id_count > 5:
+                    return Response({'body':{"status": "Not Allowed"}})
+                
             if bt2_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
 
