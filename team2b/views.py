@@ -2113,7 +2113,13 @@ class IndigoV3MiningAPI(APIView):
             bt3_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
             print (bt3_count)
 
-            if bt3_count > 100:
+            if offer_id in ["indigo-prudent-8"]:
+                offer_id_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), offer_id=offer_id).count()
+
+                if offer_id_count > 10:
+                    return Response({'body':{"status": "Not Allowed"}})
+
+            elif bt3_count > 100:
                 return Response({'body':{"status": "Not Allowed"}})
 
 
