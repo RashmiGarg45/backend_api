@@ -6977,7 +6977,7 @@ class GalaxyChatCountryAPI(APIView):
         query.id = request.data.get('user_id')
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
-        query.from_selfcall =  request.data.get('from_selfcall','')
+        query.from_selfcall =  request.data.get('from_selfcall',False)
         query.used_at = None
         try:
             query.save()
@@ -7014,7 +7014,7 @@ class GalaxyChatCountryAPI(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = GalaxyChatCountry.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        query_list = GalaxyChatCountry.objects.filter(used_at=None,from_selfcall=False).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
             print ("Galaxy in not function")
             query_list = GalaxyChatCountry.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
@@ -7023,57 +7023,56 @@ class GalaxyChatCountryAPI(APIView):
             print ("Galzxy found query")
             for i in range(3):
                 query = random.choice(query_list)
-                if query.from_selfcall not in ['True', True,'true']:
 
-                    if not query.channel_list:
-                        new_channel_list = [channel]
-                    else:
-                        if channel in query.channel_list:
-                            continue
-                        new_channel_list = query.channel_list
-                        new_channel_list.append(channel)
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
 
-                    if not query.network_list:
-                        new_network_list = [network]
-                    else:
-                        if network in query.network_list:
-                            continue
-                        new_network_list = query.network_list
-                        new_network_list.append(network)
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
 
-                    if not query.offer_id_list:
-                        new_offer_id_list = [offer_id]
-                    else:
-                        if offer_id in query.offer_id_list:
-                            continue
-                        new_offer_id_list = query.offer_id_list
-                        new_offer_id_list.append(offer_id)
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
 
-                    if not query.bt_list:
-                        new_bt_list = [BT]
-                    else:
-                        if offer_id in query.bt_list:
-                            continue
-                        new_bt_list = query.bt_list
-                        new_bt_list.append(BT)
+                if not query.bt_list:
+                    new_bt_list = [BT]
+                else:
+                    if offer_id in query.bt_list:
+                        continue
+                    new_bt_list = query.bt_list
+                    new_bt_list.append(BT)
 
-                    data = {
-                            'user_id':query.id,
-                            'username': query.username,
-                            'city': query.city
-                    }
-                    if setUsed:
-                        print ("galaxy success")
-                        query = GalaxyChatCountry.objects.filter(id=data.get('user_id')).update(
-                            used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                            channel_list=new_channel_list,
-                            network_list=new_network_list,
-                            offer_id_list=new_offer_id_list,
-                            bt_list =  new_bt_list
-                            )
-                    return Response({
-                        'body':data,
-                    })
+                data = {
+                        'user_id':query.id,
+                        'username': query.username,
+                        'city': query.city
+                }
+                if setUsed:
+                    print ("galaxy success")
+                    query = GalaxyChatCountry.objects.filter(id=data.get('user_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
+                        bt_list =  new_bt_list
+                        )
+                return Response({
+                    'body':data,
+                })
 
         return Response({
             'body':'error',
@@ -7089,7 +7088,7 @@ class GalaxyChatRUAPI(APIView):
         query.id = request.data.get('user_id')
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
-        query.from_selfcall =  request.data.get('from_selfcall','')
+        query.from_selfcall =  request.data.get('from_selfcall',False)
         query.used_at = None
         try:
             query.save()
@@ -7126,7 +7125,7 @@ class GalaxyChatRUAPI(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = GalaxyChatRU.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        query_list = GalaxyChatRU.objects.filter(used_at=None,from_selfcall=False).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
             print ("Galaxy in not function")
             query_list = GalaxyChatRU.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
@@ -7136,57 +7135,55 @@ class GalaxyChatRUAPI(APIView):
             for i in range(3):
                 query = random.choice(query_list)
 
-                if query.from_selfcall not in ['True', True,'true']:
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
 
-                    if not query.channel_list:
-                        new_channel_list = [channel]
-                    else:
-                        if channel in query.channel_list:
-                            continue
-                        new_channel_list = query.channel_list
-                        new_channel_list.append(channel)
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
 
-                    if not query.network_list:
-                        new_network_list = [network]
-                    else:
-                        if network in query.network_list:
-                            continue
-                        new_network_list = query.network_list
-                        new_network_list.append(network)
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
 
-                    if not query.offer_id_list:
-                        new_offer_id_list = [offer_id]
-                    else:
-                        if offer_id in query.offer_id_list:
-                            continue
-                        new_offer_id_list = query.offer_id_list
-                        new_offer_id_list.append(offer_id)
+                if not query.bt_list:
+                    new_bt_list = [BT]
+                else:
+                    if offer_id in query.bt_list:
+                        continue
+                    new_bt_list = query.bt_list
+                    new_bt_list.append(BT)
 
-                    if not query.bt_list:
-                        new_bt_list = [BT]
-                    else:
-                        if offer_id in query.bt_list:
-                            continue
-                        new_bt_list = query.bt_list
-                        new_bt_list.append(BT)
-
-                    data = {
-                            'user_id':query.id,
-                            'username': query.username,
-                            'city': query.city
-                    }
-                    if setUsed:
-                        print ("galaxy success")
-                        query = GalaxyChatRU.objects.filter(id=data.get('user_id')).update(
-                            used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                            channel_list=new_channel_list,
-                            network_list=new_network_list,
-                            offer_id_list=new_offer_id_list,
-                            bt_list =  new_bt_list
-                            )
-                    return Response({
-                        'body':data,
-                    })
+                data = {
+                        'user_id':query.id,
+                        'username': query.username,
+                        'city': query.city
+                }
+                if setUsed:
+                    print ("galaxy success")
+                    query = GalaxyChatRU.objects.filter(id=data.get('user_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
+                        bt_list =  new_bt_list
+                        )
+                return Response({
+                    'body':data,
+                })
 
         return Response({
             'body':'error',
