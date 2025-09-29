@@ -6977,7 +6977,6 @@ class GalaxyChatCountryAPI(APIView):
         query.id = request.data.get('user_id')
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
-        query.from_selfcall =  request.data.get('from_selfcall',False)
         query.used_at = None
         try:
             query.save()
@@ -7014,7 +7013,7 @@ class GalaxyChatCountryAPI(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = GalaxyChatCountry.objects.filter(used_at=None,from_selfcall=False).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        query_list = GalaxyChatCountry.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
             print ("Galaxy in not function")
             query_list = GalaxyChatCountry.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
@@ -7088,7 +7087,7 @@ class GalaxyChatRUAPI(APIView):
         query.id = request.data.get('user_id')
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
-        query.from_selfcall =  request.data.get('from_selfcall',False)
+        query.from_selfcall =  request.data.get('from_selfcall','false')
         query.used_at = None
         try:
             query.save()
