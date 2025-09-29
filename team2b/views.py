@@ -7089,7 +7089,7 @@ class GalaxyChatRUAPI(APIView):
         query.id = request.data.get('user_id')
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
-        uery.from_selfcall =  request.data.get('from_selfcall','')
+        query.from_selfcall =  request.data.get('from_selfcall','')
         query.used_at = None
         try:
             query.save()
