@@ -187,5 +187,4 @@ urlpatterns = [
     path("clubeextra", views.ClubeextraAPI.as_view(), name="cru_clubeextra"),
     path("clubeextracid", views.ClubeextracidAPI.as_view(), name="cru_clubeextracid"),
     path("hering", views.HeringAPI.as_view(), name="cru_hering"),
-    path("bnc", views.BncAPI.as_view(), name="cru_bnc"),
 ]
