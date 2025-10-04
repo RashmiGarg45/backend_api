@@ -3998,6 +3998,13 @@ class EpoCosmeticAPI(APIView):
         return Response({
             'body':data,
         })
+
+    def post(self, request):
+        query = EpoCosmetic.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
  
 class EbebekAPI(APIView):
     def put(self, request):
