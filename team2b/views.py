@@ -3981,8 +3981,8 @@ class EpoCosmeticAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        min_price = '2000.0'
-        max_price = '200000.0'
+        min_price = '20.0'
+        max_price = '2000.0'
 
         query = EpoCosmetic.objects.filter(used_at=None, price__gte=Decimal(min_price), price__lte=Decimal(max_price)).order_by('-created_at')[0:50].first()
 
