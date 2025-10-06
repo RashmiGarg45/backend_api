@@ -2000,7 +2000,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcaosneommp", "kfcmxneommp", "kfcneomacmmp", "kfcneozigmmp", "kfcdormmp", 'test']:
         return 11
 
-    if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcnapmmp", "kfcnopmmp"]:
+    if campaign_name == "kfcmexicotmodd" and offer_id in ["kfcnapmmp", "kfcnopmmp", "test_new"]:
         return 12
     
     elif campaign_name == "kfcmexicotmodd":
