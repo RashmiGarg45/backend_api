@@ -2134,7 +2134,7 @@ class IndigoV3MiningAPI(APIView):
                 if offer_id_count > 6:
                     return Response({'body':{"status": "Not Allowed"}})
                 
-            elif bt2_count > 100:
+            elif bt2_count > 200:
                 return Response({'body':{"status": "Not Allowed"}})
 
 
