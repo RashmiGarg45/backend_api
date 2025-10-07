@@ -2625,6 +2625,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "fabmobilemodd" and event_name == "ntb_cc_card_created":
         return {0:45, 1:30, 2:23, 3:19}
 
+    elif campaign_name == "bbvamodd" and event_name == "portabilidad_nomina-app_approved":
+        return {0:40, 1:26, 2:20, 3:18}
+
         
 class checkEligibility(APIView):
     def get(self, request):
