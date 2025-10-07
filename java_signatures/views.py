@@ -2620,7 +2620,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:9, 2:6.6}
     
     elif campaign_name == "fabmobilemodd" and event_name == "ntb_casa_account_created":
-        return {1:45, 2:30, 3: 23}
+        return {0:45, 1:30, 2:23, 3:19}
 
         
 class checkEligibility(APIView):
