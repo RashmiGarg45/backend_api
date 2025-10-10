@@ -7780,10 +7780,11 @@ class Babytrackeruid(APIView):
         network = request.GET.get('network', '')
         offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
+        is_premium = request.GET.get('is_premium', False)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Babytracker.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        query = Babytracker.objects.filter(used_at=None, is_premium=is_premium).order_by('-created_at')[0:50].first()
         
         data = {
                 'user_id':query.id,
