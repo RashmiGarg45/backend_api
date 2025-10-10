@@ -2176,7 +2176,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:16.6, 1:11, 2:7.14}
     
     elif campaign_name == "opaymodd" and event_name == "total_transaction":
-        return {0:28.5, 1:18.18, 2:13.33}
+        return {0:15, 1:10, 2:6}
     
     elif campaign_name == "hoteltonightautoios" and channel == "adshustle" and network == "advivifymedia" and offer_id in ["21653946", "21676889"] and event_name == "pey3pd":
         return {0: 12.5, 1:9, 2:7.14, 3:6.25}
