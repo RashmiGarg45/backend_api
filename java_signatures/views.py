@@ -2638,6 +2638,25 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
 
     elif campaign_name == "bbvamodd" and event_name == "portabilidad_nomina-app_approved":
         return {0:40, 1:26, 2:20, 3:18}
+    
+    elif campaign_name == "babytrackermodd" and event_name == "af_start_trial":
+        return {0:30, 1:18, 2:16}
+
+    elif campaign_name == "babytrackermodd" and event_name == "af_subscribe":
+        return {0:90, 1:45}
+    
+    elif campaign_name == "babytrackermodd" and event_name == "af_purchase":
+        return {0:31, 1:19, 2:15, 3:12}
+
+        
+    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_start_trial":
+        return {0:30, 1:18, 2:16}
+
+    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_subscribe":
+        return {0:90, 1:45}
+    
+    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_purchase":
+        return {0:31, 1:19, 2:15, 3:12}
 
         
 class checkEligibility(APIView):
