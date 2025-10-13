@@ -2308,6 +2308,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
         return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
 
+    elif campaign_name == "bcsinvestmenttmodd" and event_name == "28500_Instr_Bid_Success":
+        return {0: 45, 1:23}
+
     elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase" and channel in ["mobpine", "77ads", "appamplify"]:
         return {0:12, 1:10, 2:9}
     
