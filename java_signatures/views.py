@@ -2043,8 +2043,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "moovauto" and channel == "test" and network == "test" and offer_id == "test" and event_name == "ld4kw6":
         return {0: 19, 1:19}
 
-    elif campaign_name == "boylesportstmodd" and event_name == "n_ftd":
-        return {0: 11.1, 1:8, 2:6.5}
+    elif campaign_name == "boylesportstmodd" and event_name == "n_ftd" and channel:
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            return {0:24}
+        else:
+            return {0: 11.1, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
         return {0: 7.7, 1:5.8, 2: 5}
