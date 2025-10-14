@@ -2168,6 +2168,10 @@ class RevenueHelperAPI(APIView):
         query.script_version = request.data.get('script_version', '')
         # query.day = request.data.get("day")
         query.c_day = request.data.get("day", 100)
+
+        if query.event_name=='attribution_data':
+            message = '*{} -{} -{}*\n NEW APP CONVERTING'.format(query.campaign_name,query.event_value, datetime.now())
+            send_message(message)
         try:
             query.save()
             return Response({
@@ -7802,3 +7806,19 @@ class Babytrackeruid(APIView):
         return Response({
             'id':query.id,
         })
+
+def send_message(_msg):
+    import requests
+    import json
+    import datetime
+
+    webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAsLA0la4/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=8GAMy3JxaLfFgkJ-Dm0Z2Ab9sOE38zLBRgXGXoJn4Uo"
+    _params = {
+        # "key": "AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI",
+        # "token": "8GAMy3JxaLfFgkJ-Dm0Z2Ab9sOE38zLBRgXGXoJn4Uo",
+    }
+    try:
+        resp = requests.post(url=webhook_url, params=_params, json={"text": _msg}, verify=False).json()
+        print("[+] Msg sent to \"{}\"".format(resp.get("space").get("name")))
+    except Exception as e:
+        print("[+] Something went wrong {}".format(e))
