@@ -2169,7 +2169,7 @@ class RevenueHelperAPI(APIView):
         # query.day = request.data.get("day")
         query.c_day = request.data.get("day", 100)
 
-        if query.event_name=='attribution_data':
+        if query.event_name=='attribution_data' and query.campaign_name not in ["officialligueauto"]:
             message = '*{} -{} -{}*\n NEW APP CONVERTING'.format(query.campaign_name,query.event_value, datetime.now())
             send_message(message)
         try:
@@ -2360,7 +2360,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["boylesportstmodd", "joybuymodd", "ocbcmodd", "raisinggoblinmodd", "galaxytmodd", "naukrigulftmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "gsmtmodd", "jazzcashmodd", "jupitertmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "danamodd", "paymayamodd", "opaymodd", "heringmodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "waylettnewmodd", "babytrackermodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd"]
+        scripts_list = ["boylesportstmodd", "joybuymodd", "ocbcmodd", "raisinggoblinmodd", "galaxytmodd", "naukrigulftmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "gsmtmodd", "jazzcashmodd", "jupitertmodd", "onepuchmanmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "danamodd", "paymayamodd", "opaymodd", "heringmodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "waylettnewmodd", "babytrackermodd", "opaynewmodd", "eaptekatauto", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd"]
 
         output = {}
         for campaign_name in scripts_list:
