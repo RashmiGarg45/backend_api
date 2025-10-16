@@ -2685,6 +2685,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "filteraiiosauto" and event_name == 'mjq7jz':
         return {0:30, 1:19, 2:16}
+        
+    elif campaign_name == "utimamarketsmodd" and event_name == 'P_FTD':
+        return {1:30, 2:19, 3:16}
 
         
 class checkEligibility(APIView):
