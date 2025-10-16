@@ -2378,6 +2378,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:41, 1:33, 2:25, 3:20}
 
     elif campaign_name == "mcdeliverymodd" and event_name == "af_purchase_delivery":
+
+        if offer_id in ["mobs-mcd"]:
+            return {0:5, 1:4, 2:3.3}
+        
         return {0:6.6, 1:5.5, 2:5}
     
     elif campaign_name == "clonemcdeliverymodd" and event_name == "af_purchase_to_be_delivered":
