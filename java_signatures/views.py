@@ -2522,6 +2522,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         
     elif campaign_name == "instamoneyquickmodd" and event_name == "AF_RF_Paid":
         return {0:45, 1:20, 2:14, 3:11, 4:10}
+    
+    elif campaign_name == "instamoneyquickmodd" and event_name == "AF_RF_LOAN_DISBURSED":
+        return {1:45, 2:30, 3:24}
+
 
     elif campaign_name == "coinmenaauto" and event_name == "aj5y08":
         return {0:41, 1:19, 2:14, 3:11, 4:9}
