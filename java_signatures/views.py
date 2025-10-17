@@ -2526,7 +2526,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "instamoneyquickmodd" and event_name == "AF_RF_LOAN_DISBURSED":
         return {1:45, 2:30, 3:24}
 
-
     elif campaign_name == "coinmenaauto" and event_name == "aj5y08":
         return {0:41, 1:19, 2:14, 3:11, 4:9}
 
@@ -2699,6 +2698,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
             
     elif campaign_name == "osagomodd" and event_name == 's2s-cpa-conversion':
         return {1:24, 2:14, 3:11, 4:9}
+                
+    elif campaign_name == "neobetiosmodd" and event_name == 'af_first_purchase':
+        return {0:90, 1:45}
 
         
 class checkEligibility(APIView):
