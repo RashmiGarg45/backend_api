@@ -3004,7 +3004,7 @@ class LifetyleOrderId(models.Model):
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
     id = models.CharField(max_length=50,unique=True)
-    payment_type = models.CharField(default='',blank=True, max_length=100)
+    payment_type = models.CharField(default='NA',blank=True, max_length=100)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     order_placed_date = models.DateTimeField(default=None,blank=True, null=True)
