@@ -7811,7 +7811,7 @@ class LifetyleOrderIdAPI(APIView):
     def put(self, request):
         query = LifetyleOrderId()
         query.campaign_name = request.data.get('camp_name','lifestyleauto')
-        query.id = request.data.get('id')
+        query.id = request.data.get('order_id')
         query.extra_details=request.data.get('extra_details',{})
         query.order_placed_date = request.data.get('order_placed_date', "")
         query.payment_type = request.data.get('payment_type', '')
