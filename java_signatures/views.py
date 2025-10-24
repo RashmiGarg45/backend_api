@@ -2566,7 +2566,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         if offer_id.isdecimal():
             return {0:7}
         
-        return {0:25, 1: 16.6, 2:11}
+        return {0:25, 1: 14.28, 2:11}
     
     elif campaign_name == "cryptocomtmodd" and event_name == "mktg:kyc_approved_push_sent":
         return {0:7}
