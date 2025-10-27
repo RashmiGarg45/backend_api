@@ -2722,6 +2722,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "nuiauto" and event_name == 'vcoavi':
         return {0:45, 1:22.5, 2:18, 3:15}
+    
+    elif campaign_name == "credmaxmodd" and event_name == 'approvals_server':
+        return {0:45, 1:30, 2:22.5, 3:18}
+
+    elif campaign_name == "credmaxmodd" and event_name == 'tutorial_complete_server':
+        return {0:90, 1:45, 2:30, 3:122.5}
 
 class checkEligibility(APIView):
     def get(self, request):
