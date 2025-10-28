@@ -2569,7 +2569,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:25, 1: 14.28, 2:11}
     
     elif campaign_name == "cryptocomtmodd" and event_name == "mktg:kyc_approved_push_sent":
-        return {0:7}
+        return {0:10, 1:8}
     
     elif campaign_name == "megogot2modd" and event_name == "af_purchase":
         return {0:6.66, 1:5.26, 2:4.76, 3:4.54}
