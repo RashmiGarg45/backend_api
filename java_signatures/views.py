@@ -2783,6 +2783,7 @@ class checkEligibility(APIView):
         offer_id = install_details.offer_id
         install_count = install_details.installs
         offer_serial = install_details.serial
+        Pay_out = install_details.Pay_out
 
         if install_details.campaign_name != campaign_name:
             return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
