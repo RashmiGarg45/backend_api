@@ -149,7 +149,6 @@ def is_event_allowed(request):
     network = request_data.get("network", "*")
     offer_id = request_data.get("offer_id", "*")
     required_percentage = request_data.get("required_percentage")
-    Pay_out = request.GET.get("Pay_out",0.0)
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
@@ -2755,6 +2754,7 @@ class checkEligibility(APIView):
         revenue = request.GET.get("revenue", 0)
         track_only = request.GET.get("track_only", False)
         required_timezone = request.GET.get("required_timezone")
+        Pay_out = request.GET.get("Pay_out",0.0)
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
