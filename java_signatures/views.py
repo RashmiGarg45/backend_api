@@ -149,6 +149,7 @@ def is_event_allowed(request):
     network = request_data.get("network", "*")
     offer_id = request_data.get("offer_id", "*")
     required_percentage = request_data.get("required_percentage")
+    Pay_out = request.GET.get("Pay_out",0.0)
 
     try:
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
@@ -1914,6 +1915,7 @@ class TrackInstalls(APIView):
         offer_id = request.GET.get("offer_id")
         currency = request.GET.get("currency", "USD")
         required_timezone = request.GET.get("required_timezone")
+        
 
         if required_timezone:
             try:
@@ -2080,7 +2082,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id):
         return {0:2.3, 1: 2}
 
     elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
-        return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
+        if channel in ["mobpine", "77ads", "appamplify"] and 0.05<=Pay_out<=0.10 :
+            return {0:2.22, 1:2, 2: 1.81, 3: 1.72, 4: 1.66}
+        else:
+            return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
 
     elif campaign_name == "moovauto" and event_name == "ld4kw6":
         return {0:11, 1:8.3 , 2: 6.6, 3: 6.6}
