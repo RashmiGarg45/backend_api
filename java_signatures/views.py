@@ -2754,7 +2754,7 @@ class checkEligibility(APIView):
         revenue = request.GET.get("revenue", 0)
         track_only = request.GET.get("track_only", False)
         required_timezone = request.GET.get("required_timezone")
-        Pay_out = request.GET.get("Pay_out",0.0)
+        Pay_out = request.GET.get("Pay_out",0.0)    
 
         if not all([campaign_name, event_name, offer_serial, event_day]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
@@ -2783,7 +2783,6 @@ class checkEligibility(APIView):
         offer_id = install_details.offer_id
         install_count = install_details.installs
         offer_serial = install_details.serial
-        Pay_out = install_details.Pay_out
 
         if install_details.campaign_name != campaign_name:
             return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
