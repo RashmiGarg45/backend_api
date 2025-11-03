@@ -2081,7 +2081,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:2.3, 1: 2}
 
     elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
-        if channel in ["mobpine", "77ads", "appamplify"] and 0.05<=Pay_out<=0.10 :
+        if channel in ["mobpine", "77ads", "appamplify"] and 0.05<=float(Pay_out)<=0.10 :
             return {0:2.22, 1:2, 2: 1.81, 3: 1.72, 4: 1.66}
         else:
             return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
