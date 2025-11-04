@@ -191,4 +191,5 @@ urlpatterns = [
     path("lifestyle", views.LifetyleOrderIdAPI.as_view(), name="cru_lifestyle"),
     path("bitoasist", views.BitoasistAPI.as_view(), name="cru_bitoasist"),
     path("epochtimes", views.EpochtimesuidAPI.as_view(), name="cru_epochtimes"),
+    path("jyotiaiios", views.JyotiaiiosAPI.as_view(), name="cru_epochtimes"),
 ]
