@@ -2760,6 +2760,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "moneygrammiosmodd" and event_name == 'first_transaction':
         return {0:22.5, 1:15, 2:12.85, 3:11.25}
 
+    elif campaign_name == "mixvpniosmodd" and event_name == 'apphud_trial_started':
+        return {0:22.5, 1:15, 2:12.85, 3:11.25}
+
 
 class checkEligibility(APIView):
     def get(self, request):
