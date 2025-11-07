@@ -2763,7 +2763,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "mixvpniosmodd" and event_name == 'apphud_trial_started':
         return {0:22.5, 1:15, 2:12.85, 3:11.25}
 
-    elif campaign_name == "888pokeriosmodd" and event_name == "MB_first_deposit":
+    elif campaign_name == "888pokeriosmodd" and event_name == "MB_First_Deposit":
         return {0:90, 1:45, 2:30}
 
 class checkEligibility(APIView):
