@@ -2761,7 +2761,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:22.5, 1:15, 2:12.85, 3:11.25}
 
     elif campaign_name == "mixvpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:11.25, 1:6.92, 2:5.62, 3:5, 4:4.5, 5:4.28, 6:4.09, 7:3.91}
+        return {0:22.5, 1:15, 2:12.85, 3:11.25}
 
     elif campaign_name == "888pokeriosmodd" and event_name == "MB_First_Deposit":
         return {0:90, 1:45, 2:30}
