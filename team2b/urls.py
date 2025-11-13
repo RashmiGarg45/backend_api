@@ -192,4 +192,5 @@ urlpatterns = [
     path("bitoasist", views.BitoasistAPI.as_view(), name="cru_bitoasist"),
     path("epochtimes", views.EpochtimesuidAPI.as_view(), name="cru_epochtimes"),
     path("jyotiaiios", views.JyotiaiiosAPI.as_view(), name="cru_jyotiaiios"),
+    path("shriram", views.ShriramAPI.as_view(), name="cru_shriram"),
 ]
