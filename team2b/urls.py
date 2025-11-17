@@ -194,4 +194,5 @@ urlpatterns = [
     path("jyotiaiios", views.JyotiaiiosAPI.as_view(), name="cru_jyotiaiios"),
     path("shriram", views.ShriramAPI.as_view(), name="cru_shriram"),
     path("cashmax", views.CashmaxAPI.as_view(), name="cru_cashmax"),
+    path("maxfashion", views.MaxfashionindiaOIDAPI.as_view(), name="cru_maxfashion"),
 ]
