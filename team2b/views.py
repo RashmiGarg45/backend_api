@@ -8036,6 +8036,7 @@ class MaxfashionindiaOIDAPI(APIView):
             return Response({
             })
         except Exception as e:
+            print('################## Harsh error')
             return Response(e)
 
     def get(self, request):
