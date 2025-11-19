@@ -3141,6 +3141,7 @@ class NGnumbers(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     channel_list = models.JSONField(default = list,blank=True, null=True)
     network_list = models.JSONField(default = list,blank=True, null=True)

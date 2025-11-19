@@ -8086,6 +8086,7 @@ class NGnumbersAPI(APIView):
         query = NGnumbers()
         query.campaign_name = request.data.get('camp_name','ngapps')
         query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
         try:
             query.save()
@@ -8154,6 +8155,7 @@ class NGnumbersAPI(APIView):
 
                 data = {
                         'user_id':query.id,
+                        'extra_details':query.extra_details, 
                 }
                 if setUsed:
                     query = NGnumbers.objects.filter(id=data.get('user_id')).update(
