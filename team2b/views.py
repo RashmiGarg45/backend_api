@@ -2098,6 +2098,7 @@ class IndigoV3MiningAPI(APIView):
         query.departure_date = request.data.get('departure_date')
         query.booking_date = request.data.get('booking_date')
         query.extra_details=request.data.get('extra_details',{})
+        query.flight_type = request.data.get('flight_type','Domestic')
         query.used_at = None
         query.save()
         return Response({
@@ -2148,7 +2149,8 @@ class IndigoV3MiningAPI(APIView):
         data = {
                 'pnr':query.pnr,
                 'used_at':query.used_at,
-                'extra_details':query.extra_details
+                'extra_details':query.extra_details,
+                'flight_type': query.flight_type
         }
         if setUsed:
             query = IndigoV4Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
