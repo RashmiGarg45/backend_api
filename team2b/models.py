@@ -2777,6 +2777,7 @@ class IndigoV4Mining(models.Model):
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     departure_date = models.DateTimeField(blank=False, null=True)
+    flight_type = models.CharField(default='Domestic', max_length=100)
     booking_date = models.DateTimeField(blank=True, null=True)
 
     class Meta:
