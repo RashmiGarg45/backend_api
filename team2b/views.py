@@ -2114,8 +2114,16 @@ class IndigoV3MiningAPI(APIView):
             setUsed = False
         
         filter_dict = {}
+
+        if random.randint(1,100)<=15:
+            flight_type='International'
+        else:
+            flight_type='Domestic'
         
-        query = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at', 'departure_date').first()
+        query = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),flight_type=flight_type).order_by('created_at', 'departure_date').first()
+
+        if not query:
+            query = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),flight_type='Domestic').order_by('created_at', 'departure_date').first()
         
         if channel in ["mobpine", "77ads", "appamplify"]:
             bt3_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
