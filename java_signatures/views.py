@@ -2046,9 +2046,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_ftd" and channel:
         if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0: 33, 1:14, 2:11, 3:9}
+            return {0:24}
         else:
-            return {0: 33, 1:14, 2:11, 3:9}
+            return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
         return {0: 7.7, 1:5.8, 2: 5}
@@ -2307,7 +2307,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:1.8, 1: 1.53, 2:1.42, 3:1.33}
     
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_ftd":
-        return {0: 33, 1:14, 2:11, 3:9}
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            return {0:24}
+        else:
+            return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
         return {0: 7.7, 1:5.8, 2: 5}
