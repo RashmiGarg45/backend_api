@@ -2046,7 +2046,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_ftd" and channel:
         if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0:24}
+            return {0: 80, 1:30, 2:23}
         else:
             return {0: 16, 1:8, 2:6.5}
 
@@ -2308,7 +2308,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_ftd":
         if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0:24}
+            return {0: 80, 1:30, 2:23}
         else:
             return {0: 16, 1:8, 2:6.5}
 
