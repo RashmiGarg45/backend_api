@@ -2796,6 +2796,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "vtb24tappmetrica" and event_name == "screenTap_notClient_liteData_litePasscode":
         return {0:2.5, 1:2}
 
+    elif campaign_name == "mbbankmodd" and event_name == "AF_OB_SUCCESS":
+        return {0:12.85, 1:9, 2:7.5}
+
 
 class checkEligibility(APIView):
     def get(self, request):
