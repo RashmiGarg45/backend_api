@@ -8290,8 +8290,7 @@ class StyliOIDAPI(APIView):
             return Response({
             })
         except Exception as e:
-            print (e)
-            pass
+            return Response({"Exception": e})
 
     def get(self, request):
 
