@@ -8398,3 +8398,9 @@ class NetshoesOIDAPI(APIView):
         return Response({
             'body':data,
         })
+    def post(self, request):
+        query = NetshoesOID.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
