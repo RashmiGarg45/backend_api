@@ -197,4 +197,5 @@ urlpatterns = [
     path("maxfashion", views.MaxfashionindiaOIDAPI.as_view(), name="cru_maxfashion"),
     path("ngnumber", views.NGnumbersAPI.as_view(), name="cru_ngnumber"),
     path("abhibus", views.AbhibusAPI.as_view(), name="cru_abhibus"),
+    path("styli", views.StyliOIDAPI.as_view(), name="cru_abhibus"),
 ]
