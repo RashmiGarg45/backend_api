@@ -8301,7 +8301,7 @@ class StyliOIDAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = StyliOID.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        query = StyliOID.objects.filter(used_at=None, id__startswith="000").order_by('-created_at')[0:50].first()
         
         data = {
                 'order_id':query.id,
