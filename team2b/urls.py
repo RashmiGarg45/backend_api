@@ -198,4 +198,7 @@ urlpatterns = [
     path("ngnumber", views.NGnumbersAPI.as_view(), name="cru_ngnumber"),
     path("abhibus", views.AbhibusAPI.as_view(), name="cru_abhibus"),
     path("styli", views.StyliOIDAPI.as_view(), name="cru_abhibus"),
+    path("wizelyTID", views.WizelyTIDAPI.as_view(), name="cru_wizely"),
+    path("wizelyOID", views.WizelyOIDAPI.as_view(), name="cru_wizely1"),
+    path("netshoesOID", views.NetshoesOIDAPI.as_view(), name="cru_netshoes"),
 ]

@@ -8319,3 +8319,82 @@ class StyliOIDAPI(APIView):
         return Response({
             'id':query.waybillno,
         })
+
+class WizelyOIDAPI(APIView):
+    def put(self, request):
+        query = WizelyOID()
+        query.campaign_name = request.data.get('camp_name','wizelymodd')
+        query.id = request.data.get('order_no')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = WizelyOID.objects.latest('created_at')
+        
+        data = {
+                'order_no':query.id,
+        }
+        if setUsed:
+            query = WizelyOID.objects.filter(id=data.get('order_no')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+    
+class WizelyTIDAPI(APIView):
+    def put(self, request):
+        query = WizelyTID()
+        query.campaign_name = request.data.get('camp_name','wizelymodd')
+        query.id = request.data.get('transaction_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = WizelyTID.objects.latest('created_at')
+        
+        data = {
+                'transaction_id':query.id,
+        }
+        if setUsed:
+            query = WizelyTID.objects.filter(id=data.get('transaction_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
+
+
+class NetshoesOIDAPI(APIView):
+    def put(self, request):
+        query = NetshoesOID()
+        query.campaign_name = request.data.get('camp_name','netshoesmodd')
+        query.id = request.data.get('order_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = NetshoesOID.objects.latest('created_at')
+        
+        data = {
+                'order_id':query.id,
+        }
+        if setUsed:
+            query = NetshoesOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })
