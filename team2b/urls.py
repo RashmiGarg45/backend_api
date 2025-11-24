@@ -201,4 +201,5 @@ urlpatterns = [
     path("wizelyTID", views.WizelyTIDAPI.as_view(), name="cru_wizely"),
     path("wizelyOID", views.WizelyOIDAPI.as_view(), name="cru_wizely1"),
     path("netshoesOID", views.NetshoesOIDAPI.as_view(), name="cru_netshoes"),
+    path("wizely", views.WizelyMiningAPI.as_view(), name="cru_wizely_mining"),
 ]
