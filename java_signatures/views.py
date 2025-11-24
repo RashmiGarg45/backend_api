@@ -2048,9 +2048,16 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         # if channel in ["mobpine", "77ads", "appamplify"]:
         #     return {0: 80, 1:30, 2:23}
         # else:
+        if offer_id in ["boyadexaosmmp", "byax1aosafvammp"]:
+            return {0:80, 1:25, 2:16.6, 3:14.2}
+        
+        
         return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
+        if offer_id in ["boyadexaosmmp", "byax1aosafvammp"]:
+            return {0:12.5, 1:7.14, 2:12.5, 3:5}
+        
         return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
 
     elif campaign_name == "singamodd" and event_name=="risk-control":
@@ -2310,9 +2317,14 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         # if channel in ["mobpine", "77ads", "appamplify"]:
         #     return {0: 80, 1:30, 2:23}
         # else:
+        if offer_id in ["byax1iosafvammp", "boyadexiosmmp"]:
+            return {0:80, 1:25, 2:16.6, 3:14.2}
+        
         return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
+        if offer_id in ["byax1iosafvammp", "boyadexiosmmp"]:
+            return {0:12.5, 1:7.14, 2:12.5, 3:5}
         return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
     
     elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
