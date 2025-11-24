@@ -2812,9 +2812,14 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:2.5, 1:2}
 
     elif campaign_name == "mbbankmodd" and event_name == "AF_OB_SUCCESS":
+        if offer_id in ["mbb2iwammp"]:
+            return {0:30, 1:20, 2:16.6, 3:14.28}
         return {0:12.85, 1:9, 2:7.5}
 
     elif campaign_name == "mbbankautoios" and event_name == "AF_OB_SUCCESS":
+        if offer_id in ["mbbiwammp"]:
+            return {0:30, 1:20, 2:16.6, 3:14.28}
+        
         return {0:12.85, 1:9, 2:7.5}
 
     elif campaign_name == "tawkeeltmodd" and event_name == "payment_completed":
