@@ -2051,7 +2051,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
-        return {0: 7.7, 1:5.8, 2: 5}
+        return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
 
     elif campaign_name == "singamodd" and event_name=="risk-control":
         return {0: 43, 1:27}
@@ -2313,7 +2313,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
-        return {0: 7.7, 1:5.8, 2: 5}
+        return return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
     
     elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
         return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
