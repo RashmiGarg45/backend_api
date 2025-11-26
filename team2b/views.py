@@ -5654,6 +5654,7 @@ class JazzcashAPI(APIView):
         query = Jazzcash()
         query.campaign_name = request.data.get('camp_name','jazzcashmodd')
         query.id = request.data.get('user_id')
+        query.number_type = request.data.get('number_type')
         query.used_at = None
         try:
             query.save()

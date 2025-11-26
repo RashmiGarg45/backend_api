@@ -2194,6 +2194,7 @@ class Jazzcash(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
+    number_type = models.CharField(default='New',max_length=30)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     channel_list = models.JSONField(default = list,blank=True, null=True)
     network_list = models.JSONField(default = list,blank=True, null=True)
