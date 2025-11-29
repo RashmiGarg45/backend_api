@@ -603,7 +603,7 @@ class RealtimeValidation(APIView):
         resp = requests.get(url, headers=headers).json().get("data")
         data = []
         
-        for i in data:
+        for i in resp:
             total = i.get("total")
 
             app_name = i.get("app_name")
