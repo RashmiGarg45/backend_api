@@ -9,5 +9,6 @@ urlpatterns = [
     path("sheetUpdate/watcho", report_view.WatchoUpdateSheet.as_view(), name="bot"),         
     path("updateValidation", report_view.UpdateValidationSheet.as_view(), name="update"), 
     path("updateValidation_2", report_view.UpdateValidationSheet_2.as_view(), name="update_2"), 
+    path("realtime", report_view.RealtimeValidation.as_view(), name="realtime"), 
     # path("<str:package_name>/<path:path>", views.tracking, name="tracking"),  
 ]
