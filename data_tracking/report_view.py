@@ -611,6 +611,8 @@ class RealtimeValidation(APIView):
 
             data.append(d)     
 
+        print (data)
+
         headers = list(data[0].keys())
         rows = []
 
