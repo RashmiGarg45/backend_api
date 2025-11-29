@@ -611,23 +611,11 @@ class RealtimeValidation(APIView):
 
             data.append(d)     
 
-        print (data)
-
         headers = list(data[0].keys())
-        rows = []
-
-        for row in data:
-            new_row = []
-            for h in headers:
-
-                print (row)
-                new_row.append(row[h])
-            rows.append(new_row)
+        rows = [[row[h] for h in headers] for row in data]
         values = [headers] + rows
 
         worksheet.update(values)
-
-
 
         return HttpResponse(json.dumps({
             'result':'updated',
