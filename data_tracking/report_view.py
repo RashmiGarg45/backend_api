@@ -602,14 +602,12 @@ class RealtimeValidation(APIView):
         headers = {"Authorization": "Token "+ token}
         resp = requests.get(url, headers=headers).json().get("data")
         data = []
-        for i in resp:
+        
+        for i in data:
+            total = i.get("total")
 
-            i = (i.get("total"))
-
-            app_name = i.get("custom_text")[0].get("app_name")
-
-            d = {"Package Name": i.get("package_name"), "App Name":app_name, "Verified Revenue": float(i.get("conversions_verified__sum")), "Approved Revenue": i.get("manager_approved_revenue__sum"), "Validation Percentage": float(i.get("validation_percentage_effective_manual")), "Validation Percentage Effective": float(i.get("validation_percentage_effective_delivered")), "Deduction": float(i.get("deduction_revenue_manual")), "Pending": float(i.get("pending_revenue_manual"))}
-
+            app_name = i.get("app_name")
+            d = {"Package Name": i.get("package_name"), "App Name":app_name, "Verified Revenue": float(total.get("conversions_verified__sum")), "Approved Revenue": float(total.get("manager_approved_revenue__sum")), "Validation Percentage": float(total.get("validation_percentage_manual")), "Deduction": float(total.get("deduction_revenue_manual"))}
 
             data.append(d)     
 
