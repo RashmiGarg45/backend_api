@@ -514,3 +514,57 @@ class UpdateValidationSheet(APIView):
         return HttpResponse(json.dumps({
             'result':'updated',
         }))
+
+class UpdateValidationSheet_2(APIView):
+    def get(self,request):
+
+
+        sheet_url = 'https://docs.google.com/spreadsheets/d/1dMq_gRVfxAcrrvn7Q05W8P-I4uEDTU0a9BOFKJw35G8/edit?gid=213460514#gid=213460514'
+        subsheet_name = request.data.get("subsheet_name")
+        # month = request.data.get("month")
+        token = request.data.get("token")
+        # update_all = request.data.get("update_all", False)
+
+        start_month = request.data.get("start_month")
+        end_month = request.data.get("end_month")
+        subsheet_name = request.data.get("subsheet_name")
+
+
+        credentials = get_credential_2()
+
+        Sheet_credential = gspread.service_account_from_dict(credentials)
+        spreadsheet = Sheet_credential.open_by_url(sheet_url)
+        
+
+        import requests
+
+
+
+        worksheet = spreadsheet.worksheet(subsheet_name)
+
+        url = "http://52.66.249.84/api/report/feedback?start_month=2025-"+ start_month + "&end_month=2025-"+end_month+"&sorting_key=conversions_verified__sum&sorting_order=desc&team=Team2"
+        headers = {"Authorization": "Token "+ token}
+        resp = requests.get(url, headers=headers).json().get("data")
+        data = []
+        for i in resp:
+
+            i = (i.get("total"))
+
+            app_name = i.get("custom_text")[0].get("app_name")
+
+            d = {"Package Name": i.get("package_name"), "App Name":app_name, "Verified Revenue": float(i.get("conversions_verified__sum")), "Approved Revenue": i.get("manager_approved_revenue__sum"), "Validation Percentage": float(i.get("validation_percentage_effective_manual")), "Validation Percentage Effective": float(i.get("validation_percentage_effective_delivered")), "Deduction": float(i.get("deduction_revenue_manual")), "Pending": float(i.get("pending_revenue_manual"))}
+
+
+            data.append(d)     
+
+        headers = list(data[0].keys())
+        rows = [[row[h] for h in headers] for row in data]
+        values = [headers] + rows
+
+        worksheet.update(values)
+
+
+
+        return HttpResponse(json.dumps({
+            'result':'updated',
+        }))

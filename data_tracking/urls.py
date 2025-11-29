@@ -8,5 +8,6 @@ urlpatterns = [
     path("chatbot/notify/bt_not_running_past_2_months", report_view.ChatBotNotRunLastTwoMonthLevel2.as_view(), name="bot"),  
     path("sheetUpdate/watcho", report_view.WatchoUpdateSheet.as_view(), name="bot"),         
     path("updateValidation", report_view.UpdateValidationSheet.as_view(), name="update"), 
+    path("updateValidation_2", report_view.UpdateValidationSheet_2.as_view(), name="update_2"), 
     # path("<str:package_name>/<path:path>", views.tracking, name="tracking"),  
 ]
