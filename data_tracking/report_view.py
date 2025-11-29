@@ -612,7 +612,15 @@ class RealtimeValidation(APIView):
             data.append(d)     
 
         headers = list(data[0].keys())
-        rows = [[row[h] for h in headers] for row in data]
+        rows = []
+
+        for row in data:
+            new_row = []
+            for h in headers:
+
+                print (row)
+                new_row.append(row[h])
+            rows.append(new_row)
         values = [headers] + rows
 
         worksheet.update(values)
