@@ -204,4 +204,5 @@ urlpatterns = [
     path("netshoesOID", views.NetshoesOIDAPI.as_view(), name="cru_netshoes"),
     path("wizely", views.WizelyMiningAPI.as_view(), name="cru_wizely_mining"),
     path("timoclubuid", views.TimoclubuidAPI.as_view(), name="cru_timoclubuid"),
+    path("mambanew", views.MambanewUIDAPI.as_view(), name="cru_mambanew"),
 ]
