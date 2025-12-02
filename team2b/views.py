@@ -8532,7 +8532,7 @@ class TimoclubuidAPI(APIView):
 class MambanewUIDAPI(APIView):
     def put(self, request):
         query = MambanewUID()
-        query.campaign_name = request.data.get('camp_name','timoclubauto')
+        query.campaign_name = request.data.get('camp_name','mambamodd')
         query.id = request.data.get('user_id')
         query.used_at = None
         query.save()
