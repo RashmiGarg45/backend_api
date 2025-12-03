@@ -8260,7 +8260,7 @@ class AbhibusAPI(APIView):
                         'order_id':query.id,
                 }
                 if setUsed:
-                    query = Abhibus.objects.filter(id=data.get('user_id')).update(
+                    query = Abhibus.objects.filter(id=data.get('order_id')).update(
                         used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
