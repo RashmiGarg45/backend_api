@@ -8435,6 +8435,11 @@ class NetshoesOIDAPI(APIView):
         })
 
     def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+
         setUsed = request.GET.get('set_used',True)
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
