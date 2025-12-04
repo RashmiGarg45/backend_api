@@ -8612,3 +8612,30 @@ class MyfooduidAPI(APIView):
         return Response({
             'body':data,
         })
+
+
+class MyfoodoidAPI(APIView):
+    def put(self, request):
+        query = MyfoodUID()
+        query.campaign_name = request.data.get('camp_name','myfoodappmetrica')
+        query.id = request.data.get('order_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = MyfoodUID.objects.latest('created_at')
+        
+        data = {
+                'order_id':query.id,
+        }
+        if setUsed:
+            query = MyfoodUID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
+        })

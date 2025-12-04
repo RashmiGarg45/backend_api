@@ -207,4 +207,5 @@ urlpatterns = [
     path("mambanew", views.MambanewUIDAPI.as_view(), name="cru_mambanew"),
     path("wizelyuid", views.WizelyUIDAPI.as_view(), name="cru_wizelyuid"),
     path("myfood", views.MyfooduidAPI.as_view(), name="cru_myfood"),
+    path("myfoodoid", views.MyfoodoidAPI.as_view(), name="cru_myfoodoid"),
 ]
