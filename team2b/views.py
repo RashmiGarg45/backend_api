@@ -8658,4 +8658,4 @@ class check_running_status(APIView):
             else:
                 output[script] = "Not Running"
 
-        return output
+        return Response({"data":output})
