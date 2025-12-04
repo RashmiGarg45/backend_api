@@ -8643,7 +8643,7 @@ class MyfoodoidAPI(APIView):
     
 class check_running_status(APIView):
     def get(self, request):
-        script_list = request.GET.get("scripts")
+        script_list = request.data.get("scripts")
 
 
         from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
