@@ -206,4 +206,5 @@ urlpatterns = [
     path("timoclubuid", views.TimoclubuidAPI.as_view(), name="cru_timoclubuid"),
     path("mambanew", views.MambanewUIDAPI.as_view(), name="cru_mambanew"),
     path("wizelyuid", views.WizelyUIDAPI.as_view(), name="cru_wizelyuid"),
+    path("myfood", views.WizelyUIDAPI.as_view(), name="cru_myfood"),
 ]
