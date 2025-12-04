@@ -8640,3 +8640,22 @@ class MyfoodoidAPI(APIView):
         return Response({
             'body':data,
         })
+    
+class check_running_status(APIView):
+    def get(self, request):
+        script_list = request.GET.get("scripts")
+
+
+        from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+        to_date = (datetime.now() - timedelta(days=0)).strftime('%Y-%m-%d')
+
+        report6Data = requests.get('https://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}'.format(from_date,to_date)).json()
+
+        output = {}
+        for script in script_list:
+            if script in report6Data:
+                output[script] = "Running"
+            else:
+                output[script] = "Not Running"
+
+        return output
