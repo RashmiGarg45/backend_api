@@ -7037,7 +7037,7 @@ class GalaxyChatCountryAPI(APIView):
 
         
         exclude_dict = {}
-        exclude_dict['from_selfcall__contains'] = True
+        exclude_dict['from_selfcall__contains'] = "true"
         exclude_dict['channel_list__contains'] = channel        
         # exclude_dict['network_list__contains'] = network
         # exclude_dict['offer_id_list__contains'] = offer_id
