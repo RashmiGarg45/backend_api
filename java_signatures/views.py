@@ -2084,8 +2084,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "juanhandmodd" and event_name == "af_tzmx_10":
         return {0:47, 1: 33, 2: 24, 3: 20, 4: 15}
 
-    elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
-        return {0:2.3, 1: 2}
+    # elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
+    #     return {0:2.3, 1: 2}
 
     elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
         if channel in ["mobpine", "77ads", "appamplify"] and 0.05<=float(Pay_out)<=0.10 :
