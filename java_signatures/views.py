@@ -2881,7 +2881,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "bbvamodd" and event_name == "afiliacion_basica-app_online_purchases":
 
-        if channel=="adshustle" and network=="myfunads" and offer_id=="bbvamyfmmp":
+        if channel=="adshustle" and network=="myfunadstrack" and offer_id=="bbvamyfmmp":
             return {0:95, 1:48}
         return {0:48, 1:19, 2:14}
 
