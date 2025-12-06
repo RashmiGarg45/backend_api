@@ -211,4 +211,5 @@ urlpatterns = [
     path("runningstatus", views.check_running_status.as_view(), name="cru_status"),
     path("dabdoobuid", views.DabdoobuidAPI.as_view(), name="cru_dabdoobuid"),
     path("dabdooboid", views.DabdooboidAPI.as_view(), name="cru_dabdoobuid"),
+    path("pkNumbers", views.NumbersPKAPI.as_view(), name="cru_pk"),
 ]
