@@ -209,4 +209,6 @@ urlpatterns = [
     path("myfood", views.MyfooduidAPI.as_view(), name="cru_myfood"),
     path("myfoodoid", views.MyfoodoidAPI.as_view(), name="cru_myfoodoid"),
     path("runningstatus", views.check_running_status.as_view(), name="cru_status"),
+    path("dabdoobuid", views.DabdoobuidAPI.as_view(), name="cru_dabdoobuid"),
+    path("dabdooboid", views.DabdooboidAPI.as_view(), name="cru_dabdoobuid"),
 ]

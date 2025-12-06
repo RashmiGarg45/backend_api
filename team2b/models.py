@@ -3357,3 +3357,33 @@ class MyfoodOID(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+
+class DabdoobUID(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='dabdoobauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+
+class DabdoobOID(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='dabdoobauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
