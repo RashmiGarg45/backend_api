@@ -477,7 +477,7 @@ class UpdateValidationSheet(APIView):
 
 
         if update_all:
-            month_li = ["01", "02", "03", "04", "05", "06", "07", "08", "09"]
+            month_li = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
             subsheet_li = ["Jan-25", "Feb-25", "Mar-25", "Apr-25", "May-25", "June-25", "July-25", "Aug-25", "Sep-25", "Oct-25"]
 
         else:
