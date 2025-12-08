@@ -8719,7 +8719,7 @@ class NumbersPKAPI(APIView):
         query = NumbersPK()
         query.campaign_name = request.data.get('camp_name','jazzcashmodd')
         query.id = request.data.get('user_id')
-        query.used_at = None
+        query.operator = request.data.get("operator")
         query.save()
         return Response({
         })
