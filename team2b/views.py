@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,LifetyleOrderId,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,LifetyleOrderId,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK, pizzahutidOID
 from team2b.services.redis import Redis
 from django.utils import timezone
 from decimal import Decimal
@@ -2375,7 +2375,7 @@ class ConversionStats(APIView):
         else:
             date = (datetime.now()).strftime("%Y-%m-%d")
 
-        scripts_list = ["boylesportstmodd", "joybuymodd", "ocbcmodd", "raisinggoblinmodd","airmodd", "lineagewkrmodd", "galaxytmodd", "naukrigulftmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "lionsgateplaytmodd", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "jazzcashmodd", "jupitertmodd", "onepuchmanmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "danamodd", "idntimesmodd", "paymayamodd", "osagomodd", "mtcmusicmodd", "mbbankmodd", "wizelymodd", "webullmodd", "opaymodd", "heringmodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "waylettnewmodd", "babytrackermodd", "opaynewmodd", "eaptekatmodd", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd","mibptmodd", "instamoneyquickmodd","lemon8newmodd","fiverrt2modd","cencemodd","carjammodd","sunlighttmodd","makebykbankiosmodd"]
+        scripts_list = ["boylesportstmodd", "joybuymodd", "ocbcmodd", "raisinggoblinmodd","airmodd", "lineagewkrmodd", "galaxytmodd", "naukrigulftmodd", "muthootfinonemodd", "accorhotelstmodd", "shopeeno1tauto", "lionsgateplaytmodd", "musicallyt", "shopeephtauto", "casinoplussmodd", "zee5newmodd", "mcdeliverymodd", "poppolivetmodd", "smartqarzamodd", "magnittmodd", "waylettmodd", "juanhandmodd",'allobankmodd', "jazzcashmodd", "jupitertmodd", "onepuchmanmodd", "mxplayertmodd", "bigloanmodd", "kisshttmodd", "betwinnerngmodd","clonemcdeliverymodd", "danamodd", "idntimesmodd", "paymayamodd", "osagomodd", "mtcmusicmodd", "mbbankmodd", "wizelymodd", "webullmodd", "opaymodd", "heringmodd", "tikettmodd", "etomomodd", "robotzaimerrmodd", "stolototmodd", "netshoesmodd", "shrirammodd", "credmaxmodd", "tunaikutmodd", "paytmmoneytmodd", "foxtalemodd", "gamerummyprimemodd", "bcsinvestmenttmodd", "myacuvuemodd", "viuhkmodd", "yesmadammodd", "byutmodd", "indigomoddteam2modd", "roxmodd", "cryptocomtmodd", "intercopromodd", "waylettnewmodd", "babytrackermodd", "opaynewmodd", "eaptekatmodd", "digitalbankmodd", "bbvamodd", "quickcashonlinemodd", "betrmodd", "heliummobilemodd", "kfcmexicotmodd", "comparemodd", "yesmadammodd", "rupeeredeemodd", "zeptodeliverymodd", "easycashtmodd", "finnixtmodd", "myntmodd", "alphacapitalmodd", "r888casinomodd","mibptmodd", "instamoneyquickmodd","lemon8newmodd","fiverrt2modd","cencemodd","carjammodd","sunlighttmodd","makebykbankiosmodd","pizzahutidmodd"]
 
         output = {}
         for campaign_name in scripts_list:
@@ -8722,4 +8722,30 @@ class NumbersPKAPI(APIView):
         query.operator = request.data.get("operator")
         query.save()
         return Response({
+        })
+
+class pizzahutidOIDAPI(APIView):
+    def put(self, request):
+        query = pizzahutidOID()
+        query.campaign_name = request.data.get('camp_name','pizzahutidmodd')
+        query.id = request.data.get('order_id')
+        query.used_at = None
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+        
+        query = pizzahutidOID.objects.latest('created_at')
+        
+        data = {
+                'order_id':query.id,
+        }
+        if setUsed:
+            query = pizzahutidOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return Response({
+            'body':data,
         })
