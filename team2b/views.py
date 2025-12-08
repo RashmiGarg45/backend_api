@@ -8724,28 +8724,3 @@ class NumbersPKAPI(APIView):
         return Response({
         })
 
-class pizzahutidOIDAPI(APIView):
-    def put(self, request):
-        query = pizzahutidOID()
-        query.campaign_name = request.data.get('camp_name','pizzahutidmodd')
-        query.id = request.data.get('order_id')
-        query.used_at = None
-        query.save()
-        return Response({
-        })
-
-    def get(self, request):
-        setUsed = request.GET.get('set_used',True)
-        if setUsed and (setUsed == 'False' or setUsed == 'false'):
-            setUsed = False
-        
-        query = pizzahutidOID.objects.latest('created_at')
-        
-        data = {
-                'order_id':query.id,
-        }
-        if setUsed:
-            query = pizzahutidOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        return Response({
-            'body':data,
-        })
