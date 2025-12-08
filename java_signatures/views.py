@@ -2419,7 +2419,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:65, 1:40}
 
     elif campaign_name == "vpnpantheriosmodd" and event_name == "trial converted":
-        return {2:33, 3:20, 4:14.28, 5:12.5, 6:11.1}
+        return {3:33, 4:20, 5:14.28, 6:12.5, 7:11.1}
 
     elif campaign_name == "zeptodeliverymodd" and event_name == "first_order_delivered":
         return {0:12, 1:9, 2:7.69, 3:6.6}
