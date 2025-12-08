@@ -2676,6 +2676,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:45, 1:30, 2:23, 3:19}
 
     elif campaign_name == "bbvamodd" and event_name == "portabilidad_nomina-app_approved":
+        if channel=="adshustle" and network=="myfunadstrack" and offer_id=="bbvamyfmmp":
+            return {1:80}
         return {0:40, 1:26, 2:20, 3:18}
     
     elif campaign_name == "babytrackermodd" and event_name == "af_start_trial":
