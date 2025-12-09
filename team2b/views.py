@@ -4397,6 +4397,13 @@ class BluerewardsV2API(APIView):
         return Response({
             'body':data,
         })
+
+    def post(self, request):
+        query = BluerewardsV2.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
  
 class SignnowAPI(APIView):
     def put(self, request):
