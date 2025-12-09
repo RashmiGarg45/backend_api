@@ -764,6 +764,7 @@ class Bluerewards(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
+
     
     class Meta:
         indexes = [
@@ -1591,6 +1592,7 @@ class BluerewardsV2(models.Model):
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
+    wallet_balance = models.FloatField(default=0)
     
     class Meta:
         indexes = [

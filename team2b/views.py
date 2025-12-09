@@ -4371,6 +4371,7 @@ class BluerewardsV2API(APIView):
         query.campaign_name = request.data.get('camp_name','bluerewardsauto')
         query.id = request.data.get('user_id')
         query.extra_details = request.data.get('extra_details',{})
+        query.wallet_balance = request.data.get('wallet_balance',0)
         query.used_at = None
         query.save()
         return Response({
