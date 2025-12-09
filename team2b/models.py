@@ -3405,3 +3405,20 @@ class NumbersPK(models.Model):
             models.Index(fields=['id']),
         ]
 
+
+class Nirat(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='niratmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel_list = models.JSONField(default = list,blank=True, null=True)
+    network_list = models.JSONField(default = list,blank=True, null=True)
+    offer_id_list = models.JSONField(default = list,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
