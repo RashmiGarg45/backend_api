@@ -8735,7 +8735,7 @@ class NumbersPKAPI(APIView):
     def get(self, request):
         req_date = request.data.get("date")
 
-        query = NumbersPK.objects.filter(created_at__date=req_date)
+        query = NumbersPK.objects.filter(created_at__date=req_date, operator="JAZZ")
 
         output = []
 
