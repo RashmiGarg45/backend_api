@@ -8737,7 +8737,12 @@ class NumbersPKAPI(APIView):
 
         query = NumbersPK.objects.filter(created_at__date=req_date)
 
-        return Response({"data": query})
+        output = []
+
+        for i in range(len(query)):
+            output.append(query[i].id)
+
+        return Response({"data": output})
 
 
 
