@@ -1589,6 +1589,25 @@ class BluerewardsV2(models.Model):
     extra_details = models.JSONField(default = dict,blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)    
     used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel_list = models.JSONField(default = list,blank=True, null=True)
+    network_list = models.JSONField(default = list,blank=True, null=True)
+    offer_id_list = models.JSONField(default = list,blank=True, null=True)
+    wallet_balance = models.FloatField(default=0)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class BluerewardsV3(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='bluerewardsauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)    
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
