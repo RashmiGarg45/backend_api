@@ -8731,6 +8731,14 @@ class NumbersPKAPI(APIView):
         query.save()
         return Response({
         })
+    
+    def get(self, request):
+        req_date = request.data.get("date")
+
+        query = NumbersPK.objects.filter(created_at__date=req_date)
+
+        return Response({"data": query})
+
 
 
 class NiratAPI(APIView):
