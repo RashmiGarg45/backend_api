@@ -2970,14 +2970,7 @@ class checkEligibility(APIView):
         target_day =  max((d for d in stat_days if d <= event_day), default=min_day)
         required_installs = day_wise_stats[target_day]
 
-        required_events = events_per_day_stats(campaign_name, event_name, channel, network, offer_id)
-
-        if campaign_name == "netshoesmodd" and offer_id in ["test"]:
-            print ("*"*100)
-            print ("*"*100)
-            print (required_events)
-            print ("*"*100)
-            print ("*"*100)
+        required_events = events_per_day_stats(campaign_name, event_name, channel, network, offer_id)        
 
         is_eligible = False
 
@@ -3000,6 +2993,16 @@ class checkEligibility(APIView):
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
                 if (completed_event_count/install_count)*100 >= required_events:
                     is_eligible = False
+
+            if campaign_name == "netshoesmodd" and offer_id in ["test"]:
+                print ("*"*100)
+                print ("*"*100)
+                print (completed_event_count)
+                print (install_count)
+                print (required_events)
+                print (is_eligible)
+                print ("*"*100)
+                print ("*"*100)
             
             if is_eligible and not track_only:
                 # if required_timezone:
