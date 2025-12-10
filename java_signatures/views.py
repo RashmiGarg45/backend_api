@@ -2972,6 +2972,13 @@ class checkEligibility(APIView):
 
         required_events = events_per_day_stats(campaign_name, event_name, channel, network, offer_id)
 
+        if campaign_name == "netshoesmodd" and offer_id in ["test"]:
+            print ("*"*100)
+            print ("*"*100)
+            print (required_events)
+            print ("*"*100)
+            print ("*"*100)
+
         is_eligible = False
 
         if install_count > required_installs:
