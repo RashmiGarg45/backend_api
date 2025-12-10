@@ -2994,6 +2994,9 @@ class checkEligibility(APIView):
                 if ((completed_event_count/install_count)*100) >= required_events:
                     is_eligible = False
 
+                if completed_event_count >= required_events:
+                    is_eligible = False
+
             if campaign_name == "netshoesmodd" and offer_id in ["test"]:
                 print ("*"*100)
                 print ("*"*100)
