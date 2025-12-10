@@ -2006,6 +2006,9 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "kfcmexicotmodd":
         return 17 #percentage
+    
+    elif campaign_name == "netshoesmodd" and offer_id in ["nesmetmmp", "test"]:
+        return 25
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
@@ -2559,6 +2562,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:45, 1:20, 2:14, 3:11}
 
     elif campaign_name == "netshoesmodd" and event_name == "af_purchase":
+
+        if offer_id in ["nesmetmmp"]:
+            return {0:25, 1:17, 2:14}
+        
         return {0:14.2, 1:9, 2:7.69, 3:6.6}
 
     elif campaign_name == "bingoplustmodd" and event_name == "BINGOPLUS_EVENT_REGIST":
