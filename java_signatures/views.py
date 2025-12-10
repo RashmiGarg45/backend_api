@@ -3000,6 +3000,8 @@ class checkEligibility(APIView):
                 print (completed_event_count)
                 print (install_count)
                 print (required_events)
+
+                print ((completed_event_count/install_count)*100)
                 print (is_eligible)
                 print ("*"*100)
                 print ("*"*100)
