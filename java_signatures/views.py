@@ -2008,7 +2008,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
         return 17 #percentage
     
     elif campaign_name == "netshoesmodd" and offer_id in ["nesmetmmp", "test"]:
-        return 25
+        return 24
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
@@ -2991,23 +2991,9 @@ class checkEligibility(APIView):
                 # else:
                 completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
-                if ((completed_event_count/install_count)*100) >= required_events:
-                    is_eligible = False
 
                 if completed_event_count >= required_events:
                     is_eligible = False
-
-            if campaign_name == "netshoesmodd" and offer_id in ["test"]:
-                print ("*"*100)
-                print ("*"*100)
-                print (completed_event_count)
-                print (install_count)
-                print (required_events)
-
-                print ((completed_event_count/install_count)*100)
-                print (is_eligible)
-                print ("*"*100)
-                print ("*"*100)
             
             if is_eligible and not track_only:
                 # if required_timezone:
