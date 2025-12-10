@@ -23,7 +23,7 @@ def mining_apps():
     from datetime import datetime,timedelta
 
     d = {'dominosindomodd_OID': 'dominosindomodd', 'watchomodd_OID': 'watchomodd', 'pepperfryyauto_OID': 'pepperfryyauto', 'tripsygamesmodd_OID': 'tripsygamesmodd', 'ostinshopmodd_OID': 'ostinshopmodd', 'lazuritappmetrica_OID': 'lazuritappmetrica', 'bharatmatrimonymodd_UID': 'bharatmatrimonymodd', 'weworldauto_UID': 'weworldauto', 'fantosst2modd_UID': 'fantosst2modd', 'okeyvipmodd_UID': 'okeyvipmodd', 'scoreone_UID': 'scoreone', 'ghnmodd_UID': 'ghnmodd', 'rummytimemodd_UID': 'rummytimemodd', 'sephoramodd_OID': 'sephoramodd', 'pumaauto_OID': 'pumaauto', 'timoclubauto_UID': 'timoclubauto', 'khiladiaddamodd_UID': 'khiladiaddamodd', 'datingglobalt2modd_UID': 'datingglobalt2modd', 'Subs_datingglobalt2modd_UID': 'datingglobalt2modd', 'indigomoddteam2modd_OID': 'indigomoddteam2modd', 'samsclubmodd_UID': 'samsclubmodd', 'mumzworldautoios_OID': 'mumzworldautoios', 'damnraymodd_OID': 'damnraymodd', 'rentmojomodd_UID': 'rentmojomodd', 'lightinthebox_OID': ['lightintheboxmodd', 'lightintheboxiosmodd'], 'ladygentlemanmodd_OID': 'ladygentlemanmodd', 'tajrummymodd_UID': 'tajrummymodd', 'bet22modd/planbetmodd_UID': ['bet22modd', 'planbetmodd'], 'reservamodd_UID': 'reservamodd', 'gurushortmodd_UID': 'gurushortmodd', 'gurushortmodd_OID': 'gurushortmodd', 'jungleepokerauto_UID': 'jungleepokerauto', 'gamerummyprimemodd_UID': 'gamerummyprimemodd', 'navrangmodd_UID': 'navrangmodd', 'flappdealsmodd_OID': 'flappdealsmodd', 'laundrymateauto_OID': 'laundrymateauto', 'parimatchmodd_UID': 'parimatchmodd', 'epocosmeticmodd': 'epocosmeticmodd', 'kisankonnectmodd_OID': 'kisankonnectmodd', 'ohiauto_UID': 'ohiauto', 'adda52_UID': ['adda52tmodd', 'adda52pokeriosmodd'], 'adda52_OID': ['adda52tmodd', 'adda52pokeriosmodd'], 'shopeevn_UID': 'shopeevntauto', 'shopeevn_OID': 'shopeevntauto', 'poppolivetmodd_UID': 'poppolivetmodd', 'shopeemy_UID': 'shoppemytauto', 'shopeeid_UID': 'shopeeno1tauto', 'shiprocketcouriert_UID': 'shiprocketcouriert', 'novawateriosmodd_OID': 'novawateriosmodd', 'moglixauto_OID': 'moglixauto', 'viuhkmodd_UID': 'viuhkmodd', 'dupoin_UID': 'dupointmodd', 'shopeephtauto_UID': 'shopeephtauto', 'ontimeautoios_UID': 'ontimeautoios', 'stolototmodd_UID': 'stolototmodd', 'magiclandmodd': 'magiclandmodd', 'foxtalemodd': 'foxtalemodd', 'yesmadammodd': 'yesmadammodd', 'hoteltonight': ['hoteltonightauto', 'hoteltonightautoios'], "jazzcash_UID": "jazzcashmodd", "petbookappmetrica": "petbookappmetrica", "tejimaandiauto": "tejimaandiauto", "metlivemodd": "metlivemodd", "melivemodd": "melivemodd", "metlivemodd_recharged": "metlivemodd", "melivemodd_recharged": "melivemodd", "opaynewmodd": "opaynewmodd", 'anqgoldrewardsmodd_uid': 'anqgoldrewardsmodd', 'shopeet_uid': 'shopeet', 'myfriendauto_uid': 'myfriendauto','alphacapital_num':'alphacapitalmodd', "r888casinomodd_uid": 'r888casinomodd','babytracker_uid':'babytrackermodd',
-    'maxfashionindia_OID': 'maxfashionindiaauto',}
+    'maxfashionindia_OID': 'maxfashionindiaauto', 'bluerewards_uid': 'bluerewardsmodd'}
 
     running_apps = []
     from_date = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
@@ -134,6 +134,7 @@ class GenericScriptFunctions(APIView):
             # 'mambda_uid': MambaUID,
             'alphacapital_num':Alphacapital,
             'r888casinomodd_uid': R888casino,
+            'bluerewards_uid':BluerewardsV2,
         }
 
         running_apps = mining_apps()
@@ -308,6 +309,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             # 'mambda_uid': MambaUID,
             'alphacapital_num':Alphacapital,
             'r888casinomodd_uid': R888casino,
+            'bluerewards_uid':BluerewardsV2,
         }
 
         running_apps = mining_apps()
@@ -4480,7 +4482,7 @@ class BluerewardsV2API(APIView):
         })
 
     def post(self, request):
-        query = BluerewardsV2.objects.order_by('-id').first()
+        query = BluerewardsV3.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
