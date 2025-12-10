@@ -2991,7 +2991,7 @@ class checkEligibility(APIView):
                 # else:
                 completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
-                if (completed_event_count/install_count)*100 >= required_events:
+                if ((completed_event_count/install_count)*100) >= required_events:
                     is_eligible = False
 
             if campaign_name == "netshoesmodd" and offer_id in ["test"]:
