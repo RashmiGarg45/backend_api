@@ -2897,9 +2897,17 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:31, 1:18, 2:15}
 
     elif campaign_name == "myacuvueiosmodd" and event_name == "Registration_Success":
+
+        if offer_id in ["myiosappmmp"]:
+            return {0:3.3, 1:2.77, 2:2.38}
+        
         return {0:3.6, 1:2.81, 2:2.57}
 
     elif campaign_name == "myacuvueiosmodd" and event_name == "fitting_events":
+
+        if offer_id in ["myiosappmmp"]:
+            return {0:12.5, 1:10, 2:7.14}
+        
         return {0:15, 1:11.25, 2:8.11}
 
     elif campaign_name == "bbvamodd" and event_name == "afiliacion_basica-app_online_purchases":
