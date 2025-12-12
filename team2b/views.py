@@ -7135,8 +7135,8 @@ class GalaxyChatCountryAPI(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = GalaxyChatCountry.objects.filter(used_at=None,from_selfcall__contains = "alse").exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
-        if not query_list:
+        query_list = GalaxyChatCountry.objects.filter(used_at=None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        if not query_list and random.randint(1,100)<=70:
             print ("Galaxy in not function")
             query_list = GalaxyChatCountry.objects.filter(from_selfcall__contains = "alse").exclude(**exclude_dict).order_by('-created_at')[0:25].all()
 
