@@ -8317,8 +8317,8 @@ class AbhibusAPI(APIView):
         exclude_dict_1 = {}
 
         query_list = Abhibus.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
-        if not query_list:
-            query_list = Abhibus.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        # if not query_list:
+        #     query_list = Abhibus.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
