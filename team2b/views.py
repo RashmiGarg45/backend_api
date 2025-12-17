@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,LifetyleOrderId,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,LifetyleOrderId,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp
 from team2b.services.redis import Redis
 from django.utils import timezone
 from decimal import Decimal
@@ -8972,3 +8972,95 @@ class BoylesportsuidAPI(APIView):
         return Response({
             'body':data,
         })
+    
+class ScoreUpAPI(APIView):
+
+    def put(self, request):
+        query = ScoreUp()
+        query.campaign_name = request.data.get('camp_name','scoreup')
+        query.id = request.data.get('user_id')
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
+
+    def get(self, request):
+        setUsed = request.GET.get('set_used',True)
+        channel = request.GET.get('channel',True)
+        network = request.GET.get('network',True)
+        offer_id = request.GET.get('offer_id',True)
+        if offer_id.isdecimal():
+            return Response({'body':'error','message':'panel offer not allowed'})
+
+        
+        # if not channel or not network or not offer_id:
+        #     return Response({
+        #                 'body':'error',
+        #                 'message':'channel,offer_id,network id missing.'
+        #             })
+        
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        exclude_dict = {}
+        exclude_dict['channel_list__contains'] = channel
+        # exclude_dict['network_list__contains'] = network
+        # exclude_dict['offer_id_list__contains'] = offer_id
+
+        exclude_dict_1 = {}
+
+        query_list = ScoreUp.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        if not query_list:
+            query_list = ScoreUp.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        
+        if query_list:
+            for i in range(3):
+                query = random.choice(query_list)
+
+                if not query.channel_list:
+                    new_channel_list = [channel]
+                else:
+                    if channel in query.channel_list:
+                        continue
+                    new_channel_list = query.channel_list
+                    new_channel_list.append(channel)
+
+                if not query.network_list:
+                    new_network_list = [network]
+                else:
+                    if network in query.network_list:
+                        continue
+                    new_network_list = query.network_list
+                    new_network_list.append(network)
+
+                if not query.offer_id_list:
+                    new_offer_id_list = [offer_id]
+                else:
+                    if offer_id in query.offer_id_list:
+                        continue
+                    new_offer_id_list = query.offer_id_list
+                    new_offer_id_list.append(offer_id)
+
+                data = {
+                        'user_id':query.id,
+                }
+                if setUsed:
+                    query = ScoreUp.objects.filter(id=data.get('user_id')).update(
+                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        channel_list=new_channel_list,
+                        network_list=new_network_list,
+                        offer_id_list=new_offer_id_list,
+                        )
+                return Response({
+                    'body':data,
+                })
+
+        return Response({
+            'body':'error',
+            'message':'no id found'
+        })
+    

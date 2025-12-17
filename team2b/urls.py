@@ -215,4 +215,5 @@ urlpatterns = [
     path("nirat", views.NiratAPI.as_view(), name="cru_nirat"),
     path("scoreup", views.ScoreupuidAPI.as_view(), name="cru_scoreup"),
     path("boylesports", views.BoylesportsuidAPI.as_view(), name="cru_boylesports"),
+    path("scoreup2", views.ScoreUpAPI.as_view(), name="cru_scoreup"),
 ]
