@@ -2219,8 +2219,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "magztermodd" and event_name == "mg_1month_freetrial":
         return {0:20, 1:14.2, 2:11.11, 3:10}
     
-    elif campaign_name == "magztermodd" and event_name == "mg_1year":
-        return {0:50, 1:25, 2:20}
+    elif campaign_name == "magztermodd" and event_name == "mg_1year_freetrial":
+        return {0:20, 1: 14.2 , 2: 11.11 , 3: 10 }
     
     elif campaign_name == "paysettmodd" and event_name == "registration_success":
         return {0:2, 1:1.81, 2:1.6}
