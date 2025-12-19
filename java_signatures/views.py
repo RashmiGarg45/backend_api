@@ -2864,6 +2864,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {1:23, 2:13.5, 3:11.87}
     
     elif campaign_name == "lottermxiosmodd" and event_name == "FTD":
+
+        if offer_id in ["17425"]:
+            return {0:13}
+        
         return {0:80, 1:33}
     
     elif campaign_name == "thelotterusiosmodd" and event_name == "FTD":
