@@ -2908,7 +2908,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if offer_id in ["myiosappmmp"]:
             return {0:3.3, 1:2.77, 2:2.38}
         
-        return {0:2.6, 1:2.06, 2:2.4}
+        # return {0:2.6, 1:2.06, 2:2.4}
+        return {0:2.22, 1:1.72, 2:1.58}
 
     elif campaign_name == "myacuvueiosmodd" and event_name == "fitting_events":
 
