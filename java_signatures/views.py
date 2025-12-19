@@ -2895,7 +2895,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
         # return {0:3.3, 1:2.6, 2:2.06}
-        return {0:2.22, 1:1.72, 2:1.58}
+        return {0:2.22, 1:2.08, 2:1.92}
 
     elif campaign_name == "myfoodappmetrica" and event_name == "2990_rev":
         return {0:30, 1:19, 2:16}
@@ -2909,14 +2909,15 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {0:3.3, 1:2.77, 2:2.38}
         
         # return {0:2.6, 1:2.06, 2:2.4}
-        return {0:2.22, 1:1.72, 2:1.58}
+        return {0:2.22, 1:2.08, 2:1.92}
 
     elif campaign_name == "myacuvueiosmodd" and event_name == "fitting_events":
 
         if offer_id in ["myiosappmmp"]:
             return {0:12.5, 1:10, 2:7.14}
         
-        return {0:13, 1:9, 2:7}
+        # return {0:13, 1:9, 2:7}
+        return {0:5.8, 1:5.26, 2:4.76}
 
     elif campaign_name == "bbvamodd" and event_name == "afiliacion_basica-app_online_purchases":
 
