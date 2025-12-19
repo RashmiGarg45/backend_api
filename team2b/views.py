@@ -38,7 +38,7 @@ def mining_apps():
         today_i2 = value.get(to_date, {}).get("i1")
 
         if yesterday_i2 or today_i2:
-            running_apps.append(key) 
+            running_apps.append(key)
 
     output = []
     for key, value in d.items():
@@ -49,6 +49,9 @@ def mining_apps():
         else:
             if value in running_apps:
                 output.append(key)
+
+    if "indian_number" not in output:
+        output.append("indian_number")
 
     return output
 
