@@ -2897,6 +2897,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         # return {0:3.3, 1:2.6, 2:2.06}
         return {0:2.22, 1:2.08, 2:1.92}
 
+    elif campaign_name == "myacuvuemodd" and event_name == "fitting_events":
+
+        return {0:5.8, 1:5.26, 2:4.76}
+
     elif campaign_name == "myfoodappmetrica" and event_name == "2990_rev":
         return {0:30, 1:19, 2:16}
 
