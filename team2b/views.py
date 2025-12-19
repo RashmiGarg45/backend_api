@@ -136,7 +136,7 @@ class GenericScriptFunctions(APIView):
             'r888casinomodd_uid': R888casino,
             'bluerewards_uid':BluerewardsV2,
             'scoreUp_uid': ScoreUp,
-            'galaxy_ru_uid':GalaxyChatRU,
+            'galaxy_ru_uid':GalaxyChatCountry,
             'indian_number':Nirat,
         }
 
@@ -314,7 +314,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             'r888casinomodd_uid': R888casino,
             'bluerewards_uid':BluerewardsV2,
             'scoreUp_uid': ScoreUp,
-            'galaxy_ru_uid':GalaxyChatRU,
+            'galaxy_ru_uid':GalaxyChatCountry,
             'indian_number':Nirat
         }
 
