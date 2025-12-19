@@ -136,8 +136,8 @@ class GenericScriptFunctions(APIView):
             'r888casinomodd_uid': R888casino,
             'bluerewards_uid':BluerewardsV2,
             'scoreUp_uid': ScoreUp,
-            'galaxy_ru_uid':GalaxyChatRUAPI,
-            'indian_number':NiratAPI,
+            'galaxy_ru_uid':GalaxyChatRU,
+            'indian_number':Nirat,
         }
 
         running_apps = mining_apps()
@@ -314,8 +314,8 @@ class GenericUnusedIdScriptFunctions(APIView):
             'r888casinomodd_uid': R888casino,
             'bluerewards_uid':BluerewardsV2,
             'scoreUp_uid': ScoreUp,
-            'galaxy_ru_uid':GalaxyChatRUAPI,
-            'indian_number':NiratAPI
+            'galaxy_ru_uid':GalaxyChatRU,
+            'indian_number':Nirat
         }
 
         running_apps = mining_apps()
