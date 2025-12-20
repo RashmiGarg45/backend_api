@@ -2054,7 +2054,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if offer_id in ["boyadexaosmmp", "byax1aosafvammp"]:
             return {0:80, 1:25, 2:16.6, 3:14.2}
 
-        if offer_id in ['boymobvammp', 'byaxaosafvammp']:
+        if offer_id in ['boymobvammp', 'byaxaosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
             return {0:70, 1:35, 2:23}
         
         
@@ -2323,10 +2323,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         # if channel in ["mobpine", "77ads", "appamplify"]:
         #     return {0: 80, 1:30, 2:23}
         # else:
-        if offer_id in ["boyadexiosmmp"]:
-            return {0:80, 1:25, 2:16.6, 3:14.2}
 
-        if offer_id in ['byaxiosafvammp', 'byax1iosafvammp']:
+        # if offer_id in ["boyadexiosmmp"]:
+        #     return {0:80, 1:25, 2:16.6, 3:14.2}
+
+        if offer_id in ['byaxiosafvammp', 'byax1iosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
             return {0:70, 1:35, 2:23}
 
         return {0: 16, 1:8, 2:6.5}
@@ -2989,6 +2990,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "moneyviewmodd" and event_name == "submit_success":
         return {0:30, 1: 19, 2: 16, 3:14}
+
+    elif campaign_name == "viuhkmodd" and event_name == "subscription_payment_success":
+        return {0:30, 1:24 , 2: 19}
 
 class checkEligibility(APIView):
     def get(self, request):
