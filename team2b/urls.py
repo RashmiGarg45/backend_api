@@ -217,4 +217,6 @@ urlpatterns = [
     path("boylesports", views.BoylesportsuidAPI.as_view(), name="cru_boylesports"),
     path("scoreup2", views.ScoreUpAPI.as_view(), name="cru_scoreup"),
     path("sahi", views.SahiAPI.as_view(), name="cru_sahi"),
+    path("ahamove_uid", views.AhamoveuidAPI.as_view(), name="cru_ahamove_uid"),
+    path("ahamove_oid", views.AhamoveoidAPI.as_view(), name="cru_ahamove_oid"),
 ]
