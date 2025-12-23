@@ -181,6 +181,9 @@ class GenericScriptFunctions(APIView):
             if key == "indigomoddteam2modd_OID":           
                 ids_mined[key] = IndigoV4Mining.objects.filter(departure_date__gte=datetime.now(),created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
+            if key == "galaxy_ru_uid":
+                ids_mined[key] = GalaxyChatCountry.objects.filter(created_at__gte=str(today)).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).count()
+
         from data_tracking.util import googleChatBot_send_message
         message = {
                         "cardsV2": [
@@ -358,6 +361,9 @@ class GenericUnusedIdScriptFunctions(APIView):
 
             if key == "indigomoddteam2modd_OID":
                 ids_mined[key] = ids_mined[key] = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).count()
+
+            if key == "galaxy_ru_uid":
+                ids_mined[key] = GalaxyChatCountry.objects.filter(used_at = None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).count()
 
 
         from data_tracking.util import googleChatBot_send_message
