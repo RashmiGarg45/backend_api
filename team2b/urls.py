@@ -219,5 +219,5 @@ urlpatterns = [
     path("sahi", views.SahiAPI.as_view(), name="cru_sahi"),
     path("ahamove_uid", views.AhamoveuidAPI.as_view(), name="cru_ahamove_uid"),
     path("ahamove_oid", views.AhamoveoidAPI.as_view(), name="cru_ahamove_oid"),
-    path("reevo", views.NiratAPI.as_view(), name="cru_reevo"),
+    path("reevo", views.ReevoNUMID.as_view(), name="cru_reevo"),
 ]
