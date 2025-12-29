@@ -220,4 +220,5 @@ urlpatterns = [
     path("ahamove_uid", views.AhamoveuidAPI.as_view(), name="cru_ahamove_uid"),
     path("ahamove_oid", views.AhamoveoidAPI.as_view(), name="cru_ahamove_oid"),
     path("reevo", views.ReevoAPI.as_view(), name="cru_reevo"),
+    path("mbbank", views.MbbankUIDAPI.as_view(), name="cru_mbbank"),
 ]
