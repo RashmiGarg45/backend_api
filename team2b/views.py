@@ -9338,7 +9338,6 @@ class AstroMiningAPI(APIView):
         
         data = {
                 'order_id':query.id,
-                'extra_details':query.extra_details, 
         }
         if setUsed:
             query = AstroMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
