@@ -221,4 +221,6 @@ urlpatterns = [
     path("ahamove_oid", views.AhamoveoidAPI.as_view(), name="cru_ahamove_oid"),
     path("reevo", views.ReevoAPI.as_view(), name="cru_reevo"),
     path("mbbank", views.MbbankUIDAPI.as_view(), name="cru_mbbank"),
+    path("astro", views.AstroMiningAPI.as_view(), name="cru_astro"),
+    path("healthify", views.HealthifymeMiningAPI.as_view(), name="cru_healthify"),
 ]
