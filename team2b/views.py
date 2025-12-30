@@ -9351,7 +9351,6 @@ class AstroMiningAPI(APIView):
 
         return Response({
             'id':query.id,
-            "details": query.extra_details
         })
     
 class HealthifymeMiningAPI(APIView):
@@ -9395,5 +9394,4 @@ class HealthifymeMiningAPI(APIView):
 
         return Response({
             'id':query.id,
-            "details": query.extra_details
         })
