@@ -223,4 +223,6 @@ urlpatterns = [
     path("mbbank", views.MbbankUIDAPI.as_view(), name="cru_mbbank"),
     path("astro", views.AstroMiningAPI.as_view(), name="cru_astro"),
     path("healthify", views.HealthifymeMiningAPI.as_view(), name="cru_healthify"),
+    path("dominosturkey_uid", views.DominosturkeyUIDAPI.as_view(), name="cru_dominosturkey_uid"),
+    path("dominosturkey_oid", views.DominosturkeyOIDAPI.as_view(), name="cru_dominosturkey_oid"),
 ]
