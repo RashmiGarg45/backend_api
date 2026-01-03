@@ -1465,6 +1465,13 @@ class GomcdAPI(APIView):
             'body':data,
         })
 
+    def post(self, request):
+        query = GomcdOrderIds.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
+
 class BharatmatrimonyAPI(APIView):
     def put(self, request):
         query = BharatmatrimonyUserIds()
