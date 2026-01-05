@@ -9525,5 +9525,5 @@ class Abhibus_put_API(APIView):
             return Response({
             })
         except Exception as e:
-            return Response({'error': e})
+            return Response({'error': str(e)})
     
