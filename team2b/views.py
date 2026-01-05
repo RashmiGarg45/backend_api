@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,LifetyleOrderId,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID,LifetyleOrderId_extra_OID, LifetyleOrderId
 from team2b.services.redis import Redis
 from django.utils import timezone
 from decimal import Decimal
@@ -7953,52 +7953,6 @@ class Babytrackeruid(APIView):
             'id':query.id,
         })
 
-class LifetyleOrderIdAPI(APIView):
-    def put(self, request):
-        query = LifetyleOrderId()
-        query.campaign_name = request.data.get('camp_name','lifestyleauto')
-        query.id = request.data.get('order_id')
-        query.extra_details=request.data.get('extra_details',{})
-        query.order_placed_date = request.data.get('order_placed_date', "")
-        query.payment_type = request.data.get('payment_type', '')
-        query.used_at = None
-        try:
-            query.save()
-            return Response({
-            })
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
-            return Response({
-            })
-
-    def get(self, request):
-
-        channel = request.GET.get('channel', '')
-        network = request.GET.get('network', '')
-        offer_id = request.GET.get('offer_id', '')
-        setUsed = request.GET.get('set_used',True)
-        if setUsed and (setUsed == 'False' or setUsed == 'false'):
-            setUsed = False
-
-        query = LifetyleOrderId.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
-        
-        data = {
-                'order_id':query.id,
-                'extra_details':query.extra_details, 
-        }
-        if setUsed:
-            query = LifetyleOrderId.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
-        return Response({
-            'body':data,
-        })
-    
-    def post(self, request):
-        query = LifetyleOrderId.objects.order_by('-id').first()
-
-        return Response({
-            'id':query.id,
-        })
 
 def send_message(_msg):
     import requests
@@ -9459,4 +9413,63 @@ class DominosturkeyOIDAPI(APIView):
             query = DominosturkeyOID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
         return Response({
             'body':data,
+        })
+
+
+class LifestyleOIDAPI(APIView):
+    def put(self, request):
+        query = LifetyleOrderId()
+        query.campaign_name = request.data.get('camp_name','lifestyleauto')
+        query.id = request.data.get('order_id')
+        query.airwaybillno = request.data.get('airwaybillno')
+        query.order_no = request.data.get('order_no')
+        query.pay_type = request.data.get('pay_type','')
+        query.order_date = request.data.get('order_date','')
+        query.extra_details = request.data.get('extra_details',{})
+        query.used_at = None
+        try:
+            query.save()
+            return Response({
+            })
+        except Exception as e:
+            if 'Duplicate entry' in str(e):
+                query = LifetyleOrderId_extra_OID()
+                query.campaign_name = request.data.get('camp_name','lifestyleauto')
+                query.id = request.data.get('order_id')
+                query.airwaybillno = request.data.get('airwaybillno')
+                query.order_no = request.data.get('order_no')
+                query.pay_type = request.data.get('pay_type','')
+                query.order_date = request.data.get('order_date','')
+                query.extra_details = request.data.get('extra_details',{})
+                query.used_at = None
+                query.save()
+                return Response({
+                })
+
+    def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        query = LifetyleOrderId.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'order_id':query.id,
+                'extra_details':query.extra_details, 
+        }
+        if setUsed:
+            query = LifetyleOrderId.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+    
+    def post(self, request):
+        query = LifetyleOrderId.objects.order_by('-airwaybillno').first()
+
+        return Response({
+            'id':query.airwaybillno,
         })

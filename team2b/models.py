@@ -3017,27 +3017,6 @@ class Babytracker(models.Model):
             models.Index(fields=['id']),
         ]
 
-class LifetyleOrderId(models.Model):
-
-    serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='lifestyleauto')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    channel = models.CharField(default='', blank=True, max_length=100)
-    network = models.CharField(default='', blank=True, max_length=100)
-    offer_id = models.CharField(default='', blank=True, max_length=100)
-    id = models.CharField(max_length=50,unique=True)
-    payment_type = models.CharField(default='NA',blank=True, max_length=100)
-    used_at = models.DateTimeField(default = None,blank=True, null=True)
-    extra_details = models.JSONField(default = dict,blank=True, null=True)
-    order_placed_date = models.DateTimeField(default=None,blank=True, null=True)
-    
-    class Meta:
-        indexes = [
-            models.Index(fields=['id']),
-        ]
-
-
 class Bitoasist(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
@@ -3632,6 +3611,51 @@ class DominosturkeyOID(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
     used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+
+class LifetyleOrderId_extra_OID(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='lifestyleauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50)
+    airwaybillno = models.CharField(max_length=50,unique=True)
+    order_no = models.CharField(max_length=50)
+    pay_type = models.CharField(default='', blank=True, max_length=30)
+    order_date = models.DateTimeField(default=None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class LifetyleOrderId(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='lifestyleauto')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)
+    airwaybillno = models.CharField(max_length=50,unique=True)
+    order_no = models.CharField(max_length=50,unique=True)
+    pay_type = models.CharField(default='', blank=True, max_length=30)
+    order_date = models.DateTimeField(default=None,blank=True, null=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel = models.CharField(default='', blank=True, max_length=100)
+    network = models.CharField(default='', blank=True, max_length=100)
+    offer_id = models.CharField(default='', blank=True, max_length=100)
     
     class Meta:
         indexes = [
