@@ -2009,6 +2009,9 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "netshoesmodd" and offer_id in ["nesmetmmp", "test"]:
         return 24
+    
+    elif campaign_name == "williamhillsportiosmodd" and offer_id in ["apps-whsports.ios", "test"]:
+        return 1
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
