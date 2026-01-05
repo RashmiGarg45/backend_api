@@ -3640,7 +3640,7 @@ class LifetyleOrderId_extra_OID(models.Model):
             models.Index(fields=['id']),
         ]
 
-class LifetyleOrderId(models.Model):
+class LifetyleOrderId_2(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='lifestyleauto')
