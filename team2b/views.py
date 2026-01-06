@@ -2436,6 +2436,7 @@ def send_to_gchat(_msg,_tag,webhook_url):
 def send_to_backup_db_data(_msg):
 
     # Only allow at exact hour (minute = 0)
+    now = timezone.now()
     if now.minute != 0:
         return
 
