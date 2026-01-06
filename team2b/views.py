@@ -2293,57 +2293,60 @@ class RevenueHelperBackupView(APIView):
     def post(self, request):
         now = timezone.now()
 
-        # Yesterday range
-        day_start = (now - timedelta(days=10)).replace(
+        # 🎯 10-day old date
+        target_day = (now - timedelta(days=10)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
-        day_end = day_start.replace(
+        day_start = target_day
+        day_end = target_day.replace(
             hour=23, minute=59, second=59, microsecond=999999
         )
 
+        # 🔹 Pick only 200 rows
         queryset = RevenueHelper.objects.filter(
             created_at__gte=day_start,
             created_at__lte=day_end,
-        )
+        ).order_by("id")[:200]
 
-        if not queryset.exists():
+        if not queryset:
             return Response({
-                "message": "No data found for the selected day",
+                "message": "No pending data to backup",
                 "date": str(day_start.date()),
-                "inserted": 0
+                "processed": 0
             })
 
-        # 🔒 prevent duplicates (optional but recommended)
-        queryset = queryset.exclude(
-            serial__in=RevenueHelperBackup.objects.values_list("serial", flat=True)
-        )
+        backup_objects = []
+        delete_ids = []
 
-        backup_objects = [
-            RevenueHelperBackup(
-                serial=obj.serial,
-                campaign_name=obj.campaign_name,
-                created_at=obj.created_at,
-                updated_at=obj.updated_at,
-                channel=obj.channel,
-                network=obj.network,
-                offer_id=obj.offer_id,
-                id=obj.id,
-                revenue=obj.revenue,
-                currency=obj.currency,
-                adid=obj.adid,
-                event_name=obj.event_name,
+        for obj in queryset:
+            backup_objects.append(
+                RevenueHelperBackup(
+                    serial=obj.serial,
+                    campaign_name=obj.campaign_name,
+                    created_at=obj.created_at,
+                    updated_at=obj.updated_at,
+                    channel=obj.channel,
+                    network=obj.network,
+                    offer_id=obj.offer_id,
+                    id=obj.id,
+                    revenue=obj.revenue,
+                    currency=obj.currency,
+                    adid=obj.adid,
+                    event_name=obj.event_name,
+                )
             )
-            for obj in queryset
-        ]
+            delete_ids.append(obj.pk)
 
+        # 🔐 Atomic = insert + delete together
         with transaction.atomic():
             RevenueHelperBackup.objects.bulk_create(backup_objects)
+            RevenueHelper.objects.filter(pk__in=delete_ids).delete()
 
         return Response({
-            "message": "10-day old data backup completed",
+            "message": "Batch backup completed",
             "date": str(day_start.date()),
-            "total_rows": queryset.count(),
             "inserted": len(backup_objects),
+            "deleted": len(delete_ids)
         })
 
 def send_to_gchat(_msg,_tag,webhook_url):
