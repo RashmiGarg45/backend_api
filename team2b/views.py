@@ -2419,7 +2419,7 @@ def send_to_backup_db_data(_msg):
 
     webhook_url= 'https://chat.googleapis.com/v1/spaces/AAQAVs0BCmw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EncpKNRU2oHf9npWXRLE2wReW0lNe9LkoeG_NKfZJy0'
     params = { 
-            "threadKey": _tag,
+            "threadKey": '',
             "messageReplyOption": "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
         }
     try:
