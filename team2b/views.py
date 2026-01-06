@@ -2330,7 +2330,16 @@ class RevenueHelperBackupView(APIView):
             )
 
             if not queryset:
-                send_to_backup_db_data(_msg="No pending data")
+                _msg = f'''
+                📊 Revenue Backup Status
+
+                ✔ Backup check completed successfully, No record found.
+                📅 Date: {str(day_start.date())}
+                📦 Pending records: 0
+
+                Nothing to process 🎉
+                '''
+                send_to_backup_db_data(_msg)
 
                 return Response({
                     "message": "No pending data",
@@ -2357,8 +2366,17 @@ class RevenueHelperBackupView(APIView):
             ]
 
             RevenueHelperBackup.objects.bulk_create(backup_objects)
+            _msg = f'''
+                📊 Revenue Backup Status
 
-            send_to_backup_db_data(_msg="Batch backup completed")
+                ✔ Backup backup completed successfully
+                📅 Date: {str(day_start.date())}
+                📦 inserted records: {len(backup_objects)}
+
+                '''
+
+
+            send_to_backup_db_data(_msg)
 
             return Response({
                 "message": "Batch backup completed",
