@@ -10,7 +10,7 @@ from django.db.models import Q
 from datetime import datetime,timedelta,date
 import json, time, random
 import requests
-
+from django.core.cache import cache
 from django.db.models import Count, Sum, Case, When, IntegerField, FloatField
 from django.db.models import Avg
 from django.db import transaction
@@ -2290,62 +2290,78 @@ class RevenueHelperAPI(APIView):
 
         
 class RevenueHelperBackupView(APIView):
+    LOCK_KEY = "revenuehelper_backup_lock"
+    LOCK_TTL = 600  # seconds (10 minutes)
+
     def post(self, request):
-        now = timezone.now()
-
-        target_day = (now - timedelta(days=10)).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        day_start = target_day
-        day_end = target_day.replace(
-            hour=23, minute=59, second=59, microsecond=999999
-        )
-
-        batch_size = 200
-
-        queryset = list(
-            RevenueHelper.objects.filter(
-                created_at__gte=day_start,
-                created_at__lte=day_end,
-            )
-            .exclude(
-                serial__in=RevenueHelperBackup.objects.values_list("serial", flat=True)
-            )
-            .order_by("id")[:batch_size]
-        )
-
-        if not queryset:
+        # 🔐 Acquire lock
+        if not cache.add(self.LOCK_KEY, "1", timeout=self.LOCK_TTL):
             return Response({
-                "message": "No pending data",
-                "date": str(day_start.date()),
-                "inserted": 0
+                "message": "Backup already running, skipping this run"
             })
 
-        backup_objects = [
-            RevenueHelperBackup(
-                serial=obj.serial,
-                campaign_name=obj.campaign_name,
-                created_at=obj.created_at,
-                updated_at=obj.updated_at,
-                channel=obj.channel,
-                network=obj.network,
-                offer_id=obj.offer_id,
-                id=obj.id,
-                revenue=obj.revenue,
-                currency=obj.currency,
-                adid=obj.adid,
-                event_name=obj.event_name,
+        try:
+            now = timezone.now()
+
+            target_day = (now - timedelta(days=10)).replace(
+                hour=0, minute=0, second=0, microsecond=0
             )
-            for obj in queryset
-        ]
+            day_start = target_day
+            day_end = target_day.replace(
+                hour=23, minute=59, second=59, microsecond=999999
+            )
 
-        RevenueHelperBackup.objects.bulk_create(backup_objects)
+            batch_size = 200
 
-        return Response({
-            "message": "Batch backup completed",
-            "date": str(day_start.date()),
-            "inserted": len(backup_objects),
-        })
+            queryset = list(
+                RevenueHelper.objects.filter(
+                    created_at__gte=day_start,
+                    created_at__lte=day_end,
+                )
+                .exclude(
+                    serial__in=RevenueHelperBackup.objects.values_list(
+                        "serial", flat=True
+                    )
+                )
+                .order_by("id")[:batch_size]
+            )
+
+            if not queryset:
+                return Response({
+                    "message": "No pending data",
+                    "date": str(day_start.date()),
+                    "inserted": 0
+                })
+
+            backup_objects = [
+                RevenueHelperBackup(
+                    serial=obj.serial,
+                    campaign_name=obj.campaign_name,
+                    created_at=obj.created_at,
+                    updated_at=obj.updated_at,
+                    channel=obj.channel,
+                    network=obj.network,
+                    offer_id=obj.offer_id,
+                    id=obj.id,
+                    revenue=obj.revenue,
+                    currency=obj.currency,
+                    adid=obj.adid,
+                    event_name=obj.event_name,
+                )
+                for obj in queryset
+            ]
+
+            RevenueHelperBackup.objects.bulk_create(backup_objects)
+
+            return Response({
+                "message": "Batch backup completed",
+                "date": str(day_start.date()),
+                "inserted": len(backup_objects),
+            })
+
+        finally:
+            # 🔓 Always release lock
+            cache.delete(self.LOCK_KEY)
 
 class RevenueHelperMonthEndDeleteView(APIView):
     def post(self, request):
