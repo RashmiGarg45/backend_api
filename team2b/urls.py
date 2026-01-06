@@ -227,4 +227,5 @@ urlpatterns = [
     path("dominosturkey_oid", views.DominosturkeyOIDAPI.as_view(), name="cru_dominosturkey_oid"),
     path("dominosturkey_mining_oid", views.DominosturkeyOID_miningAPI.as_view(), name="cru_dominosturkey_mining_oid"),
     path("abhibus_put", views.Abhibus_put_API.as_view(), name="cru_abhibus_put"),
+    path("dana", views.DanaUIDAPI.as_view(), name="cru_dana"),
 ]
