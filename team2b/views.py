@@ -2434,6 +2434,11 @@ def send_to_gchat(_msg,_tag,webhook_url):
         print("[+] Something went wrong {}".format(e))
 
 def send_to_backup_db_data(_msg):
+
+    # Only allow at exact hour (minute = 0)
+    if now.minute != 0:
+        return
+
     webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAVs0BCmw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EncpKNRU2oHf9npWXRLE2wReW0lNe9LkoeG_NKfZJy0"
 
     payload = {
