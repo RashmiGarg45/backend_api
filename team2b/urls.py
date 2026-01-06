@@ -183,6 +183,7 @@ urlpatterns = [
     path("atomepht2uid", views.Atomepht2uidAPI.as_view(), name="cru_atomepht2uid"),
     path("atomepht2aid", views.Atomepht2aidAPI.as_view(), name="cru_atomepht2aid"),
     path("revenuehelper_backup", views.RevenueHelperBackupView.as_view(), name="cru_revenuehelper_backup"),
+    path("revenuehelper_month_delete", views.RevenueHelperMonthEndDeleteView.as_view(), name="cru_revenuehelper_month_delete"),
     path("myshift", views.MyshiftAPI.as_view(), name="cru_myshift"),
     path("clubeextra", views.ClubeextraAPI.as_view(), name="cru_clubeextra"),
     path("clubeextracid", views.ClubeextracidAPI.as_view(), name="cru_clubeextracid"),

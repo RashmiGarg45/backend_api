@@ -2293,7 +2293,7 @@ class RevenueHelperBackupView(APIView):
     def post(self, request):
         now = timezone.now()
 
-        # 🎯 10-day old date
+        # 🎯 Exactly 10-day-old data
         target_day = (now - timedelta(days=10)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
@@ -2302,24 +2302,28 @@ class RevenueHelperBackupView(APIView):
             hour=23, minute=59, second=59, microsecond=999999
         )
 
-        # 🔹 Pick only 200 rows
-        queryset = RevenueHelper.objects.filter(
-            created_at__gte=day_start,
-            created_at__lte=day_end,
-        ).order_by("id")[:200]
+        batch_size = 200
+        total_inserted = 0
+        batches = 0
 
-        if not queryset:
-            return Response({
-                "message": "No pending data to backup",
-                "date": str(day_start.date()),
-                "processed": 0
-            })
+        while True:
+            queryset = list(
+                RevenueHelper.objects.filter(
+                    created_at__gte=day_start,
+                    created_at__lte=day_end,
+                )
+                .exclude(
+                    serial__in=RevenueHelperBackup.objects.values_list(
+                        "serial", flat=True
+                    )
+                )
+                .order_by("id")[:batch_size]
+            )
 
-        backup_objects = []
-        delete_ids = []
+            if not queryset:
+                break  # ✅ All rows backed up
 
-        for obj in queryset:
-            backup_objects.append(
+            backup_objects = [
                 RevenueHelperBackup(
                     serial=obj.serial,
                     campaign_name=obj.campaign_name,
@@ -2334,19 +2338,55 @@ class RevenueHelperBackupView(APIView):
                     adid=obj.adid,
                     event_name=obj.event_name,
                 )
-            )
-            delete_ids.append(obj.pk)
+                for obj in queryset
+            ]
 
-        # 🔐 Atomic = insert + delete together
-        with transaction.atomic():
-            RevenueHelperBackup.objects.bulk_create(backup_objects)
-            RevenueHelper.objects.filter(pk__in=delete_ids).delete()
+            with transaction.atomic():
+                RevenueHelperBackup.objects.bulk_create(backup_objects)
+
+            total_inserted += len(backup_objects)
+            batches += 1
 
         return Response({
-            "message": "Batch backup completed",
+            "message": "10-day old data backup completed",
             "date": str(day_start.date()),
-            "inserted": len(backup_objects),
-            "deleted": len(delete_ids)
+            "batches": batches,
+            "inserted": total_inserted,
+        })
+
+class RevenueHelperMonthEndDeleteView(APIView):
+    def post(self, request):
+        now = timezone.now()
+
+        # Previous month range
+        first_day_this_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        last_month_end = first_day_this_month - timedelta(seconds=1)
+        last_month_start = last_month_end.replace(day=1)
+
+        # 🔍 Safety check — ensure backup exists
+        backup_count = RevenueHelperBackup.objects.filter(
+            created_at__gte=last_month_start,
+            created_at__lte=last_month_end,
+        ).count()
+
+        if backup_count == 0:
+            return Response({
+                "message": "Delete aborted: No backup found for last month",
+                "month": last_month_start.strftime("%Y-%m"),
+            }, status=400)
+
+        # 🚨 Delete in one fast query
+        with transaction.atomic():
+            deleted, _ = RevenueHelper.objects.filter(
+                created_at__gte=last_month_start,
+                created_at__lte=last_month_end,
+            ).delete()
+
+        return Response({
+            "message": "Month-end delete completed",
+            "month": last_month_start.strftime("%Y-%m"),
+            "deleted_rows": deleted,
+            "backup_rows": backup_count,
         })
 
 def send_to_gchat(_msg,_tag,webhook_url):
