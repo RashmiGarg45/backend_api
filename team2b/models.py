@@ -3396,7 +3396,7 @@ class NumbersPK(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
     operator = models.CharField(default='Other',max_length=30)
-    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
     
     class Meta:
         indexes = [
