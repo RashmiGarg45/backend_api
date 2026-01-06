@@ -2294,7 +2294,7 @@ class RevenueHelperBackupView(APIView):
         now = timezone.now()
 
         # Yesterday range
-        day_start = (now - timedelta(days=1)).replace(
+        day_start = (now - timedelta(days=10)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         day_end = day_start.replace(
@@ -2340,7 +2340,7 @@ class RevenueHelperBackupView(APIView):
             RevenueHelperBackup.objects.bulk_create(backup_objects)
 
         return Response({
-            "message": "1-day backup completed",
+            "message": "10-day old data backup completed",
             "date": str(day_start.date()),
             "total_rows": queryset.count(),
             "inserted": len(backup_objects),
