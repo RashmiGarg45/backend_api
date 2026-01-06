@@ -8924,15 +8924,15 @@ class NumbersPKAPI(APIView):
 
         NumbersPK.objects.filter(id__in=query).update(used_at=timezone.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-        print (query)
-        print (type(query))
+        # print (query)
+        # print (type(query))
 
-        output = []
+        # output = []
 
-        for i in range(len(query)):
-            output.append(query[i].id)
+        # for i in range(len(query)):
+        #     output.append(query[i].id)
 
-        return Response({"data": output})
+        return Response({"data": query})
 
 
 
