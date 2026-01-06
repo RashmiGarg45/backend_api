@@ -2289,6 +2289,62 @@ class RevenueHelperAPI(APIView):
 
 
         
+class RevenueHelperBackupView(APIView):
+    def post(self, request):
+        now = timezone.now()
+
+        # Yesterday range
+        day_start = (now - timedelta(days=1)).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        day_end = day_start.replace(
+            hour=23, minute=59, second=59, microsecond=999999
+        )
+
+        queryset = RevenueHelper.objects.filter(
+            created_at__gte=day_start,
+            created_at__lte=day_end,
+        )
+
+        if not queryset.exists():
+            return Response({
+                "message": "No data found for the selected day",
+                "date": str(day_start.date()),
+                "inserted": 0
+            })
+
+        # 🔒 prevent duplicates (optional but recommended)
+        queryset = queryset.exclude(
+            serial__in=RevenueHelperBackup.objects.values_list("serial", flat=True)
+        )
+
+        backup_objects = [
+            RevenueHelperBackup(
+                serial=obj.serial,
+                campaign_name=obj.campaign_name,
+                created_at=obj.created_at,
+                updated_at=obj.updated_at,
+                channel=obj.channel,
+                network=obj.network,
+                offer_id=obj.offer_id,
+                id=obj.id,
+                revenue=obj.revenue,
+                currency=obj.currency,
+                adid=obj.adid,
+                event_name=obj.event_name,
+            )
+            for obj in queryset
+        ]
+
+        with transaction.atomic():
+            RevenueHelperBackup.objects.bulk_create(backup_objects)
+
+        return Response({
+            "message": "1-day backup completed",
+            "date": str(day_start.date()),
+            "total_rows": queryset.count(),
+            "inserted": len(backup_objects),
+        })
 
 def send_to_gchat(_msg,_tag,webhook_url):
     params = { 
@@ -7835,58 +7891,6 @@ class MyshiftAPI(APIView):
             'message':'no id found'
         })
 
-
-class RevenueHelperBackupView(APIView):
-    def post(self, request):
-        now = timezone.now()
-        first_day_this_month = now.replace(day=1)
-        last_month_end = first_day_this_month - timedelta(days=1)
-        last_month_start = last_month_end.replace(day=1)
-
-        queryset = RevenueHelper.objects.filter(
-            created_at__gte=last_month_start,
-            created_at__lte=last_month_end,
-        )
-
-        # objs = []
-        # for obj in queryset:
-        #     objs.append(
-        #         RevenueHelperBackup(
-        #             campaign_name=obj.campaign_name,
-        #             created_at=obj.created_at,
-        #             c_day=obj.c_day,
-        #             updated_at=obj.updated_at,
-        #             channel=obj.channel,
-        #             network=obj.network,
-        #             offer_id=obj.offer_id,
-        #             id=obj.id,
-        #             revenue=obj.revenue,
-        #             currency=obj.currency,
-        #             adid=obj.adid,
-        #             event_name=obj.event_name,
-        #             event_value=obj.event_value,
-        #             app_version=obj.app_version,
-        #             script_version=obj.script_version,
-        #         )
-        #     )
-
-        # RevenueHelperBackup.objects.bulk_create(objs)
-
-        # serializer = RevenueHelperBackupSerializer(objs, many=True)
-        # return Response(
-        #     {
-        #         "message": f"Backed up {len(objs)} rows from {last_month_start.date()} to {last_month_end.date()}",
-        #         "data": serializer.data,
-        #     },
-        #     status=status.HTTP_201_CREATED,
-        # )
-
-        return Response(
-            {
-                "message": f"rows from {last_month_start.date()} to {last_month_end.date()}",
-                "data": {},
-            },
-        )
 
 class HeringAPI(APIView):
     def put(self, request):
