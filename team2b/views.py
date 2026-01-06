@@ -2293,7 +2293,6 @@ class RevenueHelperBackupView(APIView):
     def post(self, request):
         now = timezone.now()
 
-        # 🎯 Exactly 10-day-old data
         target_day = (now - timedelta(days=10)).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
@@ -2303,55 +2302,49 @@ class RevenueHelperBackupView(APIView):
         )
 
         batch_size = 200
-        total_inserted = 0
-        batches = 0
 
-        while True:
-            queryset = list(
-                RevenueHelper.objects.filter(
-                    created_at__gte=day_start,
-                    created_at__lte=day_end,
-                )
-                .exclude(
-                    serial__in=RevenueHelperBackup.objects.values_list(
-                        "serial", flat=True
-                    )
-                )
-                .order_by("id")[:batch_size]
+        queryset = list(
+            RevenueHelper.objects.filter(
+                created_at__gte=day_start,
+                created_at__lte=day_end,
             )
+            .exclude(
+                serial__in=RevenueHelperBackup.objects.values_list("serial", flat=True)
+            )
+            .order_by("id")[:batch_size]
+        )
 
-            if not queryset:
-                break  # ✅ All rows backed up
+        if not queryset:
+            return Response({
+                "message": "No pending data",
+                "date": str(day_start.date()),
+                "inserted": 0
+            })
 
-            backup_objects = [
-                RevenueHelperBackup(
-                    serial=obj.serial,
-                    campaign_name=obj.campaign_name,
-                    created_at=obj.created_at,
-                    updated_at=obj.updated_at,
-                    channel=obj.channel,
-                    network=obj.network,
-                    offer_id=obj.offer_id,
-                    id=obj.id,
-                    revenue=obj.revenue,
-                    currency=obj.currency,
-                    adid=obj.adid,
-                    event_name=obj.event_name,
-                )
-                for obj in queryset
-            ]
+        backup_objects = [
+            RevenueHelperBackup(
+                serial=obj.serial,
+                campaign_name=obj.campaign_name,
+                created_at=obj.created_at,
+                updated_at=obj.updated_at,
+                channel=obj.channel,
+                network=obj.network,
+                offer_id=obj.offer_id,
+                id=obj.id,
+                revenue=obj.revenue,
+                currency=obj.currency,
+                adid=obj.adid,
+                event_name=obj.event_name,
+            )
+            for obj in queryset
+        ]
 
-            with transaction.atomic():
-                RevenueHelperBackup.objects.bulk_create(backup_objects)
-
-            total_inserted += len(backup_objects)
-            batches += 1
+        RevenueHelperBackup.objects.bulk_create(backup_objects)
 
         return Response({
-            "message": "10-day old data backup completed",
+            "message": "Batch backup completed",
             "date": str(day_start.date()),
-            "batches": batches,
-            "inserted": total_inserted,
+            "inserted": len(backup_objects),
         })
 
 class RevenueHelperMonthEndDeleteView(APIView):
