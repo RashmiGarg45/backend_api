@@ -2416,16 +2416,23 @@ def send_to_gchat(_msg,_tag,webhook_url):
         print("[+] Something went wrong {}".format(e))
 
 def send_to_backup_db_data(_msg):
+    webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAVs0BCmw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EncpKNRU2oHf9npWXRLE2wReW0lNe9LkoeG_NKfZJy0"
 
-    webhook_url= 'https://chat.googleapis.com/v1/spaces/AAQAVs0BCmw/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=EncpKNRU2oHf9npWXRLE2wReW0lNe9LkoeG_NKfZJy0'
-    params = { 
-            "threadKey": '',
-            "messageReplyOption": "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD"
-        }
+    payload = {
+        "text": _msg
+    }
+
     try:
-        resp = requests.post(url=webhook_url,params=params, json={"text": _msg}, verify=False).json()
+        resp = requests.post(
+            webhook_url,
+            json=payload,
+            timeout=10
+        )
+
+        resp.raise_for_status()
+
     except Exception as e:
-        print("[+] Something went wrong {}".format(e))
+        print("❌ Google Chat webhook failed:", str(e))
 
 class ScriptRealtimeChecker(APIView):
 
