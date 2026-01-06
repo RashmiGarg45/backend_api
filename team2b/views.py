@@ -8920,9 +8920,12 @@ class NumbersPKAPI(APIView):
     def get(self, request):
         req_date = request.data.get("date")
 
-        query = NumbersPK.objects.filter(operator="JAZZ", used_at=None).order_by('-created_at')[0:10]
+        query = NumbersPK.objects.filter(operator="JAZZ", used_at=None).order_by('-created_at').values_list('id', flat=True)[:2]
 
         NumbersPK.objects.filter(id__in=query).update(used_at=timezone.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+        print (query)
+        print (type(query))
 
         output = []
 
