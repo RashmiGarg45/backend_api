@@ -2794,6 +2794,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:30, 1:18, 2:15}
     
     elif campaign_name == "williamhillsportiosmodd" and event_name == 'FTD':
+        if offer_id in ["apps-whsports.ios"]:
+            return {0:45}
         return {0:30, 1:22.5, 2:18}
 
     elif campaign_name == "vegasiosmodd" and event_name == 'FTD':
