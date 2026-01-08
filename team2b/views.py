@@ -9742,5 +9742,4 @@ class Spinny_valid_ID_updater(APIView):
                 "message": "Spinny OIDs reset successfully",
                 "updated_records": updated_count
             },
-            status=status.HTTP_200_OK
         )
