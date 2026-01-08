@@ -3029,6 +3029,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "rootcarinsurancemodd" and event_name == "Profile":
         return {0: 9, 1:7, 2: 6}
 
+    elif campaign_name == "mcluckcasinoiosmodd" and event_name == 'first_purchase':
+        return {0:45, 1:30}
+
+
 class checkEligibility(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
