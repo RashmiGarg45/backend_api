@@ -230,4 +230,6 @@ urlpatterns = [
     path("abhibus_put", views.Abhibus_put_API.as_view(), name="cru_abhibus_put"),
     path("dana", views.DanaUIDAPI.as_view(), name="cru_dana"),
     path("spinny", views.Spinny_OIDAPI.as_view(), name="cru_spinny"),
+    path("spinny_valid", views.Spinny_valid_OIDAPI.as_view(), name="cru_spinny_valid"),
+    path("spinny_valid_id_updater", views.Spinny_valid_ID_updater.as_view(), name="cru_spinny_valid_id_updater"),
 ]
