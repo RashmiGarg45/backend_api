@@ -2876,7 +2876,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "lottermxiosmodd" and event_name == "FTD":
 
         if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0:25}
+            return {0:12}
 
         if offer_id in ["17425"]:
             return {0:13}
