@@ -2977,7 +2977,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:90, 1: 45}
     
     elif campaign_name == "action247iosmodd" and event_name == "af_FTD":
-        return {0:85, 1:45}
+        # return {0:85, 1:45}
+        return {0:20}
 
     elif campaign_name == "sensorvpniosmodd" and event_name == 'apphud_trial_started':
         return {0:22.5, 1:15, 2:12.85, 3:11.25}
