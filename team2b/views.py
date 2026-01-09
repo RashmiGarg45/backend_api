@@ -9793,7 +9793,7 @@ class Dominoesgold_UID_API(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = Dominoesgold_UID.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        query = Dominoesgold_UID.objects.filter(used_at=None, balance__gte=Decimal('0.0')).order_by('-created_at')[0:50].first()
         
         data = {
                 'user_id':query.id,
