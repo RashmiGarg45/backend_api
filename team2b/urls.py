@@ -232,4 +232,5 @@ urlpatterns = [
     path("spinny", views.Spinny_OIDAPI.as_view(), name="cru_spinny"),
     path("spinny_valid", views.Spinny_valid_OIDAPI.as_view(), name="cru_spinny_valid"),
     path("spinny_valid_id_updater", views.Spinny_valid_ID_updater.as_view(), name="cru_spinny_valid_id_updater"),
+    path("eternz", views.EternzUIDAPI.as_view(), name="cru_eternz"),
 ]

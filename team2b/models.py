@@ -92,7 +92,7 @@ class McdeliveryScriptOrderIds(models.Model):
 class LightInTheBox(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='lightintheboxmodd')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -106,7 +106,7 @@ class LightInTheBox(models.Model):
 class DominosIndodeliveryScriptOrderIds(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='dominosindoauto')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -125,7 +125,7 @@ class DominosIndodeliveryScriptOrderIds(models.Model):
 class OstinShopScriptOrderIds(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='ostinshopmodd')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -143,7 +143,7 @@ class OstinShopScriptOrderIds(models.Model):
 class HabibScriptOrderIdsConstants(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='habibmodd')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -160,7 +160,7 @@ class HabibScriptOrderIdsConstants(models.Model):
 class WatchoOrderIdsMining(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='watchomodd')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -182,7 +182,7 @@ class WatchoOrderIdsMining(models.Model):
 class DamnrayOrderIds(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
-    campaign_name = models.CharField(max_length=20,default='igpmodd')
+    campaign_name = models.CharField(max_length=20,default='damnray')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     id = models.CharField(max_length=50,unique=True)
@@ -3741,6 +3741,20 @@ class Spinny_valid_OID(models.Model):
     channel = models.CharField(default='', blank=True, max_length=100)
     network = models.CharField(default='', blank=True, max_length=100)
     offer_id = models.CharField(default='', blank=True, max_length=100)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
+
+class EternzUID(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='eternzmodd')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
     
     class Meta:
         indexes = [
