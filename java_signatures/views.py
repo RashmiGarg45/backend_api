@@ -43,7 +43,7 @@ def get_tatapalette_orders(request):
     valid_status = request_data.get("valid_status", False)
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
         current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
@@ -90,7 +90,7 @@ def get_available_orders_count(request):
     except:
         valid_status = False
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
 
         if valid_status:        
@@ -121,7 +121,7 @@ def add_install_count(request):
     offer_id = request_data.get("offer_id", "*")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
 
         created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
@@ -151,7 +151,7 @@ def is_event_allowed(request):
     required_percentage = request_data.get("required_percentage")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
 
         cursor.execute('''SELECT COUNT(*) FROM check_event_count WHERE campaign_name ='{}' AND channel='{}' AND network='{}' AND offer_id='{}' AND created_at LIKE '{}%';'''.format(campaign_name, channel, network, offer_id, current_date))
@@ -190,7 +190,7 @@ def update_event_count(request):
     offer_id = request_data.get("offer_id", "*")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
         cursor.execute('''UPDATE check_event_count SET {} = 1 WHERE created_at = '{}' AND campaign_name ='{}' AND channel='{}' AND network='{}' AND offer_id='{}';'''.format(event_origin, created_at, campaign_name, channel, network, offer_id))
         conn.commit()
@@ -209,7 +209,7 @@ def get_univest_orders(request):
     request_type = request_data.get("request_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM univest_orderIds WHERE NOT status=1 ORDER BY order_id ASC''')
@@ -232,7 +232,7 @@ def get_univest_orders(request):
 
 def get_univest_orders_count(request):
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM univest_orderIds WHERE NOT status=1''')
@@ -253,7 +253,7 @@ def get_zalora_orders_count(request):
     country = request_data.get("country")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM zalora_orderIds WHERE NOT isUsed=1 AND country ="{}"'''.format(country))
@@ -275,7 +275,7 @@ def get_zalora_orders(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM zalora_orderIds WHERE NOT isUsed=1 AND country ="{}" ORDER BY order_id DESC'''.format(country))
@@ -304,7 +304,7 @@ def update_zalora_orderid_status(request):
     request_data = json.loads(request.body)
     order_id = request_data.get("order_id")
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor() 
 
         used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
@@ -410,7 +410,7 @@ def get_samco_user_data(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM samco_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -439,7 +439,7 @@ def get_samco_user_data(request):
 def get_samco_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM samco_userIds WHERE NOT isUsed=1''')
@@ -460,7 +460,7 @@ def get_flappdeals_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM flappdeals_orderIds WHERE NOT isUsed=1 ORDER BY order_id ASC''')
@@ -485,7 +485,7 @@ def get_flappdeals_orderId(request):
 def get_flappdeals_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM flappdeals_orderIds WHERE NOT isUsed=1''')
@@ -506,7 +506,7 @@ def get_practo_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
         current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
@@ -539,7 +539,7 @@ def get_practo_orderId(request):
 def get_practo_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM practo_orderIds WHERE NOT isUsed=1''')
@@ -560,7 +560,7 @@ def get_tamasha_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
         # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
@@ -594,7 +594,7 @@ def get_tamasha_userId(request):
 def get_tamasha_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM tamasha_userIds WHERE NOT isUsed=1''')
@@ -615,7 +615,7 @@ def get_cleartrip_id(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
      
         cursor.execute('''SELECT * FROM cleartrip_Ids WHERE NOT isUsed=1 ORDER BY trip_id ASC''')
@@ -640,7 +640,7 @@ def get_cleartrip_id(request):
 def get_cleartrip_ids_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT trip_id) FROM cleartrip_Ids WHERE NOT isUsed=1''')
@@ -662,7 +662,7 @@ def get_sololearn_userId(request):
     subscription_type = request_data.get("subscription_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
      
         cursor.execute('''SELECT * FROM sololearn_userIds WHERE NOT isUsed=1 AND subscription_type = '{}' ORDER BY user_id ASC'''.format(subscription_type))
@@ -687,7 +687,7 @@ def get_sololearn_userId(request):
 def get_sololearn_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM sololearn_userIds WHERE NOT isUsed=1''')
@@ -708,7 +708,7 @@ def get_petbook_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM petbook_Ids WHERE NOT isUsed=1 ORDER BY order_id ASC''')
@@ -733,7 +733,7 @@ def get_petbook_orderId(request):
 def get_petbook_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM petbook_Ids WHERE NOT isUsed=1''')
@@ -754,7 +754,7 @@ def get_elelive_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM elelive_userIds WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -779,7 +779,7 @@ def get_elelive_userId(request):
 def get_elelive_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM elelive_userIds WHERE NOT isUsed=1''')
@@ -800,7 +800,7 @@ def get_ladygentleman_order(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
         # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
@@ -827,7 +827,7 @@ def get_ladygentleman_order(request):
 def get_ladygentleman_order_count(request):
 
     # try:
-    conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+    conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
     cursor = conn.cursor()    
     
     # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
@@ -849,7 +849,7 @@ def get_styli_order(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
         # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
@@ -876,7 +876,7 @@ def get_styli_order(request):
 def get_styli_order_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
@@ -898,7 +898,7 @@ def get_pocket52_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM pocket52_userId WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -923,7 +923,7 @@ def get_pocket52_userId(request):
 def get_pocket52_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM pocket52_userId WHERE NOT isUsed=1''')
@@ -944,7 +944,7 @@ def get_smytten_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM smytten_orderId WHERE NOT isUsed=1 AND order_status LIKE "{}%" ORDER BY order_id ASC'''.format("DELIVERED"))
@@ -970,7 +970,7 @@ def get_smytten_orderId(request):
 def get_smytten_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM smytten_orderId WHERE NOT isUsed=1 AND order_status LIKE "DELIVERED%" ''')
@@ -991,7 +991,7 @@ def get_lenskart_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM lenskart_orderId WHERE NOT isUsed=1 ORDER BY order_id ASC''')
@@ -1017,7 +1017,7 @@ def get_lenskart_orderId(request):
 def get_lenskart_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM lenskart_orderId WHERE NOT isUsed=1''')
@@ -1038,7 +1038,7 @@ def get_myteam11_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM myteam11_userId WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -1063,7 +1063,7 @@ def get_myteam11_userId(request):
 def get_myteam11_userId_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM myteam11_userId WHERE NOT isUsed=1''')
@@ -1084,7 +1084,7 @@ def get_gamezy_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM gamezypoker_userId WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -1109,7 +1109,7 @@ def get_gamezy_userId(request):
 def get_gamezy_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM gamezypoker_userId WHERE NOT isUsed=1''')
@@ -1130,7 +1130,7 @@ def get_galaxychat_userData(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM galaxy_user_data WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -1158,7 +1158,7 @@ def get_galaxychat_userData(request):
 def get_galaxychat_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM galaxy_user_data WHERE NOT isUsed=1''')
@@ -1181,7 +1181,7 @@ def get_derma_orderData(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM derma_user_data WHERE NOT isUsed=1 ORDER BY order_id ASC''')
@@ -1209,7 +1209,7 @@ def get_derma_orderData(request):
 def get_derma_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM derma_user_data WHERE NOT isUsed=1''')
@@ -1230,7 +1230,7 @@ def get_toonsutra_user_data(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM toonsutra_user_data WHERE NOT isUsed=1 ORDER BY user_id ASC''')
@@ -1256,7 +1256,7 @@ def get_toonsutra_user_data(request):
 def get_toonsutra_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM toonsutra_user_data WHERE NOT isUsed=1''')
@@ -1277,7 +1277,7 @@ def get_sportbaazi_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM sportbaazi_userId WHERE NOT isUsed=1 ORDER BY user_id DESC''')
@@ -1302,7 +1302,7 @@ def get_sportbaazi_userId(request):
 def get_sportbaazi_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM sportbaazi_userId WHERE NOT isUsed=1''')
@@ -1323,7 +1323,7 @@ def get_privalia_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM privalia_userId WHERE NOT isUsed=1 ORDER BY user_id DESC''')
@@ -1348,7 +1348,7 @@ def get_privalia_userId(request):
 def get_privalia_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM privalia_userId WHERE NOT isUsed=1''')
@@ -1369,7 +1369,7 @@ def get_rentomojo_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM rentmojo_userId WHERE NOT isUsed=1 ORDER BY user_id DESC''')
@@ -1394,7 +1394,7 @@ def get_rentomojo_userId(request):
 def get_rentomojo_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM rentmojo_userId WHERE NOT isUsed=1''')
@@ -1415,7 +1415,7 @@ def get_muthoot_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM muthootfino_userId WHERE NOT isUsed=1 ORDER BY user_id DESC''')
@@ -1442,7 +1442,7 @@ def get_muthoot_userId(request):
 def get_muthoot_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM muthootfino_userId WHERE NOT isUsed=1''')
@@ -1465,7 +1465,7 @@ def get_bottles_orderId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM bottles_order_data WHERE NOT isUsed=1 ORDER BY order_id ASC''')
@@ -1496,7 +1496,7 @@ def get_bottles_orderId(request):
 def get_bottles_orders_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM bottles_order_data WHERE NOT isUsed=1''')
@@ -1519,7 +1519,7 @@ def put_data(request):
     camp_name = request_data.get("camp_name")
     data = request_data.get("data")
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor() 
 
         if camp_name == "pocket52":
@@ -1706,7 +1706,7 @@ def get_event_info(request):
     event_name = request.GET.get('event_name')
 
     try:
-        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
 
         cursor.execute('''SELECT COUNT(*) FROM team2b_revenuehelper WHERE event_name = "Install" AND campaign_name = "{}" AND channel ="{}" AND network = "{}" AND offer_id= "{}" AND created_at > "{}"'''.format(campaign_name, channel, network, offer_id, date_))
@@ -1767,7 +1767,7 @@ def get_finimize_userData(request):
     os_type = request_data.get("os_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM finimizeios_user_data WHERE os_type ="{}" AND NOT isUsed=1 ORDER BY user_id DESC'''.format(os_type))
@@ -1794,7 +1794,7 @@ def get_finimize_userData(request):
 def get_finimize_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM finimizeios_user_data WHERE NOT isUsed=1''')
@@ -1815,7 +1815,7 @@ def get_tajrummy_userId(request):
     user_type = request_data.get("user_type")
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
         
         cursor.execute('''SELECT * FROM tajrummey_userId WHERE NOT isUsed=1 ORDER BY user_id DESC''')
@@ -1840,7 +1840,7 @@ def get_tajrummy_userId(request):
 def get_tajrummy_users_count(request):
 
     try:
-        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM tajrummey_userId WHERE NOT isUsed=1''')
@@ -1861,7 +1861,7 @@ def get_data(request):
     date_ = request.GET.get('date')
 
     try:
-        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="123admin!", database="techteam")
+        conn = mysql.connect(host="t2-services-mysql.cjiqfqhzkajl.ap-south-1.rds.amazonaws.com", user="admin", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
 
         cursor.execute('''SELECT * FROM team2b_revenuehelper WHERE campaign_name = "{}" AND DATE(created_at) = "{}"'''.format(campaign_name, date_))
