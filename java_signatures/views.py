@@ -2335,9 +2335,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         #     return {0:80, 1:25, 2:16.6, 3:14.2}
 
         if offer_id in ['byaxiosafvammp', 'byax1iosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
-            return {0:70, 1:35, 2:23}
+            return {0:35, 1:23, 2:15} #{0:70, 1:35, 2:23}
 
-        return {0: 16, 1:8, 2:6.5}
+        return {0: 16, 1:6.5, 2:4} #{0: 16, 1:8, 2:6.5}
 
     elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
         if offer_id in ["byax1iosafvammp", "boyadexiosmmp"]:
