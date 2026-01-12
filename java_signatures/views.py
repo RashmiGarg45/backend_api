@@ -2504,7 +2504,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:23, 1:20, 2:16.6, 3:14.28}
 
     elif campaign_name == "spinnytauto" and event_name == "cqjxvf":
-        return {0:45, 1:30, 2:25}
+        return {0:45, 1:25, 2:20} #{0:45, 1:30, 2:25}
 
     elif campaign_name == "shienindiamodd" and event_name == "af_purchase":
         return {0:30, 1:20, 2:14.28, 3:12.5}
@@ -3027,9 +3027,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "wetterandroidauto" and event_name == "u6z21k" and offer_id:
         if offer_id.isdecimal():
-            return {0:6, 1:4.2, 2:3}
+            return {0:6, 1:4.2, 2:2} #{0:6, 1:4.2, 2:3}
 
-        return {0:14, 1:9.5, 2:8}
+        return {0:14, 1:8, 2:6.5} #{0:14, 1:9.5, 2:8}
 
     elif campaign_name == "rootcarinsurancemodd" and event_name == "Profile":
         return {0: 9, 1:6, 2: 5} #{0: 9, 1:7, 2: 6}
