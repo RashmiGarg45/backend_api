@@ -2062,7 +2062,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {0:80, 1:25, 2:16.6, 3:14.2}
 
         if offer_id in ['boymobvammp', 'byaxaosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
-            return {0:70, 1:35, 2:23}
+            return {0:70, 1:23, 2:13} #{0:70, 1:35, 2:23}
         
         
         return {0: 16, 1:8, 2:6.5}
