@@ -2987,10 +2987,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:30, 1:24, 2:19}
 
     elif campaign_name == "weltradeauto" and event_name == "kbwb07":
-        return {0:45, 1: 18}
+        return {0:45, 1: 15, 2:12} #return {0:45, 1: 18}
 
     elif campaign_name == "weltradeauto" and event_name == "evpfo1":
-        return {1:89}
+        return {1:30} #{1:89}
 
     elif campaign_name == "vanaauto" and event_name == "15serm":
         return {0:89, 1: 30, 2: 18, 3:15}
