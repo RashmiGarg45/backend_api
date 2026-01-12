@@ -2754,7 +2754,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {1:30, 2:19, 3:16}
             
     elif campaign_name == "osagomodd" and event_name == 's2s-cpa-conversion':
-        return {1:24, 2:14, 3:11, 4:9}
+        return {1:24, 2:14, 3:9, 4:7} #{1:24, 2:14, 3:11, 4:9}
                 
     elif campaign_name == "neobetiosmodd" and event_name == 'af_first_purchase':
         return {0:90, 1:45}
@@ -3036,10 +3036,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0: 9, 1:6, 2: 5} #{0: 9, 1:7, 2: 6}
 
     elif campaign_name == "mcluckcasinoiosmodd" and event_name == 'first_purchase':
-        return {0:90, 1:45}
+        return {0:90, 1:30} #{0:90, 1:45}
 
     elif campaign_name == "eternzmodd" and event_name == 'First Purchase':
-        return {0:24, 1:16, 2:14, 3:12}
+        return {0:24, 1:16, 2:12, 3:8} #{0:24, 1:16, 2:14, 3:12}
 
     elif campaign_name == "dominoesgoldiosmodd" and event_name == "firstCashNPU":
         return {0:45, 1:23, 2: 18}
