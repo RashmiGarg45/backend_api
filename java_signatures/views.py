@@ -2778,10 +2778,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:45, 1:22.5, 2:18, 3:15}
     
     elif campaign_name == "credmaxmodd" and event_name == 'approvals_server':
-        return {0:45, 1:30, 2:22.5, 3:18}
+        return {0:45, 1:30, 2:18, 3:14} #{0:45, 1:30, 2:22.5, 3:18}
 
     elif campaign_name == "credmaxmodd" and event_name == 'tutorial_complete_server':
-        return {0:90, 1:45, 2:30, 3:22.5}
+        return {0:90, 1:45, 2:22.5, 3:18.5} #{0:90, 1:45, 2:30, 3:22.5}
 
     elif campaign_name == "cryptocomtmodd" and event_name == 'mktg:buy_crypto':
         return {0:25, 1:14, 2:11, 3:10}
