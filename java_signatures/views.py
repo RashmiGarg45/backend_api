@@ -2320,7 +2320,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:1.8, 1: 1.6}
     
     elif campaign_name == "13cabstauto" and event_name == "swtdbc":
-        return {0:1.5, 1: 1.5}
+        return {0:1.5, 1: 1.2} #{0:1.5, 1: 1.5}
 
     elif campaign_name == "khiladiaddamodd" and event_name == "af_complete_registration":
         # return {0:1.8, 1: 1.6, 2:1.53, 3:1.42}
@@ -2822,10 +2822,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:90, 1:45, 2:30}
 
     elif campaign_name == "tataneuauto" and event_name == "CC_CARD_SELECTION":
-        return {0:6, 1:5, 2:4.5}
+        return {0:6, 1:4.5, 2:3.5} #{0:6, 1:5, 2:4.5}
 
     elif campaign_name == "tataneuauto" and event_name == "plm_disbursement":
-        return {0:30, 1:18, 2:15, 3:12.85}
+        return {0:30, 1:18, 2:12.85, 3:10} #{0:30, 1:18, 2:15, 3:12.85}
 
     elif campaign_name == "betfredsportsiosmodd" and event_name == "deposit":
         return {0:90, 1:30, 2:22.5, 3:18}
@@ -2975,7 +2975,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:90, 1: 45}
     
     elif campaign_name == "action247iosmodd" and event_name == "af_FTD":
-        # return {0:85, 1:45}
         return {0:20}
 
     elif campaign_name == "sensorvpniosmodd" and event_name == 'apphud_trial_started':
@@ -3012,7 +3011,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:45, 1:22.5, 2: 18, 3: 15, 4: 12.85}
 
     elif campaign_name == "healthifymetmodd" and event_name == "sp_plan_purchase":
-        return {0:31.66, 1:19, 2: 15.8, 3: 13.57}
+        return {0:31.66, 1:19, 2: 13.57, 3: 9.57} #{0:31.66, 1:19, 2: 15.8, 3: 13.57}
 
     elif campaign_name == "mistplayearnmoneymodd" and event_name == "iap_spend_all_v2":
         return {0:90, 1:45}
