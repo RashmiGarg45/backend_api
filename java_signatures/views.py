@@ -2596,7 +2596,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:90, 1:45, 2:30}
 
     elif campaign_name == "myshiftappmetricat" and event_name == "ShiftCatalogShiftDetails_shift_booked":
-        return {0:45, 1:25, 2:20}
+        return {0:45, 1:25, 2:14} #{0:45, 1:25, 2:20}
 
     elif campaign_name == "shorttvtmodd" and event_name == "revenue_3499":
         return {0:45}
