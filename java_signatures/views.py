@@ -2113,7 +2113,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:20, 1:14.28, 2:11.11, 3: 9}
 
     elif campaign_name == "ucuzabiletauto" and event_name == "vnc85a":
-        return {0:20, 1:12.5, 2:10, 3: 8.7}
+        return {0:20, 1:12.5, 2:8.7, 3: 6} #{0:20, 1:12.5, 2:10, 3: 8.7}
     
     elif campaign_name == "profit2modd" and event_name == "ActionNewOrder":
         return {0:10, 1:8.3, 2: 7.14, 3: 6.6}
@@ -2474,12 +2474,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:12.5, 1:10, 2:7.14}
         
     elif campaign_name == "bigloanmodd" and event_name == "issueNewCPA":
-        # return {0:33, 1:20, 2:14.2, 3:12.5}
         return {1:90, 2:30, 3:20, 4:16, 5:14}
     
     elif campaign_name == "bigloanmodd" and event_name == "minconditionsapprove":
         return {0:12.5, 1:8.3, 2:7.14, 3:6.6}
-        # return {0:10, 1:5.5, 2:4.5, 3:4, 4:3}
 
     elif campaign_name == "otpbankappmetrica" and event_name == "screen__dc_success_courier":
         return {1:70, 2:23, 3:14, 4:11, 5:10}
