@@ -2587,7 +2587,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         # if offer_id in ["nesmetmmp"]:
         #     return {0:25, 1:17, 2:14}
         
-        return {0:25, 1:17, 2:14}#{0:14.2, 1:9, 2:7.69, 3:6.6}
+        return {0:25, 1:17, 2:10}#{0:25, 1:17, 2:14}
 
     elif campaign_name == "bingoplustmodd" and event_name == "BINGOPLUS_EVENT_REGIST":
         return {0:3, 1:2.36, 2:2.09, 3:1.91}
