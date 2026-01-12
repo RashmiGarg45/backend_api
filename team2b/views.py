@@ -2295,30 +2295,59 @@ class RevenueHelperAPI(APIView):
         
 class RevenueHelperBackupView(APIView):
     LOCK_KEY = "revenuehelper_backup_lock"
-    LOCK_TTL = 600  # seconds (10 minutes)
+    LOCK_TTL = 300  # 5 minutes
 
     def post(self, request):
         # 🔐 Acquire lock
         if not cache.add(self.LOCK_KEY, "1", timeout=self.LOCK_TTL):
-
-            send_to_backup_db_data(_msg="Backup already running, skipping this run")
-
+            send_to_backup_db_data(
+                _msg="⚠️ Revenue Backup skipped: another job is already running"
+            )
             return Response({
                 "message": "Backup already running, skipping this run"
             })
 
         try:
             now = timezone.now()
+            cutoff_time = now - timedelta(days=10)
+            batch_size = 600
 
-            target_day = (now - timedelta(days=10)).replace(
+            # 🔎 Find oldest pending record (not yet backed up)
+            oldest = (
+                RevenueHelper.objects
+                .exclude(
+                    serial__in=RevenueHelperBackup.objects.values_list(
+                        "serial", flat=True
+                    )
+                )
+                .filter(created_at__lte=cutoff_time)
+                .order_by("created_at")
+                .first()
+            )
+
+            if not oldest:
+                _msg = f"""
+                📊 Revenue Backup Status
+
+                ✔ All eligible records are already backed up
+                ⏳ Cutoff date: {cutoff_time.date()}
+                📦 Pending records: 0
+"""
+                send_to_backup_db_data(_msg)
+
+                return Response({
+                    "message": "No pending data",
+                    "cutoff_date": str(cutoff_time.date()),
+                    "inserted": 0
+                })
+
+            # 🎯 Process THAT DAY (oldest first)
+            day_start = oldest.created_at.replace(
                 hour=0, minute=0, second=0, microsecond=0
             )
-            day_start = target_day
-            day_end = target_day.replace(
+            day_end = day_start.replace(
                 hour=23, minute=59, second=59, microsecond=999999
             )
-
-            batch_size = 200
 
             queryset = list(
                 RevenueHelper.objects.filter(
@@ -2334,19 +2363,9 @@ class RevenueHelperBackupView(APIView):
             )
 
             if not queryset:
-                _msg = f'''
-                📊 Revenue Backup Status
-
-                ✔ Backup check completed successfully, No record found.
-                📅 Date: {str(day_start.date())}
-                📦 Pending records: 0
-
-                Nothing to process 🎉
-                '''
-                send_to_backup_db_data(_msg)
-
+                # This day is fully backed up, next cron will move forward
                 return Response({
-                    "message": "No pending data",
+                    "message": "Day already backed up, moving forward",
                     "date": str(day_start.date()),
                     "inserted": 0
                 })
@@ -2370,16 +2389,14 @@ class RevenueHelperBackupView(APIView):
             ]
 
             RevenueHelperBackup.objects.bulk_create(backup_objects)
-            _msg = f'''
-                📊 Revenue Backup Status
 
-                ✔ Backup backup completed successfully
-                📅 Date: {str(day_start.date())}
-                📦 inserted records: {len(backup_objects)}
+            _msg = f"""
+            📊 Revenue Backup Status
 
-                '''
-
-
+            ✔ Backup completed successfully
+            📅 Date processed: {day_start.date()}
+            📦 Inserted records: {len(backup_objects)}
+            """
             send_to_backup_db_data(_msg)
 
             return Response({
@@ -2389,7 +2406,6 @@ class RevenueHelperBackupView(APIView):
             })
 
         finally:
-            # 🔓 Always release lock
             cache.delete(self.LOCK_KEY)
 
 class RevenueHelperMonthEndDeleteView(APIView):
