@@ -2890,16 +2890,16 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:24, 1:13.71, 2:10.66, 3:9.6}
 
     elif campaign_name == "kfcsaudiiauto" and event_name == "cq4kxg":
-        return {0:4.76, 1:3.06, 2:10.66, 3:2.45}
+        return {0:4.76, 1:3.06, 2:2.45}
 
     elif campaign_name == "kfcsaautoios" and event_name == "cq4kxg":
-        return {0:4.76, 1:3.06, 2:10.66, 3:2.45}
+        return {0:4.76, 1:3.06, 2:2.45}
 
     elif campaign_name == "kfcgulfauto" and event_name == "ak1z7d":
-        return {0:4.76, 1:3.06, 2:10.66, 3:2.45}
+        return {0:4.76, 1:2.45, 2:2} #{0:4.76, 1:3.06, 2:2.45}
 
     elif campaign_name == "kfcaeautoios" and event_name == "ak1z7d":
-        return {0:4.76, 1:3.06, 2:10.66, 3:2.45}
+        return {0:4.76, 1:2.45, 2:2} #{0:4.76, 1:3.06, 2:2.45}
 
     elif campaign_name == "mtcmusiciosmodd" and event_name == "af_subscribe":
         return {0:45, 1:24, 2:19}
