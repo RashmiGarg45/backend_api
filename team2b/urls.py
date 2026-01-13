@@ -235,4 +235,5 @@ urlpatterns = [
     path("eternz", views.EternzUIDAPI.as_view(), name="cru_eternz"),
     path("dominoesgold", views.Dominoesgold_UID_API.as_view(), name="dominoes"),
     path("eternz_oid", views.Eternz_OIDAPI.as_view(), name="eternz_oid"),
+    path("litres_uid", views.Litres_UID_API.as_view(), name="litres_oid"),
 ]
