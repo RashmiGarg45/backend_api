@@ -9881,10 +9881,10 @@ class Litres_UID_API(APIView):
         query = Litres_UID()
         query.campaign_name = request.data.get('camp_name','litresiosmodd')
         query.id = request.data.get('user_id')
-        query.user_is_verified = request.data.get('user_is_verified')
-        query.user_role = request.data.get('user_role')
-        query.user_display_name = request.data.get('user_display_name')
-        query.user_created_at = request.data.get('user_created_at')
+        query.user_is_verified = request.data.get('user_is_verified', False)
+        query.user_role = request.data.get('user_role', '')
+        query.user_display_name = request.data.get('user_display_name', '')
+        query.user_created_at = request.data.get('user_created_at', None)
         query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
         # try:
