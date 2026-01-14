@@ -9887,12 +9887,12 @@ class Litres_UID_API(APIView):
         query.user_created_at = request.data.get('user_created_at', None)
         query.extra_details = request.data.get('extra_details',{})
         query.used_at = None
-        # try:
-        query.save()
-        return Response({
-        })
-        # except Exception as e:
-        #     pass
+        try:
+            query.save()
+            return Response({
+            })
+        except Exception as e:
+            pass
     def get(self, request):
 
         channel = request.GET.get('channel', '')
