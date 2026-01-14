@@ -9923,7 +9923,7 @@ class Litres_UID_API(APIView):
         })
 
 def db_health(APIView):
-    def post(self, request):
+    def get(self, request):
         try:
             connections['default'].ensure_connection()
             return Response({"status": "ok", "db": "connected"})
