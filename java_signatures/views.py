@@ -3471,3 +3471,30 @@ class CurrencyConvertAPIView(APIView):
                 "raw_response": r.raw_response
             })
         return Response(result, status=200)
+
+
+class InstallDataHealth(APIView):
+    def post(self, request):
+        try:
+            last_2_hours = timezone.now() - timedelta(hours=2)
+
+            exists = InstallData.objects.filter(
+                created_at__gte=last_2_hours
+            ).exists()
+
+            if exists:
+                return Response({
+                    "status": "ok",
+                    "message": "Entries found in last 2 hours"
+                }, status=200)
+
+            return Response({
+                "status": "warning",
+                "message": "No entries found in last 2 hours"
+            }, status=200)
+
+        except Exception as e:
+            return Response({
+                "status": "error",
+                "message": "Check failed"
+            }, status=500)
