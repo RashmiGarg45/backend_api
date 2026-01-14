@@ -15,6 +15,7 @@ from django.db.models import Count, Sum, Case, When, IntegerField, FloatField
 from django.db.models import Avg
 from django.db import transaction
 from django.db.models.functions import Cast
+from django.db import connections
 
 def db_controlled_apps():
     li = ["TikettUIDAPI", "CoinmenaAPI", "bigloanAPI", "MyfriendOIDAPI", "IkeaAPI", "MyauchanAPI", "CimbthaiAPI", "BevietnamesAPI", "ImagineartAPI", "MoneymetmodduidAPI", "AnqgoldrewardsoidAPI", "AnqgoldrewardscuidAPI", "PaytmmoneytAPI", "KfcAPI", "BncAPI", "BeymenAPI", "FrendipayAPI", "MotiLalAPI", "ApnaTimeAPI", "HomiedevAPI", "StorylandAPI", "CasinoplussAPI", "BetrAPI", "PaysettUserIdAPI", "StolotoOrderIdAPI", "WesternUnionAPI", "SignnowAPI", "BluerewardsV2API", "PaynearbyAPI", "BambootautoAPI", "FivepaisaAPI", "PinoypesoAPI", "UnderarmourOIDAPI", "UnderarmourAPI", "EbebekuidAPI", "EbebekAPI", "ParimatchAPI", "EjabyAPI", "ChaleeSultanAPI", "Lotter69API", "Lotter38API", "creditoAPI", "skylineAPI", "mcdAPI", "igpAPI", "pepperfryAPI", "betwinnerAPI", "eztravelAPI", "shahidAPI"]
@@ -9920,3 +9921,11 @@ class Litres_UID_API(APIView):
         return Response({
             'id':query.id,
         })
+
+def db_health(APIView):
+    def post(self, request):
+        try:
+            connections['default'].ensure_connection()
+            return Response({"status": "ok", "db": "connected"})
+        except Exception as e:
+            return Response({"status": "error", "db": "down"}, status=500)
