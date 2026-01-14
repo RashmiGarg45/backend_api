@@ -3474,7 +3474,7 @@ class CurrencyConvertAPIView(APIView):
 
 
 class InstallDataHealth(APIView):
-    def post(self, request):
+    def get(self, request):
         try:
             last_2_hours = timezone.now() - timedelta(hours=2)
 
