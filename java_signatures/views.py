@@ -3491,7 +3491,7 @@ class db_health(APIView):
 
             ⚠️ Immediate action recommended.
             """
-            send_to_backup_db_data(_msg)
+            send_to_server_health_report(_msg)
 
             return Response({"status": "error", "db": "down"}, status=500)
 
@@ -3522,7 +3522,7 @@ class InstallDataHealth(APIView):
 
                 ℹ️ No InstallData records were created in the last 2 hours.
                 """
-            send_to_backup_db_data(_msg)
+            send_to_server_health_report(_msg)
 
             return Response({
                 "status": "warning",
@@ -3543,7 +3543,7 @@ class InstallDataHealth(APIView):
 
             ⚠️ Investigation required.
             """
-            send_to_backup_db_data(_msg)
+            send_to_server_health_report(_msg)
 
             return Response({
                 "status": "error",
