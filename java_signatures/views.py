@@ -3476,7 +3476,6 @@ class CurrencyConvertAPIView(APIView):
 class db_health(APIView):
     def get(self, request):
         try:
-            ok
             connections['default'].ensure_connection()
             return Response({"status": "ok", "db": "connected"})
         except Exception as e:
@@ -3505,7 +3504,7 @@ class InstallDataHealth(APIView):
                 created_at__gte=last_2_hours
             ).exists()
 
-            if not exists:
+            if exists:
                 return Response({
                     "status": "ok",
                     "message": "Entries found in last 2 hours"
@@ -3556,7 +3555,7 @@ class ServerHealth(APIView):
         return Response({
             'resp': 'OK'
         })
-
+        
 def send_to_server_health_report(_msg):
 
     webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAaJoIej8/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=glHq92wJLF4Yq2QB_AdpoGSfTXRiEU6No5OPOmGTrk4"
