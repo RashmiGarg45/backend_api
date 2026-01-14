@@ -2310,7 +2310,7 @@ class RevenueHelperBackupView(APIView):
         try:
             now = timezone.now()
             cutoff_time = now - timedelta(days=10)
-            batch_size = 600
+            batch_size = 1000
 
             # 🔎 Find oldest pending record (not yet backed up)
             oldest = (
