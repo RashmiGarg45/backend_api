@@ -3479,6 +3479,20 @@ class db_health(APIView):
             connections['default'].ensure_connection()
             return Response({"status": "ok", "db": "connected"})
         except Exception as e:
+            _msg = f"""
+            🚨 *DB HEALTH CHECK FAILED*
+
+            • Service   : Django API
+            • Check     : Database Connection
+            • Status    : ❌ DOWN
+            • Time      : {timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')}
+            • Endpoint  : /health/db/
+            • Error     : {str(e)}
+
+            ⚠️ Immediate action recommended.
+            """
+            send_to_backup_db_data(_msg)
+
             return Response({"status": "error", "db": "down"}, status=500)
 
 class InstallDataHealth(APIView):
@@ -3496,13 +3510,63 @@ class InstallDataHealth(APIView):
                     "message": "Entries found in last 2 hours"
                 }, status=200)
 
+            _msg = f"""
+                ⚠️ *INSTALL DATA WARNING*
+
+                • Service   : Django API
+                • Check     : InstallData activity
+                • Status    : ❌ NO DATA
+                • Window    : Last 2 hours
+                • Time      : {timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')}
+                • Endpoint  : /health/install-data/
+
+                ℹ️ No InstallData records were created in the last 2 hours.
+                """
+            send_to_backup_db_data(_msg)
+
             return Response({
                 "status": "warning",
                 "message": "No entries found in last 2 hours"
             }, status=200)
 
         except Exception as e:
+
+            _msg = f"""
+            🚨 *INSTALL DATA HEALTH CHECK FAILED*
+
+            • Service   : Django API
+            • Check     : InstallData query
+            • Status    : ❌ ERROR
+            • Time      : {timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')}
+            • Endpoint  : /health/install-data/
+            • Error     : {str(e)}
+
+            ⚠️ Investigation required.
+            """
+            send_to_backup_db_data(_msg)
+
             return Response({
                 "status": "error",
                 "message": "Check failed"
             }, status=500)
+
+
+def send_to_server_health_report(_msg):
+
+    webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAaJoIej8/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=glHq92wJLF4Yq2QB_AdpoGSfTXRiEU6No5OPOmGTrk4"
+
+    payload = {
+        "text": _msg
+    }
+
+    try:
+        resp = requests.post(
+            webhook_url,
+            json=payload,
+            timeout=10
+        )
+
+        resp.raise_for_status()
+
+    except Exception as e:
+        print("❌ Google Chat webhook failed:", str(e))
