@@ -3472,7 +3472,14 @@ class CurrencyConvertAPIView(APIView):
             })
         return Response(result, status=200)
 
-
+class db_health(APIView):
+    def get(self, request):
+        try:
+            connections['default'].ensure_connection()
+            return Response({"status": "ok", "db": "connected"})
+        except Exception as e:
+            return Response({"status": "error", "db": "down"}, status=500)
+            
 class InstallDataHealth(APIView):
     def get(self, request):
         try:
