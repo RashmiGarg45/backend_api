@@ -3550,7 +3550,12 @@ class InstallDataHealth(APIView):
                 "message": "Check failed"
             }, status=500)
 
-
+class ServerHealth(APIView):
+    def get(self, request):
+        return Response({
+            'resp': 'OK'
+        })
+        
 def send_to_server_health_report(_msg):
 
     webhook_url = "https://chat.googleapis.com/v1/spaces/AAQAaJoIej8/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=glHq92wJLF4Yq2QB_AdpoGSfTXRiEU6No5OPOmGTrk4"

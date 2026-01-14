@@ -77,4 +77,5 @@ urlpatterns = [
     path("compare_stats", views.Compare_event_stats.as_view(), name="compare_stats"),
     path("install_data_health", views.InstallDataHealth.as_view(), name="install_data_health"),
     path("db_health", views.db_health.as_view(), name="db_health"),
+    path("health", views.ServerHealth.as_view(), name='health'),
 ]
