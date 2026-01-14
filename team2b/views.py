@@ -9922,7 +9922,7 @@ class Litres_UID_API(APIView):
             'id':query.id,
         })
 
-def db_health(APIView):
+class db_health(APIView):
     def get(self, request):
         try:
             connections['default'].ensure_connection()
