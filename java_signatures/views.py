@@ -17,6 +17,7 @@ from django.utils import timezone
 
 from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
+from django.db import connections
 
 
 def get_signtaure(request):
@@ -3479,7 +3480,7 @@ class db_health(APIView):
             return Response({"status": "ok", "db": "connected"})
         except Exception as e:
             return Response({"status": "error", "db": "down"}, status=500)
-            
+
 class InstallDataHealth(APIView):
     def get(self, request):
         try:
