@@ -2585,6 +2585,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "netshoesmodd" and event_name == "af_purchase":
 
+        if offer_id == 'dope-netshoes-251030' and channel == 'appamplify' and network =='dopemobi':
+            return{0:100}
+
         # if offer_id in ["nesmetmmp"]:
         #     return {0:25, 1:17, 2:14}
         
