@@ -9966,7 +9966,7 @@ def send_to_server_health_report(_msg):
 class RevenueHelperStats(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
-        date_ = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+        date_ = request.GET.get('date_')
         event_name = request.GET.get('event_name')
 
         install_count = list(
