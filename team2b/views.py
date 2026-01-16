@@ -9969,12 +9969,17 @@ class RevenueHelperStats(APIView):
         date_ = request.GET.get('date_')
         event_name = request.GET.get('event_name')
 
-        install_count = list(
+        data = list(
             RevenueHelper.objects.filter(
                 campaign_name=campaign_name,
                 created_at__gt=date_,
             ).values()
         )
 
-        print (install_count)
-        return Response({"response_code": 200, "message": "success", "data": install_count})
+        print (data[0])
+        
+        for row in data:
+            created_at = row.get("created_at").date().isoformat()
+            print (created_at)
+
+        return Response({"response_code": 200, "message": "success", "data": date})
