@@ -9973,7 +9973,7 @@ class RevenueHelperStats(APIView):
             RevenueHelper.objects.filter(
                 campaign_name=campaign_name,
                 created_at__gt=date_,
-            ).all()
+            ).values()
         )
 
         print (install_count)
