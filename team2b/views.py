@@ -9975,4 +9975,6 @@ class RevenueHelperStats(APIView):
                 created_at__gt=date_,
             )
         )
-        return Response({"response_code": 200, "message": "success", "data": json.dumps({"install_count": install_count})})
+
+        print (install_count)
+        return Response({"response_code": 200, "message": "success", "data": {"install_count": install_count[0]}})
