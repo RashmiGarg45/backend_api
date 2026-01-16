@@ -9977,4 +9977,4 @@ class RevenueHelperStats(APIView):
         )
 
         print (install_count)
-        return Response({"response_code": 200, "message": "success", "data": {"install_count": install_count[0]}})
+        return Response({"response_code": 200, "message": "success", "data": install_count})
