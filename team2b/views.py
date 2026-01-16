@@ -9976,10 +9976,48 @@ class RevenueHelperStats(APIView):
             ).values()
         )
 
-        print (data[0])
+        output_data = {}
         
         for row in data:
-            created_at = row.get("created_at").date().isoformat()
-            print (created_at)
 
-        return Response({"response_code": 200, "message": "success", "data": date})
+            created_at = row.get("created_at").date().isoformat()
+            p360_type = ""
+            event_name = row.get("event_name").lower()
+            value = row.get("event_value")
+
+            model = value.get("Model")
+            Brand = value.get("Brand")
+            Carrier = value.get("Carrier")
+            OS = value.get("OS")
+            Mcc = value.get("Mcc")
+            Mnc = value.get("Mnc")
+            Operator = value.get("Operator")
+            lang = value.get("lang")
+
+            if event_name == "organic":
+                p360_type = "RT"
+            elif event_name == "non-organic":
+                p360_type = "Valid"
+
+            if event_name in ["organic", "non-organic", "non_organic"]:
+
+                combination = str(OS) +"::" + str(Brand)+"::" + str(model)+"::" + str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+
+                if combination not in output_data:
+                    output_data[combination] = {}
+
+                if created_at not in output_data.get(combination):
+                    output_data[combination][created_at] = {"RT": 0, "Valid": 0}
+
+
+                if p360_type == "RT":
+                    output_data[combination][created_at]["RT"] +=1
+
+                elif p360_type == "Valid":
+                    output_data[combination][created_at]["Valid"] +=1
+
+
+            
+            print (output_data)
+
+        return Response({"response_code": 200, "message": "success", "data": output_data})
