@@ -9711,6 +9711,13 @@ class Spinny_OIDAPI(APIView):
         return Response({
             'body':data,
         })
+
+    def post(self, request):
+        query = Spinny_OID.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
     
 class Spinny_valid_OIDAPI(APIView):
     def put(self, request):
