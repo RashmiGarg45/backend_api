@@ -10016,8 +10016,4 @@ class RevenueHelperStats(APIView):
                 elif p360_type == "Valid":
                     output_data[combination][created_at]["Valid"] +=1
 
-
-            
-            print (output_data)
-
         return Response({"response_code": 200, "message": "success", "data": output_data})
