@@ -2391,58 +2391,32 @@ class RevenueHelperBackupView(APIView):
 
             RevenueHelperBackup.objects.bulk_create(backup_objects)
 
+            # ✅ NEW: Delete successfully backed up records from main table
+            serials_to_delete = [obj.serial for obj in queryset]
+
+            RevenueHelper.objects.filter(serial__in=serials_to_delete).delete()
+
             _msg = f"""
             📊 Revenue Backup Status
 
             ✔ Backup completed successfully
             📅 Date processed: {day_start.date()}
             📦 Inserted records: {len(backup_objects)}
+            🗑 Deleted from main table: {len(serials_to_delete)}
             """
             send_to_backup_db_data(_msg)
 
             return Response({
-                "message": "Batch backup completed",
+                "message": "Batch backup completed and source data deleted",
                 "date": str(day_start.date()),
                 "inserted": len(backup_objects),
+                "deleted": len(serials_to_delete),
             })
 
         finally:
             cache.delete(self.LOCK_KEY)
 
-class RevenueHelperMonthEndDeleteView(APIView):
-    def post(self, request):
-        now = timezone.now()
 
-        # Previous month range
-        first_day_this_month = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        last_month_end = first_day_this_month - timedelta(seconds=1)
-        last_month_start = last_month_end.replace(day=1)
-
-        # 🔍 Safety check — ensure backup exists
-        backup_count = RevenueHelperBackup.objects.filter(
-            created_at__gte=last_month_start,
-            created_at__lte=last_month_end,
-        ).count()
-
-        if backup_count == 0:
-            return Response({
-                "message": "Delete aborted: No backup found for last month",
-                "month": last_month_start.strftime("%Y-%m"),
-            }, status=400)
-
-        # 🚨 Delete in one fast query
-        with transaction.atomic():
-            deleted, _ = RevenueHelper.objects.filter(
-                created_at__gte=last_month_start,
-                created_at__lte=last_month_end,
-            ).delete()
-
-        return Response({
-            "message": "Month-end delete completed",
-            "month": last_month_start.strftime("%Y-%m"),
-            "deleted_rows": deleted,
-            "backup_rows": backup_count,
-        })
 
 def send_to_gchat(_msg,_tag,webhook_url):
     params = { 
