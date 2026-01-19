@@ -3070,6 +3070,14 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "shahidmodd" and event_name == "evergent_server_subscription_success":
         return {0:24, 1:16, 2:14, 3: 12}
+
+    elif campaign_name == "shionauto" and event_name == "10000_revenue":
+        from datetime import datetime
+        today = datetime.now().weekday()
+        if today in [1,3] #Tuesday, #Thursday
+            return {0:35}
+        else:
+            return False
         
 class checkEligibility(APIView):
     def get(self, request):
