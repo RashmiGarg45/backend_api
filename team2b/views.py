@@ -2385,6 +2385,7 @@ class RevenueHelperBackupView(APIView):
                     currency=obj.currency,
                     adid=obj.adid,
                     event_name=obj.event_name,
+                    c_day=obj.c_day
                 )
                 for obj in queryset
             ]
