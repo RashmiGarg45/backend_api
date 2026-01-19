@@ -4608,9 +4608,12 @@ class BluerewardsV2API(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = BluerewardsV2.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        date_ = datetime.now().strftime('%Y-%m-%d')
+        
+
+        query_list = BluerewardsV2.objects.filter(used_at=None, created_at__gte=str(date_)).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
-            query_list = BluerewardsV2.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+            query_list = BluerewardsV2.filter(created_at__gte=str(date_)).objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
@@ -4662,7 +4665,7 @@ class BluerewardsV2API(APIView):
             if setUsed and (setUsed == 'False' or setUsed == 'false'):
                 setUsed = False
 
-            query = BluerewardsV3.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+            query = BluerewardsV3.objects.filter(used_at=None, created_at__gte=str(date_)).order_by('-created_at')[0:50].first()
             
             data = {
                     'user_id':query.id,
