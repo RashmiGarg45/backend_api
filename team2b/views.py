@@ -8237,6 +8237,7 @@ class MaxfashionindiaOIDAPI(APIView):
         query.pay_type = request.data.get('pay_type','')
         query.order_date = request.data.get('order_date','')
         query.extra_details = request.data.get('extra_details',{})
+        query.waybill_pattern = request.data.get('waybill_pattern','A')
         query.used_at = None
         try:
             query.save()
@@ -8252,6 +8253,7 @@ class MaxfashionindiaOIDAPI(APIView):
                 query.pay_type = request.data.get('pay_type','')
                 query.order_date = request.data.get('order_date','')
                 query.extra_details = request.data.get('extra_details',{})
+                query.waybill_pattern = request.data.get('waybill_pattern','A')
                 query.used_at = None
                 query.save()
                 return Response({
