@@ -3525,7 +3525,8 @@ class InstallDataHealth(APIView):
             last_2_hours = timezone.now() - timedelta(hours=2)
 
             exists = InstallData.objects.filter(
-                created_at__gte=last_2_hours
+                created_at__gte=last_2_hours,
+                campaign_name='testmodd'
             ).exists()
 
             if exists:
