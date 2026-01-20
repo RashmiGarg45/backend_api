@@ -3534,40 +3534,12 @@ class InstallDataHealth(APIView):
                     "message": "Entries found in last 2 hours"
                 }, status=200)
 
-            _msg = f"""
-                ⚠️ *INSTALL DATA WARNING*
-
-                • Service   : Django API
-                • Check     : InstallData activity
-                • Status    : ❌ NO DATA
-                • Window    : Last 2 hours
-                • Time      : {timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')}
-                • Endpoint  : /health/install-data/
-
-                ℹ️ No InstallData records were created in the last 2 hours.
-                """
-            send_to_server_health_report(_msg)
-
             return Response({
                 "status": "warning",
                 "message": "No entries found in last 2 hours"
             }, status=200)
 
         except Exception as e:
-
-            _msg = f"""
-            🚨 *INSTALL DATA HEALTH CHECK FAILED*
-
-            • Service   : Django API
-            • Check     : InstallData query
-            • Status    : ❌ ERROR
-            • Time      : {timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')}
-            • Endpoint  : /health/install-data/
-            • Error     : {str(e)}
-
-            ⚠️ Investigation required.
-            """
-            send_to_server_health_report(_msg)
 
             return Response({
                 "status": "error",
