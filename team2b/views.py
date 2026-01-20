@@ -8281,12 +8281,23 @@ class MaxfashionindiaOIDAPI(APIView):
         })
     
     def post(self, request):
-        query = MaxfashionindiaOID.objects.order_by('-airwaybillno').first()
+        pattern = request.data.get('pattern')
+
+        queryset = MaxfashionindiaOID.objects.all()
+
+        if pattern:
+            queryset = queryset.filter(waybill_pattern=pattern)
+
+        query = queryset.order_by('-airwaybillno').first()
+
+        if not query:
+            return Response({
+                'message': 'No record found'
+            })
 
         return Response({
-            'id':query.airwaybillno,
+            'id': query.airwaybillno,
         })
-
 
 class NGnumbersAPI(APIView):
 
