@@ -9589,11 +9589,24 @@ class LifestyleOIDAPI(APIView):
         })
     
     def post(self, request):
-        query = LifetyleOrderId_2.objects.order_by('-airwaybillno').first()
+        pattern = request.data.get('pattern')
+
+        queryset = LifetyleOrderId_2.objects.all()
+
+        if pattern:
+            queryset = queryset.filter(waybill_pattern=pattern)
+
+        query = queryset.order_by('-airwaybillno').first()
+
+        if not query:
+            return Response({
+                'message': 'No record found'
+            })
 
         return Response({
-            'id':query.airwaybillno,
+            'id': query.airwaybillno,
         })
+
 
 class DominosturkeyOID_miningAPI(APIView):
     def put(self, request):
