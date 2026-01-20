@@ -3522,7 +3522,7 @@ class db_health(APIView):
 class InstallDataHealth(APIView):
     def get(self, request):
         try:
-            last_2_hours = timezone.now() - timedelta(seconds=2)
+            last_2_hours = timezone.now() - timedelta(hours=2)
 
             exists = InstallData.objects.filter(
                 created_at__gte=last_2_hours
