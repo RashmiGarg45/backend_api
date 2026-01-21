@@ -237,5 +237,5 @@ urlpatterns = [
     path("litres_uid", views.Litres_UID_API.as_view(), name="litres_oid"),
     path("db_health", views.db_health.as_view(), name="db_health"),
     path("camp_stats", views.RevenueHelperStats.as_view(), name="camp_stats"),
-    path("indian_emails", views.Indin_emailIdsAPI.as_view(), name="indian_emails"),
+    path("indian_emails", views.Indian_emailIdsAPI.as_view(), name="indian_emails"),
 ]

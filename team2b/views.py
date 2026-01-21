@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID,LifetyleOrderId_extra_OID, LifetyleOrderId_2,dominosturkey_OID,abhibus_oid,DanaUID,RevenueHelperBackup,Spinny_OID,Spinny_valid_OID,EternzUID,Dominoesgold_UID, Eternz_OID, Litres_UID,Indin_emailIds
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID,LifetyleOrderId_extra_OID, LifetyleOrderId_2,dominosturkey_OID,abhibus_oid,DanaUID,RevenueHelperBackup,Spinny_OID,Spinny_valid_OID,EternzUID,Dominoesgold_UID, Eternz_OID, Litres_UID,Indian_emailIds
 from team2b.services.redis import Redis
 from django.utils import timezone
 from decimal import Decimal
@@ -10034,10 +10034,10 @@ class RevenueHelperStats(APIView):
         return Response({"response_code": 200, "message": "success", "data": output_data})
 
 
-class Indin_emailIdsAPI(APIView):
+class Indian_emailIdsAPI(APIView):
 
     def put(self, request):
-        query = Indin_emailIds()
+        query = Indian_emailIds()
         query.campaign_name = request.data.get('camp_name','indianemails')
         query.id = request.data.get('email_id')
         query.used_at = None
@@ -10066,9 +10066,9 @@ class Indin_emailIdsAPI(APIView):
 
         exclude_dict_1 = {}
 
-        query_list = Indin_emailIds.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
+        query_list = Indian_emailIds.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
         if not query_list:
-            query_list = Indin_emailIds.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+            query_list = Indian_emailIds.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
@@ -10103,7 +10103,7 @@ class Indin_emailIdsAPI(APIView):
                         'extra_details':query.extra_details, 
                 }
                 if setUsed:
-                    query = Indin_emailIds.objects.filter(id=data.get('user_id')).update(
+                    query = Indian_emailIds.objects.filter(id=data.get('user_id')).update(
                         used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                         channel_list=new_channel_list,
                         network_list=new_network_list,

@@ -3827,7 +3827,7 @@ class Litres_UID(models.Model):
             models.Index(fields=['id']),
         ]
 
-class Indin_emailIds(models.Model):
+class Indian_emailIds(models.Model):
 
     serial = models.AutoField(primary_key=True, editable=False)
     campaign_name = models.CharField(max_length=20,default='indianemails')
