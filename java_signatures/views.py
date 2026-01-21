@@ -2817,16 +2817,16 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     #     return {0:45, 1:30, 2:22.5, 3:18}
 
     elif campaign_name == "vegasiosmodd" and event_name == 'registration':
-        if channel in ['mobpine', '77ads', 'appamplify']:
-            return {0:24, 1:12, 2:10}
+        # if channel in ['mobpine', '77ads', 'appamplify']:
+        return {0:24, 1:12, 2:10}
 
-        return {0:6, 1:5, 2:3.91}
+        # return {0:6, 1:5, 2:3.91}
         # return {0:13, 1:8, 2:6}
     
     elif campaign_name == "vegasiosmodd" and event_name == 'FTD':
-        if channel in ['mobpine', '77ads', 'appamplify']:
-            return {0:30, 1:20, 2:16}
-        return {0:24, 1:13, 2:10, 3:9}
+        # if channel in ['mobpine', '77ads', 'appamplify']:
+        return {0:30, 1:20, 2:16}
+        # return {0:24, 1:13, 2:10, 3:9}
 
     elif campaign_name == "cleanervpniosmodd" and event_name == 'apphud_trial_started':
         return {0:22.5, 1:15, 2:12.85, 3:11.25}
