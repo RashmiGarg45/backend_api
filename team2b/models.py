@@ -3826,3 +3826,20 @@ class Litres_UID(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class Indin_emailIds(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=20,default='indianemails')
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=100,unique=True)
+    updated_at = models.DateTimeField(auto_now=True)    
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    channel_list = models.JSONField(default = list,blank=True, null=True)
+    network_list = models.JSONField(default = list,blank=True, null=True)
+    offer_id_list = models.JSONField(default = list,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ]
