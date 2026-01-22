@@ -51,7 +51,7 @@ def mining_apps():
             if value in running_apps:
                 output.append(key)
 
-    mandate_list = ["ahamove_Uid", "indian_number", "scoreUp_uid","myshift_uid"]
+    mandate_list = ["indian_number", "scoreUp_uid","myshift_uid"]
 
     for app in mandate_list:
         if app not in output:
