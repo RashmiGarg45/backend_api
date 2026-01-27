@@ -9492,13 +9492,17 @@ class HealthifymeMiningAPI(APIView):
 
 class DominosturkeyUIDAPI(APIView):
     def put(self, request):
-        query = DominosturkeyUID()
-        query.campaign_name = request.data.get('camp_name','dominosturkeyauto')
-        query.id = request.data.get('user_id')
-        query.used_at = None
-        query.save()
-        return Response({
-        })
+        try:
+            query = DominosturkeyUID()
+            query.campaign_name = request.data.get('camp_name','dominosturkeyauto')
+            query.id = request.data.get('user_id')
+            query.used_at = None
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
