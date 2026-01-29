@@ -2946,13 +2946,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         return {0:4.76, 1:3.06, 2:2.45}
     
-    elif campaign_name == "kfcmaauto" and event_name == "lm9dao":
+    elif campaign_name == "kfcmaauto" and event_name == "txxq1a":
         if offer_id.isdecimal():
             return {0:3.06, 1:2.45}
         
         return {0:6.6, 1:5.5, 2:4.76}
     
-    elif campaign_name == "kfcmoroccoiosauto" and event_name == "lm9dao":
+    elif campaign_name == "kfcmoroccoiosauto" and event_name == "txxq1a":
         if offer_id.isdecimal():
             return {0:3.06, 1:2.45}
         
