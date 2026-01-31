@@ -9712,6 +9712,8 @@ class Spinny_OIDAPI(APIView):
             return Response({
             })
         except Exception as e:
+            return Response({
+            })
             pass
     def get(self, request):
 
