@@ -5681,6 +5681,8 @@ class FoxtaleMiningAPI(APIView):
 
         date_ = datetime.now().strftime('%Y-%m-%d')
 
+        query = None
+
         if offer_id and random.randint(1,100)<=30:
             
             query = FoxtaleOrderId.objects.filter(created_at__lte=str(date_),offer_id=offer_id)
