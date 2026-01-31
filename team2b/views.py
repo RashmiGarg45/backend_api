@@ -4620,8 +4620,8 @@ class BluerewardsV2API(APIView):
         
 
         query_list = BluerewardsV2.objects.filter(used_at=None, created_at__gte=str(date_)).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
-        # if not query_list:
-        #     query_list = BluerewardsV2.filter(created_at__gte=str(date_)).objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        if not query_list and random.randint(1,100)<=15:
+            query_list = BluerewardsV2.filter(created_at__gte=str(date_)).objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
         
         if query_list:
             for i in range(3):
