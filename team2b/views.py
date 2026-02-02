@@ -8668,7 +8668,7 @@ class NetshoesOIDAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = NetshoesOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = NetshoesOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
