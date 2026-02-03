@@ -10212,6 +10212,9 @@ class LatestIdAPI(APIView):
 
         query = LatestIDs.objects.filter(campaign_name=campaign_name, used_at=None).order_by('-created_at').first()
 
+        if not query:
+            return Response({"status": "error", "msg": "data not found"})
+
         data = {"id": query.id}
 
         if extra_details_req:
