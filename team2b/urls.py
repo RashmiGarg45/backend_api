@@ -240,4 +240,5 @@ urlpatterns = [
     path("indian_emails", views.Indian_emailIdsAPI.as_view(), name="indian_emails"),
     path("neon", views.NeonUIDAPI.as_view(), name="neon"),
     path("plantexpert", views.PlantExpertOIDAPI.as_view(), name="plant"),
+    path("get_latest_id", views.LatestIdAPI.as_view(), name="latest_id"),
 ]
