@@ -6028,7 +6028,7 @@ class JazzcashAPI(APIView):
                 }
                 if setUsed:
                     query = Jazzcash.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -6243,7 +6243,7 @@ class PaytmmoneytAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Paytmmoneyt.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Paytmmoneyt.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
