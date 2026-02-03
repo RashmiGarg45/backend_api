@@ -10201,7 +10201,7 @@ class LatestIdAPI(APIView):
 
     def get(self, request):
         setUsed = request.GET.get('set_used', True)
-        if setUsed and setUsed.lower() == "false":
+        if setUsed and setUsed in [False, "false", "False"]:
             setUsed = False
 
         campaign_name = request.GET.get("campaign_name")
