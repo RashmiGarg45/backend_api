@@ -700,7 +700,7 @@ class Indigo(APIView):
                         "pushed_at": query.created_at
                 }
                 if setUsed:
-                    query = IndigoScriptOrderIds.objects.filter(id=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                    query = IndigoScriptOrderIds.objects.filter(id=data.get('pnr')).update(used_at=timezone.now())
         return Response({
             'body':data,
             'pnr_used':pnr_used+1
@@ -720,7 +720,7 @@ class Indigo(APIView):
                 'offer_id':offer_id,
                 'network_name':network_name,
             })
-            IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),extra_details=custom_text)
+            IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=timezone.now(),extra_details=custom_text)
         else:
             query = IndigoScriptOrderIds.objects.filter(id=pnr).update(used_at=None)
         return Response({
@@ -756,7 +756,7 @@ class IGP(APIView):
             'delivered_date':query.delivered_date
         }
         if setUsed:
-            query = IgpScriptOrderIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = IgpScriptOrderIds.objects.filter(id=data.get('id')).update(used_at=timezone.now())
         return Response({
             'data':data
         })
@@ -814,7 +814,7 @@ class Mcdelivery(APIView):
                 
         }
         if setUsed:
-            query = McdeliveryScriptOrderIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = McdeliveryScriptOrderIds.objects.filter(id=data.get('id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -841,7 +841,7 @@ class LightInTheBoxAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = LightInTheBox.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = LightInTheBox.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -868,7 +868,7 @@ class BluerewardsAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bluerewards.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bluerewards.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -895,7 +895,7 @@ class holodilinkAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Holodilink.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Holodilink.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -939,7 +939,7 @@ class DominosIndo(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = DominosIndodeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DominosIndodeliveryScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -980,7 +980,7 @@ class OstinShop(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = OstinShopScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = OstinShopScriptOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1024,7 +1024,7 @@ class HabibOrderIdConstants(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = HabibScriptOrderIdsConstants.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = HabibScriptOrderIdsConstants.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1065,7 +1065,7 @@ class DamnRayMiningAPI(APIView):
                 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = DamnrayOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DamnrayOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1108,7 +1108,7 @@ class WatchoOrderIdsMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = WatchoOrderIdsMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WatchoOrderIdsMining.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1187,7 +1187,7 @@ class WatchoOrderIdsMiningAPIV2(APIView):
                 }
                 if setUsed:
                     query = WatchoOrderIdsMining.objects.filter(id=data.get('order_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -1236,7 +1236,7 @@ class DamnRayMiningAPI(APIView):
                 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = DamnrayOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DamnrayOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1308,7 +1308,7 @@ class PepperfryMiningAPI(APIView):
                         'extra_details':query.extra_details
                 }
                 if setUsed:
-                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
                 return Response({
                     'body':data,
                 })
@@ -1331,7 +1331,7 @@ class PepperfryMiningAPI(APIView):
                         'extra_details':query.extra_details
                 }
                 if setUsed:
-                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at_2=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                    query = PepperfryOrderIds.objects.filter(id=data.get('order_id')).update(used_at_2=timezone.now())
                 return Response({
                     'body':data,
                 })
@@ -1366,7 +1366,7 @@ class MumzworldAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = MumzworldOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MumzworldOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1402,7 +1402,7 @@ class TripsygamesAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = TripsygamesOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = TripsygamesOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1441,7 +1441,7 @@ class LazuritAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = LazuritOrderIds.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = LazuritOrderIds.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1477,7 +1477,7 @@ class GomcdAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = GomcdOrderIds.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = GomcdOrderIds.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1526,7 +1526,7 @@ class BharatmatrimonyAPI(APIView):
                 'extra_details':{"age": query.age, "gender": query.extra_details.get("viewProfile").get("gender")}
         }
         if setUsed:
-            query = BharatmatrimonyUserIds.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = BharatmatrimonyUserIds.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1562,7 +1562,7 @@ class SamsclubAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = SamsclubMemberIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = SamsclubMemberIds.objects.filter(id=data.get('id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1599,7 +1599,7 @@ class WeWorldAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = WeWorldIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WeWorldIds.objects.filter(id=data.get('id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1641,7 +1641,7 @@ class Player6API(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = Player6auto.objects.filter(serial=data.get('serial')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Player6auto.objects.filter(serial=data.get('serial')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -1697,7 +1697,7 @@ class FantossMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = FantossUserIds.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = FantossUserIds.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -1736,7 +1736,7 @@ class OkeyvipMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = OkeyvipUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = OkeyvipUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -1776,7 +1776,7 @@ class SephoraMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = SephoraOrderId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = SephoraOrderId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -1875,7 +1875,7 @@ class SephoraMiningAPIV2(APIView):
                 }
                 if setUsed:
                     query = SephoraOrderIdV2.objects.filter(id=data.get('order_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel=new_channel,
                         network=new_network,
                         offer_id=new_offer_id,
@@ -1942,7 +1942,7 @@ class PumaMiningAPI(APIView):
                 'price': query.price
         }
         if setUsed:
-            query = PumaOrderId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = PumaOrderId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -1987,7 +1987,7 @@ class TimoclubMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = TimoclubUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = TimoclubUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2024,7 +2024,7 @@ class EmailIdMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = EmailIdMining.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = EmailIdMining.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2142,7 +2142,7 @@ class IndigoV2MiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = IndigoV3Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = IndigoV3Mining.objects.filter(pnr=data.get('pnr')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2218,7 +2218,7 @@ class IndigoV3MiningAPI(APIView):
                 'flight_type': query.flight_type
         }
         if setUsed:
-            query = IndigoV4Mining.objects.filter(pnr=data.get('pnr')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = IndigoV4Mining.objects.filter(pnr=data.get('pnr')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2714,7 +2714,7 @@ class GhnMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = ghnUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ghnUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2752,7 +2752,7 @@ class RummytimeMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = RummytimeUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = RummytimeUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2833,7 +2833,7 @@ class ScoreoneMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = ScoreoneUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ScoreoneUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2926,7 +2926,7 @@ class ApnatimeMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = ApnatimeUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ApnatimeUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -2964,7 +2964,7 @@ class KhiladiaddaMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = KhiladiaddaUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = KhiladiaddaUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3004,7 +3004,7 @@ class DatingGlobalMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = DatingGlobalUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = DatingGlobalUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3044,7 +3044,7 @@ class DatingGlobalSubscribedMiningAPI(APIView):
                 'extra_details':query.extra_details
         }
         if setUsed:
-            query = DatingGlobalSubscribedUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = DatingGlobalSubscribedUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3106,7 +3106,7 @@ class RentomojoMiningAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = RentomojoUserId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = RentomojoUserId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3132,7 +3132,7 @@ class shahidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Shahid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Shahid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3158,7 +3158,7 @@ class eztravelAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Eztravel.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Eztravel.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3184,7 +3184,7 @@ class betwinnerAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Betwinner.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Betwinner.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3216,7 +3216,7 @@ class ladygentlemanAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = Ladygentleman.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Ladygentleman.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3246,7 +3246,7 @@ class TajrummyAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = Tajrummy.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Tajrummy.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3279,7 +3279,7 @@ class Bet22API(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Bet22.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Bet22.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3305,7 +3305,7 @@ class pepperfryAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = PepperFry.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = PepperFry.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3331,7 +3331,7 @@ class igpAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Igpmodd.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Igpmodd.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3367,7 +3367,7 @@ class TravelataAPI(APIView):
                 'price': query.price
         }
         if setUsed:
-            query = Travelata.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Travelata.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3400,7 +3400,7 @@ class OntimeAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Ontime.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Ontime.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3426,7 +3426,7 @@ class mcdAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Mcdmodd.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Mcdmodd.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3459,7 +3459,7 @@ class tipsAosValidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = tipsAosValid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = tipsAosValid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3492,7 +3492,7 @@ class tipsAosCancelledAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = tipsAosCancelled.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = tipsAosCancelled.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3525,7 +3525,7 @@ class tipsIosValidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = tipsIosValid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = tipsIosValid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3558,7 +3558,7 @@ class tipsIosCancelledAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = tipsIosCancelled.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = tipsIosCancelled.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3584,7 +3584,7 @@ class skylineAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Skyline.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Skyline.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3618,7 +3618,7 @@ class ReservaAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Reserva.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Reserva.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3651,7 +3651,7 @@ class GurushortAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = GuruShort.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = GuruShort.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3684,7 +3684,7 @@ class GurushortNotPremiumAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = GuruShortNotPremium.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = GuruShortNotPremium.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3710,7 +3710,7 @@ class creditoAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Credito.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Credito.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3743,7 +3743,7 @@ class GurushortOrderIdAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = GuruShortOrderId.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = GuruShortOrderId.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3776,7 +3776,7 @@ class GurushortValidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = GuruShortValidId.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = GuruShortValidId.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3811,7 +3811,7 @@ class AjioAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Ajio.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Ajio.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3844,7 +3844,7 @@ class JungleepokerAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Jungleepoker.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Jungleepoker.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3896,7 +3896,7 @@ class GameRummyAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = GameRummy.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = GameRummy.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3939,7 +3939,7 @@ class navrangAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Navrang.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Navrang.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -3965,7 +3965,7 @@ class Lotter38API(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Lotter38.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Lotter38.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -3991,7 +3991,7 @@ class Lotter69API(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Lotter69.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Lotter69.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4024,7 +4024,7 @@ class ChaleeSultanAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ChaleeSultan.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ChaleeSultan.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4050,7 +4050,7 @@ class EjabyAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Ejaby.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Ejaby.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4083,7 +4083,7 @@ class FlappdealsAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Flappdeals.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Flappdeals.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4116,7 +4116,7 @@ class LaundrymateAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Laundrymate.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Laundrymate.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4149,7 +4149,7 @@ class ParimatchAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Parimatch.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Parimatch.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4184,7 +4184,7 @@ class KisanKonnectAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = KisanKonnect.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = KisanKonnect.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4223,7 +4223,7 @@ class EpoCosmeticAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = EpoCosmetic.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = EpoCosmetic.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4256,7 +4256,7 @@ class EbebekAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Ebebek.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Ebebek.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4282,7 +4282,7 @@ class EbebekuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Ebebekuid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Ebebekuid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4309,7 +4309,7 @@ class UnderarmourAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Underarmour.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Underarmour.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4335,7 +4335,7 @@ class UnderarmourOIDAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = UnderarmourOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = UnderarmourOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4365,7 +4365,7 @@ class PinoypesoAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Pinoypeso.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Pinoypeso.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4398,7 +4398,7 @@ class OhiAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Ohi.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Ohi.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4424,7 +4424,7 @@ class FivepaisaAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Fivepaisa.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Fivepaisa.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4454,7 +4454,7 @@ class AddaAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = Adda.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Adda.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4484,7 +4484,7 @@ class AddaorderIdAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = AddaOrderId.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = AddaOrderId.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4510,7 +4510,7 @@ class BambootautoAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bambootauto.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bambootauto.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4536,7 +4536,7 @@ class PaynearbyAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Paynearby.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Paynearby.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4568,7 +4568,7 @@ class in2XAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = in2X.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = in2X.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4656,7 +4656,7 @@ class BluerewardsV2API(APIView):
                 }
                 if setUsed:
                     query = BluerewardsV2.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -4680,7 +4680,7 @@ class BluerewardsV2API(APIView):
                     'extra_details':query.extra_details, 
             }
             if setUsed:
-                query = BluerewardsV3.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+                query = BluerewardsV3.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
             return Response({
                 'body':data,
             })
@@ -4718,7 +4718,7 @@ class SignnowAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Signnow.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Signnow.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4750,7 +4750,7 @@ class SixerDreamAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = SixerDream.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = SixerDream.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4776,7 +4776,7 @@ class WesternUnionAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = WesternUnion.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WesternUnion.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4802,7 +4802,7 @@ class StolotoUserIdAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = StolotoUserId.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = StolotoUserId.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4828,7 +4828,7 @@ class StolotoOrderIdAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = StolotoOrderId.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = StolotoOrderId.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4854,7 +4854,7 @@ class PaysettUserIdAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = PaysettUserId.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = PaysettUserId.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -4886,7 +4886,7 @@ class ShopeevnuidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeevnUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeevnUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4925,7 +4925,7 @@ class ShopeevnoidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeevnOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeevnOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -4964,7 +4964,7 @@ class PoppoliveAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Poppolive.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Poppolive.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5003,7 +5003,7 @@ class ShopeemyuidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeemyUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeemyUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5042,7 +5042,7 @@ class ShopeemyoidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeemyOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeemyOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5081,7 +5081,7 @@ class ShiprocketAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Shiprocket.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Shiprocket.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5120,7 +5120,7 @@ class NovawaterAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Novawater.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Novawater.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5160,7 +5160,7 @@ class MoglixAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Moglix.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Moglix.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5199,7 +5199,7 @@ class ViuAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Viu.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Viu.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5233,7 +5233,7 @@ class BetrAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Betr.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Betr.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5265,7 +5265,7 @@ class ShopeeidUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeeidUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeeidUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5304,7 +5304,7 @@ class DupoinAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Dupoin.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Dupoin.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5343,7 +5343,7 @@ class ShopeephUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeephUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeephUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5382,7 +5382,7 @@ class EpikoddAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Epikodd.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Epikodd.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5422,7 +5422,7 @@ class StolotoAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Stoloto.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Stoloto.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5448,7 +5448,7 @@ class CasinoplussAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Casinopluss.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Casinopluss.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5474,7 +5474,7 @@ class StorylandAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Storyland.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Storyland.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5500,7 +5500,7 @@ class HomiedevAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Homiedev.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Homiedev.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5529,7 +5529,7 @@ class TikettOIDAPI(APIView):
             data = {'order_id':query.id}
             next_id = int(query.id) + random.randint(1,2)
 
-            query = TikettOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = TikettOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
 
             
 
@@ -5560,7 +5560,7 @@ class ApnaTimeAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = ApnaTime.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = ApnaTime.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5586,7 +5586,7 @@ class MotiLalAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = MotiLal.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MotiLal.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5612,7 +5612,7 @@ class FrendipayAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Frendipay.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Frendipay.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5644,7 +5644,7 @@ class MagiclandAPI(APIView):
                 # 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Magicland.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Magicland.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5717,7 +5717,7 @@ class FoxtaleMiningAPI(APIView):
                 'price': query.price
         }
         if setUsed:
-            query = FoxtaleOrderId.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = FoxtaleOrderId.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5762,7 +5762,7 @@ class HoteltonightAPI(APIView):
                 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = Hoteltonight.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Hoteltonight.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5860,7 +5860,7 @@ class YesmadamAPI(APIView):
                 'price': query.price
         }
         if setUsed:
-            query = Yesmadam.objects.filter(id=data.get('id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Yesmadam.objects.filter(id=data.get('id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -5893,7 +5893,7 @@ class BeymenAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Beymen.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Beymen.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5919,7 +5919,7 @@ class BncAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bncauto.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bncauto.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -5945,7 +5945,7 @@ class KfcAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Kfcmexico.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Kfcmexico.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6073,7 +6073,7 @@ class PetbookAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = Petbook.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Petbook.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6117,7 +6117,7 @@ class tejimaandiAPI(APIView):
                 'used_at':query.used_at,
         }
         if setUsed:
-            query = tejimaandi.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = tejimaandi.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6207,7 +6207,7 @@ class TejimaandinewAPI(APIView):
                 }
                 if setUsed:
                     query = Tejimaandinew.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -6269,7 +6269,7 @@ class AnqgoldrewardsAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Anqgoldrewards.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Anqgoldrewards.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6295,7 +6295,7 @@ class AnqgoldrewardscuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Anqgoldrewardscuid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Anqgoldrewardscuid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6321,7 +6321,7 @@ class AnqgoldrewardsoidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Anqgoldrewardsoid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Anqgoldrewardsoid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6357,7 +6357,7 @@ class OkeyvipAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = OkeyvipMining.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = OkeyvipMining.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6390,7 +6390,7 @@ class MoneymetmodduidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Moneymetmodduid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Moneymetmodduid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6416,7 +6416,7 @@ class ImagineartAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Imagineart.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Imagineart.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6448,7 +6448,7 @@ class ParimatchthAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Parimatchth.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Parimatchth.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6487,7 +6487,7 @@ class MeliveAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Melive.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Melive.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6526,7 +6526,7 @@ class MetliveAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Metlive.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Metlive.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6566,7 +6566,7 @@ class MetliveUidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = MetliveUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = MetliveUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6606,7 +6606,7 @@ class MeliveUidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = MeliveUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = MeliveUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6695,7 +6695,7 @@ class OpayAPI(APIView):
                 }
                 if setUsed:
                     query = Opay.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -6731,7 +6731,7 @@ class BevietnamesAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bevietnames.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bevietnames.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6807,7 +6807,7 @@ class BoostAPI(APIView):
                 }
                 if setUsed:
                     query = Boost.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -6842,7 +6842,7 @@ class CimbthaiAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Cimbthai.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Cimbthai.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6868,7 +6868,7 @@ class MyauchanAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Myauchan.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Myauchan.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6895,7 +6895,7 @@ class IkeaAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Ikea.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Ikea.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -6927,7 +6927,7 @@ class ShopeebrUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeebrUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeebrUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -6966,7 +6966,7 @@ class ShopeethUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeethUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeethUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7005,7 +7005,7 @@ class ShopeethiosUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = ShopeethiosUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = ShopeethiosUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7045,7 +7045,7 @@ class AnqgoldrewardsnewAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Anqgoldrewardsnew.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Anqgoldrewardsnew.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7085,7 +7085,7 @@ class MyfriendUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = MyfriendUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = MyfriendUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7118,7 +7118,7 @@ class MyfriendOIDAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = MyfriendOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MyfriendOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7151,7 +7151,7 @@ class MambaUIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = MambaUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = MambaUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7284,7 +7284,7 @@ class GalaxyChatAPI(APIView):
                 if setUsed:
                     print ("galaxy success")
                     query = GalaxyChat.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -7506,7 +7506,7 @@ class GalaxyChatRUAPI(APIView):
                 if setUsed:
                     print ("galaxy success")
                     query = GalaxyChatRU.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -7598,7 +7598,7 @@ class AlphacapitalAPI(APIView):
                 }
                 if setUsed:
                     query = Alphacapital.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -7659,7 +7659,7 @@ class bigloanAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bigloan.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bigloan.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7685,7 +7685,7 @@ class CoinmenaAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Coinmena.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Coinmena.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7711,7 +7711,7 @@ class TikettUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = TikettUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = TikettUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7738,7 +7738,7 @@ class Cabst13API(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Cabst13.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Cabst13.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7770,7 +7770,7 @@ class R888casinoAPI(APIView):
                 # 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = R888casino.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = R888casino.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -7804,7 +7804,7 @@ class JoybuyAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Joybuy.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Joybuy.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7830,7 +7830,7 @@ class Atomepht2uidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Atomepht2uid.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Atomepht2uid.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7856,7 +7856,7 @@ class Atomepht2aidAPI(APIView):
                 'agent_id':query.id,
         }
         if setUsed:
-            query = Atomepht2aid.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Atomepht2aid.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7882,7 +7882,7 @@ class ClubeextraAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Clubeextra.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Clubeextra.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7908,7 +7908,7 @@ class ClubeextracidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Clubeextracid.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Clubeextracid.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -7990,7 +7990,7 @@ class MyshiftAPI(APIView):
                 }
                 if setUsed:
                     query = Myshift.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -8026,7 +8026,7 @@ class HeringAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Hering.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Hering.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8062,7 +8062,7 @@ class Babytrackeruid(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Babytracker.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Babytracker.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8113,7 +8113,7 @@ class BitoasistAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Bitoasist.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Bitoasist.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8145,7 +8145,7 @@ class EpochtimesuidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = EpochtimesUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = EpochtimesUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8179,7 +8179,7 @@ class JyotiaiiosAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = Jyotiaiios.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Jyotiaiios.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8205,7 +8205,7 @@ class ShriramAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Shriram.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Shriram.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8231,7 +8231,7 @@ class CashmaxAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Cashmax.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Cashmax.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8285,7 +8285,7 @@ class MaxfashionindiaOIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = MaxfashionindiaOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = MaxfashionindiaOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8388,7 +8388,7 @@ class NGnumbersAPI(APIView):
                 }
                 if setUsed:
                     query = NGnumbers.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -8479,7 +8479,7 @@ class AbhibusAPI(APIView):
                 }
                 if setUsed:
                     query = Abhibus.objects.filter(id=data.get('order_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -8527,7 +8527,7 @@ class StyliOIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = StyliOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = StyliOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8577,7 +8577,7 @@ class StylinewOIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = StylinewOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = StylinewOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8610,7 +8610,7 @@ class WizelyOIDAPI(APIView):
                 'order_no':query.id,
         }
         if setUsed:
-            query = WizelyOID.objects.filter(id=data.get('order_no')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WizelyOID.objects.filter(id=data.get('order_no')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8636,7 +8636,7 @@ class WizelyTIDAPI(APIView):
                 'transaction_id':query.id,
         }
         if setUsed:
-            query = WizelyTID.objects.filter(id=data.get('transaction_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WizelyTID.objects.filter(id=data.get('transaction_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8668,7 +8668,7 @@ class NetshoesOIDAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = NetshoesOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = NetshoesOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8713,7 +8713,7 @@ class WizelyMiningAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = WizelyMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = WizelyMining.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -8747,7 +8747,7 @@ class TimoclubuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Timoclubuid.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = Timoclubuid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8773,7 +8773,7 @@ class MambanewUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = MambanewUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MambanewUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8800,7 +8800,7 @@ class WizelyUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = WizelyUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = WizelyUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8826,7 +8826,7 @@ class MyfooduidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = MyfoodUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MyfoodUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8853,7 +8853,7 @@ class MyfoodoidAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = MyfoodOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MyfoodOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8899,7 +8899,7 @@ class DabdoobuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = DabdoobUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DabdoobUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -8926,7 +8926,7 @@ class DabdooboidAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = DabdoobOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DabdoobOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9029,7 +9029,7 @@ class NiratAPI(APIView):
                 }
                 if setUsed:
                     query = Nirat.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -9065,7 +9065,7 @@ class ScoreupuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = ScoreupUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = ScoreupUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9091,7 +9091,7 @@ class BoylesportsuidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = BoylesportsUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = BoylesportsUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9173,7 +9173,7 @@ class ScoreUpAPI(APIView):
                 }
                 if setUsed:
                     query = ScoreUp.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -9208,7 +9208,7 @@ class SahiAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = SahiUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = SahiUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9241,7 +9241,7 @@ class AhamoveuidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = AhamoveUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = AhamoveUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9281,7 +9281,7 @@ class AhamoveoidAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = AhamoveOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = AhamoveOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9370,7 +9370,7 @@ class ReevoAPI(APIView):
                 }
                 if setUsed:
                     query = ReevoNUMID.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -9405,7 +9405,7 @@ class MbbankUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = MbbankUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = MbbankUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9438,7 +9438,7 @@ class AstroMiningAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = AstroMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = AstroMining.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9481,7 +9481,7 @@ class HealthifymeMiningAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = HealthifymeMining.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = HealthifymeMining.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9519,7 +9519,7 @@ class DominosturkeyUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = DominosturkeyUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DominosturkeyUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9545,7 +9545,7 @@ class DominosturkeyOIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = DominosturkeyOID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DominosturkeyOID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9655,7 +9655,7 @@ class DominosturkeyOID_miningAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = dominosturkey_OID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = dominosturkey_OID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9694,7 +9694,7 @@ class DanaUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = DanaUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = DanaUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9731,7 +9731,7 @@ class Spinny_OIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Spinny_OID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Spinny_OID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9772,7 +9772,7 @@ class Spinny_valid_OIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Spinny_valid_OID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Spinny_valid_OID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9815,7 +9815,7 @@ class EternzUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = EternzUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = EternzUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -9850,7 +9850,7 @@ class Dominoesgold_UID_API(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Dominoesgold_UID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Dominoesgold_UID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9896,7 +9896,7 @@ class Eternz_OIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Eternz_OID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Eternz_OID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -9941,7 +9941,7 @@ class Litres_UID_API(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = Litres_UID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = Litres_UID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
@@ -10120,7 +10120,7 @@ class Indian_emailIdsAPI(APIView):
                 }
                 if setUsed:
                     query = Indian_emailIds.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -10155,7 +10155,7 @@ class NeonUIDAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = NeonUID.objects.filter(id=data.get('user_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = NeonUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
@@ -10181,7 +10181,7 @@ class PlantExpertOIDAPI(APIView):
                 'order_id':query.id,
         }
         if setUsed:
-            query = PlantExpertOID.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+            query = PlantExpertOID.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
