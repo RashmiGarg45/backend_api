@@ -10218,7 +10218,7 @@ class LatestIdAPI(APIView):
         data = {"id": query.id}
 
         if extra_details_req:
-            data["extra_details": query.extra_details]
+            data["extra_details"]= query.extra_details
 
         if setUsed:
             query = LatestIDs.objects.filter(id = query.id).update(used_at=datetime.now())        
