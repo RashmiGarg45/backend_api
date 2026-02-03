@@ -10205,7 +10205,10 @@ class LatestIdAPI(APIView):
             setUsed = False
 
         campaign_name = request.GET.get("campaign_name")
-        extra_details_req = request.GET.get("extra_details_req")
+        extra_details_req = request.GET.get("extra_details_req", False)
+
+        if not campaign_name:
+            return Response({"status": "error", "msg": "campaign name is required"})
 
         query = LatestIDs.objects.filter(campaign_name=campaign_name, used_at=None).order_by('-created_at').first()
 
