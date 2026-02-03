@@ -3879,7 +3879,7 @@ class LatestIDs(models.Model):
     created_at = models.DateField(auto_now_add=True)
     id = models.CharField(max_length=50, unique=True)
     extra_details = models.JSONField(default = dict,blank=True, null=True)
-    used_at = models.DateField(default=None, blank=True, null=None)
+    used_at = models.DateField(default=None, blank=True, null=True)
 
     class Meta:
         indexes = [
