@@ -10192,7 +10192,7 @@ class LatestIdAPI(APIView):
             query = LatestIDs()
             query.campaign_name = request.GET.get("campaign_name")
             query.id = request.GET.get("id")
-            query.used_at = None
+            # query.used_at = None
             query.save()
             return Response({"status": "success"})
         except Exception as e:
