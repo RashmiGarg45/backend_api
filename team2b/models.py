@@ -3871,3 +3871,18 @@ class PlantExpertOID(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class LatestIDs(models.Model):
+    
+    serial = models.AutoField(primary_key=True, editable=False)
+    campaign_name = models.CharField(max_length=25)
+    created_at = models.DateField(auto_now_add=True)
+    id = models.CharField(max_length=50, unique=True)
+    extra_details = models.JSONField(default = dict,blank=True, null=True)
+    used_at = models.DateField(default=None, blank=True, null=None)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+            models.Index(fields=['campaign_name'])
+        ]
