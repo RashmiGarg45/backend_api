@@ -7396,7 +7396,7 @@ class GalaxyChatCountryAPI(APIView):
                 if setUsed:
                     print ("galaxy success")
                     query = GalaxyChatCountry.objects.filter(id=data.get('user_id')).update(
-                        used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        used_at=timezone.now(),
                         channel_list=new_channel_list,
                         network_list=new_network_list,
                         offer_id_list=new_offer_id_list,
@@ -9599,7 +9599,7 @@ class LifestyleOIDAPI(APIView):
                 'extra_details':query.extra_details, 
         }
         if setUsed:
-            query = LifetyleOrderId_2.objects.filter(id=data.get('order_id')).update(used_at=datetime.now().strftime('%Y-%m-%d %H:%M:%S'), channel=channel, network=network, offer_id=offer_id)
+            query = LifetyleOrderId_2.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
