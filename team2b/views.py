@@ -10032,7 +10032,9 @@ class RevenueHelperStats(APIView):
 
             if event_name in ["organic", "non-organic", "non_organic"]:
 
-                combination = str(OS) +"::" + str(Brand)+"::" + str(model)+"::" + str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+                # combination = str(OS) +"::" + str(Brand)+"::" + str(model)+"::" + str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+
+                combination = str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
 
                 if combination not in output_data:
                     output_data[combination] = {}
