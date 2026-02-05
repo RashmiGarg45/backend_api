@@ -2569,7 +2569,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if offer_id.isdecimal():
             return {0:2.5, 1:2.5}
         else:
-            return {0:7.5, 1:6.5}   
+            return  {0:2.5, 1:2.5} 
 
     elif campaign_name == "duittmodd" and event_name == "Successful_loan":
         return {0:90, 1:30, 2:20, 3:16}
