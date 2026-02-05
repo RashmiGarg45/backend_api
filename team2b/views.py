@@ -10253,7 +10253,7 @@ class MotilalNumberAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = MotilalNumber.objects.filter(used_at=None).order_by('-created_at')[0:25].all()           
+        query = MotilalNumber.objects.filter(used_at=None).order_by('-created_at')[0:25].first()      
 
         data = {
                 'user_id':query.id,
