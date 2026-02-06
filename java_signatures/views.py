@@ -3292,6 +3292,9 @@ class checkEligibility(APIView):
 
             if campaign_name == "underarmourauto":
 
+                from datetime import datetime
+                today = datetime.now().strftime('%Y-%m-%d')
+
                 revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
                 total_revenue = total_event_count = sum((event['revenue'] for event in revenue_details))              
 
