@@ -3290,7 +3290,7 @@ class checkEligibility(APIView):
                     is_eligible = False
 
             if campaign_name == "underarmourauto":
-                if total_revenue + int(revenue) >= 27000:
+                if total_revenue + int(revenue) >= 30000:
                     is_eligible = False 
             
             if is_eligible and not track_only:
