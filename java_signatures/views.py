@@ -3296,7 +3296,10 @@ class checkEligibility(APIView):
                 today = datetime.now().strftime('%Y-%m-%d')
 
                 revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
-                total_revenue = total_event_count = sum((event['revenue'] for event in revenue_details))              
+                total_revenue = sum((event['revenue'] for event in revenue_details)) 
+
+                print (total_revenue)     
+                print (int(revenue))        
 
                 if total_revenue + int(revenue) >= 30000:
                     is_eligible = False 
