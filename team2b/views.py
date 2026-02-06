@@ -9856,7 +9856,7 @@ class Dominoesgold_UID_API(APIView):
         })
     
     def post(self, request):
-        query = Dominoesgold_UID.objects.order_by('-id').first()
+        query = Dominoesgold_UID.objects.order_by('id').first()
 
         return Response({
             'id':query.id,
