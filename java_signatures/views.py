@@ -2794,8 +2794,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "underarmourauto" and event_name == '5uo13w':
 
-        if offer_id in ["undapcmmp"]:
-            return {0:40}
+        if offer_id in ["undapcmmp", "test"]:
+            return {0:15}
         
         return {0:15, 1:9, 2:6.42, 3:5.62}
 
@@ -3266,8 +3266,7 @@ class checkEligibility(APIView):
 
             if int(revenue) >0:
                 event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count", "revenue")
-                total_revenue = total_event_count = sum((event['revenue'] for event in event_details))
-                print (total_revenue)
+                total_revenue = total_event_count = sum((event['revenue'] for event in event_details))              
                 
             else:
                 event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
@@ -3276,8 +3275,6 @@ class checkEligibility(APIView):
            
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
-
-
             
 
             if required_events:
@@ -3291,6 +3288,10 @@ class checkEligibility(APIView):
 
                 if completed_event_count >= required_events:
                     is_eligible = False
+
+            if campaign_name == "underarmourauto":
+                if total_revenue + int(revenue) >= 27000:
+                    is_eligible = False 
             
             if is_eligible and not track_only:
                 # if required_timezone:
