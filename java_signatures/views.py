@@ -3267,6 +3267,7 @@ class checkEligibility(APIView):
             if int(revenue) >0:
                 event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count", "revenue")
                 total_revenue = total_event_count = sum((event['revenue'] for event in event_details))
+                print (total_revenue)
                 
             else:
                 event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
@@ -3277,7 +3278,7 @@ class checkEligibility(APIView):
             is_eligible = total_event_count < required_event_count
 
 
-            print (total_revenue)
+            
 
             if required_events:
                 from datetime import datetime
