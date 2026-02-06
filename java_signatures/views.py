@@ -3271,18 +3271,12 @@ class checkEligibility(APIView):
             #     event_details = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
             # else:
 
-            if int(revenue) >0:
-                event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count", "revenue")
-                total_revenue = total_event_count = sum((event['revenue'] for event in event_details))              
-                
-            else:
-                event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
+            event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
 
             total_event_count = sum((event['event_count'] for event in event_details))
            
             required_event_count = int(round(install_count / required_installs))
             is_eligible = total_event_count < required_event_count
-            
 
             if required_events:
                 from datetime import datetime
@@ -3297,6 +3291,10 @@ class checkEligibility(APIView):
                     is_eligible = False
 
             if campaign_name == "underarmourauto":
+
+                revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
+                total_revenue = total_event_count = sum((event['revenue'] for event in revenue_details))              
+
                 if total_revenue + int(revenue) >= 30000:
                     is_eligible = False 
             
