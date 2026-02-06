@@ -9737,7 +9737,7 @@ class Spinny_OIDAPI(APIView):
         })
 
     def post(self, request):
-        query = Spinny_OID.objects.order_by('-id').first()
+        query = Spinny_OID.objects.order_by('id').first()
 
         return Response({
             'id':query.id,
@@ -9856,7 +9856,7 @@ class Dominoesgold_UID_API(APIView):
         })
     
     def post(self, request):
-        query = Dominoesgold_UID.objects.order_by('id').first()
+        query = Dominoesgold_UID.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
