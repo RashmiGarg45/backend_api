@@ -3212,6 +3212,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "defactotauto" and event_name == "icmk9u":
         return {0:24, 1:14, 2: 12}
     
+    elif campaign_name == "defactoiosauto" and event_name == "icmk9u":
+        return {0:24, 1:14, 2: 12}
+    
     elif campaign_name == "pulszcasinomodd" and event_name == "af_purchase_total_10_00":
         return {0:95, 1:48}
         
