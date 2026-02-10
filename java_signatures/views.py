@@ -2852,6 +2852,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         if offer_id in ['williamhill-mpjads-jan','mpj-wcios','adhub-whcasinoiios-26a017260']:
             return {0:13}
+
+        elif offer_id in ["wh2casdgmmp"]:
+            return {0:67}
         # if channel in ['mobpine', '77ads', 'appamplify']:
         return {0:30, 1:20, 2:16}
         # return {0:24, 1:13, 2:10, 3:9}
