@@ -242,4 +242,5 @@ urlpatterns = [
     path("plantexpert", views.PlantExpertOIDAPI.as_view(), name="plant"),
     path("get_latest_id", views.LatestIdAPI.as_view(), name="latest_id"),
     path("motilal_number", views.MotilalNumberAPI.as_view(), name="motilal"),
+    path("sofyclub", views.SofyClubAPI.as_view(), name="sofyclub"),
 ]
