@@ -3148,6 +3148,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {0:6, 1:4.2, 2:3}
 
         return {0:14, 1:9.5, 2:8}
+    
+    elif campaign_name == "btcturktauto" and event_name == "496w0o":
+        if offer_id.isdecimal():
+            return {0:2.5}
+        
+        return {1:14, 2:10}
 
     elif campaign_name == "rootcarinsurancemodd" and event_name == "Profile":
         return {0: 9, 1:7, 2: 6}
