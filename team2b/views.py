@@ -10272,6 +10272,7 @@ class SofyClubAPI(APIView):
         query = Sofyclub()
         query.campaign_name = request.data.get('camp_name','sofyclubauto')
         query.id = request.data.get('user_id')
+        query.email = request.data.get('email')
         query.used_at = None
         try:
             query.save()
