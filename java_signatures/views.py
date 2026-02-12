@@ -3231,16 +3231,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:95, 1:48}
     
     elif campaign_name == "darknessmodd" and event_name == "revenue_1":
-        return {0 : 47, 1: 30}
+        return {0 : 12, 1: 9}
 
     elif campaign_name == "darknessmodd" and event_name == "revenue_5":
-        return {0: 47, 1: 30 ,2:23}
-
-    elif campaign_name == "darknessmodd" and event_name == "revenue_10":
-        return {0: 87, 1:47}
-
-    elif campaign_name == "darknessmodd" and event_name == "revenue_20":
-        return {2:95}
+        return {1: 17}
 
         
 class checkEligibility(APIView):
