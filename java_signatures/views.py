@@ -3141,10 +3141,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "dominosturkeyauto" and event_name == "yfub50":
 
-        if offer_id in ["domdoummp", "dom2doummp"]:
-            return {0:4, 1:2.85, 2:2.6}
+        # if offer_id in ["domdoummp", "dom2doummp"]:
+        #     return {0:4, 1:2.85, 2:2.6}
         
-        return {0:14, 1:3.52, 2:2.94} # need to update
+        return {0:5, 1:3.52, 2:2.94} # need to update
 
     elif campaign_name == "wetterandroidauto" and event_name == "u6z21k" and offer_id:
         if offer_id.isdecimal():
