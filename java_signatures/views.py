@@ -2026,7 +2026,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0: 41, 1:24, 2:19, 3:16.6}
 
     elif campaign_name == "moomootrademodd" and event_name == "af_ss_event_202":
-        return {1: 41, 2:33, 3:23, 4:19}
+        return {1: 41, 2:33, 3:23}
     
     elif campaign_name == "bd678auto" and event_name == "8jcdcl":
         return {0:14.28, 1:11.11, 2:9.09, 3: 8.33}
