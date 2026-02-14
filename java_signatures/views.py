@@ -2239,9 +2239,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
 
         if not offer_id.isdecimal():
-            return {1:3}
+            return {1:6}
         else:
-            return {1:3}
+            return {1:30}
     
     elif campaign_name == "magztermodd" and event_name == "mg_1month_freetrial":
         return {0:20, 1:14.2, 2:11.11, 3:10}
