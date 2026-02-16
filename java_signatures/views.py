@@ -2847,8 +2847,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "vegasiosmodd" and event_name == 'registration':
 
-        if offer_id in ['williamhill-mpjads-jan','mpj-wcios','adhub-whcasinoiios-26a017260']:
+        if offer_id in ['mpj-wcios','adhub-whcasinoiios-26a017260']:
             return {0:6}
+        
+        elif offer_id in ["williamhill-mpjads-jan"]:
+            return {0:4.5}
+
         # if channel in ['mobpine', '77ads', 'appamplify']:
         return {0:24, 1:12, 2:10}
 
@@ -2857,8 +2861,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     
     elif campaign_name == "vegasiosmodd" and event_name == 'FTD':
         
-        if offer_id in ['williamhill-mpjads-jan','mpj-wcios','adhub-whcasinoiios-26a017260']:
+        if offer_id in ['mpj-wcios','adhub-whcasinoiios-26a017260']:
             return {0:13}
+        
+        elif offer_id in ["williamhill-mpjads-jan"]:
+            return {0:8}
 
         elif offer_id in ["wh2casdgmmp"]:
             return {0:67}
