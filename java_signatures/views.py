@@ -3149,7 +3149,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "dominosturkeyauto" and event_name == "yfub50":
 
         if offer_id in ["domdoummp", "dom2doummp"]:
-            return {1:2.85, 1:2.63, 2:2.5}
+            return {1:2.85, 1:2.5, 2:2.27}
         
         return {0:3.3, 1:2.85, 2:2.6} # need to update
 
