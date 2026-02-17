@@ -10445,7 +10445,7 @@ class GloboplayUpdater(APIView):
         return Response(
             {
                 "success": True,
-                "message": "Spinny OIDs reset successfully",
+                "message": "Globoplay OIDs reset successfully",
                 "updated_records": updated_count
             },
         )
