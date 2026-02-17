@@ -244,4 +244,6 @@ urlpatterns = [
     path("motilal_number", views.MotilalNumberAPI.as_view(), name="motilal"),
     path("sofyclub", views.SofyClubAPI.as_view(), name="sofyclub"),
     path("shiprocketCNY", views.ShiprocketCNYAPI.as_view(), name="company_id"),
+    path("globoplay_valid_id", views.GloboplayAPI.as_view(), name="globoplay"),
+    path("globoplay_valid_id_updater", views.GloboplayUpdater.as_view(), name="cru_valid_id_updater"),
 ]
