@@ -10437,9 +10437,9 @@ class GloboplayUpdater(APIView):
     def post(self, request):
         updated_count = Globoplay.objects.update(
             used_at=None,
-            channel=[],
-            network=[],
-            offer_id=[]
+            channel_list=[],
+            network_list=[],
+            offer_id_list=[]
         )
 
         return Response(
