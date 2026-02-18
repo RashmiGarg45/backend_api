@@ -2530,6 +2530,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:23, 1:20, 2:16.6, 3:14.28}
 
     elif campaign_name == "spinnytauto" and event_name == "cqjxvf":
+
+        if channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
+            return {0:33, 1:20, 2:15.38}
+        
         return {0:45, 1:30, 2:25}
 
     elif campaign_name == "shienindiamodd" and event_name == "af_purchase":
