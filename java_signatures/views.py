@@ -1920,20 +1920,14 @@ class TrackInstalls(APIView):
         if not all([campaign_name, channel, network, offer_id]):
             return Response({"status": 400,"message": "Missing required parameters","data": {}})
         
-        # install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)            
+        install_data = InstallData.objects.filter(campaign_name=campaign_name, created_at=date, channel=channel, network=network, offer_id=offer_id)            
 
-        # if not install_data:
-        #     install_details = InstallData(created_at=date, campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
-        # else:
-        #     install_details = install_data.get()
-        #     install_details.installs += 1
-        # install_details.save()
-
-        install_details, created = InstallData.objects.update_or_create(campaign_name=campaign_name,created_at=date,channel=channel, network=network, offer_id=offer_id,defaults={"currency": currency, "installs": 1})
-
-        if not created:
+        if not install_data:
+            install_details = InstallData(created_at=date, campaign_name=campaign_name, channel=channel, network=network, offer_id=offer_id, currency=currency, installs=1)
+        else:
+            install_details = install_data.get()
             install_details.installs += 1
-            install_details.save()
+        install_details.save()
 
         return Response({"status": 200, "message": "Install Tracked", "data": {"count": install_details.installs, "serial": install_details.serial}})
 
