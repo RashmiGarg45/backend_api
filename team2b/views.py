@@ -4576,122 +4576,49 @@ class in2XAPI(APIView):
 class BluerewardsV2API(APIView):
     def put(self, request):
 
-        if float(request.data.get('wallet_balance',0))> 0:
 
-            query = BluerewardsV2()
-            query.campaign_name = request.data.get('camp_name','bluerewardsauto')
-            query.id = request.data.get('user_id')
-            query.extra_details = request.data.get('extra_details',{})
-            query.wallet_balance = request.data.get('wallet_balance',0)
-            query.used_at = None
-            query.save()
-            return Response({
-            })
-        else:
+        query = Bluerewards()
+        query.campaign_name = request.data.get('camp_name','bluerewardsmodd')
+        query.name = request.data.get('name')
+        query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
+        query.wallet_balance = request.data.get('wallet_balance',0)
+        query.used_at = None
+        query.save()
+        return Response({
+        })
 
-            query = BluerewardsV3()
-            query.campaign_name = request.data.get('camp_name','bluerewardsauto')
-            query.id = request.data.get('user_id')
-            query.extra_details = request.data.get('extra_details',{})
-            query.wallet_balance = request.data.get('wallet_balance',0)
-            query.used_at = None
-            query.save()
-            return Response({
-            })
 
     def get(self, request):
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
         setUsed = request.GET.get('set_used',True)
-        channel = request.GET.get('channel',True)
-        network = request.GET.get('network',True)
-        offer_id = request.GET.get('offer_id',True)
-        if offer_id.isdecimal():
-            return Response({'body':'error','message':'panel offer not allowed'})
-        
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
-
-        exclude_dict = {}
-        exclude_dict['channel_list__contains'] = channel
-
-
-        exclude_dict_1 = {}
-
-        date_ = datetime.now().strftime('%Y-%m-%d')
         
+        query = None
 
-        query_list = BluerewardsV2.objects.filter(used_at=None, created_at__gte=str(date_)).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
-        if not query_list and random.randint(1,100)<=15:
-            query_list = BluerewardsV2.filter(created_at__gte=str(date_)).objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        if random.randint(1,100)<=70:
+            name = "PROFILE UPDATE Nudge INAPP EN | AR"
+            query = Bluerewards.objects.filter(name =name, used_at=None).order_by('-created_at')[0:50].first()
+
+        if not query:
+            query = Bluerewards.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
-        if query_list:
-            for i in range(3):
-                query = random.choice(query_list)
-
-                if not query.channel_list:
-                    new_channel_list = [channel]
-                else:
-                    if channel in query.channel_list:
-                        continue
-                    new_channel_list = query.channel_list
-                    new_channel_list.append(channel)
-
-                if not query.network_list:
-                    new_network_list = [network]
-                else:
-                    if network in query.network_list:
-                        continue
-                    new_network_list = query.network_list
-                    new_network_list.append(network)
-
-                if not query.offer_id_list:
-                    new_offer_id_list = [offer_id]
-                else:
-                    if offer_id in query.offer_id_list:
-                        continue
-                    new_offer_id_list = query.offer_id_list
-                    new_offer_id_list.append(offer_id)
-
-                data = {
-                        'user_id':query.id,
-                }
-                if setUsed:
-                    query = BluerewardsV2.objects.filter(id=data.get('user_id')).update(
-                        used_at=timezone.now(),
-                        channel_list=new_channel_list,
-                        network_list=new_network_list,
-                        offer_id_list=new_offer_id_list,
-                        )
-                return Response({
-                    'body':data,
-                })
-
-        else:
-            channel = request.GET.get('channel', '')
-            network = request.GET.get('network', '')
-            offer_id = request.GET.get('offer_id', '')
-            setUsed = request.GET.get('set_used',True)
-            if setUsed and (setUsed == 'False' or setUsed == 'false'):
-                setUsed = False
-
-            query = BluerewardsV3.objects.filter(used_at=None, created_at__gte=str(date_)).order_by('-created_at')[0:50].first()
-            
-            data = {
-                    'user_id':query.id,
-                    'extra_details':query.extra_details, 
-            }
-            if setUsed:
-                query = BluerewardsV3.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
-            return Response({
-                'body':data,
-            })
-        
+        data = {
+                'user_id':query.id,
+                'extra_details':query.extra_details,
+                'name': query.name
+        }
+        if setUsed:
+            query = Bluerewards.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
-            'body':'error',
-            'message':'no id found'
+            'body':data,
         })
 
     def post(self, request):
-        query = BluerewardsV3.objects.order_by('-id').first()
+        query = Bluerewards.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
