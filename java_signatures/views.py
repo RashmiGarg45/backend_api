@@ -5,20 +5,18 @@ from subprocess import STDOUT, PIPE
 import sqlite3
 import random
 import execjs
-import datetime
 import time
 import requests
 import mysql.connector as mysql
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from collections import defaultdict
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.utils import timezone
 
 from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
 from django.db import connections
-
 
 def get_signtaure(request):
     data = json.loads(request.body)
@@ -47,7 +45,7 @@ def get_tatapalette_orders(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
-        current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        current_date = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
         cursor.execute('''SELECT COUNT(DISTINCT OrderId) FROM tatapalette_orderIds WHERE UsedAt LIKE "{}%" AND ShipmentStatus = "Shipment Delivered"'''.format(current_date))
         data = cursor.fetchall()
         ids_used = data[0][0]
@@ -59,7 +57,7 @@ def get_tatapalette_orders(request):
                 order_id = data[0][2]
 
                 if request_type != "test":
-                    used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
                     conn.commit()
             else:
@@ -70,7 +68,7 @@ def get_tatapalette_orders(request):
             order_id = data[0][1]
 
             if request_type != "test":
-                used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                 cursor.execute("UPDATE tatapalette_orderIds SET OrderId_Status=1, UsedAt='{}' WHERE OrderId='{}'".format(used_at, order_id))
                 conn.commit()
 
@@ -125,7 +123,7 @@ def add_install_count(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()
 
-        created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+        created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
         cursor.execute('''INSERT INTO check_event_count (created_at, campaign_name, channel, network, offer_id)
                         VALUES ('{}', '{}', '{}', '{}', '{}')'''.format(created_at, campaign_name, channel, network, offer_id))
         conn.commit()
@@ -218,7 +216,7 @@ def get_univest_orders(request):
         order_id = data[0][2]
 
         if request_type != "test":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE univest_orderIds SET status=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -287,7 +285,7 @@ def get_zalora_orders(request):
         data = cursor.fetchall()
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE zalora_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -308,7 +306,7 @@ def update_zalora_orderid_status(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor() 
 
-        used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+        used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
         cursor.execute("UPDATE zalora_orderIds SET isUsed=0, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
         conn.commit()
 
@@ -424,7 +422,7 @@ def get_samco_user_data(request):
         # data = cursor.fetchall()
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE samco_userIds SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -470,7 +468,7 @@ def get_flappdeals_orderId(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE flappdeals_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -510,7 +508,7 @@ def get_practo_orderId(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
-        current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        current_date = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM practo_orderIds WHERE used_at LIKE "{}%"'''.format(current_date))
         data = cursor.fetchall()
         ids_used = data[0][0]
@@ -522,7 +520,7 @@ def get_practo_orderId(request):
             data = {"order_id": order_id}
 
             if user_type == "server":
-                used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                 cursor.execute("UPDATE practo_orderIds SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
                 conn.commit()
         else:
@@ -564,7 +562,7 @@ def get_tamasha_userId(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
-        # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
+        # current_date = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y")
         cursor.execute('''SELECT COUNT(DISTINCT user_id) FROM tamasha_userIds''')
         data = cursor.fetchall()
         ids_used = data[0][0]
@@ -577,7 +575,7 @@ def get_tamasha_userId(request):
         data = {"user_id": user_id, "username": username}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE tamasha_userIds SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
         # else:
@@ -625,7 +623,7 @@ def get_cleartrip_id(request):
         data = {"trip_id": trip_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE cleartrip_Ids SET isUsed=1, used_at='{}' WHERE trip_id='{}'".format(used_at, trip_id))
             conn.commit()
 
@@ -672,7 +670,7 @@ def get_sololearn_userId(request):
         data = {"user_id": user_id, "subscription_type":subscription_type}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE sololearn_userIds SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -718,7 +716,7 @@ def get_petbook_orderId(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE petbook_Ids SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -764,7 +762,7 @@ def get_elelive_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE elelive_userIds SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -804,7 +802,7 @@ def get_ladygentleman_order(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
-        # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
+        # current_date = datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
         
         cursor.execute('''SELECT * FROM ladygentleman_orderData WHERE NOT isUsed=1 ORDER BY order_id ASC''')#AND order_date LIKE "{}" ORDER BY order_id ASC'''.format(current_date))
         data = cursor.fetchall()
@@ -812,7 +810,7 @@ def get_ladygentleman_order(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE ladygentleman_orderData SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -831,7 +829,7 @@ def get_ladygentleman_order_count(request):
     conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
     cursor = conn.cursor()    
     
-    # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
+    # current_date = datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
     cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM ladygentleman_orderData WHERE NOT isUsed=1''')#AND order_date LIKE "{}"'''.format(current_date))
     data = cursor.fetchall()
     count = data[0]   
@@ -853,7 +851,7 @@ def get_styli_order(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()  
 
-        # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
+        # current_date = datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
         
         cursor.execute('''SELECT * FROM stylishop_orderId WHERE NOT isUsed=1 ORDER BY order_id ASC''')#AND order_date LIKE "{}" ORDER BY order_id ASC'''.format(current_date))
         data = cursor.fetchall()
@@ -861,7 +859,7 @@ def get_styli_order(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE stylishop_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -880,7 +878,7 @@ def get_styli_order_count(request):
         conn = mysql.connect(host="rds-datapis.cd89nha3un9e.us-west-2.rds.amazonaws.com", user="team2backend", passwd="team2@backend", database="techteam")
         cursor = conn.cursor()    
         
-        # current_date = datetime.datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
+        # current_date = datetime.fromtimestamp(time.time()).strftime("%d.%m.%Y")
         cursor.execute('''SELECT COUNT(DISTINCT order_id) FROM stylishop_orderId WHERE NOT isUsed=1''')#AND order_date LIKE "{}"'''.format(current_date))
         data = cursor.fetchall()
         count = data[0]   
@@ -908,7 +906,7 @@ def get_pocket52_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE pocket52_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -955,7 +953,7 @@ def get_smytten_orderId(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE smytten_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -1002,7 +1000,7 @@ def get_lenskart_orderId(request):
         data = {"order_id": order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE lenskart_orderId SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -1048,7 +1046,7 @@ def get_myteam11_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE myteam11_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1094,7 +1092,7 @@ def get_gamezy_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE gamezypoker_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1141,7 +1139,7 @@ def get_galaxychat_userData(request):
         data = {"user_id": user_id, "username": user_name}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE galaxy_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1194,7 +1192,7 @@ def get_derma_orderData(request):
         data = {"order_id": order_id, "order_total": order_total, "order_date": order_date, "system_order_id": system_order_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE derma_user_data SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -1241,7 +1239,7 @@ def get_toonsutra_user_data(request):
         data = {"user_id": user_id, "extra_details": extra_details}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE toonsutra_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1287,7 +1285,7 @@ def get_sportbaazi_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE sportbaazi_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1333,7 +1331,7 @@ def get_privalia_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE privalia_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1379,7 +1377,7 @@ def get_rentomojo_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE rentmojo_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1425,7 +1423,7 @@ def get_muthoot_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE muthootfino_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1481,7 +1479,7 @@ def get_bottles_orderId(request):
         # data = cursor.fetchall()
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE bottles_order_data SET isUsed=1, used_at='{}' WHERE order_id='{}'".format(used_at, order_id))
             conn.commit()
 
@@ -1533,7 +1531,7 @@ def put_data(request):
 
             for user_id in data:
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO pocket52_userId (user_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
@@ -1548,7 +1546,7 @@ def put_data(request):
 
             for user_id in data:
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO muthootfino_userId (user_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
@@ -1563,7 +1561,7 @@ def put_data(request):
 
             for user_id in data:
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO sportbaazi_userId (user_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
@@ -1580,7 +1578,7 @@ def put_data(request):
                 user_id = d.get("user_id")
                 details = d.get("details")
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO toonsutra_user_data (user_id, extra_details, createdAt, isUsed)
                                         VALUES ('{}','{}', '{}', 0)'''.format(user_id , json.dumps(details),created_at ))
                     conn.commit()
@@ -1598,7 +1596,7 @@ def put_data(request):
                 order_total = d.get("order_total")
                 order_date = d.get("order_date")
                 if str(order_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO bottles_order_data (order_id, order_total, order_date, createdAt, isUsed)
                                         VALUES ('{}','{}','{}', '{}', 0)'''.format(order_id , order_total, order_date,created_at ))
                     conn.commit()
@@ -1613,7 +1611,7 @@ def put_data(request):
 
             for order_id in data:
                 if str(order_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO lenskart_orderId (order_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(order_id, created_at ))
                     conn.commit()
@@ -1633,7 +1631,7 @@ def put_data(request):
                 system_order_id = d.get("system_order_id")
                 AWB = d.get("AWB")
                 if str(order_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO derma_user_data (order_id, order_total, order_date, system_order_id, createdAt, isUsed, AWB)
                               VALUES ('{}', '{}', '{}', '{}','{}', 0, '{}')'''.format(order_id, order_total, order_date, system_order_id ,created_at , AWB))
                     conn.commit()
@@ -1648,7 +1646,7 @@ def put_data(request):
 
             for user_id in data:
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO flappdeals_orderIds (created_at, isUsed, order_id)
                                                      VALUES ('{}',0, '{}')'''.format(created_at, json.dumps(user_id)))
                     conn.commit()
@@ -1667,7 +1665,7 @@ def put_data(request):
                 os_type = d.get("os_type")
                 user_details = d.get("user_details")
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO finimizeios_user_data (createdAt, isUsed, user_id,extra_details,subs_type,os_type)
                                                                      VALUES ('{}',0,'{}','{}','{}','{}')'''.format(created_at,user_id,json.dumps(user_details),subs_type,os_type))
                     conn.commit()
@@ -1682,7 +1680,7 @@ def put_data(request):
 
             for user_id in data:
                 if str(user_id) not in already_present_user_ids:
-                    created_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+                    created_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
                     cursor.execute('''INSERT INTO tajrummey_userId (user_id, created_at, isUsed)
                                         VALUES ('{}','{}', 0)'''.format(user_id ,created_at ))
                     conn.commit()
@@ -1703,7 +1701,7 @@ def get_event_info(request):
     channel = request.GET.get('channel')
     network = request.GET.get('network')
     offer_id = request.GET.get('offer_id')
-    date_ = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+    date_ = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
     event_name = request.GET.get('event_name')
 
     try:
@@ -1779,7 +1777,7 @@ def get_finimize_userData(request):
         data = {"user_id": user_id, "extra_details": extra_details, "subs_type": subs_type}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE finimizeios_user_data SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1825,7 +1823,7 @@ def get_tajrummy_userId(request):
         data = {"user_id": user_id}
 
         if user_type == "server":
-            used_at = datetime.datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
+            used_at = datetime.fromtimestamp(time.time()).strftime("%d-%m-%Y %H:%M:%S:%f")[:-3]
             cursor.execute("UPDATE tajrummey_userId SET isUsed=1, used_at='{}' WHERE user_id='{}'".format(used_at, user_id))
             conn.commit()
 
@@ -1922,13 +1920,13 @@ class TrackInstalls(APIView):
                 import pytz
                 print (required_timezone)
                 tz = pytz.timezone(required_timezone)
-                date = datetime.datetime.now(tz).date()
+                date = datetime.now(tz).date()
                 print ("kfc", date)
             except Exception as e:
                 print (e)
-                date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+                date = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         else:
-            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")       
+            date = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")       
 
 
         if not all([campaign_name, channel, network, offer_id]):
@@ -1966,13 +1964,13 @@ class TrackEvents(APIView):
                 import pytz
                 print (required_timezone)
                 tz = pytz.timezone(required_timezone)
-                date = datetime.datetime.now(tz).date()
+                date = datetime.now(tz).date()
                 print ("kfc", date)
             except Exception as e:
                 print (e)
-                date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+                date = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         else:
-            date = datetime.datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
+            date = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d")
         
         # if required_timezone: 
         #     offer_serial = InstallDataTZ(offer_serial)
@@ -3307,12 +3305,6 @@ class checkEligibility(APIView):
         if not campaign_name in ["bigloanmodd"] and event_day>7:
             return Response({"status": 400, "message": "Max day allowed is 7", "data": {}})
 
-        # if required_timezone:
-        #     try:
-        #         install_details = InstallDataTZ.objects.get(serial=offer_serial)
-        #     except InstallDataTZ.DoesNotExist:
-        #         return Response({"status": 404,"message": "Install record not found for given serial","data": {}})
-        # else:
         try:
             install_details = InstallData.objects.get(serial=offer_serial)
         except InstallData.DoesNotExist:
@@ -3350,10 +3342,6 @@ class checkEligibility(APIView):
         is_eligible = False
 
         if install_count > required_installs:
-            # if required_timezone:
-            #     event_details = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
-            # else:
-
             event_details = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name, event_day__lte=event_day).values("event_count")
 
             total_event_count = sum((event['event_count'] for event in event_details))
@@ -3362,11 +3350,7 @@ class checkEligibility(APIView):
             is_eligible = total_event_count < required_event_count
 
             if required_events:
-                from datetime import datetime
                 today = datetime.now().strftime('%Y-%m-%d')
-                # if required_timezone:
-                #     completed_event_count = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
-                # else:
                 completed_event_count = EventInfo.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
                 completed_event_count = sum((event['event_count'] for event in completed_event_count))
 
@@ -3375,23 +3359,15 @@ class checkEligibility(APIView):
 
             if campaign_name == "underarmourauto":
 
-                from datetime import datetime
                 today = datetime.now().strftime('%Y-%m-%d')
 
                 revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
-                total_revenue = sum((event['revenue'] for event in revenue_details)) 
-
-                print (total_revenue)     
-                print (int(revenue))        
+                total_revenue = sum((event['revenue'] for event in revenue_details))    
 
                 if total_revenue + int(revenue) >= 33000:
                     is_eligible = False 
             
             if is_eligible and not track_only:
-                # if required_timezone:
-                #     event_details, created = EventInfoTZ.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
-
-                # else:
                 event_details, created = EventInfo.objects.get_or_create(campaign_name=campaign_name,offer_serial=install_details,event_name=event_name,event_day=event_day,defaults={"event_count": 1, "revenue": revenue})
 
                 if not created:
@@ -3473,7 +3449,6 @@ class EventCount(APIView):
             # is_eligible = total_event_count < required_event_count
 
             if required_events:
-                from datetime import datetime
                 today = datetime.now().strftime('%Y-%m-%d')
                 # if required_timezone:
                 #     completed_event_count = EventInfoTZ.objects.filter(offer_serial=offer_serial, event_name=event_name + "_done", created_at__gte=str(today)).values("event_count")
@@ -3603,7 +3578,6 @@ class Compare_event_stats(APIView):
         event_name_2 = request.GET.get("event_name_2")        
         event_day = request.GET.get("event_day")
 
-        from datetime import datetime
         created_at = datetime.now().strftime('%Y-%m-%d')
 
         output_data = {}
