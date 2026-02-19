@@ -3384,7 +3384,7 @@ class checkEligibility(APIView):
                 print (total_revenue)     
                 print (int(revenue))        
 
-                if total_revenue + int(revenue) >= 27000:
+                if total_revenue + int(revenue) >= 33000:
                     is_eligible = False 
             
             if is_eligible and not track_only:
