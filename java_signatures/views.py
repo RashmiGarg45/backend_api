@@ -2006,8 +2006,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "williamhillsportiosmodd" and offer_id in ["ahwilkspmmp", "test"] and event_name =="FTD":
         return 1
 
-    elif campaign_name == "playuzuiosmodd" and event_name == "userFirstTimeDeposit":
-        return {0:78, 1:45}
+
 
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0):
@@ -3277,6 +3276,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:15, 1:9, 2:6.9, 3: 6, 4: 5.62}
 
         # return {0:9, 1:6.9, 2:6.9, 3: 6, 4: 5.62}
+
+    elif campaign_name == "playuzuiosmodd" and event_name == "userFirstTimeDeposit":
+        return {0:78, 1:45}
         
 class checkEligibility(APIView):
     def get(self, request):
