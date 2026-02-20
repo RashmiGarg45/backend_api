@@ -3356,7 +3356,7 @@ class checkEligibility(APIView):
                 revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
                 total_revenue = sum((event['revenue'] for event in revenue_details))    
 
-                if total_revenue + int(revenue) >= 33000:
+                if total_revenue + int(revenue) >= 34000:
                     is_eligible = False 
             
             if is_eligible and not track_only:
