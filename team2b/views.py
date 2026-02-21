@@ -10401,7 +10401,10 @@ class LotterMXAPI(APIView):
         if setUsed and (setUsed == 'False' or setUsed == 'false'):
             setUsed = False
 
-        query = LotterMX.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        query = LotterMX.objects.filter(used_at=None, source = "TheLotterMX", IsFullyRegistered = "Registered", IsCompleted = "Completed").order_by('-created_at')[0:50].first()
+
+        if not query:
+            query = LotterMX.objects.filter(used_at=None, source = "TheLotterMX", IsFullyRegistered = "Registered", IsCompleted = "Not Completed").order_by('-created_at')[0:50].first()
         
         data = {
                 'user_id':query.id,
