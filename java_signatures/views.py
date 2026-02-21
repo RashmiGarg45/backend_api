@@ -2004,7 +2004,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
         return 3
     
     elif campaign_name == "williamhillsportiosmodd" and offer_id in ["ahwilkspmmp", "test"] and event_name =="FTD":
-        return 1
+        return 15
 
 
 
