@@ -3197,7 +3197,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "shionauto" and event_name == "10000_revenue":
         from datetime import datetime
         today = datetime.now().weekday()
-        if today in [0,4]:
+        if today in [1,3]:
             return {0:37}
 
     elif campaign_name == "bajajfinauto" and event_name == "Lead_PROL_DR":
