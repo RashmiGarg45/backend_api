@@ -3199,6 +3199,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         today = datetime.now().weekday()
         if today in [1,3]:
             return {0:37}
+        
+    elif campaign_name == "tiletripmodd" and event_name == "grt_90d_levelpass_1000_v162":
+        from datetime import datetime
+        today = datetime.now().weekday()
+        if today in [5]:
+            return {0:40}
 
     elif campaign_name == "bajajfinauto" and event_name == "Lead_PROL_DR":
         return {0:49, 1:24, 2:19}
