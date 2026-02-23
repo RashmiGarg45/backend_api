@@ -2794,7 +2794,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "underarmourauto" and event_name == '5uo13w':
 
         if offer_id in ["undapcmmp", "test"]:
-            return {0:8.5}
+            return {0:5}
         
         return {0:15, 1:9, 2:6.42, 3:5.62}
 
@@ -3376,7 +3376,7 @@ class checkEligibility(APIView):
                 revenue_details = EventInfo.objects.filter(event_name=event_name, created_at__gte=str(today)).values("revenue")
                 total_revenue = sum((event['revenue'] for event in revenue_details))    
 
-                if total_revenue + int(revenue) >= 36000:
+                if total_revenue + int(revenue) >= 36500:
                     is_eligible = False 
             
             if is_eligible and not track_only:
