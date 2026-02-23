@@ -1997,7 +1997,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "netshoesmodd" and offer_id in ["dope-netshoes-251030"]:
         return 1
     
-    elif campaign_name == "williamhillsportiosmodd" and offer_id in ["apps-whsports.ios"]:
+    elif campaign_name == "williamhillsportiosmodd" and offer_id in ["apps-whsports.ios", "wiladummp"]:
         return 1
     
     elif campaign_name == "lottermxiosmodd"  and channel in ["mobpine", "77ads", "appamplify"]:
@@ -2834,6 +2834,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         elif offer_id in ["ahwilkspmmp", "test"]:
             return {0:8}
+        
+        elif offer_id in ["wiladummp"]:
+            return {0:10}
 
         return {0:30, 1:22.5, 2:18}
 
