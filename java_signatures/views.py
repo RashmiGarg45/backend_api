@@ -3293,7 +3293,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:2, 1:1.6, 2: 1.5, 3:1.49}
 
     elif campaign_name == "sofyclubauto" and event_name == "2hekaz":
-        return {0:5, 1:3.8, 2: 3.3, 3:2.9, 4: 2.63, 5: 2.5}
+        return {0:4.3, 1:3.4, 2: 3.03, 3:2.7, 4: 2.5, 5: 2.32}
     
     elif campaign_name == "viusaiosmodd" and event_name == "subscription_payment_success":
         return {0:24, 1:15, 2: 12.8, 3: 11.8}
