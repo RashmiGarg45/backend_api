@@ -2009,7 +2009,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
 
 
 
-def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0):
+def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0, event_day=0):
     if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
         return {0: 41, 1:24, 2:19, 3:16.6}
 
@@ -3253,7 +3253,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "darknessmodd" and event_name == "revenue_5":
 
-        if random.randint(1,100)<=20:
+        if random.randint(1,100)<=20 and event_day == 1:
             return {1: 17}
         return {1:50}
 
@@ -3335,7 +3335,7 @@ class checkEligibility(APIView):
             return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
 
         
-        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out)
+        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out, event_day)
 
         if not day_wise_stats:
             return Response({"status": 400, "message": "Requirements not found", "data": {}})
@@ -3436,7 +3436,7 @@ class EventCount(APIView):
             return Response({"status": 400, "message": "Camapaign Name and offer serial mismatched", "data": {}})
 
         
-        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id)
+        day_wise_stats = camp_wise_stats(campaign_name, event_name, channel, network, offer_id, event_day)
 
         if not day_wise_stats:
             return Response({"status": 400, "message": "Requirements not found", "data": {}})
