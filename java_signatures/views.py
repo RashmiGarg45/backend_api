@@ -3297,6 +3297,15 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     
     elif campaign_name == "viusaiosmodd" and event_name == "subscription_payment_success":
         return {0:24, 1:15, 2: 12.8, 3: 11.8}
+
+    elif campaign_name == "techcombankmodd" and event_name == "OnO_Success":
+        if offer_id.isdecimal():
+            return {0:5}
+        
+        return {0:19, 1: 11, 2:9, 3: 7.1}
+    
+    elif campaign_name == "wirexiosauto" and event_name == "s2s_first_transaction":
+        return {0: 40, 1: 30}
         
 class checkEligibility(APIView):
     def get(self, request):
