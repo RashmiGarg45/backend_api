@@ -3253,7 +3253,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "darknessmodd" and event_name == "revenue_5":
 
-        if random.randint(1,100)<=20 and event_day == 1:
+        if random.randint(1,100)<=5 and event_day == 1:
             return {1: 17}
         return {1:50}
 
