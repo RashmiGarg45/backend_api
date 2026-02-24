@@ -2863,7 +2863,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {0:13}
         
         elif offer_id in ["williamhill-mpjads-jan"]:
-            return {0:8}
+            return {0:8.5}
 
         elif offer_id in ["wh2casdgmmp"]:
             return {0:67}
