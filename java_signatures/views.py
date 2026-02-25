@@ -2837,6 +2837,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         elif offer_id in ["wiladummp"]:
             return {0:10}
+    
+        elif offer_id in ["wammobmmp"]:
+            return {0:22}
 
         return {0:30, 1:22.5, 2:18}
 
