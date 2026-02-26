@@ -3212,6 +3212,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if today in [6, 2]:
             return {0:40}
 
+    elif campaign_name == "paymayamodd" and event_name == "EKYC_SUCCESS":
+        return {0:30, 1:9, 2:5.62, 3: 4.2, 4: 3.9}
+
+    elif campaign_name == "paymayamodd" and event_name == "WALLET_DEBIT_ACTIVE":
+            return {0:45, 1:30, 2:12.85, 3: 9, 4: 6.9, 5: 5.628}
+
     elif campaign_name == "bajajfinauto" and event_name == "Lead_PROL_DR":
         return {0:49, 1:24, 2:19}
     
