@@ -2164,7 +2164,11 @@ class IndigoV3MiningAPI(APIView):
         query.extra_details=request.data.get('extra_details',{})
         query.flight_type = request.data.get('flight_type','Domestic')
         query.used_at = None
-        query.save()
+
+        try:
+            query.save()
+        except:
+            pass
         return Response({
         })
 
