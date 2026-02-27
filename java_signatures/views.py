@@ -1924,6 +1924,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "bet22modd" and event_name == "first_deposit":
         return {0:95, 1:30, 2:22.5, 3: 18}
+    
+    elif campaign_name == "beetlessolitairemodd" and event_name == "revenue_1":
+        return {1 : 40}
+
+    elif campaign_name == "beetlessolitairemodd" and event_name == "revenue_6":
+        return {0: 11, 1:7, 2: 5, 3: 4, 4: 12.5}
+
         
 class checkEligibility(APIView):
     def get(self, request):
@@ -2147,71 +2154,6 @@ class camps_running_status(APIView):
 
         return to_dict(result)
 
-class Running_camps_stats(APIView):
-    def get(self, request):
-        campaign_name = request.GET.get('campaign_name')
-        event_name = request.GET.get("event_name")
-        from_date = request.GET.get("from_date")
-        to_date = request.GET.get("to_date")
-        channel = request.GET.get("channel")
-        network = request.GET.get("network")
-        offer_id = request.GET.get("offer_id")
-
-        if not from_date:
-            today = timezone.now().date()
-            from_date = today - timedelta(days=6)
-        
-        if not to_date:
-            to_date = timezone.now().date()
-
-        output_data = {}
-
-        filter_dict = {}
-        if channel:
-            filter_dict["channel"] = channel
-        if network:
-            filter_dict["network"] = network
-        if offer_id:
-            filter_dict["offer_id"] = offer_id
-        if campaign_name:
-            filter_dict["campaign_name"] = campaign_name
-
-        ev_filter_dict = {}
-        if event_name:
-            ev_filter_dict["event_name"] = event_name
-
-        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
-
-
-        for row in installs:
-            camp_name = row["campaign_name"]
-            if camp_name not in output_data:
-                output_data[camp_name] = {}
-            offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
-            date_key = row["created_at"].isoformat()
-
-            if offer_key not in output_data[camp_name]:
-                output_data[camp_name][offer_key] = {}
-
-            if date_key not in output_data[camp_name][offer_key]:
-                output_data[camp_name][offer_key][date_key] = {}
-
-            events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
-            event_data = {}
-            if events:
-                for event in events:
-                    event_name = event["event_name"]
-                    event_day = str(event["event_day"])
-
-                    if event_name not in event_data:
-                        event_data[event_name] = {}
-
-                    event_data[event_name][event_day]= event["event_count"]
-
-            output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
-
-        return Response({"status": 200, "message": "Success", "data": output_data})
-
 
 class Compare_event_stats(APIView):
     def get(self, request):
@@ -2406,3 +2348,73 @@ def send_to_server_health_report(_msg):
 
     except Exception as e:
         print("❌ Google Chat webhook failed:", str(e))
+
+
+class Running_camps_stats(APIView):
+    def get(self, request):
+        campaign_name = request.GET.get('campaign_name')
+        event_name = request.GET.get("event_name")
+        from_date = request.GET.get("from_date")
+        to_date = request.GET.get("to_date")
+        channel = request.GET.get("channel")
+        network = request.GET.get("network")
+        offer_id = request.GET.get("offer_id")
+
+        if not from_date:
+            today = timezone.now().date()
+            from_date = today - timedelta(days=6)
+        
+        if not to_date:
+            to_date = timezone.now().date()
+
+        output_data = {}
+
+        filter_dict = {}
+        if channel:
+            filter_dict["channel"] = channel
+        if network:
+            filter_dict["network"] = network
+        if offer_id:
+            filter_dict["offer_id"] = offer_id
+        if campaign_name:
+            filter_dict["campaign_name"] = campaign_name
+
+        ev_filter_dict = {}
+        if event_name:
+            ev_filter_dict["event_name"] = event_name
+
+        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
+
+
+        for row in installs:
+            camp_name = row["campaign_name"]
+            if camp_name not in output_data:
+                output_data[camp_name] = {}
+            offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
+            date_key = row["created_at"].isoformat()
+
+            if offer_key not in output_data[camp_name]:
+                output_data[camp_name][offer_key] = {}
+
+            if date_key not in output_data[camp_name][offer_key]:
+                output_data[camp_name][offer_key][date_key] = {}
+
+            events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
+            event_data = {}
+            if events:
+                for event in events:
+                    event_name = event["event_name"]
+                    event_day = str(event["event_day"])
+
+                    if event_name not in event_data:
+                        event_data[event_name] = {}
+
+                    event_data[event_name][event_day]= event["event_count"]
+
+            output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
+
+        return Response({"status": 200, "message": "Success", "data": output_data})
+    
+
+    # def post(self, request):
+    #     EventInfo.objects.filter()
