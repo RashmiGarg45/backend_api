@@ -1397,7 +1397,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "mexdinmodd" and event_name == 'first_loan_success':
         return {0:90, 1:30, 2:18, 3:15}
 
-    elif campaign_name == "underarmourauto" and event_name == '5uo13w' and event_day <= 1:
+    elif campaign_name == "underarmourauto" and event_name == '5uo13w' and event_day ==0:
 
         if offer_id in ["undapcmmp", "test"]:
             return {0:5}
