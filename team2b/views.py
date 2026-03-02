@@ -10511,6 +10511,7 @@ class PizzahutMYAPI(APIView):
         data = {
                 'order_id':query.id,
                 'extra_details':query.extra_details,
+                'order_type': query.order_type
         }
         if setUsed:
             query = PizzahutMY.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
