@@ -10522,5 +10522,5 @@ class PizzahutMYAPI(APIView):
         query = PizzahutMY.objects.order_by('-mapping_id').first()
 
         return Response({
-            'id':query.id,
+            'id':query.mapping_id,
         })
