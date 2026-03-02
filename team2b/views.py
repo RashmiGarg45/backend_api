@@ -10485,6 +10485,7 @@ class PizzahutMYAPI(APIView):
         query = PizzahutMY()
         query.campaign_name = request.data.get('camp_name','pizzahutmyauto')
         query.id = request.data.get('user_id')
+        query.mapping_id = request.data.get('mapping_id')
         query.name = request.data.get('name')
         query.order_type = request.data.get('order_type','')
         query.lat = request.data.get('lat','')
