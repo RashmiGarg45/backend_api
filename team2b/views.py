@@ -10509,17 +10509,17 @@ class PizzahutMYAPI(APIView):
         query = PizzahutMY.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
         
         data = {
-                'user_id':query.id,
+                'order_id':query.id,
                 'extra_details':query.extra_details,
         }
         if setUsed:
-            query = PizzahutMY.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
+            query = PizzahutMY.objects.filter(id=data.get('order_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
         return Response({
             'body':data,
         })
     
     def post(self, request):
-        query = PizzahutMY.objects.order_by('-id').first()
+        query = PizzahutMY.objects.order_by('-mapping_id').first()
 
         return Response({
             'id':query.id,
