@@ -1730,6 +1730,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "moneyviewmodd" and event_name == "submit_success":
         return {0:30, 1: 19, 2: 16, 3:14}
 
+    elif campaign_name == "moneyviewmodd" and event_name == "upi_first_payment":
+        return {0:30, 1: 18, 2: 13.5}
+
     elif campaign_name == "viuhkmodd" and event_name == "subscription_payment_success":
         return {0:30, 1:24 , 2: 19}
 
@@ -1800,7 +1803,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "shionauto" and event_name == "10000_revenue":
         from datetime import datetime
         today = datetime.now().weekday()
-        if today in [5,3]:
+        if today in [0,3]:
             return {0:37}    
     
     elif campaign_name == "paymayamodd" and event_name == "EKYC_SUCCESS":
