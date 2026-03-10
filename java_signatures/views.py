@@ -824,11 +824,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
     elif campaign_name == "onmobileauto" and event_name == "jr95xb":
         # return {0:1.81, 1:1.56, 2:1.42, 3:1.33}
-        return {0:1.33, 1:1.17, 2:1.11}
+        return {0:1.33, 1:1.17, 2:1.06}
 
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb":
         # return {0:1.81, 1:1.56, 2:1.42, 3:1.33}
-        return {0:1.13, 1:1.11}
+        return {0:1.13, 1:1.06}
     
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
 
