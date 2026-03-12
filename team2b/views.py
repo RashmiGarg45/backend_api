@@ -9937,6 +9937,7 @@ class RevenueHelperStats(APIView):
         campaign_name = request.GET.get('campaign_name')
         date_ = request.GET.get('date_')
         event_name = request.GET.get('event_name')
+        network_details = request.GET.get('network_details', True)
 
         data = list(
             RevenueHelper.objects.filter(
@@ -9971,6 +9972,9 @@ class RevenueHelperStats(APIView):
             if event_name in ["organic", "non-organic", "non_organic"]:
 
                 combination = str(OS) +"::" + str(Brand)+"::" + str(model)+"::" + str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+
+                if not network_details:
+                    combination = str(OS) +"::" + str(Brand)+"::" + str(model)
 
                 if campaign_name.endswith("iosmodd"):
                     combination = str(model) + "::" + str(OS)
