@@ -925,6 +925,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {2:41, 4:33, 6:25}
     
     elif campaign_name == "caesarscasinoiosmodd" and event_name == "mb_deposit.first_time_deposit":
+
+        if offer_id in ["csraiviosvammp"]:
+            return {0:25}
+        
         return {0:55, 1: 50}
     
     elif campaign_name == "mullerauto" and event_name == "x2mrfw":
