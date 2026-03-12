@@ -9973,7 +9973,7 @@ class RevenueHelperStats(APIView):
 
                 combination = str(OS) +"::" + str(Brand)+"::" + str(model)+"::" + str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
 
-                if not network_details:
+                if network_details == "false":
                     combination = str(OS) +"::" + str(Brand)+"::" + str(model)
 
                 if campaign_name.endswith("iosmodd"):
