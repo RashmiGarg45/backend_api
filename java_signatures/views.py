@@ -1947,6 +1947,30 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "playmillionmodd" and event_name == "FTD":
         return {0:75, 1:30}
 
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_2":
+        return {1 : 80}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_5":
+        return {0 : 45}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_8":
+        return {3 : 81, 6: 41}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_10":
+        return {0 : 44}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_11":
+        return {2 : 82}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_16":
+        return {2 : 79, 3: 43}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_25":
+        return {1 : 78, 7: 46}
+
+    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_30":
+        return {5 : 75}
+
         
 class checkEligibility(APIView):
     def get(self, request):
