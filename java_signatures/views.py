@@ -1738,7 +1738,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:30, 1: 19, 2: 16, 3:14}
 
     elif campaign_name == "moneyviewmodd" and event_name == "upi_first_payment":
-        return {0:10.8, 1: 7.14, 2: 5.55, 3: 4.9}
+        return {0:8.3, 1: 5.55, 2: 4.3, 3: 4}
 
     elif campaign_name == "viuhkmodd" and event_name == "subscription_payment_success":
         return {0:30, 1:24 , 2: 19}
