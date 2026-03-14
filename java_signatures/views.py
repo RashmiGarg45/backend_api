@@ -1735,6 +1735,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:89, 1: 30, 2: 18, 3:15}
 
     elif campaign_name == "moneyviewmodd" and event_name == "submit_success":
+
+        if channel in ["mobpine", "77ads", "appamplify"]:
+            return {0:45, 1: 25, 2: 19}
+        
         return {0:30, 1: 19, 2: 16, 3:14}
 
     elif campaign_name == "moneyviewmodd" and event_name == "upi_first_payment":
