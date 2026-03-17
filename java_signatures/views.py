@@ -1760,7 +1760,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:90, 1:45}
 
     elif campaign_name == "yandexrealestateiosmodd" and event_name == "first_call_posle-paid_s2s":
-        return {0:80, 1:30}
+        return {0:75, 1:41}
 
     elif campaign_name == "popaimodd" and event_name == "onPurchasesUpdated":
         return {0:90, 1:45, 2:30}
