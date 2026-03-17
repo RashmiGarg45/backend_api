@@ -10573,7 +10573,7 @@ class FibeUIDAPI(APIView):
     def put(self, request):
         query = FibeUID()
         query.campaign_name = request.data.get('camp_name','fibeiosmodd')
-        query.id = request.data.get('order_id')
+        query.id = request.data.get('user_id')
         query.used_at = None
         query.save()
         return Response({
