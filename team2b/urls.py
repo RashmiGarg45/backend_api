@@ -250,4 +250,5 @@ urlpatterns = [
     path("lotterus", views.LotterUSAPI.as_view(), name="cru_lotterus"),
     path("pizzahutmy", views.PizzahutMYAPI.as_view(), name="cru_pizzahut"),
     path("apnatimenumber", views.ApnatimeNumberAPI.as_view(), name="apnatime"),
+    path("fibe", views.FibeUIDAPI.as_view(), name="fibe"),
 ]
