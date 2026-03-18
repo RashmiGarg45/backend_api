@@ -1988,7 +1988,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:6}
 
     elif campaign_name == "nelopayiosauto" and event_name == "INFLECTION_UNDERWRITING":  
-        return {0:40, 1: 22, 2:18}
+        return {0:22, 1: 13, 2:10.5, 3: 9.4}
 
         
 class checkEligibility(APIView):
