@@ -1999,6 +1999,9 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "rakutentmodd" and event_name == "af_purchase":
         return {0:10}
 
+    elif campaign_name == "moneycatiosmodd" and event_name == "NEW_LOAN":  
+        return {1: 45, 2:22.5, 3: 18.3}
+
         
 class checkEligibility(APIView):
     def get(self, request):
