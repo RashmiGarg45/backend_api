@@ -1986,7 +1986,16 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "fibeiosmodd" and event_name == "disbursement":
         return {0:95, 1:47, 2:31.6, 3: 23}
 
+    elif campaign_name == "tokiiosmodd" and event_name == "af_complete_registration":  
+
+        if channel in  ["mobpine", "77ads", "appamplify"]:
+            return {0:45, 1: 23.75}
+        
+        return {0:1.7 , 1:1.58, 2:1.53, 3: 1.48 }
+
     elif campaign_name == "tokiiosmodd" and event_name == "user_subscription_validated":  
+        if channel in  ["mobpine", "77ads", "appamplify"]:
+            return {0:90, 1: 45}
         return {0:23, 1: 12, 2:10.5, 3:9.5}
 
     elif campaign_name == "caroutmodd" and event_name == "in_app_purchase":
