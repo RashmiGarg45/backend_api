@@ -933,7 +933,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     
     elif campaign_name == "caesarscasinoiosmodd" and event_name == "mb_deposit.first_time_deposit":
 
-        if channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
+        if offer_id in ["caednommp"]:
+            return {0: 15}
+
+        elif channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
             return {0:20}
         
         return {0:55, 1: 50}
