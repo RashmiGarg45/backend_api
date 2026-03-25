@@ -251,4 +251,5 @@ urlpatterns = [
     path("pizzahutmy", views.PizzahutMYAPI.as_view(), name="cru_pizzahut"),
     path("apnatimenumber", views.ApnatimeNumberAPI.as_view(), name="apnatime"),
     path("fibe", views.FibeUIDAPI.as_view(), name="fibe"),
+    path("yango", views.YangoUIDAPI.as_view(), name="yango"),
 ]
