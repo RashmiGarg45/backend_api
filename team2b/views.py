@@ -10139,6 +10139,7 @@ class LatestIdAPI(APIView):
             query = LatestIDs()
             query.campaign_name = request.GET.get("campaign_name")
             query.id = request.GET.get("id")
+            query.extra_details = request.GET.get("extra_details")
             # query.used_at = None
             query.save()
             return Response({"status": "success"})
