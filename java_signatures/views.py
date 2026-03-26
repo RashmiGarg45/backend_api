@@ -2031,7 +2031,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0: 95, 1:47.5, 2: 31.6}
 
     elif campaign_name == "betparxiosmodd" and event_name == "af_first_deposit":  
-        return {0: 95, 1:47}
+        return {0: 200, 1:47}
 
     elif campaign_name == "yangoplayiosmodd" and event_name == "auth.succeed":
         return {0:10, 1:8.33, 2:6.67}
