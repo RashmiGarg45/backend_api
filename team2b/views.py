@@ -7347,6 +7347,15 @@ class GalaxyChatCountryAPI(APIView):
             'message':'no id found'
         })
 
+    def post(self, request):
+        pattern = request.GET.get('pattern',True)
+
+        query = GalaxyChatCountry.objects.filter(id__startswith=pattern).order_by('-id').first()
+
+        return Response({
+            'id':query.id,
+        })
+
 
 class GalaxyChatRUAPI(APIView):
 
