@@ -7350,6 +7350,8 @@ class GalaxyChatCountryAPI(APIView):
     def post(self, request):
         pattern = request.GET.get('pattern',True)
 
+        print (pattern)
+
         query = GalaxyChatCountry.objects.filter(id__startswith=pattern).order_by('-id').first()
 
         return Response({
