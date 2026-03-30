@@ -2067,6 +2067,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "yourloanmodd" and event_name == "loan_accepted":
         return {0: 95,1:31, 2: 19, 3: 16.5}
 
+    elif campaign_name == "techcombankiosmodd" and event_name == "OnO_account_Success":
+        if offer_id.isdecimal():
+            return {0:5}
+        
+        return {0:19, 1: 11, 2:9, 3: 7.1}
+
         
 class checkEligibility(APIView):
     def get(self, request):
