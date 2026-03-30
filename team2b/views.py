@@ -10074,7 +10074,7 @@ class Indian_emailIdsAPI(APIView):
 
                 data = {
                         'user_id':query.id,
-                        'extra_details':query.extra_details, 
+                        # 'extra_details':query.extra_details, 
                 }
                 if setUsed:
                     query = Indian_emailIds.objects.filter(id=data.get('user_id')).update(
