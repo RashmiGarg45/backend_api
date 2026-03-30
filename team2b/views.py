@@ -9686,7 +9686,7 @@ class Spinny_OIDAPI(APIView):
     def post(self, request):
 
         today = datetime.now().strftime('%Y-%m-%d')
-        query = Spinny_OID.objects.filter(created_at__gte=str(today)).order_by('id').first()
+        query = Spinny_OID.objects.order_by('-id').first()
 
         return Response({
             'id':query.id,
