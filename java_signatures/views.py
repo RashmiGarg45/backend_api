@@ -1257,6 +1257,10 @@ def get_stats(campaign_name):
             "portabilidad_nomina-app_approved": {
                 "adshustle::myfunadstrack::bbvamyfmmp": {1:80},
                 "*::*::*": {0:40, 1:26, 2:20, 3:18}
+            },
+            "afiliacion_basica-app_online_purchases": {
+                "adshustle::myfunadstrack::bbvamyfmmp": {0:95, 1:48},
+                "*::*::*": {0:48, 1:19, 2:14}
             }
         },
 
@@ -1503,13 +1507,6 @@ def get_stats(campaign_name):
             "fitting_events": {
                 "*::*::myiosappmmp": {0:12.5, 1:10, 2:7.14},
                 "*::*::*": {0:5.8, 1:5.26, 2:4.76}
-            }
-        },
-
-        "bbvamodd": {
-            "afiliacion_basica-app_online_purchases": {
-                "adshustle::myfunadstrack::bbvamyfmmp": {0:95, 1:48},
-                "*::*::*": {0:48, 1:19, 2:14}
             }
         },
 
