@@ -2574,7 +2574,7 @@ class DB_event_randomness(APIView):
 
         campaign_stats = get_stats(campaign_name)
         if not campaign_stats:
-            return {}
+            return Response({})
         
         result = {}
 
