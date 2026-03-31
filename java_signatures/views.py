@@ -1835,6 +1835,8 @@ def get_stats(campaign_name):
 
     }
 
+    return STATS.get(campaign_name, {})
+
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0, event_day=0):
 
     if campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
@@ -1883,9 +1885,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {0:2.5, 1:2.5}
         else:
             return  {0:12.5, 1:10} 
-
-    
-    
 
     elif campaign_name == "kfcsaudiiauto" and event_name == "cq4kxg":
         if offer_id.isdecimal():
