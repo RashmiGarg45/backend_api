@@ -2069,7 +2069,11 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
                 print (key)
                 return event_data[key]
 
-        
+    else:
+        print ("*"*50)
+        print (campaign_name, event_name)
+        print ("*"*50)
+    
 class checkEligibility(APIView):
     def get(self, request):
         campaign_name = request.GET.get('campaign_name')
