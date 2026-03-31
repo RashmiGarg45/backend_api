@@ -2572,3 +2572,37 @@ class DB_event_randomness(APIView):
         offer_id = request.GET.get("offer_id")
 
 
+        campaign_stats = get_stats(campaign_name)
+        if not campaign_stats:
+            return {}
+        
+        result = {}
+
+        for event_name, event_data in campaign_stats.items():
+
+            if all(isinstance(v, (int, float)) for v in event_data.values()):
+                result[event_name] = event_data
+                continue
+
+            keys_to_try = [
+                f"{channel}::{network}::{offer_id}",
+                f"{channel}::{network}::*",
+                f"{channel}::*::{offer_id}",
+                f"*::{network}::{offer_id}",
+                f"{channel}::*::*",
+                f"*::*::{offer_id}",
+                f"*::{network}::*",
+                "*::*::*"
+            ]
+
+            for key in keys_to_try:
+                if key in event_data:
+                    result[event_name] = event_data[key]
+                    break
+            else:
+                result[event_name] = list(event_data.values())[0]
+
+        return Response(result)
+
+
+
