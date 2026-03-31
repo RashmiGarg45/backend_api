@@ -2052,22 +2052,22 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if all(isinstance(v, (int, float)) for v in event_data.values()):
             return event_data
 
-    keys_to_try = [
-        f"{channel}::{network}::{offer_id}",
-        f"{channel}::{network}::*",
-        f"{channel}::*::{offer_id}",
-        f"*::{network}::{offer_id}",
-        f"{channel}::*::*",
-        f"*::*::{offer_id}",
-        f"*::{network}::*",
-        "*::*::*"
-    ]
+        keys_to_try = [
+            f"{channel}::{network}::{offer_id}",
+            f"{channel}::{network}::*",
+            f"{channel}::*::{offer_id}",
+            f"*::{network}::{offer_id}",
+            f"{channel}::*::*",
+            f"*::*::{offer_id}",
+            f"*::{network}::*",
+            "*::*::*"
+        ]
 
-    for key in keys_to_try:
+        for key in keys_to_try:
 
-        if key in event_data:
-            print (key)
-            return event_data[key]
+            if key in event_data:
+                print (key)
+                return event_data[key]
 
         
 class checkEligibility(APIView):
