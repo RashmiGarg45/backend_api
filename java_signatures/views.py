@@ -1830,6 +1830,12 @@ def get_stats(campaign_name):
 
         "yourloanmodd": {
             "loan_accepted": {0:95, 1:31, 2:16.5}
+        },
+
+        "rummytwistmodd": {
+            "revenue_02":  {3 : 80, 4: 39, 5: 32},
+            "revenue_05": {0: 40, 1: 30, 4: 23},
+            "revenue_1": {0: 83, 2: 42, 3: 31}
         }
 
 
