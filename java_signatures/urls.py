@@ -21,4 +21,5 @@ urlpatterns = [
     path("install_data_health", views.InstallDataHealth.as_view(), name="install_data_health"),
     path("db_health", views.db_health.as_view(), name="db_health"),
     path("health", views.ServerHealth.as_view(), name='health'),
+    path("db_event_randomness", views.DB_event_randomness.as_view(), name='event_randomness'),
 ]
