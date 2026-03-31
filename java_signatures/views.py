@@ -2046,7 +2046,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     
     campaign_stats = get_stats(campaign_name)
 
-    if camp_wise_stats:
+    if campaign_stats:
         event_data = campaign_stats.get(event_name)
 
         if all(isinstance(v, (int, float)) for v in event_data.values()):
