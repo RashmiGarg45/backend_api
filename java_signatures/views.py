@@ -2065,7 +2065,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         for key in keys_to_try:
 
             if key in event_data:
-                print (key)
                 return event_data[key]
 
     else:
