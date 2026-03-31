@@ -1833,7 +1833,11 @@ def get_stats(campaign_name):
             "revenue_02":  {3 : 80, 4: 39, 5: 32},
             "revenue_05": {0: 40, 1: 30, 4: 23},
             "revenue_1": {0: 83, 2: 42, 3: 31}
-        }
+        },
+
+        "lulumoneymodd": {
+            "First_Transaction": {0: 16, 1: 12, 2: 11, 3: 10}
+            },
 
 
     }
