@@ -614,94 +614,1230 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     
     elif campaign_name == "williamhillsportiosmodd" and offer_id in ["ahwilkspmmp", "test"] and event_name =="FTD":
         return 15
+    
+def get_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0, event_day=0):
+    STATS = {
+        "quickcashonlinemodd": {
+            "approvals_cnt_server": {0: 41, 1:24, 2:19, 3:16.6}
+            },
+
+        "moomootrademodd": {
+            "af_ss_event_202": {1: 41, 2:33, 3:23},
+            "af_ss_event_81": {0: 24, 1: 14, 2:11, 3:9.5}
+            },
+
+        "bd678auto": {
+            "8jcdcl": {0:14.28, 1:11.11, 2:9.09, 3: 8.33}
+            },
+
+        "fb77auto": {
+           "f80wwq" : {0:14.28, 1:12.5, 2:11.11, 3:10}
+            },
+
+        "ragnarokmodd": {
+            "revenue_490": {0: 40, 2:30},
+            "revenue_1500": {0: 15},
+            "revenue_1000": {1: 40, 4:30},
+            "revenue_100": {3: 40, 5:30}
+            },
+
+        "moovauto": {
+            "xgivki":  {
+                "vestaapps::vkmdigital::movkmvammpdup": {0: 4, 1:4}
+                },
+            "ld4kw6":  {
+                "vestaapps::vkmdigital::movkmvammpdup": {0: 19, 1:19},
+                "*::*::*": {0:11, 1:8.3 , 2: 6.6, 3: 6.6}
+                },
+
+            "ggjyhe": {0:20, 1:14.28, 2:11.11, 3: 9}
+            },
+
+        "boylesportstmodd": {
+            "n_ftd": {0:43, 1:25, 2:20},
+            "n_reg_confirm": {0: 25, 1:16.6, 2: 10}
+
+            },
+
+        "singamodd": {
+            "risk-control": {0: 43, 1: 27},
+            "loanapplied": {0: 43, 1: 43}
+            },
+
+        "leonrutmodd": {
+            "af_first_deposit": {0: 27, 1: 22, 2: 18}
+            },
+
+        "ikukuruuiosauto": {
+            "mcaw45": {0: 6, 1: 6},
+            "wvzrbc": {0: 12, 1: 12}
+            },
+
+        "juanhandmodd": {
+            "af_fst_insbrw_suss": {
+                "mobpine::*::*": {0: 33, 1: 20, 2: 14.28, 3: 12.5},
+                "77ads::*::*": {0: 33, 1: 20, 2: 14.28, 3: 12.5},
+                "appamplify::*::*": {0: 33, 1: 20, 2: 14.28, 3: 12.5},
+                "*::*::*": {0: 45, 1: 35, 2: 25, 3: 20, 4: 16}
+            },
+            "af_tzmx_10": {0: 47, 1: 33, 2: 24, 3: 20, 4: 15}
+            },
+
+        "ucuzabiletauto": {
+            "vnc85a": {0: 20, 1: 12.5, 2: 10, 3: 8.7}
+            },
+
+        "profit2modd": {
+            "ActionNewOrder": {0: 10, 1: 8.3, 2: 7.14, 3: 6.6}
+            },
+
+        "dupoiniosauto": {
+            "7py4mn": {0: 23, 1: 16.6, 2: 12.5, 3: 10}
+            },
+
+        "loveparadaiseauto": {
+            "revenue_199": {0: 25, 1: 20, 2: 16.6, 3: 14.2, 4: 12.5, 5: 11.11},
+            "revenue_499": {0: 68, 1: 45, 2: 30}
+            },
+
+        "cashroyaleauto": {
+            "revenue_599": {0: 20, 1: 16.66, 3: 14.28},
+            "revenue_999": {1: 80, 2: 41, 4: 30}
+            },
+
+        "moneycolorauto": {
+            "revenue_199": {0: 10, 1: 6.6, 2: 5.5, 3: 4.76, 4: 4.16, 5: 3.84, 6: 3.44, 7: 3.22},
+            "revenue_499": {0: 16.6, 1: 11.11, 2: 8.33, 3: 7.14, 4: 6.25, 5: 5.5, 6: 5, 7: 4.54}
+            },
+
+        "dailysolitaremodd": {
+            "revenue_099": {0: 13, 1: 10, 3: 7.5, 4: 6, 6: 4, 7: 3.5},
+            "revenue_599": {0: 7.5, 1: 7.5, 2: 7, 3: 6, 4: 5, 5: 4.28}
+            },
+
+        "tikettmodd": {
+            "af_purchase": {0: 50, 1: 50, 2: 33.3},
+
+            "af_purchase_toDO": {
+                "77ads::dopemobi::9dope-todo": {0: 20, 1: 12.5, 2: 10, 3: 8},
+                "*::*::*": {0: 14, 1: 11, 2: 10, 3: 8}
+            },
+
+            "af_purchase_hotel": {
+                "77ads::dopemobi::9dope-hotel": {0: 20, 1: 12.5, 2: 10, 3: 8},
+                "*::*::*": {0: 14, 1: 12, 2: 9, 3: 8}
+            },
+
+            "af_purchase_flight": {
+                "77ads::dopemobi::9dope-flight": {0: 20, 1: 12.5, 2: 10, 3: 8},
+                "*::*::*": {0: 16.6, 1: 12.5, 2: 11, 3: 8}
+                }
+            },
+
+            "axisinvestmodd": {
+                "TXN Successful": {0: 29, 1: 26, 2: 20, 3: 16.6, 4: 14.28, 5: 12.5, 6: 12.5}
+            },
+
+            "moneymetmodd": {
+                "LoanApplicationV2.ApplicationSent.View": {0: 70, 1: 50, 2: 33, 3: 33}
+            },
+
+            "moneycatmxmodd": {
+                "NEW_LOAN": {0: 150, 1: 150}
+            },
+
+            "signnowmodd": {
+                "af_start_trial": {0: 20, 1: 14.2, 2: 11.11, 3: 10},
+                "af_purchase": {2: 100, 3: 100},
+                "af_subscribe": {8: 50, 9: 50}
+            },
+
+            "hoteltonightautoios": {
+                "pey3pd": {
+                    "adshustle::advivifymedia::21653946": {0: 12.5, 1: 9, 2: 7.14, 3: 6.25},
+                    "adshustle::advivifymedia::21676889": {0: 12.5, 1: 9, 2: 7.14, 3: 6.25},
+                    "adshustle::attrimob::817dup": {0: 6.6, 1: 5, 2: 4, 3: 3.33},
+                    "*::*::*": {0: 16.6, 1: 11.11, 2: 8.33, 3: 7.14, 4: 6.6}
+                }
+            },
+
+            "hoteltonightauto": {
+                "jviyct": {0: 16.6, 1: 11.11, 2: 8.33, 3: 7.14, 4: 6.6}
+            },
+
+            "magztermodd": {
+                "mg_1month_freetrial": {0: 20, 1: 14.2, 2: 11.11, 3: 10},
+                "mg_1year_freetrial": {0: 20, 1: 14.2, 2: 11.11, 3: 10}
+            },
+
+            "paysettmodd": {
+                "registration_success": {0: 2, 1: 1.81, 2: 1.6},
+                "send_success": {0: 10, 1: 7.14, 2: 6.25, 3: 5.5}
+            },
+
+            "puntitmodd": {
+                "FTD": {0: 40, 1: 25}
+            },
+
+            "friendipayomauto": {
+                "lql86o": {0: 10, 1: 8, 2: 6.5}
+            },
+
+            "novawateriosmodd": {
+                "af_purchase": {0: 16, 1: 12.5, 2: 10}
+            },
+
+            "dimemodd": {
+                "onboardSuccess": {0: 10, 1: 7, 2: 5, 3: 4.34, 4: 3.8}
+            },
+
+            "dailynumbermatchauto": {
+                "pdeipy": {0: 30, 1: 30, 2: 25, 3: 25, 4: 20, 5: 20}
+            },
+
+            "cubiosmodd": {
+                "esign_View_ActivateCL": {0: 85, 1: 80, 2: 60, 3: 45, 4: 33}
+            },
+
+            "bingofrenzytmodd": {
+                "1_99": {0: 7, 1: 7},
+                "4_99": {4: 7, 5: 7},
+                "9_99": {2: 7, 3: 7}
+            },
+
+            "imagineartautoios": {
+                "h5ihok": {0: 80, 1: 33.33},
+                "pdc6m9": {0: 80, 1: 50}
+            },
+
+            "betrmodd": {
+                "af_purchase": {0: 80, 1: 50, 2: 33.33}
+            },
+
+            "uiuxmobileauto": {
+                "rmlund": {0: 45, 1: 33.33, 2: 25, 3: 20},
+                "jjww2u": {0: 80}
+            },
+
+            "bybittmodd": {
+                "eftd": {0: 90, 1: 45},
+                "ftd": {0: 80, 1: 16.67}
+            },
+
+            "caesarsmodd": {
+                "mb_deposit.first_time_deposit": {0: 15, 1: 15}
+            },
+
+            "newdouluomodd": {
+                "0_99": {0: 23, 2: 20, 4: 16.67, 5: 14.28, 6: 12.5, 7: 14.28},
+                "4_99": {0: 29, 1: 25, 3: 20, 5: 16.6, 6: 14.28, 7: 12.5},
+                "9_99": {1: 41, 3: 33, 5: 25, 7: 20},
+                "14_99": {2: 41, 4: 33, 6: 25}
+            },
+
+            "caesarscasinoiosmodd": {
+                "mb_deposit.first_time_deposit": {
+                    "*::*::caednommp": {0: 15},  # specific offer_id
+                    "adshustle::*::*": {0: 20},  # specific channels
+                    "vestaapps::*::*": {0: 20},
+                    "appsfollowing::*::*": {0: 20},
+                    "appsatiate::*::*": {0: 20},
+                    "*::*::*": {0: 55, 1: 50}    # fallback
+                }
+            },
+
+            "mullerauto": {
+                "x2mrfw": {0: 1.5, 1: 1.2},
+                "fihqvn": {0: 1.8, 1: 1.6}
+            },
+
+            "13cabstauto": {
+                "swtdbc": {0: 1.5, 1: 1.5}
+            },
+
+            "13cabsiosauto": {
+                "swtdbc": {0: 1.5, 1: 1.5}
+            },
+
+            "khiladiaddamodd": {
+                "af_complete_registration": {0: 1.8, 1: 1.53, 2: 1.42, 3: 1.33}
+            },
+
+            "boylesportsiostmodd": {
+                "n_ftd": {0: 43, 1: 25, 2: 20},
+                "n_reg_confirm": {0: 25, 1: 16.6, 2: 10}
+            },
+
+            "bcsinvestmenttmodd": {
+                "93441_Onboard_OpenAcc_SignDocsSmsTap": {0: 6.2, 1: 5, 2: 4.34, 3: 4, 4: 3.84},
+                "28500_Instr_Bid_Success": {
+                    "adshustle::*::bcsmnditvammp": {0: 9},
+                    "adshustle::*::bcsmicovammp": {0: 9},
+                    "*::*::*": {0: 45, 1: 23}
+                }
+            },
+
+            "bcsinvestiosmodd": {
+                "93441_Onboard_OpenAcc_SignDocsSmsTap": {0: 6.2, 1: 5, 2: 4.34, 3: 4, 4: 3.84},
+                "28500_Instr_Bid_Success": {0: 19, 1: 12, 2: 9.6, 3: 8}
+            },
+
+            "opaymodd": {
+                "signup_success": {
+                    "77ads::dopemobi::7dope-opayy": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy2": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy3": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy4": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy5": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy6": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy7": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "*::*::*": {0: 3.7, 1: 3.44, 2: 3.3}  # fallback
+                },
+
+                "first_transaction": {
+                    "adshustle::leanmobi::noplenmmp": {0: 7.14, 1: 6.25, 2: 5.67, 3: 5},
+                    "*::*::*": {0: 16.6, 1: 11, 2: 7.14}  # fallback
+                },
+
+                "total_transaction": {0: 15, 1: 10, 2: 6}
+                },
+
+            "indigomoddteam2modd": {
+                "af_purchase": {
+                    "mobpine::*::*": {0: 12, 1: 10, 2: 9},
+                    "77ads::*::*": {0: 12, 1: 10, 2: 9},
+                    "appamplify::*::*": {0: 12, 1: 10, 2: 9},
+                    "*::*::*": {0: 8, 1: 7.33, 2: 6.14}  # fallback
+                }
+            },
+
+        "cloneindigomoddteam2modd": {
+                "af_purchase": {0: 9, 1: 8.33, 2: 7.14}
+            },
+
+        "clone2indigomoddteam2modd": {
+                "af_purchase": {0: 9, 1: 8.33, 2: 7.14}
+            },
+
+        "breakthroughkingdommodd": {
+                "1_09": {0:10, 1:20, 4:16.67, 5:14.28, 6:12.5, 7:14.28},
+                "2_19": {0:10, 1:25, 3:20, 5:16.6, 6:14.28, 7:12.5},
+                "5_47": {0:10, 1:8.3, 2:7.14, 3:6.25, 4:5.88, 5:5.5, 6:5, 7:4.54},
+                "21_89": {1:33, 2:25, 3:16.67, 4:12.5, 5:10, 6:9, 7:7.69}
+            },
+
+        "kriptoauto": {
+                "lpfhv5": {0:9, 3:5}
+            },
+
+        "homiedevmodd": {
+                "af_subscribe": {0:10, 1:5, 2:4}
+            },
+
+        "homieiosmodd": {
+                "af_subscribe": {0:10, 1:7.5, 2:5}
+            },
+
+        "dimeiosmodd": {
+                "onboardSuccess": {0:10, 1:7, 2:5, 3:4.34, 4:3.8}
+            },
+
+        "kfcmexicotmodd": {
+                "first_purchase": {0:5, 3:5}
+            },
+
+        "tejimaandiauto": {
+                "csqfum": {0:20, 1:16.6, 2:14.28, 3:12.5}
+            },
+
+        "teenpatiauto": {
+                "0_36": {0:20},
+                "1_08": {0:38},
+                "3_6": {0:41, 1:29},
+                "10_79": {1:41, 3:41}
+                },
+
+        "alphabetoftastemodd": {
+            "purchase_start": {0:19, 1:11.25, 2:10}
+        },
+
+        "kafimodd": {
+            "stock_order_matching": {0:41, 1:33, 2:25, 3:20}
+        },
+
+        "kafitradeiosmodd": {
+            "stock_order_matching": {0:41, 1:33, 2:25, 3:20}
+        },
+
+        "mcdeliverymodd": {
+            "af_purchase_delivery": {
+                "mobs-mcd::*::*": {0:5, 1:4, 2:3.3},
+                "*::*::*": {0:6.6, 1:5.5, 2:5}
+            }
+        },
+
+        "clonemcdeliverymodd": {
+            "af_purchase_to_be_delivered": {0:6.6, 1:5.5, 2:5}
+        },
+
+        "raisinggoblinmodd": {
+            "First_Purchase": {0:6.67, 1:20}
+        },
+
+        "rummytimemodd": {
+            "user_first_add_cash": {0:25, 1:16.67, 2:12.5}
+        },
+
+        "toponemarketauto": {
+            "6uwnyv": {0:65, 1:40}
+        },
+
+        "toponemarketiosauto": {
+            "f3a4ks": {0:65, 1:40}
+        },
+
+        "vpnpantheriosmodd": {
+            "trial converted": {3:33, 4:20, 5:14.28, 6:12.5, 7:11.1},
+            "af_trial_started": {0:14, 1:10, 2:7.5, 3:6.5}
+        },
+
+        "zeptodeliverymodd": {
+            "first_order_delivered": {0:12, 1:9, 2:7.69, 3:6.6}
+        },
+
+        "dupointmodd": {
+            "yh7wzr": {
+                "adshustle::refrevenue::duphurmmp": {0:55},
+                "*::*::*": {0:33, 1:22, 2:18, 3:16}
+            }
+        },
+
+        "youset2modd": {
+            "generate_proposal_auto": {0:33, 1:22, 2:18},
+            "generate_proposal_home": {0:41, 1:33}
+        },
+
+        "yesmadammodd": {
+            "af_complete_registration": {0:2, 1:1.78, 2:1.66},
+            "af_purchase": {0:12.5, 1:10, 2:7.14}
+        },
+
+        "bigloanmodd": {
+            "issueNewCPA": {1:90, 2:30, 3:20, 4:16, 5:14},
+            "minconditionsapprove": {
+                "bigldopvammp::*::*": {0:12.5, 1:7.14, 2:6.6, 3:5},
+                "*::*::*": {0:12.5, 1:8.3, 2:7.14, 3:6.6}
+            }
+        },
+
+        "otpbankappmetrica": {
+            "screen__dc_success_courier": {1:70, 2:23, 3:14, 4:11, 5:10}
+        },
+
+        "byutmodd": {
+            "purchase_iJoin": {0:20, 1:14.28, 2:12.5, 3:11.11, 4:10}
+        },
+
+        "comparemodd": {
+            "mfoDealConfirmed": {0:33.33, 1:20, 2:16.66, 3:14.28, 4:12.25}
+        },
+
+        "melivemodd": {
+            "af_revenue": {0:26, 1:20, 2:16}
+        },
+
+        "metlivemodd": {
+            "af_revenue": {0:26, 1:20, 2:16}
+        },
+
+        "globusappmetrica": {
+            "purchaseEvent": {0:45, 1:30}
+        },
+
+        "parimatchthmodd": {
+            "Deposit Successful First": {0:25, 1:20, 2:16}
+        },
+
+        "myntmodd": {
+            "af_deposit": {0:23, 1:20, 2:16.6, 3:14.28}
+        },
+
+        "spinnytauto": {
+            "cqjxvf": {
+                "adshustle::*::*": {0:33, 1:20, 2:15.38},
+                "vestaapps::*::*": {0:33, 1:20, 2:15.38},
+                "appsfollowing::*::*": {0:33, 1:20, 2:15.38},
+                "appsatiate::*::*": {0:33, 1:20, 2:15.38},
+                "*::*::*": {0:45, 1:30, 2:25}
+            }
+        },
+
+        "shienindiamodd": {
+            "af_purchase": {0:30, 1:20, 2:14.28, 3:12.5}
+        },
+
+        "digitalbankmodd": {
+            "upgrade2SA": {0:45, 1:16.6, 2:11.1}
+        },
+
+        "woolsocksmodd": {
+            "3ts38m": {0:15, 1:11, 2:10, 3:9}
+        },
+
+        "cimbthaimodd": {
+            "NTB_Deposit_Open_Speed-d-plus_Success_Viewed": {0:45, 1:30, 2:25},
+            "NTB_Deposit_Open_Chill-d_Success_Viewed": {0:47, 1:32, 2:26},
+            "NTB_Mutual_Fund_Open_Deposit_And_MF_Success": {0:70, 1:50, 2:33}
+        },
+
+        "robotzaimerrmodd": {
+            "signContractFirst": {0:45, 1:30, 2:25}
+        },
+
+        "stockitymodd": {
+            "payment.deposit_first_new": {0:45, 1:25, 2:20}
+        },
+
+        "heliummobilemodd": {
+            "app_purchase_free": {
+                "*::*::*": {0:30, 1:20, 2:16},
+                "*::offer_id_isdecimal::*": {0:5, 1:3}
+            },
+            "purchase": {0:45, 1:30, 2:25}
+        },
+
+        "abhibusauto": {
+            "cukuuk": {
+                "*::offer_id_isdecimal::*": {0:5, 1:3},
+                "*::*::*": {0:14, 1:8.33}
+            }
+        },
+
+        "duittmodd": {
+            "Successful_loan": {0:90, 1:30, 2:20, 3:16}
+        },
+
+        "r888casinomodd": {
+            "MB_First_Deposit": {0:70, 1:50}
+        },
+
+        "istanbulairportauto": {
+            "duf9j9": {0:4.4, 1:3.8, 2:3.5},
+            "pykeub": {0:2.2, 1:2, 2:1.8}
+        },
+
+        "sliceauto": {
+            "ksdh0l": {0:80, 1:33, 2:25},
+            "ghmq8p": {0:80, 1:25, 2:20, 3:16.6}
+        },
+
+        "instamoneyquickmodd": {
+            "AF_RF_Paid": {0:45, 1:20, 2:14, 3:11, 4:10},
+            "AF_RF_LOAN_DISBURSED": {1:45, 2:30, 3:24}
+        },
+
+        "coinmenaauto": {
+            "aj5y08": {0:41, 1:19, 2:14, 3:11, 4:9}
+        },
+
+        "smilesauto": {
+            "a6ou21": {0:45, 1:20, 2:14, 3:11}
+        },
+
+        "netshoesmodd": {
+            "af_purchase": {
+                "appamplify::dopemobi::dope-netshoes-251030": {0:100},
+                "*::*::*": {0:25, 1:17, 2:14}
+            }
+        },
+
+        "bingoplustmodd": {
+            "BINGOPLUS_EVENT_REGIST": {0:3, 1:2.36, 2:2.09, 3:1.91},
+            "bingoplus_first_deposit": {0:90, 1:45, 2:30}
+        },
+
+        "myshiftappmetricat": {
+            "ShiftCatalogShiftDetails_shift_booked": {0:45, 1:25, 2:20}
+        },
+
+        "shorttvtmodd": {
+            "revenue_3499": {0:45},
+            "revenue_4999": {0:30},
+            "revenue_9999": {0:16},
+            "revenue_349": {1:90},
+            "revenue_499": {2:90},
+            "revenue_999": {3:90}
+        },
+
+        "etomomodd": {
+            "loan_requested": {
+                "*::offer_id_isdecimal::*": {0:7},
+                "*::*::*": {0:25, 1:14.28, 2:11}
+            }
+        },
+
+        "cryptocomtmodd": {
+            "mktg:kyc_approved_push_sent": {0:4, 1:3}
+        },
+
+        "megogot2modd": {
+            "af_purchase": {0:6.66, 1:5.26, 2:4.76, 3:4.54}
+        },
+
+        "wiomodd": {
+            "view_screen_onboarding_app_submitted": {0:80}
+        },
+
+        "paisayaarauto": {
+            "jbjcze": {1:30, 2:20, 3:16}
+        },
+
+        "gsmtmodd": {
+            "sign_up": {0:3.33, 1:2.85, 2:2.63, 3:2.5},
+            "order_completed_1st_time": {0:10, 1:8, 2:7, 3:6}
+        },
+
+        "bollingerauto": {
+            "purchase": {0:18, 1:9}
+        },
+
+        "joybuymodd": {
+            "PURCHASE": {0:25, 1:20, 2:16.6}
+        },
+
+        "soulchilltmodd": {
+            "revenue_049": {1:35, 3:25, 5:15},
+            "revenue_099": {2:40, 5:25, 6:17, 7:9},
+            "revenue_499": {0:40, 3:25, 4:16},
+            "revenue_999": {1:40}
+        },
+
+        "kotak811mbtmodd": {
+            "AccountOTP_OTP_Acq": {0:30}
+        },
+
+        "mylingueautoios": {
+            "y3ahlf": {
+                "*::offer_id_isdecimal::*": {0:2, 1:1.81, 2:1.63, 3:1.49},
+                "*::*::*": {0:3.33, 1:2.77, 2:2.43, 3:2.22}
+            }
+        },
+
+        "omniheroesmodd": {
+            "revenue_099": {4:49},
+            "revenue_499": {0:25, 4:16},
+            "revenue_1499": {0:24, 1:16, 2:12, 3:8, 5:7, 6:6.25}
+        },
+
+        "nomadesimauto": {
+            "5f3kzv": {0:16, 1:11.11, 2:9.09, 3:8.33}
+        },
+
+        "nouslibauto": {
+            "chju3f": {0:2, 1:1.78, 2:1.6},
+            "purchase": {0:21, 1:16}
+        },
+
+        "nouslibt2autoios": {
+            "chju3f": {0:2, 1:1.78, 2:1.6},
+            "purchase": {0:21, 1:16}
+        },
+
+        "carjammodd": {
+            "revenue199": {1:15, 3:9, 4:6.6},
+            "revenue799": {0:9, 2:6.6}
+        },
+
+        "fabmobilemodd": {
+            "ntb_casa_account_created": {1:45, 2:30, 3:23},
+            "ntb_cc_card_created": {0:45, 1:30, 2:23, 3:19}
+        },
+
+        "bbvamodd": {
+            "portabilidad_nomina-app_approved": {
+                "adshustle::myfunadstrack::bbvamyfmmp": {1:80},
+                "*::*::*": {0:40, 1:26, 2:20, 3:18}
+            }
+        },
+
+        "babytrackermodd": {
+            "af_start_trial": {0:30, 1:18, 2:16},
+            "af_subscribe": {0:90, 1:45},
+            "af_purchase": {0:31, 1:19, 2:15, 3:12}
+        },
+
+        "glowbabytrackeriosmodd": {
+            "af_start_trial": {0:30, 1:18, 2:16},
+            "af_subscribe": {0:90, 1:45},
+            "af_purchase": {0:31, 1:19, 2:15, 3:12}
+        },
+
+        "vogaclosetiosauto": {
+            "yewk8s": {0:15, 1:9, 2:7}
+        },
+
+        "mibptmodd": {
+            "FB_Mobile_complete registration": {0:1.85, 1:1.6}
+        },
+
+        "filteraiiosauto": {
+            "mjq7jz": {0:30, 1:19, 2:16}
+        },
+
+        "utimamarketsmodd": {
+            "P_FTD": {1:30, 2:19, 3:16}
+        },
+
+        "osagomodd": {
+            "s2s-cpa-conversion": {1:24, 2:14, 3:11, 4:9}
+        },
+
+        "neobetiosmodd": {
+            "af_first_purchase": {0:90, 1:45}
+        },
+
+        "qustodioparentalauto": {
+            "85anak": {0:22.5, 1:15, 2:12.85},
+            "g2gfaz": {0:90, 1:45, 2:30}
+        },
+
+        "mexdinmodd": {
+            "first_loan_success": {0:90, 1:30, 2:18, 3:15}
+        },
+
+        "underarmourauto": {
+            "5uo13w": {
+                "*::*::undapcmmp": {0:5},
+                "*::*::*": {0:15, 1:9, 2:6.42, 3:5.62}
+            }
+        },
+
+        "nuiauto": {
+            "1rck55": {0:6, 1:4.5, 2:3.6, 3:3.21},
+            "vcoavi": {0:45, 1:22.5, 2:18, 3:15}
+        },
+
+        "credmaxmodd": {
+            "approvals_server": {0:45, 1:30, 2:22.5, 3:18},
+            "tutorial_complete_server": {0:90, 1:45, 2:30, 3:22.5}
+        },
+
+        "cryptocomtmodd": {
+            "mktg:buy_crypto": {0:25, 1:14, 2:11, 3:10}
+        },
+
+        "bancaauto": {
+            "xnfrxy": {0:30, 1:20, 2:14}
+        },
+
+        "fiverrt2modd": {
+            "FTB_BUCKET": {0:30, 1:18, 2:15}
+        },
+
+        "fiverriosmodd": {
+            "FTB": {0:30, 1:18, 2:15}
+        },
+
+        "williamhillsportiosmodd": {
+            "FTD": {
+                "*::*::apps-whsports.ios": {0:45},
+                "*::*::whuk2adgmmp": {0:45},
+                "*::*::willadghubmmp": {0:50},
+                "*::*::whsptadgmmp": {0:60},
+                "*::*::ahwilkspmmp": {0:8},
+                "*::*::wiladummp": {0:10},
+                "*::*::wammobmmp": {0:22},
+                "*::*::*": {0:30, 1:22.5, 2:18}
+            }
+        },
+
+        "vegasiosmodd": {
+            "registration": {
+                "*::*::mpj-wcios": {0:6},
+                "*::*::adhub-whcasinoiios-26a017260": {0:6},
+                "*::*::williamhill-mpjads-jan": {0:4.5},
+                "*::*::*": {0:24, 1:12, 2:10}
+            },
+            "FTD": {
+                "*::*::mpj-wcios": {0:13},
+                "*::*::adhub-whcasinoiios-26a017260": {0:13},
+                "*::*::williamhill-mpjads-jan": {0:8.5},
+                "*::*::wh2casdgmmp": {0:67},
+                "*::*::*": {0:30, 1:20, 2:16}
+            }
+        },
+
+        "cleanervpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "adblockeriosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "jyotiaiiosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "moneygrammiosmodd": {
+            "first_transaction": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "mixvpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "plantexpertaiiosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "888pokeriosmodd": {
+            "MB_First_Deposit": {0:90, 1:45, 2:30}
+        },
+
+        "tataneuauto": {
+            "CC_CARD_SELECTION": {0:6, 1:5, 2:4.5},
+            "plm_disbursement": {0:30, 1:18, 2:15, 3:12.85}
+        },
+
+        "betfredsportsiosmodd": {
+            "deposit": {0:90, 1:30, 2:22.5, 3:18}
+        },
+
+        "ajioiosmodd": {
+            "first_purchase": {0:45, 1:30, 2:22.5, 3:18}
+        },
+
+        "cashmaxmodd": {
+            "Successful_loan": {0:90, 1:22.5, 2:15, 3:12.85}
+        },
+
+        "idntimesmodd": {
+            "Subscribe_success": {0:45, 1:18, 2:12.85, 3:11.25}
+        },
+
+        "teldaauto": {
+            "ntd8cj": {0:11.25, 1:7.5, 2:6, 3:5.29}
+        },
+
+        "tenthousandmodd": {
+            "revenue_099": {0:90, 1:45, 3:30, 4:22.5, 5:18, 6:15, 7:12.85},
+            "revenue_499": {0:48, 2:32}
+        },
+
+        "vtb24tappmetrica": {
+            "screenTap_notClient_liteData_litePasscode": {0:2.5, 1:2}
+        },
+
+        "cleanervpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "mbbankmodd": {
+            "AF_OB_SUCCESS": {
+                "*::*::mbb2iwammp": {0:30, 1:20, 2:16.6, 3:14.28},
+                "*::*::*": {0:12.85, 1:9, 2:7.5}
+            }
+        },
+
+        "mbbankautoios": {
+            "AF_OB_SUCCESS": {
+                "*::*::mbbiwammp": {0:30, 1:20, 2:16.6, 3:14.28},
+                "*::*::*": {0:12.85, 1:9, 2:7.5}
+            }
+        },
+
+        "tawkeeltmodd": {
+            "payment_completed": {0:30, 1:18, 2:12.85, 3:11.25}
+        },
+
+        "webullmodd": {
+            "first_deposit_success_F": {1:23, 2:13.5, 3:11.87}
+        },
+
+        "lottermxiosmodd": {
+            "FTD": {
+                "mobpine::*::*": {0:12},
+                "77ads::*::*": {0:12},
+                "appamplify::*::*": {0:12},
+                "*::*::17425": {0:13},
+                "*::*::*": {0:80, 1:33}
+            }
+        },
+
+        "thelotterusiosmodd": {
+            "FTD": {0:80, 1:33}
+        },
+
+        "blibliiosmodd": {
+            "new_customer_purchase": {0:24, 1:13.71, 2:10.66, 3:9.6}
+        },
+
+        "mtcmusiciosmodd": {
+            "af_subscribe": {0:45, 1:24, 2:19}
+        },
+
+        "mtcmusicmodd": {
+            "af_subscribe": {0:45, 1:24, 2:19}
+        },
+
+        "bitoasistauto": {
+            "deposit": {0:45, 1:24, 2:19}
+        },
+
+        "myacuvuemodd": {
+            "Registration_Success": {0:2.22, 1:2.08, 2:1.92},
+            "fitting_events": {0:5.8, 1:5.26, 2:4.76}
+        },
+
+        "myfoodappmetrica": {
+            "2990_rev": {0:30, 1:19, 2:16},
+            "2590_rev": {0:31, 1:18, 2:15}
+        },
+
+        "myacuvueiosmodd": {
+            "Registration_Success": {
+                "*::*::myiosappmmp": {0:3.3, 1:2.77, 2:2.38},
+                "*::*::*": {0:2.22, 1:2.08, 2:1.92}
+            },
+            "fitting_events": {
+                "*::*::myiosappmmp": {0:12.5, 1:10, 2:7.14},
+                "*::*::*": {0:5.8, 1:5.26, 2:4.76}
+            }
+        },
+
+        "bbvamodd": {
+            "afiliacion_basica-app_online_purchases": {
+                "adshustle::myfunadstrack::bbvamyfmmp": {0:95, 1:48},
+                "*::*::*": {0:48, 1:19, 2:14}
+            }
+        },
+
+        "makebykbankiosmodd": {
+            "ON2kSucceed": {0:24, 1:11, 2:8, 3:7}
+        },
+
+        "velvetvpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "bluerewardsmodd": {
+            "sign_up": {0:8, 1:6, 2:5, 3:4.75, 4:4.31}
+        },
+
+        "paymeiosauto": {
+            "zgxxz1": {0:18, 1:11.25, 2:8}
+        },
+
+        "paymeauto": {
+            "zgxxz1": {0:18, 1:11.25, 2:8}
+        },
+
+        "seevpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "ajiomodd": {
+            "luxe_purchase": {0:19, 1:11, 2:9},
+            "ajio_purchase": {0:80, 1:40}
+        },
+
+        "octatrademodd": {
+            "af_realtime_activation": {0:90, 1:45}
+        },
+
+        "action247iosmodd": {
+            "af_FTD": {0:20}
+        },
+
+        "sensorvpniosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:12.85, 3:11.25}
+        },
+
+        "weltradeauto": {
+            "kbwb07": {0:45, 1:18},
+            "evpfo1": {1:89}
+        },
+
+        "vanaauto": {
+            "15serm": {0:89, 1:30, 2:18, 3:15}
+        },
+
+        "sahimodd": {
+            "5fno_completed": {0:89, 1:22.5, 2:18.5}
+        },
+
+        "moneymaniosmodd": {
+            "NEW_CREDIT_ACTIVE_DB": {0:89, 1:30, 2:18, 3:15}
+        },
+
+        "moneyviewmodd": {
+            "submit_success": {
+                "mobpine::*::*": {0:45, 1:25, 2:19},
+                "77ads::*::*": {0:45, 1:25, 2:19},
+                "appamplify::*::*": {0:45, 1:25, 2:19},
+                "*::*::*": {0:30, 1:19, 2:16, 3:14}
+            },
+            "upi_first_payment": {0:8.3, 1:5.55, 2:4.3, 3:4}
+        },
+
+        "viuhkmodd": {
+            "subscription_payment_success": {0:30, 1:24, 2:19}
+        },
+
+        "tinkofft2modd": {
+            "credit_approve_offline": {0:45, 1:30, 2:22.5, 3:18},
+            "debit_utilization_offline": {0:45, 1:22.5, 2:18, 3:15, 4:12.85}
+        },
+
+        "healthifymetmodd": {
+            "sp_plan_purchase": {0:31.66, 1:19, 2:15.8, 3:13.57}
+        },
+
+        "mistplayearnmoneymodd": {
+            "iap_spend_all_v2": {0:90, 1:45}
+        },
+
+        "yandexrealestateiosmodd": {
+            "first_call_posle-paid_s2s": {0:75, 1:41}
+        },
+
+        "popaimodd": {
+            "onPurchasesUpdated": {0:90, 1:45, 2:30}
+        },
+
+        "dominosturkeyauto": {
+            "yfub50": {
+                "*::*::domdoummp": {0:2.85, 1:2.5, 2:2.27},
+                "*::*::dom2doummp": {0:2.85, 1:2.5, 2:2.27},
+                "*::*::*": {0:3.3, 1:2.85, 2:2.6}
+            }
+        },
+
+        "rootcarinsurancemodd": {
+            "Profile": {0:9, 1:7, 2:6}
+        },
+
+        "mcluckcasinoiosmodd": {
+            "first_purchase": {0:75, 1:45}
+        },
+
+        "eternzmodd": {
+            "First Purchase": {0:14, 1:10, 2:8, 3:6}
+        },
+
+        "dominoesgoldiosmodd": {
+            "firstCashNPU": {0:45, 1:23, 2:18}
+        },
+
+        "unodigitalbankiosmodd": {
+            "loan_disbursed": {0:90, 1:30, 2:23}
+        },
+
+        "loansonlinemodd": {
+            "newloancount": {0:90, 1:45, 2:30}
+        },
+
+        "webzaimiosmodd": {
+            "newloancount": {0:90, 1:45, 2:30}
+        },
+
+        "litresiosmodd": {
+            "af_purchase_success_ppd": {0:22.5, 1:18, 2:15.5, 3:12.85}
+        },
+
+        "shahidmodd": {
+            "evergent_server_subscription_success": {0:24, 1:16, 2:14, 3:12}
+        },
+
+        "paymayamodd": {
+            "EKYC_SUCCESS": {0:6.33, 1:3.8, 2:2.714},
+            "WALLET_DEBIT_ACTIVE": {0:31.6, 1:13.57, 2:7.91, 3:5.93, 4:4.75, 5:4}
+        },
+
+        "bajajfinauto": {
+            "Lead_PROL_DR": {0:49, 1:24, 2:19},
+            "Lead_PROL_CA": {0:48, 1:23, 2:18}
+        },
+
+        "maxfashionindiaauto": {
+            "PURCHASE": {0:24, 1:8.3, 2:7.5}
+        },
+
+        "afriexaiosauto": {
+            "opawt9": {0:45, 1:22, 2:15, 3:12}
+        },
+
+        "pointsbetsportsbookmodd": {
+            "Deposit Placed First Time": {0:45, 1:22.5, 2:18}
+        },
+
+        "burgerkingbrasilt2modd": {
+            "af_purchase": {0:9, 1:7.14}
+        },
+
+        "sugarworldiosmodd": {
+            "sale": {0:25, 1:16.6}
+        },
+
+        "neoniosmodd": {
+            "crd_pre_approved_stts": {1:29, 2:18, 3:15, 4:14.3}
+        },
+
+        "starzplayiosmodd": {
+            "af_subscribe": {0:45, 1:32}
+        },
+
+        "ballmodd": {
+            "ChallengeCompleted_1": {0:18, 1:11.25, 2:9}
+        },
+
+        "defactotauto": {
+            "icmk9u": {0:24, 1:14, 2:12}
+        },
+
+        "defactoiosauto": {
+            "icmk9u": {0:24, 1:14, 2:12}
+        },
+
+        "pulszcasinomodd": {
+            "af_purchase_total_10_00": {0:95, 1:48}
+        },
+
+        "fanaticscasinoiosmodd": {
+            "af_complete_registration": {0:5, 1:3.7, 2:3.2},
+            "deposit_submitted": {0:24, 1:13.5, 2:12},
+            "casino_game_first_launch": {0:75, 1:46}
+        },
+
+        "eaptekatmodd": {
+            "af_first_order": {0:15, 1:9, 2:6.9, 3:6, 4:5.62}
+        },
+
+        "playuzuiosmodd": {
+            "userFirstTimeDeposit": {0:45, 1:23}
+        },
+
+        "sofyclubauto": {
+            "e7ikty": {0:2, 1:1.6, 2:1.5, 3:1.49},
+            "2hekaz": {0:4.3, 1:3.4, 2:3.03, 3:2.7, 4:2.5, 5:2.32}
+        },
+
+        "viusaiosmodd": {
+            "subscription_payment_success": {0:24, 1:15, 2:12.8, 3:11.8}
+        },
+
+        "wirexiosauto": {
+            "s2s_first_transaction": {0:40, 1:30}
+        },
+
+        "bet22modd": {
+            "first_deposit": {0:95, 1:30, 2:22.5, 3:18}
+        },
+
+        "beetlessolitairemodd": {
+            "revenue_1": {1:40},
+            "revenue_6": {0:11, 1:7, 2:5, 3:4, 4:12.5},
+            "grt_win_858": {0:30}
+        },
+
+        "onepuchmanmodd": {
+            "revenue488": {0:18, 1:14},
+            "revenue103": {2:18, 3:14}
+        },
+
+        "lottolandauto": {
+            "20y4ke": {0:40, 1:30, 2:23}
+        },
+
+        "playmillionmodd": {
+            "FTD": {0:75, 1:30}
+        },
+
+        "foodiesizzleiosmodd": {
+            "revenue_2": {1:80},
+            "revenue_5": {0:45},
+            "revenue_8": {3:81, 6:41},
+            "revenue_10": {0:44},
+            "revenue_11": {2:82},
+            "revenue_16": {2:79, 3:43},
+            "revenue_25": {1:78, 7:46},
+            "revenue_30": {5:75}
+        },
+
+        "fibeiosmodd": {
+            "total_approved": {0:23, 1:11.8, 2:9.6},
+            "disbursement": {0:95, 1:47, 2:31.6, 3:23}
+        },
+
+            "caroutmodd": {
+            "in_app_purchase": {0:6}
+        },
+
+        "nelopayiosauto": {
+            "INFLECTION_UNDERWRITING": {0:22, 1:13, 2:10.5, 3:9.4}
+        },
+
+        "btcturkproauto": {
+            "754uyc": {0:6.6, 1:5.55, 2:5, 3:4.5},
+            "j19w5z": {0:24, 1:14.2, 2:11, 3:9.7}
+        },
+
+        "rakutentmodd": {
+            "af_purchase": {0:10}
+        },
+
+        "moneycatiosmodd": {
+            "NEW_LOAN": {1:45, 2:22.5, 3:18.3}
+        },
+
+        "whitebitiosmodd": {
+            "KYC_VERIFIED": {0:9.2, 1:5.41, 2:4.3, 3:3.8},
+            "FIRST_DEPOSIT": {0:19, 1:12.5, 2:8.9},
+            "FIRST_TRADE": {0:95, 1:47.5, 2:31.6}
+        },
+
+        "betparxiosmodd": {
+            "af_first_deposit": {0:95, 1:47}
+        },
+
+        "yangoplayiosmodd": {
+            "auth.succeed": {0:10, 1:8.33, 2:6.67},
+            "c0_no_cancel_3d": {0:25, 1:16.6, 2:13.3},
+            "unified_subscription.purchase.completed": {0:40, 1:25, 2:16.6}
+        },
+
+        "kudusaudiarabiaauto": {
+            "fen1r7": {0:5.7, 1:5.42, 2:4.84}
+        },
+
+        "myasterauto": {
+            "szqveh": {0:80, 1:30}
+        },
+
+        "kubizmodd": {
+            "issueNew": {1:90, 2:47, 3:24},
+            "addNewBankAccountResult": {0:16.6, 1:9.7, 2:8.1, 3:6.9}
+        },
+
+        "dabbleiosmodd": {
+            "first_deposit_completed": {0:78, 1:30}
+        },
+
+        "yourloaniosmodd": {
+            "loan_accepted": {0:95, 1:31, 2:16.5}
+        },
+
+        "yourloanmodd": {
+            "loan_accepted": {0:95, 1:31, 2:16.5}
+        }
+
+
+    }
 
 def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0, event_day=0):
-    if campaign_name == "quickcashonlinemodd" and event_name == "approvals_cnt_server":
-        return {0: 41, 1:24, 2:19, 3:16.6}
 
-    elif campaign_name == "moomootrademodd" and event_name == "af_ss_event_202":
-        return {1: 41, 2:33, 3:23}
-    
-    elif campaign_name == "bd678auto" and event_name == "8jcdcl":
-        return {0:14.28, 1:11.11, 2:9.09, 3: 8.33}
-    
-    elif campaign_name == "fb77auto" and event_name == "f80wwq":
-        return {0:14.28, 1:12.5, 2:11.11, 3:10}
-
-    elif campaign_name == "ragnarokmodd" and event_name == "revenue_490":
-        return {0: 40, 2:30}
-
-    elif campaign_name == "ragnarokmodd" and event_name == "revenue_1500":
-        return {0: 15}
-
-    elif campaign_name == "ragnarokmodd" and event_name == "revenue_1000":
-        return {1: 40, 4:30}
-
-    elif campaign_name == "ragnarokmodd" and event_name == "revenue_100":
-        return {3: 40, 5:30}
-
-    elif campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "xgivki":
-        return {0: 4, 1:4}
-    
-    elif campaign_name == "moovauto" and channel == "vestaapps" and network == "vkmdigital" and offer_id == "movkmvammpdup" and event_name == "ld4kw6":
-        return {0: 19, 1:19}
-
-    elif campaign_name == "moovauto" and channel == "test" and network == "test" and offer_id == "test" and event_name == "xgivki":
-        return {0: 4, 1:4}
-    
-    elif campaign_name == "moovauto" and channel == "test" and network == "test" and offer_id == "test" and event_name == "ld4kw6":
-        return {0: 19, 1:19}
-
-    elif campaign_name == "boylesportstmodd" and event_name == "n_ftd" and channel:
-        # if channel in ["mobpine", "77ads", "appamplify"]:
-        #     return {0: 80, 1:30, 2:23}
-        # else:
-        # if offer_id in ["boyadexaosmmp", "byax1aosafvammp"]:
-        #     return {0:80, 1:25, 2:16.6, 3:14.2}
-
-        # if offer_id in ['boymobvammp', 'byaxaosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
-        #     return {0:70, 1:35, 2:23}
-        
-        # return {0: 16, 1:8, 2:6.5}
-
-        return {0:43, 1:25, 2:20}
-
-    elif campaign_name == "boylesportstmodd" and event_name == "n_reg_confirm":
-        # if offer_id in ["boyadexaosmmp", "byax1aosafvammp"]:
-        #     return {0:12.5, 1:7.14, 2:12.5, 3:5}
-        
-        # return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
-
-        return {0: 25, 1:16.6, 2: 10}
-
-    elif campaign_name == "singamodd" and event_name=="risk-control":
-        return {0: 43, 1:27}
-    
-    elif campaign_name == "singamodd" and event_name=="loanapplied":
-        return {0: 43, 1: 43}
-
-    elif campaign_name == "leonrutmodd" and event_name=="af_first_deposit":
-        return {0: 27, 1: 22, 2: 18}
-    
-    elif campaign_name == "ikukuruuiosauto" and event_name == "mcaw45":
-        return {0:6, 1:6}
-    
-    elif campaign_name == "ikukuruuiosauto" and event_name == "wvzrbc":
-        return {0:12, 1:12}
-    
-    elif campaign_name == "juanhandmodd" and event_name == "af_fst_insbrw_suss" and channel in ["mobpine", "77ads", "appamplify"]:
-        return {0:33, 1: 20, 2: 14.28, 3: 12.5}
-
-    elif campaign_name == "juanhandmodd" and event_name == "af_fst_insbrw_suss":
-        return {0:45, 1: 35, 2: 25, 3: 20, 4: 16}
-
-    elif campaign_name == "juanhandmodd" and event_name == "af_tzmx_10":
-        return {0:47, 1: 33, 2: 24, 3: 20, 4: 15}
-
-    # elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
-    #     return {0:2.3, 1: 2}
-
-    elif campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
+    if campaign_name == "jazzcashmodd" and event_name == "L1_registration_successful":
 
         if channel in ["77ads", "appamplify"] and network =='doromobile':
             return {0:2.11, 1:2, 2:1.72, 3:1.58 }
@@ -711,116 +1847,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         else:
             return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
 
-    elif campaign_name == "moovauto" and event_name == "ld4kw6":
-        return {0:11, 1:8.3 , 2: 6.6, 3: 6.6}
-
-    elif campaign_name == "moovauto" and event_name == "ggjyhe":
-        return {0:20, 1:14.28, 2:11.11, 3: 9}
-
-    elif campaign_name == "ucuzabiletauto" and event_name == "vnc85a":
-        return {0:20, 1:12.5, 2:10, 3: 8.7}
-    
-    elif campaign_name == "profit2modd" and event_name == "ActionNewOrder":
-        return {0:10, 1:8.3, 2: 7.14, 3: 6.6}
-
-    elif campaign_name == "dupoiniosauto" and event_name == "7py4mn":
-        return {0:23, 1:16.6, 2: 12.5, 3: 10}
-    
-    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_199":
-        return {0:25, 1: 20, 2:16.6, 3:14.2, 4:12.5, 5:11.11}
-    
-    elif campaign_name == "loveparadaiseauto" and event_name == "revenue_499":  
-        return {0:68, 1: 45, 2:30 }
-
-    elif campaign_name == "cashroyaleauto" and event_name == "revenue_599":
-        return {0:20, 1: 16.66, 3:14.28}
-    
-    elif campaign_name == "cashroyaleauto" and event_name == "revenue_999":
-        return {1:80, 2:41, 4:30}
-    
-    elif campaign_name == "moneycolorauto" and event_name == "revenue_199":
-        return {0:10, 1: 6.6, 2:5.5, 3:4.76, 4:4.16, 5:3.84, 6:3.44, 7:3.22}
-    
-    elif campaign_name == "moneycolorauto" and event_name == "revenue_499":
-        return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.5, 6:5, 7:4.54 }
-
-    # elif campaign_name == "dailysolitaremodd" and event_name == "revenue_099":
-    #     return {0:16.6, 1: 11.11, 2:8.33, 3:7.14, 4:6.25, 5:5.88, 6:5.5, 7:5.26 }
-    
-    # elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
-    #     return {0:25, 1:14.2, 2:12.5, 3:11.1, 4:10, 5:9, 6:8.3, 7:8.3}
-    
-    elif campaign_name == "dailysolitaremodd" and event_name == "revenue_099":
-        return {0:13, 1: 10, 3:7.5, 4:6, 6:4, 7:3.5}
-    
-    elif campaign_name == "dailysolitaremodd" and event_name == "revenue_599":
-        return {0:7.5, 1:7.5, 2:7, 3:6, 4:5, 5:4.28}
-
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase":
-        return {0:50, 1:50, 2:33.3}
-    
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_toDO" and channel == "77ads" and network == "dopemobi" and offer_id == "9dope-todo":
-        return {0:20, 1:12.5, 2:10, 3:8}
-
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_toDO":
-        return {0:14, 1:11, 2:10, 3:8}
-
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_hotel" and channel == "77ads" and network == "dopemobi" and offer_id == "9dope-hotel":
-        return {0:20, 1:12.5, 2:10, 3:8}
-    
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_hotel":
-        return {0:14, 1:12, 2:9, 3:8}
-
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_flight" and channel == "77ads" and network == "dopemobi" and offer_id == "9dope-flight":
-        return {0:20, 1:12.5, 2:10, 3:8}
-    
-    elif campaign_name == "tikettmodd" and event_name == "af_purchase_flight":
-        return {0:16.6, 1:12.5, 2:11, 3:8}
-
-    elif campaign_name == "axisinvestmodd" and event_name == "TXN Successful":
-        return {0:29, 1:26, 2:20, 3:16.6, 4:14.28, 5:12.5, 6:12.5}
-
-    elif campaign_name == "moneymetmodd" and event_name == "LoanApplicationV2.ApplicationSent.View":
-        return {0:70, 1:50, 2:33, 3:33}
-    
-    elif campaign_name == "moneycatmxmodd" and event_name == "NEW_LOAN":
-        return {0:150, 1:150}
-    
-    elif campaign_name == "signnowmodd" and event_name == "af_start_trial":
-        return {0:20, 1:14.2, 2:11.11, 3:10}
-    
-    elif campaign_name == "signnowmodd" and event_name == "af_purchase":
-        return {2:100, 3:100}
-    
-    elif campaign_name == "signnowmodd" and event_name == "af_subscribe":
-        return {8:50, 9:50}
-
-    elif campaign_name == "opaymodd" and channel == "77ads" and network == "dopemobi" and offer_id in ["7dope-opayy", "7dope-opayy2", "7dope-opayy3", "7dope-opayy4", "7dope-opayy5", "7dope-opayy6", "7dope-opayy7"] and event_name == "signup_success":
-        return {0:3.7, 1:3.3, 2:3, 3:2.85}
-    
-    elif campaign_name == "opaymodd" and event_name == "signup_success":
-        return {0:3.7, 1:3.44, 2:3.3}
-    
-    elif campaign_name == "opaymodd" and channel == "adshustle" and network == "leanmobi" and offer_id in ["noplenmmp"] and event_name == "first_transaction":
-        return {0:7.14, 1:6.25, 2:5.67, 3:5}
-    
-    elif campaign_name == "opaymodd" and event_name == "first_transaction":
-        return {0:16.6, 1:11, 2:7.14}
-    
-    elif campaign_name == "opaymodd" and event_name == "total_transaction":
-        return {0:15, 1:10, 2:6}
-    
-    elif campaign_name == "hoteltonightautoios" and channel == "adshustle" and network == "advivifymedia" and offer_id in ["21653946", "21676889"] and event_name == "pey3pd":
-        return {0: 12.5, 1:9, 2:7.14, 3:6.25}
-    
-    elif campaign_name == "hoteltonightautoios" and channel == "adshustle" and network == "attrimob" and offer_id == "817dup" and event_name == "pey3pd":
-        return {0: 6.6, 1:5, 2:4, 3:3.33}
-    
-    elif campaign_name == "hoteltonightautoios" and event_name == "pey3pd":
-        return {0:16.6, 1:11.11, 2:8.33, 3:7.14, 4:6.6}
-
-    elif campaign_name == "hoteltonightauto" and event_name == "jviyct":
-        return {0:16.6, 1:11.11, 2:8.33, 3:7.14, 4:6.6}
 
     elif campaign_name == "onmobileauto" and event_name == "jr95xb":
         # return {0:1.81, 1:1.56, 2:1.42, 3:1.33}
@@ -834,7 +1860,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if channel in ["mobpine", "77ads", "appamplify"]:
             return {0:1.8, 1:1.53, 2:1.42, 3:1.33, 4:1.25}
 
-
         return {0:1.13, 1:1.06}
     
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
@@ -843,54 +1868,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
             return {1:100}
         else:
             return {1:100}
-    
-    elif campaign_name == "magztermodd" and event_name == "mg_1month_freetrial":
-        return {0:20, 1:14.2, 2:11.11, 3:10}
-    
-    elif campaign_name == "magztermodd" and event_name == "mg_1year_freetrial":
-        return {0:20, 1: 14.2 , 2: 11.11 , 3: 10 }
-    
-    elif campaign_name == "paysettmodd" and event_name == "registration_success":
-        return {0:2, 1:1.81, 2:1.6}
-    
-    elif campaign_name == "paysettmodd" and event_name == "send_success":
-        return {0:10, 1:7.14, 2:6.25, 3:5.5}
-    
-    elif campaign_name == "puntitmodd" and event_name == "FTD":
-        return {0:40, 1:25}
-
-    elif campaign_name == "friendipayomauto" and event_name == "lql86o":
-        return {0:10, 1:8, 2:6.5}
-    
-    elif campaign_name == "novawateriosmodd" and event_name == "af_purchase":
-        return {0:16, 1:12.5, 2:10}
-
-    elif campaign_name == "dimemodd" and event_name == "onboardSuccess":
-        return {0:10, 1:7, 2:5, 3:4.34, 4:3.8}
-
-    elif campaign_name == "dailynumbermatchauto" and event_name == "pdeipy":
-        return {0:30, 1:30, 2:25, 3:25, 4: 20, 5:20}
-
-    elif campaign_name == "cubiosmodd" and event_name == "esign_View_ActivateCL":
-        return {0:85, 1:80, 2:60, 3:45, 4: 33}
-
-    elif campaign_name == "bingofrenzytmodd" and event_name == "1_99":
-        return {0:7, 1:7}
-
-    elif campaign_name == "imagineartautoios" and event_name == "h5ihok":
-        return {0:80, 1:33.33}
-
-    elif campaign_name == "imagineartautoios" and event_name == "pdc6m9":
-        return {0:80,1:50}
-
-    elif campaign_name == "betrmodd" and event_name == "af_purchase":
-        return {0:80,1:50,2:33.33}
-
-    elif campaign_name == "uiuxmobileauto" and event_name == "rmlund":
-        return {0:45, 1:33.33, 2:25, 3:20}
-    
-    elif campaign_name == "uiuxmobileauto" and event_name == "jjww2u":
-        return {0:80}
     
     elif campaign_name == "garantiauto" and event_name == "otpgdr":
         return {0:30, 1:16.66, 2:12.5}
@@ -901,676 +1878,14 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "garantiauto" and event_name == "pfj58r":
         return {0:14, 1:9}
     
-    elif campaign_name == "bybittmodd" and event_name == "eftd":
-        return {0:90, 1:45}
-
-    elif campaign_name == "bybittmodd" and event_name == "ftd":
-        return {0:80, 1:16.67}
-    
-    # elif campaign_name == "bingofrenzytmodd" and event_name == "19_99":
-    #     return {1:68, 2:68, 3:41, 4:41}
-    
-    elif campaign_name == "bingofrenzytmodd" and event_name == "4_99":
-        return {4:7, 5:7}
-    
-    elif campaign_name == "bingofrenzytmodd" and event_name == "9_99":
-        return {2:7, 3:7}
-
-    elif campaign_name == "caesarsmodd" and event_name == "mb_deposit.first_time_deposit":
-        return {0:15, 1:15}
-    
-    elif campaign_name == "newdouluomodd" and event_name == "0_99":
-        return {0:23, 2:20, 4:16.67, 5:14.28, 6:12.5, 7:14.28}
-    
-    elif campaign_name == "newdouluomodd" and event_name == "4_99":
-        return {0:29, 1:25, 3:20, 5:16.6, 6:14.28, 7:12.5}
-    
-    elif campaign_name == "newdouluomodd" and event_name == "9_99":
-        return {1:41, 3:33, 5:25, 7:20}
-
-    elif campaign_name == "newdouluomodd" and event_name == "14_99":
-        return {2:41, 4:33, 6:25}
-    
-    elif campaign_name == "caesarscasinoiosmodd" and event_name == "mb_deposit.first_time_deposit":
-
-        if offer_id in ["caednommp"]:
-            return {0: 15}
-
-        elif channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
-            return {0:20}
-        
-        return {0:55, 1: 50}
-    
-    elif campaign_name == "mullerauto" and event_name == "x2mrfw":
-        return {0:1.5, 1: 1.2}
-
-    elif campaign_name == "mullerauto" and event_name == "fihqvn":
-        return {0:1.8, 1: 1.6}
-    
-    elif campaign_name == "13cabstauto" and event_name == "swtdbc":
-        return {0:1.5, 1: 1.5}
-
-    elif campaign_name == "13cabsiosauto" and event_name == "swtdbc":
-        return {0:1.5, 1: 1.5}
-
-    elif campaign_name == "khiladiaddamodd" and event_name == "af_complete_registration":
-        # return {0:1.8, 1: 1.6, 2:1.53, 3:1.42}
-        return {0:1.8, 1: 1.53, 2:1.42, 3:1.33}
-    
-    elif campaign_name == "boylesportsiostmodd" and event_name == "n_ftd":
-        # if channel in ["mobpine", "77ads", "appamplify"]:
-        #     return {0: 80, 1:30, 2:23}
-        # else:
-
-        # if offer_id in ["boyadexiosmmp"]:
-        #     return {0:80, 1:25, 2:16.6, 3:14.2}
-
-        # if offer_id in ['byaxiosafvammp', 'byax1iosafvammp','boyadexiosmmp','boyhilimmp','boymovmmp']:
-        #     return {0:70, 1:35, 2:23}
-
-        # return {0: 16, 1:8, 2:6.5}
-
-        return {0:43, 1:25, 2:20}
-
-    elif campaign_name == "boylesportsiostmodd" and event_name == "n_reg_confirm":
-        # if offer_id in ["byax1iosafvammp", "boyadexiosmmp"]:
-        #     return {0:12.5, 1:7.14, 2:12.5, 3:5}
-        # return {0: 6.6, 1:4.5, 2: 3.7, 3:3.3}
-        return {0: 25, 1:16.6, 2: 10}
-    
-    elif campaign_name == "bcsinvestmenttmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
-        return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
-
-    elif campaign_name == "bcsinvestmenttmodd" and event_name == "28500_Instr_Bid_Success":
-
-        if channel=="adshustle" and offer_id in ["bcsmnditvammp", "bcsmicovammp"]:
-            return {0:9}
-
-        return {0: 45, 1:23}
-
-    elif campaign_name == "bcsinvestiosmodd" and event_name == "93441_Onboard_OpenAcc_SignDocsSmsTap":
-        return {0: 6.2, 1:5, 2: 4.34, 3:4, 4:3.84}
-
-    elif campaign_name == "bcsinvestiosmodd" and event_name == "28500_Instr_Bid_Success":
-
-        return {0: 19, 1:12, 2:9.6, 3:8}
-
-    elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase" and channel in ["mobpine", "77ads", "appamplify"]:
-        return {0:12, 1:10, 2:9}
-    
-    elif campaign_name == "indigomoddteam2modd" and event_name == "af_purchase":
-        return {0: 8, 1:7.33, 2: 6.14}
-    
-    elif campaign_name == "cloneindigomoddteam2modd" and event_name == "af_purchase":
-        return {0: 9, 1:8.33, 2: 7.14}
-    
-    elif campaign_name == "clone2indigomoddteam2modd" and event_name == "af_purchase":
-        return {0: 9, 1:8.33, 2: 7.14}
-    
-    elif campaign_name == "breakthroughkingdommodd" and event_name == "1_09":
-        return {0:10, 1:20, 4:16.67, 5:14.28, 6:12.5, 7:14.28}
-    
-    elif campaign_name == "breakthroughkingdommodd" and event_name == "2_19":
-        return {0:10, 1:25, 3:20, 5:16.6, 6:14.28, 7:12.5}
-    
-    elif campaign_name == "breakthroughkingdommodd" and event_name == "5_47":
-        return {0:10, 1:8.3, 2:7.14, 3:6.25, 4:5.88, 5:5.5, 6:5, 7:4.54}
-    
-    elif campaign_name == "breakthroughkingdommodd" and event_name == "21_89":
-        return {1:33, 2:25, 3:16.67, 4:12.5, 5:10, 6:9, 7:7.69}
-    
-    elif campaign_name == "kriptoauto" and event_name == "lpfhv5":
-        return {0:9, 3:5}
-    
-    elif campaign_name == "homiedevmodd" and event_name == "af_subscribe":
-        return {0:10, 1:5, 2:4}
-
-    elif campaign_name == "homieiosmodd" and event_name == "af_subscribe":
-        return {0:10, 1:7.5, 2:5}
-    
-    elif campaign_name == "dimeiosmodd" and event_name == "onboardSuccess":
-        return {0:10, 1:7, 2:5, 3:4.34, 4:3.8}
-    
-    elif campaign_name == "kfcmexicotmodd" and event_name == "first_purchase":
-        return {0:5, 3:5}
-    
-    elif campaign_name == "tejimaandiauto" and event_name == "csqfum":
-        return {0:20, 1:16.6, 2: 14.28, 3:12.5}
-
-    elif campaign_name == "teenpatiauto" and event_name == "0_36":
-        return {0:20}
-    
-    elif campaign_name == "teenpatiauto" and event_name == "1_08":
-        return {0:38, }
-    
-    elif campaign_name == "teenpatiauto" and event_name == "3_6":
-        return {0:41, 1: 29}
-    
-    elif campaign_name == "teenpatiauto" and event_name == "10_79":
-        return {1:41, 3:41}
-
-    elif campaign_name == "alphabetoftastemodd" and event_name == "purchase_start":
-        return {0:19, 1:11.25, 2:10.7}
-
-    elif campaign_name == "kafimodd" and event_name == "stock_order_matching":
-        return {0:41, 1:33, 2:25, 3:20}
-    
-    elif campaign_name == "kafitradeiosmodd" and event_name == "stock_order_matching":
-        return {0:41, 1:33, 2:25, 3:20}
-
-    elif campaign_name == "mcdeliverymodd" and event_name == "af_purchase_delivery":
-
-        if offer_id in ["mobs-mcd"]:
-            return {0:5, 1:4, 2:3.3}
-        
-        return {0:6.6, 1:5.5, 2:5}
-    
-    elif campaign_name == "clonemcdeliverymodd" and event_name == "af_purchase_to_be_delivered":
-        return {0:6.6, 1:5.5, 2:5}
-    
-    elif campaign_name == "raisinggoblinmodd" and event_name == "First_Purchase":
-        return {0:6.67, 1:20}
-
-    elif campaign_name == "rummytimemodd" and event_name == "user_first_add_cash":
-        return {0:25, 1:16.67, 2:12.5 }
-
-    elif campaign_name == "toponemarketauto" and event_name == "6uwnyv":
-        return {0:65, 1:40}
-    
-    elif campaign_name == "toponemarketiosauto" and event_name == "f3a4ks":
-        return {0:65, 1:40}
-
-    elif campaign_name == "vpnpantheriosmodd" and event_name == "trial converted":
-        return {3:33, 4:20, 5:14.28, 6:12.5, 7:11.1}
-
-    elif campaign_name == "vpnpantheriosmodd" and event_name == "af_trial_started":
-        return {0:14, 1:10, 2:7.5, 3:6.5}
-        
-    elif campaign_name == "zeptodeliverymodd" and event_name == "first_order_delivered":
-        return {0:12, 1:9, 2:7.69, 3:6.6}
-
-    elif campaign_name == "dupointmodd" and event_name == "yh7wzr" and channel=="adshustle" and network=="refrevenue" and offer_id=="duphurmmp":
-        return {0:55}
-    
-    elif campaign_name == "dupointmodd" and event_name == "yh7wzr":
-        return {0:33, 1:22, 2:18, 3:16}
-    
-    elif campaign_name == "youset2modd" and event_name == "generate_proposal_auto":
-        return {0:33, 1:22, 2:18}
-    
-    elif campaign_name == "youset2modd" and event_name == "generate_proposal_home":
-        return {0:41, 1:33}
-    
-    elif campaign_name == "yesmadammodd" and event_name == "af_complete_registration":
-        return {0:2, 1:1.78, 2:1.66}
-    
-    elif campaign_name == "yesmadammodd" and event_name == "af_purchase":
-        return {0:12.5, 1:10, 2:7.14}
-        
-    elif campaign_name == "bigloanmodd" and event_name == "issueNewCPA":
-        return {1:90, 2:30, 3:20, 4:16, 5:14}
-    
-    elif campaign_name == "bigloanmodd" and event_name == "minconditionsapprove":
-        if offer_id in ["bigldopvammp"]:
-            return {0:12.5, 1:7.14, 2:6.6, 3:5}
-        
-        return {0:12.5, 1:8.3, 2:7.14, 3:6.6}
-
-    elif campaign_name == "otpbankappmetrica" and event_name == "screen__dc_success_courier":
-        return {1:70, 2:23, 3:14, 4:11, 5:10}
-
-    elif campaign_name == "byutmodd" and event_name == "purchase_iJoin":
-        return {0:20, 1:14.28, 2:12.5, 3:11.11, 4:10}
-
-    elif campaign_name == "comparemodd" and event_name == "mfoDealConfirmed":
-        return {0:33.33, 1:20, 2:16.66, 3:14.28, 4:12.25}
-    
-    elif campaign_name == "melivemodd" and event_name == "af_revenue":
-        return {0:26, 1:20, 2:16}
-
-    elif campaign_name == "metlivemodd" and event_name == "af_revenue":
-        return {0:26, 1:20, 2:16}
-    
-    elif campaign_name == "globusappmetrica" and event_name == "purchaseEvent":
-        return {0:45, 1:30}
-
-    elif campaign_name == "parimatchthmodd" and event_name == "Deposit Successful First":
-        return {0:25, 1:20, 2:16}
-
-    elif campaign_name == "myntmodd" and event_name == "af_deposit":
-        return {0:23, 1:20, 2:16.6, 3:14.28}
-
-    elif campaign_name == "spinnytauto" and event_name == "cqjxvf":
-
-        if channel in ["adshustle", "vestaapps", "appsfollowing", "appsatiate"]:
-            return {0:33, 1:20, 2:15.38}
-        
-        return {0:45, 1:30, 2:25}
-
-    elif campaign_name == "shienindiamodd" and event_name == "af_purchase":
-        return {0:30, 1:20, 2:14.28, 3:12.5}
-
-    elif campaign_name == "digitalbankmodd" and event_name == "upgrade2SA":
-        return {0:45, 1:16.6, 2:11.1}
-
-    elif campaign_name == "woolsocksmodd" and event_name == "3ts38m":
-        return {0:15, 1:11, 2:10, 3:9}
-
-    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Deposit_Open_Speed-d-plus_Success_Viewed":
-        return {0:45, 1:30, 2:25}
-    
-    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Deposit_Open_Chill-d_Success_Viewed":
-        return {0:47, 1:32, 2:26}
-
-    elif campaign_name == "cimbthaimodd" and event_name == "NTB_Mutual_Fund_Open_Deposit_And_MF_Success":
-        return {0:70, 1:50, 2:33}
-
-    elif campaign_name == "robotzaimerrmodd" and event_name == "signContractFirst":
-        return {0:45, 1:30, 2:25}
-
-    elif campaign_name == "stockitymodd" and event_name == "payment.deposit_first_new":
-        return {0:45, 1:25, 2:20}
-                
-    elif campaign_name == "heliummobilemodd" and event_name == "app_purchase_free" and offer_id:
-        if offer_id.isdecimal():
-            return {0:5, 1:3} # {0:5, 1:4.5}
-        else:
-            return {0:30, 1:20, 2:16}
-
-    elif campaign_name == "heliummobilemodd" and event_name == "purchase":
-        return {0:45, 1:30, 2:25}
-
-    elif campaign_name == "abhibusauto" and event_name == "cukuuk" and offer_id:
-        if offer_id.isdecimal():
-            return {0:5, 1:3}
-        else:
-            return {0:14, 1:8.33}
-        
-
     elif campaign_name == "garantiauto" and event_name == "rmq154" and offer_id:
         if offer_id.isdecimal():
             return {0:2.5, 1:2.5}
         else:
             return  {0:12.5, 1:10} 
 
-    elif campaign_name == "duittmodd" and event_name == "Successful_loan":
-        return {0:90, 1:30, 2:20, 3:16}
     
-    elif campaign_name == "r888casinomodd" and event_name == "MB_First_Deposit":
-        return {0:70, 1:50}
     
-    elif campaign_name == "istanbulairportauto" and event_name == "duf9j9":
-        return {0:4.4, 1:3.8, 2:3.5}
-    
-    elif campaign_name == "istanbulairportauto" and event_name == "pykeub":
-        return {0:2.2, 1:2, 2:1.8}
-    
-    elif campaign_name == "sliceauto" and event_name == "ksdh0l":
-        return {0:80, 1:33, 2:25}
-    
-    elif campaign_name == "sliceauto" and event_name == "ghmq8p":
-        return {0:80, 1:25, 2:20, 3:16.6}
-        
-    elif campaign_name == "instamoneyquickmodd" and event_name == "AF_RF_Paid":
-        return {0:45, 1:20, 2:14, 3:11, 4:10}
-    
-    elif campaign_name == "instamoneyquickmodd" and event_name == "AF_RF_LOAN_DISBURSED":
-        return {1:45, 2:30, 3:24}
-
-    elif campaign_name == "coinmenaauto" and event_name == "aj5y08":
-        return {0:41, 1:19, 2:14, 3:11, 4:9}
-
-    elif campaign_name == "smilesauto" and event_name == "a6ou21":
-        return {0:45, 1:20, 2:14, 3:11}
-
-    elif campaign_name == "netshoesmodd" and event_name == "af_purchase":
-
-        if offer_id == 'dope-netshoes-251030' and channel == 'appamplify' and network =='dopemobi':
-            return{0:100}
-
-        # if offer_id in ["nesmetmmp"]:
-        #     return {0:25, 1:17, 2:14}
-        
-        return {0:25, 1:17, 2:14}
-
-    elif campaign_name == "bingoplustmodd" and event_name == "BINGOPLUS_EVENT_REGIST":
-        return {0:3, 1:2.36, 2:2.09, 3:1.91}
-
-    elif campaign_name == "bingoplustmodd" and event_name == "bingoplus_first_deposit":
-        return {0:90, 1:45, 2:30}
-
-    elif campaign_name == "myshiftappmetricat" and event_name == "ShiftCatalogShiftDetails_shift_booked":
-        return {0:45, 1:25, 2:20}
-
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_3499":
-        return {0:45}
-    
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_4999":
-        return {0:30}
-
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_9999":
-        return {0:16}
-
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_349":
-        return {1:90}
-    
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_499":
-        return {2:90}
-    
-    elif campaign_name == "shorttvtmodd" and event_name == "revenue_999":
-        return {3:90}
-    
-    elif campaign_name == "etomomodd" and event_name == "loan_requested":
-        if offer_id.isdecimal():
-            return {0:7}
-        
-        return {0:25, 1: 14.28, 2:11}
-    
-    elif campaign_name == "cryptocomtmodd" and event_name == "mktg:kyc_approved_push_sent":
-        return {0:4, 1:3}
-    
-    elif campaign_name == "megogot2modd" and event_name == "af_purchase":
-        return {0:6.66, 1:5.26, 2:4.76, 3:4.54}
-
-    elif campaign_name == "wiomodd" and event_name == "view_screen_onboarding_app_submitted":
-        return {0:80}
-
-    elif campaign_name == "paisayaarauto" and event_name == "jbjcze":
-        return {1:30, 2:20, 3: 16}
-
-    elif campaign_name == "gsmtmodd" and event_name == "sign_up":
-        return {0:3.33, 1:2.85, 2:2.63, 3:2.5}
-
-    elif campaign_name == "gsmtmodd" and event_name == "order_completed_1st_time":
-        return {0:10, 1:8,2:7, 3: 6}
-
-    elif campaign_name == "bollingerauto" and event_name == "purchase":
-        return {0:18, 1:9}
-
-    # elif campaign_name == "bollingerauto" and event_name == "l1swxm":
-    #     return {0:90, 1:50}
-
-    # elif campaign_name == "bollingerauto" and event_name == "jzo4sk":
-    #     return {0:48, 1:30}
-
-    elif campaign_name == "joybuymodd" and event_name == "PURCHASE":
-        return {0:25, 1:20, 2:16.6}
-        
-    elif campaign_name == "soulchilltmodd" and event_name == "revenue_049":
-        return {1:35, 3:25, 5:15}
-
-    elif campaign_name == "soulchilltmodd" and event_name == "revenue_099":
-        return {2:40, 5:25, 6:17, 7:9}
-
-    elif campaign_name == "soulchilltmodd" and event_name == "revenue_499":
-        return {0:40, 3:25, 4:16}
-    
-    elif campaign_name == "soulchilltmodd" and event_name == "revenue_999":
-        return {1:40}
-
-    elif campaign_name == "kotak811mbtmodd" and event_name == "AccountOTP_OTP_Acq":
-        return {0:30}
-    
-    elif campaign_name == "mylingueautoios" and event_name == "y3ahlf":
-
-        if offer_id.isdecimal():
-            return {0:2, 1:1.81, 2:1.63, 3:1.49}
-        
-        return {0:3.33, 1:2.77, 2:2.43, 3:2.22}
-
-    elif campaign_name == "omniheroesmodd" and event_name == "revenue_099":
-        return {4:49}
-
-    elif campaign_name == "omniheroesmodd" and event_name == "revenue_499":
-        return {0:25, 4:16}
-
-    elif campaign_name == "omniheroesmodd" and event_name == "revenue_1499":
-        return {0:24, 1:16, 2:12, 3:8, 5:7, 6:6.25}
-
-    elif campaign_name == "nomadesimauto" and event_name == "5f3kzv":
-        return {0:16, 1:11.11, 2:9.09, 3:8.33}
-
-    elif campaign_name == "nouslibauto" and event_name == "chju3f":
-        return {0:2, 1:1.78, 2:1.6}
-
-    elif campaign_name == "nouslibauto" and event_name == "purchase":
-        return {0:21, 1:16}
-
-    elif campaign_name == "nouslibt2autoios" and event_name == "chju3f":
-        return {0:2, 1:1.78, 2:1.6}
-
-    elif campaign_name == "nouslibt2autoios" and event_name == "purchase":
-        return {0:21, 1:16}
-
-    elif campaign_name == "carjammodd" and event_name == "revenue199":
-        return {1:15, 3:9,4:6.6}
-    
-    elif campaign_name == "carjammodd" and event_name == "revenue799":
-        return {0:9, 2:6.6}
-    
-    elif campaign_name == "fabmobilemodd" and event_name == "ntb_casa_account_created":
-        return {1:45, 2:30, 3: 23}
-
-    elif campaign_name == "fabmobilemodd" and event_name == "ntb_cc_card_created":
-        return {0:45, 1:30, 2:23, 3:19}
-
-    elif campaign_name == "bbvamodd" and event_name == "portabilidad_nomina-app_approved":
-        if channel=="adshustle" and network=="myfunadstrack" and offer_id=="bbvamyfmmp":
-            return {1:80}
-        return {0:40, 1:26, 2:20, 3:18}
-    
-    elif campaign_name == "babytrackermodd" and event_name == "af_start_trial":
-        return {0:30, 1:18, 2:16}
-
-    elif campaign_name == "babytrackermodd" and event_name == "af_subscribe":
-        return {0:90, 1:45}
-    
-    elif campaign_name == "babytrackermodd" and event_name == "af_purchase":
-        return {0:31, 1:19, 2:15, 3:12}
-
-        
-    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_start_trial":
-        return {0:30, 1:18, 2:16}
-
-    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_subscribe":
-        return {0:90, 1:45}
-    
-    elif campaign_name == "glowbabytrackeriosmodd" and event_name == "af_purchase":
-        return {0:31, 1:19, 2:15, 3:12}
-
-    elif campaign_name == "vogaclosetiosauto" and event_name == "yewk8s":
-        return {0:15, 1:9, 2:7}
-
-    elif campaign_name == "mibptmodd" and event_name == 'FB_Mobile_complete registration':
-        return {0:1.85, 1:1.6}
-    
-    elif campaign_name == "filteraiiosauto" and event_name == 'mjq7jz':
-        return {0:30, 1:19, 2:16}
-        
-    elif campaign_name == "utimamarketsmodd" and event_name == 'P_FTD':
-        return {1:30, 2:19, 3:16}
-            
-    elif campaign_name == "osagomodd" and event_name == 's2s-cpa-conversion':
-        return {1:24, 2:14, 3:11, 4:9}
-                
-    elif campaign_name == "neobetiosmodd" and event_name == 'af_first_purchase':
-        return {0:90, 1:45}
-
-    elif campaign_name == "qustodioparentalauto" and event_name == '85anak':
-        return {0:22.5, 1:15, 2:12.85}
-
-    elif campaign_name == "qustodioparentalauto" and event_name == 'g2gfaz':
-        return {0:90, 1:45, 2:30}
-        
-    elif campaign_name == "mexdinmodd" and event_name == 'first_loan_success':
-        return {0:90, 1:30, 2:18, 3:15}
-
-    elif campaign_name == "underarmourauto" and event_name == '5uo13w' and event_day ==0:
-
-        if offer_id in ["undapcmmp", "test"]:
-            return {0:5}
-        
-        return {0:15, 1:9, 2:6.42, 3:5.62}
-
-    elif campaign_name == "nuiauto" and event_name == '1rck55':
-        return {0:6, 1:4.5, 2:3.6, 3:3.21}
-    
-    elif campaign_name == "nuiauto" and event_name == 'vcoavi':
-        return {0:45, 1:22.5, 2:18, 3:15}
-    
-    elif campaign_name == "credmaxmodd" and event_name == 'approvals_server':
-        return {0:45, 1:30, 2:22.5, 3:18}
-
-    elif campaign_name == "credmaxmodd" and event_name == 'tutorial_complete_server':
-        return {0:90, 1:45, 2:30, 3:22.5}
-
-    elif campaign_name == "cryptocomtmodd" and event_name == 'mktg:buy_crypto':
-        return {0:25, 1:14, 2:11, 3:10}
-    
-    elif campaign_name == "bancaauto" and event_name == 'xnfrxy':
-        return {0:30, 1:20, 2:14}
-
-    elif campaign_name == "fiverrt2modd" and event_name == 'FTB_BUCKET':
-        return {0:30, 1:18, 2:15}
-    
-    elif campaign_name == "fiverriosmodd" and event_name == 'FTB':
-        return {0:30, 1:18, 2:15}
-    
-    elif campaign_name == "williamhillsportiosmodd" and event_name == 'FTD':
-        if offer_id in ["apps-whsports.ios", "whuk2adgmmp"]:
-            return {0:45}
-
-        elif offer_id in ["willadghubmmp"]:
-            return {0:50}
-        
-        elif offer_id in ["whsptadgmmp"]:
-            return {0:60}
-        
-        elif offer_id in ["ahwilkspmmp", "test"]:
-            return {0:8}
-        
-        elif offer_id in ["wiladummp"]:
-            return {0:10}
-    
-        elif offer_id in ["wammobmmp"]:
-            return {0:22}
-
-        return {0:30, 1:22.5, 2:18}
-
-    # elif campaign_name == "vegasiosmodd" and event_name == 'FTD':
-    #     return {0:45, 1:30, 2:22.5, 3:18}
-
-    elif campaign_name == "vegasiosmodd" and event_name == 'registration':
-
-        if offer_id in ['mpj-wcios','adhub-whcasinoiios-26a017260']:
-            return {0:6}
-        
-        elif offer_id in ["williamhill-mpjads-jan"]:
-            return {0:4.5}
-
-        # if channel in ['mobpine', '77ads', 'appamplify']:
-        return {0:24, 1:12, 2:10}
-
-        # return {0:6, 1:5, 2:3.91}
-        # return {0:13, 1:8, 2:6}
-    
-    elif campaign_name == "vegasiosmodd" and event_name == 'FTD':
-        
-        if offer_id in ['mpj-wcios','adhub-whcasinoiios-26a017260']:
-            return {0:13}
-        
-        elif offer_id in ["williamhill-mpjads-jan"]:
-            return {0:8.5}
-
-        elif offer_id in ["wh2casdgmmp"]:
-            return {0:67}
-        # if channel in ['mobpine', '77ads', 'appamplify']:
-        return {0:30, 1:20, 2:16}
-        # return {0:24, 1:13, 2:10, 3:9}
-
-    elif campaign_name == "cleanervpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "adblockeriosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "jyotiaiiosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "moneygrammiosmodd" and event_name == 'first_transaction':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "mixvpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "plantexpertaiiosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "888pokeriosmodd" and event_name == "MB_First_Deposit":
-        return {0:90, 1:45, 2:30}
-
-    elif campaign_name == "tataneuauto" and event_name == "CC_CARD_SELECTION":
-        return {0:6, 1:5, 2:4.5}
-
-    elif campaign_name == "tataneuauto" and event_name == "plm_disbursement":
-        return {0:30, 1:18, 2:15, 3:12.85}
-
-    elif campaign_name == "betfredsportsiosmodd" and event_name == "deposit":
-        return {0:90, 1:30, 2:22.5, 3:18}
-
-    elif campaign_name == "ajioiosmodd" and event_name == "first_purchase":
-        return {0:45, 1:30, 2:22.5, 3:18}
-
-    elif campaign_name == "cashmaxmodd" and event_name == "Successful_loan":
-        return {0:90, 1:22.5, 2:15, 3:12.85}
-
-    elif campaign_name == "idntimesmodd" and event_name == "Subscribe_success":
-        return {0:45, 1:18, 2:12.85, 3:11.25}
-
-    elif campaign_name == "teldaauto" and event_name == "ntd8cj":
-        return {0:11.25, 1:7.5, 2:6, 3:5.29}
-
-    elif campaign_name == "tenthousandmodd" and event_name == "revenue_099":
-        return {0:90, 1:45, 3:30, 4:22.5, 5:18, 6:15, 7:12.85}
-    
-    elif campaign_name == "tenthousandmodd" and event_name == "revenue_499":
-        return {0:48, 2:32}
-
-    elif campaign_name == "vtb24tappmetrica" and event_name == "screenTap_notClient_liteData_litePasscode":
-        return {0:2.5, 1:2}
-
-    elif campaign_name == "mbbankmodd" and event_name == "AF_OB_SUCCESS":
-        if offer_id in ["mbb2iwammp"]:
-            return {0:30, 1:20, 2:16.6, 3:14.28}
-        return {0:12.85, 1:9, 2:7.5}
-
-    elif campaign_name == "mbbankautoios" and event_name == "AF_OB_SUCCESS":
-        if offer_id in ["mbbiwammp"]:
-            return {0:30, 1:20, 2:16.6, 3:14.28}
-        
-        return {0:12.85, 1:9, 2:7.5}
-
-    elif campaign_name == "tawkeeltmodd" and event_name == "payment_completed":
-        return {0:30, 1:18, 2:12.85, 3:11.25}
-
-    elif campaign_name == "webullmodd" and event_name == "first_deposit_success_F":
-        return {1:23, 2:13.5, 3:11.87}
-    
-    elif campaign_name == "lottermxiosmodd" and event_name == "FTD":
-
-        if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0:12}
-
-        if offer_id in ["17425"]:
-            return {0:13}
-        
-        return {0:80, 1:33}
-    
-    elif campaign_name == "thelotterusiosmodd" and event_name == "FTD":
-        return {0:80, 1:33}
-
-    elif campaign_name == "blibliiosmodd" and event_name == "new_customer_purchase":
-        return {0:24, 1:13.71, 2:10.66, 3:9.6}
 
     elif campaign_name == "kfcsaudiiauto" and event_name == "cq4kxg":
         if offer_id.isdecimal():
@@ -1642,145 +1957,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         return {0:6.6, 1:5.5, 2:4.76}
 
-    elif campaign_name == "mtcmusiciosmodd" and event_name == "af_subscribe":
-        return {0:45, 1:24, 2:19}
-
-    elif campaign_name == "mtcmusicmodd" and event_name == "af_subscribe":
-        return {0:45, 1:24, 2:19}
-
-    elif campaign_name == "bitoasistauto" and event_name == "deposit":
-        return {0:45, 1:24, 2:19}
-
-    elif campaign_name == "myacuvuemodd" and event_name == "Registration_Success":
-        # return {0:3.3, 1:2.6, 2:2.06}
-        return {0:2.22, 1:2.08, 2:1.92}
-
-    elif campaign_name == "myacuvuemodd" and event_name == "fitting_events":
-
-        return {0:5.8, 1:5.26, 2:4.76}
-
-    elif campaign_name == "myfoodappmetrica" and event_name == "2990_rev":
-        return {0:30, 1:19, 2:16}
-
-    elif campaign_name == "myfoodappmetrica" and event_name == "2590_rev":
-        return {0:31, 1:18, 2:15}
-
-    elif campaign_name == "myacuvueiosmodd" and event_name == "Registration_Success":
-
-        if offer_id in ["myiosappmmp"]:
-            return {0:3.3, 1:2.77, 2:2.38}
-        
-        # return {0:2.6, 1:2.06, 2:2.4}
-        return {0:2.22, 1:2.08, 2:1.92}
-
-    elif campaign_name == "myacuvueiosmodd" and event_name == "fitting_events":
-
-        if offer_id in ["myiosappmmp"]:
-            return {0:12.5, 1:10, 2:7.14}
-        
-        # return {0:13, 1:9, 2:7}
-        return {0:5.8, 1:5.26, 2:4.76}
-
-    elif campaign_name == "bbvamodd" and event_name == "afiliacion_basica-app_online_purchases":
-
-        if channel=="adshustle" and network=="myfunadstrack" and offer_id=="bbvamyfmmp":
-            return {0:95, 1:48}
-        return {0:48, 1:19, 2:14}
-
-    elif campaign_name == "makebykbankiosmodd" and event_name == "ON2kSucceed":
-        return {0:24, 1:11, 2:8, 3:7}
-
-    elif campaign_name == "velvetvpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
-    elif campaign_name == "bluerewardsmodd" and event_name == 'sign_up':
-        return {0:8, 1:6, 2:5, 3:4.75, 4:4.31}
-    
-    elif campaign_name == "bluerewardsmodd" and event_name == 'sign_up':
-        return {0:8, 1:6, 2:5, 3:4.75, 4:4.31}
-    
-    elif campaign_name == "paymeiosauto" and event_name == "zgxxz1":
-        return {0:18, 1:11.25, 2:8}
-    
-    elif campaign_name == "paymeauto" and event_name == "zgxxz1":
-        return {0:18, 1:11.25, 2:8}
-
-    elif campaign_name == "seevpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-    
-    elif campaign_name == "ajiomodd" and event_name == "luxe_purchase":
-        return {0:19, 1: 11, 2:9}
-    
-    elif campaign_name == "ajiomodd" and event_name == "ajio_purchase":
-        return {0:80, 1: 40}
-
-    elif campaign_name == "octatrademodd" and event_name == "af_realtime_activation":
-        return {0:90, 1: 45}
-    
-    elif campaign_name == "action247iosmodd" and event_name == "af_FTD":
-        return {0:20}
-
-    elif campaign_name == "sensorvpniosmodd" and event_name == 'apphud_trial_started':
-        return {0:22.5, 1:15, 2:12.85, 3:11.25}
-
     elif campaign_name == "albertbudgetauto" and event_name == 'finished_signup_flow_and_bank':
         if offer_id.isdecimal():
             return {0:14, 1:12, 2:9}
 
         return {0:30, 1:24, 2:19}
 
-    elif campaign_name == "weltradeauto" and event_name == "kbwb07":
-        return {0:45, 1: 18}
-
-    elif campaign_name == "weltradeauto" and event_name == "evpfo1":
-        return {1:89}
-
-    elif campaign_name == "vanaauto" and event_name == "15serm":
-        return {0:89, 1: 30, 2: 18, 3:15}
-
-    elif campaign_name == "sahimodd" and event_name == "5fno_completed":
-        return {0:89, 1:22.5, 2:18.5}
-
-    elif campaign_name == "moneymaniosmodd" and event_name == "NEW_CREDIT_ACTIVE_DB":
-        return {0:89, 1: 30, 2: 18, 3:15}
-
-    elif campaign_name == "moneyviewmodd" and event_name == "submit_success":
-
-        if channel in ["mobpine", "77ads", "appamplify"]:
-            return {0:45, 1: 25, 2: 19}
-        
-        return {0:30, 1: 19, 2: 16, 3:14}
-
-    elif campaign_name == "moneyviewmodd" and event_name == "upi_first_payment":
-        return {0:8.3, 1: 5.55, 2: 4.3, 3: 4}
-
-    elif campaign_name == "viuhkmodd" and event_name == "subscription_payment_success":
-        return {0:30, 1:24 , 2: 19}
-
-    elif campaign_name == "tinkofft2modd" and event_name == "credit_approve_offline":
-        return {0:45, 1:30, 2: 22.5, 3: 18}
-
-    elif campaign_name == "tinkofft2modd" and event_name == "debit_utilization_offline":
-        return {0:45, 1:22.5, 2: 18, 3: 15, 4: 12.85}
-
-    elif campaign_name == "healthifymetmodd" and event_name == "sp_plan_purchase":
-        return {0:31.66, 1:19, 2: 15.8, 3: 13.57}
-
-    elif campaign_name == "mistplayearnmoneymodd" and event_name == "iap_spend_all_v2":
-        return {0:90, 1:45}
-
-    elif campaign_name == "yandexrealestateiosmodd" and event_name == "first_call_posle-paid_s2s":
-        return {0:75, 1:41}
-
-    elif campaign_name == "popaimodd" and event_name == "onPurchasesUpdated":
-        return {0:90, 1:45, 2:30}
-
-    elif campaign_name == "dominosturkeyauto" and event_name == "yfub50":
-
-        if offer_id in ["domdoummp", "dom2doummp"]:
-            return {0:2.85, 1:2.5, 2:2.27}
-        
-        return {0:3.3, 1:2.85, 2:2.6} # need to update
+     # need to update
 
     elif campaign_name == "wetterandroidauto" and event_name == "u6z21k" and offer_id:
         if offer_id.isdecimal():
@@ -1794,84 +1977,13 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         return {1:14, 2:10}
 
-    elif campaign_name == "rootcarinsurancemodd" and event_name == "Profile":
-        return {0: 9, 1:7, 2: 6}
-
-    elif campaign_name == "mcluckcasinoiosmodd" and event_name == 'first_purchase':
-        return {0:75, 1:45}
-
-    elif campaign_name == "eternzmodd" and event_name == 'First Purchase':
-        return {0:14, 1:10, 2:8, 3:6}
-
-    elif campaign_name == "dominoesgoldiosmodd" and event_name == "firstCashNPU":
-        return {0:45, 1:23, 2: 18}
-    
-    elif campaign_name == "unodigitalbankiosmodd" and event_name == "loan_disbursed":
-        return {0:90, 1:30, 2: 23}
-
-    elif campaign_name == "loansonlinemodd" and event_name == "newloancount":
-        return {0:90, 1:45, 2:30}
-
-    elif campaign_name == "webzaimiosmodd" and event_name == "newloancount":
-        return {0:90, 1:45, 2:30}
-
-    elif campaign_name == "litresiosmodd" and event_name == 'af_purchase_success_ppd':
-        return {0:22.5, 1:18, 2:15.5, 3:12.85}
-
-    elif campaign_name == "shahidmodd" and event_name == "evergent_server_subscription_success":
-        return {0:24, 1:16, 2:14, 3: 12}
-
     elif campaign_name == "shionauto" and event_name == "10000_revenue":
         from datetime import datetime
         today = datetime.now().weekday()
         if today in [2, 5]:
             return {0:37}    
     
-    elif campaign_name == "paymayamodd" and event_name == "EKYC_SUCCESS":
-        return {0:6.33, 1: 3.8, 2: 2.714}
 
-    elif campaign_name == "paymayamodd" and event_name == "WALLET_DEBIT_ACTIVE":
-        return {0:31.6, 1:13.57, 2: 7.91, 3: 5.93, 4:4.75, 5: 4}
-
-    elif campaign_name == "bajajfinauto" and event_name == "Lead_PROL_DR":
-        return {0:49, 1:24, 2:19}
-    
-    elif campaign_name == "bajajfinauto" and event_name == "Lead_PROL_CA":
-        return {0:48, 1:23, 2:18}
-
-    elif campaign_name == "maxfashionindiaauto" and event_name == "PURCHASE":
-        return {0:24, 1:8.3, 2:7.5}
-
-    elif campaign_name == "afriexaiosauto" and event_name == 'opawt9':
-        return {0:45, 1:22, 2:15, 3:12}
-    
-    elif campaign_name == "pointsbetsportsbookmodd" and event_name == "Deposit Placed First Time":
-        return {0:45, 1:22.5, 2:18}
-
-    elif campaign_name == "burgerkingbrasilt2modd" and event_name == "af_purchase":
-        return {0:9, 1:7.14}
-
-    elif campaign_name == "sugarworldiosmodd" and event_name == "sale":
-        return {0:25, 1:16.6}
-
-    elif campaign_name == "neoniosmodd" and event_name == 'crd_pre_approved_stts':
-        return {1:29, 2:18, 3:15, 4:14.3}
-
-    elif campaign_name == "starzplayiosmodd" and event_name == "af_subscribe":
-        return {0:45, 1:32}
-
-    elif campaign_name == "ballmodd" and event_name == "ChallengeCompleted_1":
-        return {0:18, 1:11.25, 2:9}
-    
-    elif campaign_name == "defactotauto" and event_name == "icmk9u":
-        return {0:24, 1:14, 2: 12}
-    
-    elif campaign_name == "defactoiosauto" and event_name == "icmk9u":
-        return {0:24, 1:14, 2: 12}
-    
-    elif campaign_name == "pulszcasinomodd" and event_name == "af_purchase_total_10_00":
-        return {0:95, 1:48}
-    
     elif campaign_name == "darknessmodd" and event_name == "revenue_1":
         return {0 : 12, 1: 9}
 
@@ -1880,9 +1992,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if random.randint(1,100)<=5 and event_day == 1:
             return {1: 17}
         return {1:50}
-
-    elif campaign_name == "moomootrademodd" and event_name == "af_ss_event_81":
-        return {0: 24, 1: 14, 2:11, 3:9.5}
 
     elif campaign_name == "tiletripmodd" and event_name == "revenue_6":
         return {0 : 20}
@@ -1902,95 +2011,12 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         if today in [2,4]:
             return {0:40}
 
-    elif campaign_name == "fanaticscasinoiosmodd" and event_name == "af_complete_registration":
-        return {0:5, 1:3.7, 2:3.2}
-
-    elif campaign_name == "fanaticscasinoiosmodd" and event_name == "deposit_submitted":
-        return {0:24, 1:13.5, 2:12}
-
-    elif campaign_name == "fanaticscasinoiosmodd" and event_name == "casino_game_first_launch":
-        return {0:75, 1:46}
-    
-    elif campaign_name == "eaptekatmodd" and event_name == "af_first_order":
-        return {0:15, 1:9, 2:6.9, 3: 6, 4: 5.62}
-
-        # return {0:9, 1:6.9, 2:6.9, 3: 6, 4: 5.62}
-
-    elif campaign_name == "playuzuiosmodd" and event_name == "userFirstTimeDeposit":
-        return {0:45, 1:23}
-    
-    elif campaign_name == "sofyclubauto" and event_name == "e7ikty":
-        return {0:2, 1:1.6, 2: 1.5, 3:1.49}
-
-    elif campaign_name == "sofyclubauto" and event_name == "2hekaz":
-        return {0:4.3, 1:3.4, 2: 3.03, 3:2.7, 4: 2.5, 5: 2.32}
-    
-    elif campaign_name == "viusaiosmodd" and event_name == "subscription_payment_success":
-        return {0:24, 1:15, 2: 12.8, 3: 11.8}
-
     elif campaign_name == "techcombankmodd" and event_name == "OnO_Success":
         if offer_id.isdecimal():
             return {0:5}
         
         return {0:19, 1: 11, 2:9, 3: 7.1}
     
-    elif campaign_name == "wirexiosauto" and event_name == "s2s_first_transaction":
-        return {0: 40, 1: 30}
-
-    elif campaign_name == "bet22modd" and event_name == "first_deposit":
-        return {0:95, 1:30, 2:22.5, 3: 18}
-    
-    elif campaign_name == "beetlessolitairemodd" and event_name == "revenue_1":
-        return {1 : 40}
-
-    elif campaign_name == "beetlessolitairemodd" and event_name == "revenue_6":
-        return {0: 11, 1:7, 2: 5, 3: 4, 4: 12.5}
-
-    elif campaign_name == "beetlessolitairemodd" and event_name == "grt_win_858":
-        return {0:30}
-    
-    elif campaign_name == "onepuchmanmodd" and event_name == "revenue488":
-        return {0:18, 1: 14}
-
-    elif campaign_name == "onepuchmanmodd" and event_name == "revenue103":
-        return {2: 18, 3: 14}
-
-    elif campaign_name == "lottolandauto" and event_name == "20y4ke":
-        return {0:40, 1: 30, 2: 23}
-
-    elif campaign_name == "playmillionmodd" and event_name == "FTD":
-        return {0:75, 1:30}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_2":
-        return {1 : 80}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_5":
-        return {0 : 45}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_8":
-        return {3 : 81, 6: 41}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_10":
-        return {0 : 44}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_11":
-        return {2 : 82}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_16":
-        return {2 : 79, 3: 43}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_25":
-        return {1 : 78, 7: 46}
-
-    elif campaign_name == "foodiesizzleiosmodd" and event_name == "revenue_30":
-        return {5 : 75}
-
-    elif campaign_name == "fibeiosmodd" and event_name == "total_approved":
-        return {0:23, 1:11.8, 2: 9.6}
-    
-    elif campaign_name == "fibeiosmodd" and event_name == "disbursement":
-        return {0:95, 1:47, 2:31.6, 3: 23}
-
     elif campaign_name == "tokiiosmodd" and event_name == "af_complete_registration":  
 
         if channel in  ["mobpine", "77ads", "appamplify"]:
@@ -2007,66 +2033,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         
         return {0:23, 1: 12, 2:10.5, 3:9.5}
 
-    elif campaign_name == "caroutmodd" and event_name == "in_app_purchase":
-        return {0:6}
-
-    elif campaign_name == "nelopayiosauto" and event_name == "INFLECTION_UNDERWRITING":  
-        return {0:22, 1: 13, 2:10.5, 3: 9.4}
-
-    elif campaign_name == "btcturkproauto" and event_name == "754uyc":  
-        return {0:6.6, 1: 5.55, 2:5, 3:4.5}
-
-    elif campaign_name == "btcturkproauto" and event_name == "j19w5z":  
-        return {0:24, 1:14.2, 2:11, 3:9.7}
-
-    elif campaign_name == "rakutentmodd" and event_name == "af_purchase":
-        return {0:10}
-
-    elif campaign_name == "moneycatiosmodd" and event_name == "NEW_LOAN":  
-        return {1: 45, 2:22.5, 3: 18.3}
-
-    elif campaign_name == "whitebitiosmodd" and event_name == "KYC_VERIFIED":  
-        return {0: 9.2, 1:5.41, 2: 4.3, 3: 3.8}
     
-    elif campaign_name == "whitebitiosmodd" and event_name == "FIRST_DEPOSIT":  
-        return {0: 19, 1:12.5, 2: 8.9}
-    
-    elif campaign_name == "whitebitiosmodd" and event_name == "FIRST_TRADE":  
-        return {0: 95, 1:47.5, 2: 31.6}
-
-    elif campaign_name == "betparxiosmodd" and event_name == "af_first_deposit":  
-        return {0: 95, 1:47}
-
-    elif campaign_name == "yangoplayiosmodd" and event_name == "auth.succeed":
-        return {0:10, 1:8.33, 2:6.67}
-    
-    elif campaign_name == "yangoplayiosmodd" and event_name == "c0_no_cancel_3d":
-        return {0:25, 1:16.6, 2:13.3}
-    
-    elif campaign_name == "yangoplayiosmodd" and event_name == "unified_subscription.purchase.completed":
-        return {0:40, 1:25, 2:16.6}
-
-    elif campaign_name == "kudusaudiarabiaauto" and event_name == "fen1r7":  
-        return {0: 5.7, 1: 5.42, 2: 4.84}
-
-    elif campaign_name == "myasterauto" and event_name == "szqveh":
-        return {0:80, 1:30}
-
-    elif campaign_name == "kubizmodd" and event_name == "issueNew":
-        return {1:90, 2: 47, 3: 24}
-
-    elif campaign_name == "kubizmodd" and event_name == "addNewBankAccountResult":        
-            return {0:16.6, 1: 9.7, 2: 8.1, 3: 6.9}
-
-    elif campaign_name == "dabbleiosmodd" and event_name == "first_deposit_completed":
-        return {0:78, 1:30}
-
-    elif campaign_name == "yourloaniosmodd" and event_name == "loan_accepted":
-        return {0: 95,1:31, 2: 19, 3: 16.5}
-
-    elif campaign_name == "yourloanmodd" and event_name == "loan_accepted":
-        return {0: 95,1:31, 2: 19, 3: 16.5}
-
     elif campaign_name == "techcombankiosmodd" and event_name == "OnO_account_Success":
         if offer_id.isdecimal():
             return {0:5}
@@ -2076,6 +2043,29 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "b86betmodd" and event_name == "first_dep":
 
         return {0:30, 1: 18.5, 2:15}
+    
+    campaign_stats = get_stats(campaign_name)
+    event_data = campaign_stats.get(event_name)
+
+    if all(isinstance(v, (int, float)) for v in event_data.values()):
+        return event_data
+
+    keys_to_try = [
+        f"{channel}::{network}::{offer_id}",
+        f"{channel}::{network}::*",
+        f"{channel}::*::{offer_id}",
+        f"*::{network}::{offer_id}",
+        f"{channel}::*::*",
+        f"*::*::{offer_id}",
+        f"*::{network}::*",
+        "*::*::*"
+    ]
+
+    for key in keys_to_try:
+
+        if key in event_data:
+            print (key)
+            return event_data[key]
 
         
 class checkEligibility(APIView):
@@ -2564,3 +2554,14 @@ class Running_camps_stats(APIView):
 
     # def post(self, request):
     #     EventInfo.objects.filter()
+
+
+class DB_event_randomness(APIView):
+    def get(self, request):
+
+        campaign_name = request.GET.get('campaign_name')
+        channel = request.GET.get("channel")
+        network = request.GET.get("network")
+        offer_id = request.GET.get("offer_id")
+
+
