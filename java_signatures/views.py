@@ -615,7 +615,7 @@ def events_per_day_stats(campaign_name, event_name, channel, network, offer_id):
     elif campaign_name == "williamhillsportiosmodd" and offer_id in ["ahwilkspmmp", "test"] and event_name =="FTD":
         return 15
     
-def get_stats(campaign_name, event_name, channel, network, offer_id,Pay_out=0.0, event_day=0):
+def get_stats(campaign_name):
     STATS = {
         "quickcashonlinemodd": {
             "approvals_cnt_server": {0: 41, 1:24, 2:19, 3:16.6}
