@@ -1841,7 +1841,11 @@ def get_stats(campaign_name):
 
         "galaxychatappmetrica": {
             "new_user_reg": {0: 2,1:1.88, 2: 1.81}
-        }
+        },
+
+        "todocreditmxmodd": {
+            "af_first_apply_loan": {0: 19, 1: 10.5, 2: 8, 3: 6.2}
+            },
 
 
     }
