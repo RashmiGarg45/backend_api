@@ -1844,7 +1844,7 @@ def get_stats(campaign_name):
         },
 
         "todocreditmxmodd": {
-            "af_first_apply_loan": {0: 19, 1: 10.5, 2: 8, 3: 6.2}
+            "af_first_apply_loan": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
             },
 
 
