@@ -1847,6 +1847,10 @@ def get_stats(campaign_name):
             "af_first_apply_loan": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
             },
 
+        "fictionmemodd": {
+            "read_10_chapters_7days": {0: 0, 1: 20, 2: 12, 3: 10}
+        }
+
 
     }
 
