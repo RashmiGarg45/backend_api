@@ -2402,6 +2402,7 @@ class RevenueHelperBackupView(APIView):
                     currency=obj.currency,
                     adid=obj.adid,
                     event_name=obj.event_name,
+                    event_value=obj.event_value,
                     c_day=obj.c_day,
                     app_version=obj.app_version,
                     script_version=obj.script_version
