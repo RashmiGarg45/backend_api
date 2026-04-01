@@ -1839,6 +1839,10 @@ def get_stats(campaign_name):
             "First_Transaction": {0: 16, 1: 12, 2: 11, 3: 10}
             },
 
+        "galaxychatappmetrica": {
+            "new_user_reg": {0: 2,1:1.88, 2: 1.81}
+        }
+
 
     }
 
