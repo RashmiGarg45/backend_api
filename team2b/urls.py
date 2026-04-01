@@ -252,4 +252,5 @@ urlpatterns = [
     path("apnatimenumber", views.ApnatimeNumberAPI.as_view(), name="apnatime"),
     path("fibe", views.FibeUIDAPI.as_view(), name="fibe"),
     path("yango", views.YangoUIDAPI.as_view(), name="yango"),
+    path("crecidinero", views.CrecidineroUIDAPI.as_view(), name="crecidinero"),
 ]
