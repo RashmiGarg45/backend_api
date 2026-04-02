@@ -1875,6 +1875,12 @@ def get_stats(campaign_name):
                 "appamplify::*::*": {0:1.8, 1:1.53, 2:1.42, 3:1.33, 4:1.25},
                 "*::*::*": {0:1.13, 1:1.06}
             }
+        },
+
+        "deltamodd": {
+            "kyc_success": {0: 19,1:9.6, 2:7.5 , 3: 6.5},
+            "FTD": {1:23.75, 2: 16.6},
+            "First Time Trade Success": {1: 33, 2: 19}
         }
 
 
