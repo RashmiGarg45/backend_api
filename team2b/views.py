@@ -439,12 +439,12 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                             "text": sciptname,
                                                                         }
                                                                     }]
-                                                    },
+                                                    },                                                    
                                                     {   
                                                         "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "widgets": [{
                                                                     "decoratedText": {
-                                                                        "text": str(value.get("oldest_id", "Not available")),
+                                                                        "text": str(value.get("total_count")),
                                                                     }
                                                                     }]
                                                     },
@@ -452,7 +452,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                         "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "widgets": [{
                                                                     "decoratedText": {
-                                                                        "text": str(value.get("total_count")),
+                                                                        "text": str(value.get("oldest_id", "Not available")),
                                                                     }
                                                                     }]
                                                     },
