@@ -426,16 +426,12 @@ class GenericUnusedIdScriptFunctions(APIView):
                 }
 
         widgets = []
-
-        print ("*"*50)
-        print (ids_mined)
-        print ("*"*50)
         for sciptname,value in ids_mined.items():
             widgets.append({
                             "columns": {
                                 "columnItems": [
                                                     {
-                                                        "horizontalSizeStyle": "FIT_CONTENT",
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "horizontalAlignment": "CENTER",
                                                         "verticalAlignment": "CENTER",
                                                         "widgets": [{
@@ -445,7 +441,6 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {
-                                                        "horizontalSizeStyle": "FIT_CONTENT",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("oldest_id", "Not available")),
@@ -453,7 +448,6 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
-                                                        "horizontalSizeStyle": "FIT_CONTENT",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("total_count")),
