@@ -387,7 +387,9 @@ class GenericUnusedIdScriptFunctions(APIView):
             data = {"total_count": query.count(), "oldest_id": query.first().created_at}
             ids_mined[key] = data
 
+            print ("*"*50)
             print (query.first().created_at)
+            print ("*"*50)
 
             if key == "indigomoddteam2modd_OID":
                 query  = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at')
