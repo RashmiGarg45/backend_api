@@ -1881,7 +1881,11 @@ def get_stats(campaign_name):
             "kyc_success": {0: 19,1:9.6, 2:7.5 , 3: 6.5},
             "FTD": {1:23.75, 2: 16.6},
             "First Time Trade Success": {1: 33, 2: 19}
-        }
+        },
+
+        "timonemobilemodd": {
+            "KYC Completed": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
+            },
 
 
     }
