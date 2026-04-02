@@ -1887,6 +1887,10 @@ def get_stats(campaign_name):
             "KYC Completed": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
             },
 
+        "timoniosmodd": {
+            "KYC Completed": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
+            },
+
 
     }
 
@@ -2034,7 +2038,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "shionauto" and event_name == "10000_revenue":
         from datetime import datetime
         today = datetime.now().weekday()
-        if today in [2, 5]:
+        if today in [3, 5]:
             return {0:37}    
     
 
