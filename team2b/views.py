@@ -426,6 +426,10 @@ class GenericUnusedIdScriptFunctions(APIView):
                 }
 
         widgets = []
+
+        print ("*"*50)
+        print (ids_mined)
+        print ("*"*50)
         for sciptname,value in ids_mined.items():
             widgets.append({
                             "columns": {
@@ -459,7 +463,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
         googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
-        googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
+        # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
             'ids_mined':ids_mined,
