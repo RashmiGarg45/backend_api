@@ -383,16 +383,23 @@ class GenericUnusedIdScriptFunctions(APIView):
         ]
         ids_mined = {}
         for key in tablesDict.keys():
-            ids_mined[key] = tablesDict[key].objects.filter(used_at = None).count()
+            query = tablesDict[key].objects.filter(used_at = None).order_by('created_at')
+            data = {"total_count": query.count(), "oldest_id": query.first()}
+            ids_mined[key] = data
 
             if key == "indigomoddteam2modd_OID":
-                ids_mined[key] = ids_mined[key] = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).count()
+                query  = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at')
+
+                data = {"total_count": query.count(), "oldest_id": query.first()}
+                ids_mined[key] = data
 
             if key == "galaxy_ru_uid":
-                ids_mined[key] = GalaxyChatCountry.objects.filter(used_at = None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).count()
+                query = GalaxyChatCountry.objects.filter(used_at = None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).order_by('created_at')
+                data = {"total_count": query.count(), "oldest_id": query.first()}
+                ids_mined[key] = data
 
-            if key == "lottermxiosmodd_UID":
-                ids_mined[key] = LotterMX.objects.filter(source="TheLotterMX", created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
+            # if key == "lottermxiosmodd_UID":
+            #     ids_mined[key] = LotterMX.objects.filter(source="TheLotterMX", created_at__gte=str(today),created_at__lte=str(today+" 23:59:59")).count()
 
         from data_tracking.util import googleChatBot_send_message
         space_name = "AAAAh8zMzAw"
@@ -419,7 +426,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                 }
 
         widgets = []
-        for sciptname,mined_num in ids_mined.items():
+        for sciptname,value in ids_mined.items():
             widgets.append({
                             "columns": {
                                 "columnItems": [
@@ -436,7 +443,14 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                     {
                                                         "widgets": [{
                                                                     "decoratedText": {
-                                                                        "text": str(mined_num),
+                                                                        "text": str(value.get("total_count")),
+                                                                    }
+                                                                    }]
+                                                    },
+                                                    {
+                                                        "widgets": [{
+                                                                    "decoratedText": {
+                                                                        "text": str(value.get("oldest_id")),
                                                                     }
                                                                     }]
                                                     }
