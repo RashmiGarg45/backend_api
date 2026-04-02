@@ -415,7 +415,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                             {
                                             "header": "",
                                             "collapsible": False,
-                                            "uncollapsibleWidgetsCount": 1,
+                                            "uncollapsibleWidgetsCount": 2,
                                             "widgets": [
                                             ]
                                             }
@@ -459,7 +459,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
         googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
-        googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
+        # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
             'ids_mined':ids_mined,
