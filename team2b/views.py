@@ -431,7 +431,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                             "columns": {
                                 "columnItems": [
                                                     {
-                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
                                                         "horizontalAlignment": "CENTER",
                                                         "verticalAlignment": "CENTER",
                                                         "widgets": [{
@@ -441,6 +441,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
+                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("oldest_id", "Not available")),
@@ -448,6 +449,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
+                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("total_count")),
