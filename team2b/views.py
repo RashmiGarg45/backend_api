@@ -384,22 +384,18 @@ class GenericUnusedIdScriptFunctions(APIView):
         ids_mined = {}
         for key in tablesDict.keys():
             query = tablesDict[key].objects.filter(used_at = None).order_by('created_at')
-            data = {"total_count": query.count(), "oldest_id": query.first().created_at}
+            data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
             ids_mined[key] = data
-
-            print ("*"*50)
-            print (query.first().created_at)
-            print ("*"*50)
 
             if key == "indigomoddteam2modd_OID":
                 query  = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at')
 
-                data = {"total_count": query.count(), "oldest_id": query.first().created_at}
+                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
                 ids_mined[key] = data
 
             if key == "galaxy_ru_uid":
                 query = GalaxyChatCountry.objects.filter(used_at = None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).order_by('created_at')
-                data = {"total_count": query.count(), "oldest_id": query.first().created_at}
+                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
                 ids_mined[key] = data
 
             # if key == "lottermxiosmodd_UID":
@@ -454,7 +450,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                     {
                                                         "widgets": [{
                                                                     "decoratedText": {
-                                                                        "text": str(value.get("oldest_id").strftime("%Y-%m-%d")),
+                                                                        "text": str(value.get("oldest_id", "NA")),
                                                                     }
                                                                     }]
                                                     }
@@ -463,7 +459,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                         })
         message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
         googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
-        # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
+        googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
         return Response({
             'ids_mined':ids_mined,
