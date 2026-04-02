@@ -431,7 +431,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                             "columns": {
                                 "columnItems": [
                                                     {
-                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "horizontalAlignment": "CENTER",
                                                         "verticalAlignment": "CENTER",
                                                         "widgets": [{
@@ -441,7 +441,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
-                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("oldest_id", "Not available")),
@@ -449,7 +449,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
-                                                        "horizontalSizeStyle": "HORIZONTAL_SIZE_UNSPECIFIED",
+                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("total_count")),
