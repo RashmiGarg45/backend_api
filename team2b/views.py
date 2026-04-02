@@ -444,6 +444,14 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                         }
                                                                     }]
                                                     },
+                                                    {
+                                                        "horizontalSizeStyle": "FIT_CONTENT",
+                                                        "widgets": [{
+                                                                    "decoratedText": {
+                                                                        "text": str(value.get("oldest_id", "Not available")),
+                                                                    }
+                                                                    }]
+                                                    },
                                                     {   
                                                         "horizontalSizeStyle": "FIT_CONTENT",
                                                         "widgets": [{
@@ -452,14 +460,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }
                                                                     }]
                                                     },
-                                                    {
-                                                        "horizontalSizeStyle": "FIT_CONTENT",
-                                                        "widgets": [{
-                                                                    "decoratedText": {
-                                                                        "text": str(value.get("oldest_id", "Not available")),
-                                                                    }
-                                                                    }]
-                                                    }
+                                                    
                                 ]
                             }
                         })
