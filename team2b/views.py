@@ -472,7 +472,7 @@ class GenericUnusedIdScriptFunctions(APIView):
 def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
     user_id_increase_per_second_list = []
     for i in range(len(id_helper_data)):
-        if i == 0 and len(id_helper_data)!=2:
+        if not constraint and i == 0 and len(id_helper_data)!=2:
             constraint = id_helper_data[i].get('constraint')
             continue
         if i+1!=len(id_helper_data):
@@ -565,7 +565,21 @@ class SimulatedIdFunction(APIView):
             redis_obj.save(key=scriptname+'_'+type,value=data_list)
         
         if len(data_list)>=2:
-            id_gen = id_helper_function(data_list,time.time())
+
+            if scriptname == "mcdeliverymodd":
+
+                from datetime import datetime
+                current_hour = datetime.now().hour
+                
+                if 4 <= current_hour < 9:
+                    constraint = 0.95
+                elif 9 <= current_hour < 11:
+                    constraint = 1.05
+                else:
+                    constraint = 0.5
+
+
+            id_gen = id_helper_function(data_list,time.time(), constraint)
             last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
             if last_id_used_dict:
                 last_id_used = last_id_used_dict.get('id_gen')
