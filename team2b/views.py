@@ -415,7 +415,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                             {
                                             "header": "",
                                             "collapsible": False,
-                                            "uncollapsibleWidgetsCount": 2,
+                                            "uncollapsibleWidgetsCount": 3,
                                             "widgets": [
                                             ]
                                             }
@@ -440,7 +440,8 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                         }
                                                                     }]
                                                     },
-                                                    {
+                                                    {   
+                                                        "horizontalSizeStyle": "FIT_CONTENT",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("oldest_id", "Not available")),
@@ -448,6 +449,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                                     }]
                                                     },
                                                     {   
+                                                        "horizontalSizeStyle": "FIT_CONTENT",
                                                         "widgets": [{
                                                                     "decoratedText": {
                                                                         "text": str(value.get("total_count")),
