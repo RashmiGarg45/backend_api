@@ -454,7 +454,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                                     {
                                                         "widgets": [{
                                                                     "decoratedText": {
-                                                                        "text": str(value.get("oldest_id")),
+                                                                        "text": str(value.get("oldest_id").strftime("%Y-%m-%d")),
                                                                     }
                                                                     }]
                                                     }
