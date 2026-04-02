@@ -384,18 +384,18 @@ class GenericUnusedIdScriptFunctions(APIView):
         ids_mined = {}
         for key in tablesDict.keys():
             query = tablesDict[key].objects.filter(used_at = None).order_by('created_at')
-            data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
+            data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d") if query else "NA"}
             ids_mined[key] = data
 
             if key == "indigomoddteam2modd_OID":
                 query  = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now()).order_by('created_at')
 
-                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
+                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d") if query else "NA"}
                 ids_mined[key] = data
 
             if key == "galaxy_ru_uid":
                 query = GalaxyChatCountry.objects.filter(used_at = None).filter(Q(from_selfcall__contains="alse") |Q(from_selfcall__contains="Report")).order_by('created_at')
-                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d")}
+                data = {"total_count": query.count(), "oldest_id": query.first().created_at.strftime("%Y-%m-%d") if query else "NA"}
                 ids_mined[key] = data
 
             # if key == "lottermxiosmodd_UID":
