@@ -1855,6 +1855,10 @@ def get_stats(campaign_name):
             "af_first_apply_loan": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
             },
 
+        "timonemobilemodd": {
+            "KYC Completed": {0: 80, 1: 30, 3: 19}
+            },
+
 
     }
 
