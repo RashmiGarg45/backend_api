@@ -2947,13 +2947,13 @@ class ApnatimeMiningAPI(APIView):
         query.id = request.data.get('id')
         query.extra_details=request.data.get('extra_details',{})
         query.used_at = None
-        try:
-            query.save()
-            return Response({
-            })
-        except:
-            return Response({
-            })
+        # try:
+        query.save()
+        return Response({
+        })
+        # except:
+        #     return Response({
+        #     })
 
     def get(self, request):
         channel = request.GET.get('channel', '')
