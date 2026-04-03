@@ -645,7 +645,6 @@ class AppsForSimulation(APIView):
             print (app)
             print (last_7days_r6_data)
 
-            input()
             if app in last_7days_r6_data and redis_obj.retrieve_data(key=key):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
                 dict__['data_list'] = redis_obj.retrieve_data(key=key)
@@ -654,7 +653,7 @@ class AppsForSimulation(APIView):
                 if datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') == datetime.fromtimestamp(int(dict__['last_updated_id_timestamp'])).strftime('%Y-%m-%d'):
                     dict__['status'] = 'Updated'                    
 
-            if redis_obj.retrieve_data(key=key+'_'+'last_used_id'):
+            if app in last_7days_r6_data and redis_obj.retrieve_data(key=key+'_'+'last_used_id'):
                 data[app].update({'last_used_dict':redis_obj.retrieve_data(key=key+'_'+'last_used_id')})
                 dict__['last_used_id'] = data.get(app).get('last_used_dict').get('id_gen')
                 dict__['last_used_id_timestamp'] = data.get(app).get('last_used_dict').get('ts')
