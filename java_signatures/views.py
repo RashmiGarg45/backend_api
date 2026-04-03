@@ -1892,7 +1892,7 @@ def get_stats(campaign_name):
             },
 
         "fortaprestiosmodd": {
-            'AF_XHED_SJFQ_FKCG': {0: 0, 1: 50, 2: 25, 3: 20}
+            'AF_XHED_SJFQ_FKCG': {0: 0, 1: 50, 2: 33}
             },
 
 
