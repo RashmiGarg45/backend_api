@@ -10300,21 +10300,18 @@ class SofyClubAPI(APIView):
 class ApnatimeNumberAPI(APIView):
 
     def put(self, request):
-        print ("*"*50)
         query = ApnatimeNumber()
         query.campaign_name = request.data.get('camp_name','apnatimeauto')
         query.id = request.data.get('user_id')
         query.email = request.data.get('email')
         query.used_at = None
-        # try:
-        query.save()
-        print ("*"*50)
-        return Response({
-        })
-    
-        # except:
-        #     return Response({
-        #     })
+        try:
+            query.save()
+            return Response({
+            })
+        except:
+            return Response({
+            })
 
     def get(self, request):
         setUsed = request.GET.get('set_used',True)
