@@ -644,6 +644,8 @@ class AppsForSimulation(APIView):
             key = app +'_'+type
             print (app)
             print (last_7days_r6_data)
+
+            input()
             if app in last_7days_r6_data and redis_obj.retrieve_data(key=key):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
                 dict__['data_list'] = redis_obj.retrieve_data(key=key)
