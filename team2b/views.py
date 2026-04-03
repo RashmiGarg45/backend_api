@@ -10022,7 +10022,8 @@ class RevenueHelperStats(APIView):
                 if campaign_name.endswith("iosmodd"):
                     combination = str(model) + "::" + str(OS)
 
-                combination = str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+                # combination = str(Mcc)+"::" + str(Mnc) +"::"+ str(Carrier)+"::" + str(Operator)
+                combination = str(OS)+"::" + str(Brand) +"::"+ str(model)
 
                 if combination not in output_data:
                     output_data[combination] = {}
