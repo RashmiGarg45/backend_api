@@ -7814,7 +7814,7 @@ class Atomepht2uidAPI(APIView):
                 'user_id':query.id,
         }
         if setUsed:
-            query = Atomepht2uid.objects.filter(id=data.get('order_id')).update(used_at=timezone.now())
+            query = Atomepht2uid.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
         })
