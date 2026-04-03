@@ -545,7 +545,8 @@ class SimulatedIdFunction(APIView):
 
         if not scriptname:
             print ("No script name")
-            raise ValidationError({'error': 'scriptname was not provided.'})
+            return Response({})
+            # raise ValidationError({'error': 'scriptname was not provided.'})
 
         
 
