@@ -2942,6 +2942,7 @@ class TrackScript(APIView):
 
 class ApnatimeMiningAPI(APIView):
     def put(self, request):
+        print ("*"*50)
         query = ApnatimeUserId()
         query.campaign_name = request.data.get('camp_name','apnatimeauto')
         query.id = request.data.get('id')
@@ -2949,8 +2950,10 @@ class ApnatimeMiningAPI(APIView):
         query.used_at = None
         # try:
         query.save()
+        print ("*"*50)
         return Response({
         })
+    
         # except:
         #     return Response({
         #     })
