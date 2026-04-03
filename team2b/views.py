@@ -563,6 +563,8 @@ class SimulatedIdFunction(APIView):
                     'constraint':item.constraint
                 })
             redis_obj.save(key=scriptname+'_'+type,value=data_list)
+
+        constraint = 1
         
         if len(data_list)>=2:
 
