@@ -1891,6 +1891,10 @@ def get_stats(campaign_name):
             "KYC Completed": {0: 19, 1: 11.5, 2: 8, 3: 6.2}
             },
 
+        "fortaprestiosmodd": {
+            'AF_XHED_SJFQ_FKCG': {0: 0, 1: 50, 2: 25, 3: 20}
+            },
+
 
     }
 
@@ -1908,20 +1912,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         else:
             return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
 
-
-    # elif campaign_name == "onmobileauto" and event_name == "jr95xb":
-    #     # return {0:1.81, 1:1.56, 2:1.42, 3:1.33}
-    #     if channel in ["mobpine", "77ads", "appamplify"]:
-    #         return {0:1.8, 1:1.53, 2:1.42, 3:1.33, 4:1.25}
-    #     return {0:1.13, 1:1.06}
-
-    # elif campaign_name == "onmobilautoios" and event_name == "jr95xb":
-    #     # return {0:1.81, 1:1.56, 2:1.42, 3:1.33}
-
-    #     if channel in ["mobpine", "77ads", "appamplify"]:
-    #         return {0:1.8, 1:1.53, 2:1.42, 3:1.33, 4:1.25}
-
-    #     return {0:1.13, 1:1.06}
     
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
 
