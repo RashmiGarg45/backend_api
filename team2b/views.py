@@ -580,6 +580,9 @@ class SimulatedIdFunction(APIView):
                 else:
                     constraint = 0.5
 
+            elif scriptname in ["paymayamodd"]:
+                constraint = 1
+
 
             id_gen = id_helper_function(data_list,time.time(), constraint)
             last_id_used_dict = redis_obj.retrieve_data(scriptname+'_'+type+'_'+'last_used_id')
