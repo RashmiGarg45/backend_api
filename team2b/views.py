@@ -642,6 +642,8 @@ class AppsForSimulation(APIView):
                 dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=1)),{}).get('TR')
             
             key = app +'_'+type
+            print (app)
+            print (last_7days_r6_data)
             if app in last_7days_r6_data and redis_obj.retrieve_data(key=key):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
                 dict__['data_list'] = redis_obj.retrieve_data(key=key)
