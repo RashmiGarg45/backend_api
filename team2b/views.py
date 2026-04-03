@@ -469,7 +469,7 @@ class GenericUnusedIdScriptFunctions(APIView):
         })
 
 
-def id_helper_function(id_helper_data,constant_timestamp=None,constraint=1):
+def id_helper_function(id_helper_data,constant_timestamp=None,constraint=None):
     user_id_increase_per_second_list = []
     for i in range(len(id_helper_data)):
         if not constraint and i == 0 and len(id_helper_data)!=2:
@@ -564,7 +564,7 @@ class SimulatedIdFunction(APIView):
                 })
             redis_obj.save(key=scriptname+'_'+type,value=data_list)
 
-        constraint = 1
+        constraint = None
         
         if len(data_list)>=2:
 
