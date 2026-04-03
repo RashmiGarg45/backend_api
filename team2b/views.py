@@ -548,6 +548,10 @@ class SimulatedIdFunction(APIView):
             return Response({})
             # raise ValidationError({'error': 'scriptname was not provided.'})
 
+        if scriptname == "timonemobilemodd":
+            return Response({
+                'id_gen':None,
+            })
         
 
         redis_obj = Redis()
