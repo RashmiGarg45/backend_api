@@ -1,7 +1,7 @@
 from django_redis import get_redis_connection
 from django.db import models
 from datetime import datetime
-import json, time
+import json
 
 class Redis:
     def __init__(self):
@@ -14,20 +14,14 @@ class Redis:
         self.connection.set(key, value, ttl)
 
     def retrieve_data(self,key):
-        start_time = time.time()
         print('[{}] Getting {} from redis'.format(datetime.now(),key))
         raw_data = self.connection.get(key)
         # print(raw_data)
-        # try:
-        raw_data = json.loads(raw_data)
-            # return data
-        # except:
-        #     return raw_data
-        
-        end_time = time.time()  # end timer
-        print(f"Time taken: {end_time - start_time:.6f} seconds by {key}")
-
-        return raw_data
+        try:
+            data = json.loads(raw_data)
+            return data
+        except:
+            return raw_data
     
     def get_ttl(self,key):
         print('[{}] Getting ttl for {} from redis'.format(datetime.now(),key))
