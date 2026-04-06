@@ -1840,7 +1840,7 @@ def get_stats(campaign_name):
             },
 
         "galaxychatappmetrica": {
-            "new_user_reg": {0: 2,1:1.88, 2: 1.81}
+            "new_user_reg": {0: 2.22,1:1.88, 2: 1.81}
         },
 
         "todocreditmxmodd": {
