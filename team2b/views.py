@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID,LifetyleOrderId_extra_OID, LifetyleOrderId_2,dominosturkey_OID,abhibus_oid,DanaUID,RevenueHelperBackup,Spinny_OID,Spinny_valid_OID,EternzUID,Dominoesgold_UID, Eternz_OID, Litres_UID,Indian_emailIds, NeonUID, PlantExpertOID, LatestIDs, MotilalNumber, Sofyclub, ShiprocketCNY, Globoplay, LotterMX, LotterUS, PizzahutMY, ApnatimeNumber, FibeUID, YangoUID, CrecidineroUID, FortaprestUID
+from team2b.models import MumzworldOrderIds,PepperfryOrderIds,SimulationIds,DamnrayOrderIds,IndigoScriptOrderIds,IgpScriptOrderIds,McdeliveryScriptOrderIds,LightInTheBox,DominosIndodeliveryScriptOrderIds,OstinShopScriptOrderIds,HabibScriptOrderIdsConstants,WatchoOrderIdsMining,TripsygamesOrderIds, LazuritOrderIds, GomcdOrderIds, BharatmatrimonyUserIds, SamsclubMemberIds, WeWorldIds, Player6auto, IDHelperApps, FantossUserIds, OkeyvipUserId, SephoraOrderId, PumaOrderId, TimoclubUserId, EmailIdMining, RevenueHelper,IndigoV3Mining, IndigoV2Mining, ScriptChecks,SephoraOrderIdV2, ghnUserId, RummytimeUserId, ScoreoneUserId, ApnatimeUserId, KhiladiaddaUserId, DatingGlobalUserId, DatingGlobalSubscribedUserId, CountChecks, Bluerewards, Holodilink, RentomojoUserId, Shahid, Eztravel, Betwinner, Ladygentleman, Tajrummy, Bet22, PepperFry, Igpmodd, Travelata, Ontime, Mcdmodd, tipsAosValid, tipsAosCancelled, tipsIosValid, tipsIosCancelled, Skyline, Reserva, GuruShort, GuruShortNotPremium, Credito, GuruShortOrderId, GuruShortValidId, Ajio, Jungleepoker, GameRummy, Navrang, Lotter38, Lotter69, ChaleeSultan, Ejaby, Flappdeals, Laundrymate, Parimatch, KisanKonnect, EpoCosmetic,Ebebekuid, Ebebek, Underarmour, UnderarmourOID, Pinoypeso, Ohi, Fivepaisa, Adda, AddaOrderId, Bambootauto, Paynearby, in2X, BluerewardsV2, Signnow, SixerDream, WesternUnion, StolotoUserId, StolotoOrderId, PaysettUserId, ShopeevnOID, ShopeevnUID, Poppolive, ShopeemyOID, ShopeemyUID, Shiprocket, Novawater, Moglix, Viu, Betr, ShopeeidUID, Dupoin,Parimatchth, ShopeephUID, Epikodd, Stoloto, Casinopluss, Homiedev, Storyland, TikettOID, ApnaTime, MotiLal, Frendipay, Magicland, FoxtaleOrderId, Hoteltonight, stolotoCIF, Yesmadam, Beymen, Bncauto, Kfcmexico, Jazzcash, Petbook, tejimaandi,Tejimaandinew,Paytmmoneyt,Anqgoldrewards,Anqgoldrewardscuid,Anqgoldrewardsoid,OkeyvipMining,Moneymetmodduid,Imagineart,Melive,Metlive, MetliveUID, MeliveUID, Opay,Bevietnames, Boost,Myauchan,Ikea,Cimbthai,ShopeebrUID,ShopeethiosUID,ShopeethUID,Anqgoldrewardsnew,MyfriendUID,MyfriendOID,MambaUID,GalaxyChatCountry, GalaxyChatRU, GalaxyChat,Alphacapital,Cabst13,Bigloan,IndigoV4Mining,Coinmena, TikettUID, R888casino,Joybuy, Atomepht2uid, Atomepht2aid,Myshift,Clubeextra,Clubeextracid,Hering,Babytracker,Bitoasist,EpochtimesUID,Jyotiaiios,Shriram,Cashmax, MaxfashionindiaOID, Maxfashionindia_extra_OID,NGnumbers,Abhibus, StyliOID, StylinewOID,WizelyOID, WizelyTID, NetshoesOID, WizelyMining,Timoclubuid,MambanewUID,WizelyUID,MyfoodUID,MyfoodOID, DabdoobUID, DabdoobOID, NumbersPK,Nirat,BluerewardsV3,ScoreupUID,BoylesportsUID,ScoreUp,SahiUID,AhamoveUID,AhamoveOID,ReevoNUMID,MbbankUID,AstroMining, HealthifymeMining,DominosturkeyUID,DominosturkeyOID,LifetyleOrderId_extra_OID, LifetyleOrderId_2,dominosturkey_OID,abhibus_oid,DanaUID,RevenueHelperBackup,Spinny_OID,Spinny_valid_OID,EternzUID,Dominoesgold_UID, Eternz_OID, Litres_UID,Indian_emailIds, NeonUID, PlantExpertOID, LatestIDs, MotilalNumber, Sofyclub, ShiprocketCNY, Globoplay, LotterMX, LotterUS, PizzahutMY, ApnatimeNumber, FibeUID, YangoUID, CrecidineroUID, FortaprestUID, GrandPari
 from team2b.services.redis import Redis
 from django.utils import timezone
 from decimal import Decimal
@@ -617,9 +617,8 @@ class AppsForSimulation(APIView):
         url = "http://info.appsuccessor.com/devteamnumbers.php?secret=b0a492d6271466cb71e9ab53982ddd1d&team=team2&datefrom={}&dateto={}".format(date.today() - timedelta(days=7),date.today() - timedelta(days=1))
         last_7days_r6_data = requests.get(url).json()
 
-        print (last_7days_r6_data.keys())
 
-        print (today_r6_data)
+        # print (today_r6_data)
         apps_list_query = IDHelperApps.objects.all()
         apps_list_dict = {}
         for item in apps_list_query:
@@ -651,7 +650,7 @@ class AppsForSimulation(APIView):
 
             
 
-            if app in last_7days_r6_data and redis_obj.retrieve_data(key=key):
+            if redis_obj.retrieve_data(key=key):
                 data[app].update({'data_list':redis_obj.retrieve_data(key=key)})
                 dict__['data_list'] = redis_obj.retrieve_data(key=key)
                 dict__['last_updated_id'] = data.get(app).get('data_list')[0].get('id')
@@ -659,7 +658,7 @@ class AppsForSimulation(APIView):
                 if datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d') == datetime.fromtimestamp(int(dict__['last_updated_id_timestamp'])).strftime('%Y-%m-%d'):
                     dict__['status'] = 'Updated'                    
 
-            if app in last_7days_r6_data and redis_obj.retrieve_data(key=key+'_'+'last_used_id'):
+            if redis_obj.retrieve_data(key=key+'_'+'last_used_id'):
                 data[app].update({'last_used_dict':redis_obj.retrieve_data(key=key+'_'+'last_used_id')})
                 dict__['last_used_id'] = data.get(app).get('last_used_dict').get('id_gen')
                 dict__['last_used_id_timestamp'] = data.get(app).get('last_used_dict').get('ts')
@@ -10735,4 +10734,44 @@ class FortaprestUIDAPI(APIView):
             query = FortaprestUID.objects.filter(id=data.get('user_id')).update(used_at=timezone.now())
         return Response({
             'body':data,
+        })
+
+class GrandPariAPI(APIView):
+    def put(self, request):
+        query = GrandPari()
+        query.campaign_name = request.data.get('camp_name','grandparimodd')
+        query.id = request.data.get('user_id')
+        query.extra_details = request.data.get('extra_details',{})
+        query.used_at = None
+
+        query.save()
+        return Response({
+        })
+
+    def get(self, request):
+
+        channel = request.GET.get('channel', '')
+        network = request.GET.get('network', '')
+        offer_id = request.GET.get('offer_id', '')
+        setUsed = request.GET.get('set_used',True)
+        if setUsed and (setUsed == 'False' or setUsed == 'false'):
+            setUsed = False
+
+        query = GrandPari.objects.filter(used_at=None).order_by('-created_at')[0:50].first()
+        
+        data = {
+                'user_id':query.id,
+                'extra_details':query.extra_details,
+        }
+        if setUsed:
+            query = GrandPari.objects.filter(id=data.get('user_id')).update(used_at=timezone.now(), channel=channel, network=network, offer_id=offer_id)
+        return Response({
+            'body':data,
+        })
+    
+    def post(self, request):
+        query = GrandPari.objects.order_by('-id').first()
+
+        return Response({
+            'id':query.id,
         })
