@@ -495,7 +495,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                                 "widgets": [
                                     {
                                         "grid": {
-                                            "title": "Database Summary",
+                                            "title": "IDs Summary",
                                             "columnCount": 3,
                                             "items": grid_items,
                                             "borderStyle": {
