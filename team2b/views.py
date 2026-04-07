@@ -463,10 +463,9 @@ class GenericUnusedIdScriptFunctions(APIView):
         # message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
 
 
-        # 1. Initialize the items list for the grid
         grid_items = []
 
-        # 2. Add the Header Cells (The first 3 items define the "Header" row)
+        # Header Row
         header_labels = ["Script Name", "Total Count", "Oldest ID"]
         for label in header_labels:
             grid_items.append({
@@ -474,34 +473,26 @@ class GenericUnusedIdScriptFunctions(APIView):
                 "textAlignment": "START"
             })
 
-        # 3. Add the Data Cells
-        # The grid fills row by row: [1,1], [1,2], [1,3], then [2,1], [2,2]...
+        # Data Rows
         for script_name, value in ids_mined.items():
             grid_items.append({"title": script_name})
             grid_items.append({"title": str(value.get("total_count", 0))})
             grid_items.append({"title": str(value.get("oldest_id", "N/A"))})
 
-        # 4. Define the final message structure
         message = {
             "cardsV2": [
                 {
                     "cardId": "databaseReport",
                     "card": {
-                        "header": {
-                            "title": "Remaining Order/User Ids In Database",
-                        },
+                        "header": {"title": "Remaining Order/User Ids In Database"},
                         "sections": [
                             {
                                 "widgets": [
                                     {
                                         "grid": {
-                                            "title": "IDs Summary",
                                             "columnCount": 3,
-                                            "items": grid_items,
-                                            "borderStyle": {
-                                                "type": "STROKE",
-                                                "cornerRadius": 4
-                                            }
+                                            "items": grid_items
+                                            # Removed borderStyle to get rid of the boxes
                                         }
                                     }
                                 ]
