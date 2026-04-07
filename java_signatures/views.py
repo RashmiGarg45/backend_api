@@ -1899,6 +1899,10 @@ def get_stats(campaign_name):
             "L1_registration_successful": {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.55}
             },
 
+        "grandparimodd": {
+            "first_deposit": {0: 30, 1: 20}
+            },
+
 
     }
 
