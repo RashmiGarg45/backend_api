@@ -403,64 +403,130 @@ class GenericUnusedIdScriptFunctions(APIView):
 
         from data_tracking.util import googleChatBot_send_message
         space_name = "AAAAh8zMzAw"
-        message = {
-                        "cardsV2": [
-                            {
-                                "cardId": "reminderCard",
-                                "card": {
-                                        "header": {
-                                            "title": "Remaining Order/User Ids In Database",
-                                        },
-                                        "sections": [
-                                            {
-                                            "header": "",
-                                            "collapsible": False,
-                                            "uncollapsibleWidgetsCount": 3,
-                                            "widgets": [
-                                            ]
-                                            }
-                                        ]
-                                    },
-                            },
-                        ]
-                }
+        # message = {
+        #                 "cardsV2": [
+        #                     {
+        #                         "cardId": "reminderCard",
+        #                         "card": {
+        #                                 "header": {
+        #                                     "title": "Remaining Order/User Ids In Database",
+        #                                 },
+        #                                 "sections": [
+        #                                     {
+        #                                     "header": "",
+        #                                     "collapsible": False,
+        #                                     "uncollapsibleWidgetsCount": 3,
+        #                                     "widgets": [
+        #                                     ]
+        #                                     }
+        #                                 ]
+        #                             },
+        #                     },
+        #                 ]
+        #         }
 
-        widgets = []
-        for sciptname,value in ids_mined.items():
-            widgets.append({
-                            "columns": {
-                                "columnItems": [
-                                                    {
-                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
-                                                        "horizontalAlignment": "CENTER",
-                                                        "verticalAlignment": "CENTER",
-                                                        "widgets": [{
-                                                                        "decoratedText": {
-                                                                            "text": sciptname,
-                                                                        }
-                                                                    }]
-                                                    },                                                    
-                                                    {   
-                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
-                                                        "widgets": [{
-                                                                    "decoratedText": {
-                                                                        "text": str(value.get("total_count")),
-                                                                    }
-                                                                    }]
-                                                    },
-                                                    {   
-                                                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
-                                                        "widgets": [{
-                                                                    "decoratedText": {
-                                                                        "text": str(value.get("oldest_id", "Not available")),
-                                                                    }
-                                                                    }]
-                                                    },
+        # widgets = []
+        # for sciptname,value in ids_mined.items():
+        #     widgets.append({
+        #                     "columns": {
+        #                         "columnItems": [
+        #                                             {
+        #                                                 "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+        #                                                 "horizontalAlignment": "CENTER",
+        #                                                 "verticalAlignment": "CENTER",
+        #                                                 "widgets": [{
+        #                                                                 "decoratedText": {
+        #                                                                     "text": sciptname,
+        #                                                                 }
+        #                                                             }]
+        #                                             },                                                    
+        #                                             {   
+        #                                                 "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+        #                                                 "widgets": [{
+        #                                                             "decoratedText": {
+        #                                                                 "text": str(value.get("total_count")),
+        #                                                             }
+        #                                                             }]
+        #                                             },
+        #                                             {   
+        #                                                 "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+        #                                                 "widgets": [{
+        #                                                             "decoratedText": {
+        #                                                                 "text": str(value.get("oldest_id", "Not available")),
+        #                                                             }
+        #                                                             }]
+        #                                             },
                                                     
-                                ]
+        #                         ]
+        #                     }
+        #                 })
+        # message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
+
+
+        # 1. Initialize the widgets list
+        widgets = []
+
+        # 2. OPTIONAL: Add a Header Row so the columns have labels
+        widgets.append({
+            "columns": {
+                "columnItems": [
+                    {
+                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                        "widgets": [{"decoratedText": {"text": "<b>Script Name</b>"}}]
+                    },
+                    {
+                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                        "widgets": [{"decoratedText": {"text": "<b>Total Count</b>"}}]
+                    },
+                    {
+                        "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                        "widgets": [{"decoratedText": {"text": "<b>Oldest ID</b>"}}]
+                    }
+                ]
+            }
+        })
+
+        # 3. Add the Data Rows
+        for script_name, value in ids_mined.items():
+            widgets.append({
+                "columns": {
+                    "columnItems": [
+                        {
+                            "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                            "widgets": [{"decoratedText": {"text": script_name}}]
+                        },
+                        {
+                            "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                            "widgets": [{"decoratedText": {"text": str(value.get("total_count", 0))}}]
+                        },
+                        {
+                            "horizontalSizeStyle": "FILL_AVAILABLE_SPACE",
+                            "widgets": [{"decoratedText": {"text": str(value.get("oldest_id", "N/A"))}}]
+                        }
+                    ]
+                }
+            })
+
+        # 4. Construct the final message object
+        message = {
+            "cardsV2": [
+                {
+                    "cardId": "reminderCard",
+                    "card": {
+                        "header": {
+                            "title": "Remaining Order/User Ids In Database",
+                        },
+                        "sections": [
+                            {
+                                "header": "Database Summary",
+                                "collapsible": False,
+                                "widgets": widgets # Injecting the list we built
                             }
-                        })
-        message['cardsV2'][0]['card']['sections'][0]['widgets'] = widgets
+                        ]
+                    },
+                }
+            ]
+        }
         googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
         # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
