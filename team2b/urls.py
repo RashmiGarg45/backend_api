@@ -254,4 +254,5 @@ urlpatterns = [
     path("yango", views.YangoUIDAPI.as_view(), name="yango"),
     path("crecidinero", views.CrecidineroUIDAPI.as_view(), name="crecidinero"),
     path("fortaprest", views.FortaprestUIDAPI.as_view(), name="fortaprest"),
+    path("grandpari", views.GrandPariAPI.as_view(), name="grandpari"),
 ]
