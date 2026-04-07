@@ -464,9 +464,11 @@ class GenericUnusedIdScriptFunctions(APIView):
 
 
         # 1. Initialize the widgets list
+        # 1. Initialize the widgets list
         widgets = []
 
-        # 2. OPTIONAL: Add a Header Row so the columns have labels
+        # 2. MANDATORY: Create a Header Row with 3 Columns
+        # If this only has 2 columns, the rest of the table will look broken.
         widgets.append({
             "columns": {
                 "columnItems": [
@@ -486,7 +488,7 @@ class GenericUnusedIdScriptFunctions(APIView):
             }
         })
 
-        # 3. Add the Data Rows
+# 3. Add the Data Rows (Looping through your mined IDs)
         for script_name, value in ids_mined.items():
             widgets.append({
                 "columns": {
@@ -507,7 +509,7 @@ class GenericUnusedIdScriptFunctions(APIView):
                 }
             })
 
-        # 4. Construct the final message object
+# 4. Construct the final message
         message = {
             "cardsV2": [
                 {
@@ -520,13 +522,14 @@ class GenericUnusedIdScriptFunctions(APIView):
                             {
                                 "header": "Database Summary",
                                 "collapsible": False,
-                                "widgets": widgets # Injecting the list we built
+                                "widgets": widgets
                             }
                         ]
                     },
                 }
             ]
         }
+
         googleChatBot_send_message(space_name="AAQAKDdPHnI",message=message)
         # googleChatBot_send_message(space_name='AAAA7sIzS9Q',message=message)    
 
