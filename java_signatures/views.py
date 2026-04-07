@@ -1895,6 +1895,10 @@ def get_stats(campaign_name):
             'AF_XHED_SJFQ_FKCG': {0: 0, 1: 50, 2: 33}
             },
 
+        "jazzcashiosmodd": {
+            "L1_registration_successful": {0: 2.18, 1: 2, 1.85: 1.65, 3: 1.55}
+        },
+
 
     }
 
