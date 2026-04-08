@@ -1903,6 +1903,10 @@ def get_stats(campaign_name):
             "first_deposit": {0: 30, 1: 20}
             },
 
+        "picpaymodd": {
+            "picpaycard_sem_lg_venda_confirmada": {0: 47,1: 31.6}
+            }
+
 
     }
 
