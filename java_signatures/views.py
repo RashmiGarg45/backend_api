@@ -1905,7 +1905,19 @@ def get_stats(campaign_name):
 
         "picpaymodd": {
             "picpaycard_sem_lg_venda_confirmada": {0: 47,1: 31.6}
-            }
+            },
+
+        "tangledropemodd": {
+            "purchase_199": {0: 31, 2: 24},
+            "purchase_799": {1: 31, 4: 24},
+            "purchase_1499": {3: 95},
+        },
+
+        "tangledropeiosmodd": {
+                    "purchase_199": {0: 31, 2: 24},
+                    "purchase_799": {1: 31, 4: 24},
+                    "purchase_1499": {3: 95},
+                },
 
 
     }
