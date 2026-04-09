@@ -1917,7 +1917,10 @@ def get_stats(campaign_name):
                     "purchase_199": {0: 31, 2: 24},
                     "purchase_799": {1: 31, 4: 24},
                     "purchase_1499": {3: 95},
-                },
+        },
+        "titanfincorpmodd": {
+            "lms_loan_application_disburse": {0: 90, 1: 33, 2: 25}
+        }
 
 
     }
