@@ -1914,9 +1914,9 @@ def get_stats(campaign_name):
         },
 
         "tangledropeiosmodd": {
-            "af_purchase_199": {0: 31, 2: 24},
-            "af_purchase_799": {1: 50, 4: 28},
-            "af_purchase_1499": {3: 90},
+            "af_purchase_199": {1: 31, 3: 24},
+            "af_purchase_799": {2: 50, 5: 28},
+            "af_purchase_1499": {4: 90},
         },
         "titanfincorpmodd": {
             "lms_loan_application_disburse": {0: 90, 1: 33, 2: 25}
