@@ -1306,7 +1306,7 @@ def get_stats(campaign_name):
         },
 
         "mexdinmodd": {
-            "first_loan_success": {0:90, 1:30, 2:18, 3:15}
+            "first_loan_success": {0:90, 1:30, 2:25}
         },
 
         "underarmourauto": {
