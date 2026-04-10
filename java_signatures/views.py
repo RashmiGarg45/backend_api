@@ -1813,8 +1813,8 @@ def get_stats(campaign_name):
         },
 
         "kubizmodd": {
-            "issueNew": {1:90, 2:47, 3:24},
-            "addNewBankAccountResult": {0:16.6, 1:9.7, 2:8.1, 3:6.9}
+            "issueNew": {1:90, 2:47, 3:31},
+            "addNewBankAccountResult": {0: 31, 1: 19, 2:14.2, 3:11.8}
         },
 
         "dabbleiosmodd": {
