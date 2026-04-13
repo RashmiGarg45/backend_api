@@ -1924,6 +1924,9 @@ def get_stats(campaign_name):
         "jarmoneyiosmodd": {
             "AUTOPAY_SETUP_COMPLETE": {0:30, 1:19, 2: 12}
         },
+        "coolflymodd": {
+                "Sales": {0: 25, 1: 16, 2: 12}
+            }
 
 
     }
