@@ -255,4 +255,5 @@ urlpatterns = [
     path("crecidinero", views.CrecidineroUIDAPI.as_view(), name="crecidinero"),
     path("fortaprest", views.FortaprestUIDAPI.as_view(), name="fortaprest"),
     path("grandpari", views.GrandPariAPI.as_view(), name="grandpari"),
+    path("galaxyminingstats", views.GalaxyMiningStatsAPI.as_view(), name="galaxy"),
 ]

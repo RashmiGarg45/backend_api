@@ -4123,3 +4123,15 @@ class GrandPari(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ]
+
+class GalaxyMiningStats(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ] 
