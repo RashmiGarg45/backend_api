@@ -1943,7 +1943,8 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         elif channel in ["mobpine", "77ads", "appamplify"] and 0.05<=float(Pay_out)<=0.10 :
             return {0:2.22, 1:2, 2: 1.81, 3: 1.72, 4: 1.66}
         else:
-            return {0:2.5, 1:1.7, 2: 1.6, 3: 1.4, 4: 1.2}
+            return {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.52}
+
 
     
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
