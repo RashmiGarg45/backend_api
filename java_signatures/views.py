@@ -1926,7 +1926,10 @@ def get_stats(campaign_name):
         },
         "coolflymodd": {
                 "Sales": {0: 25, 1: 16, 2: 12}
-            }
+            },
+        "fanaticsshopiosmodd": {
+            "purchase": {0: 31, 1: 20, 2: 15.83}
+        }
 
 
     }
