@@ -4135,3 +4135,16 @@ class GalaxyMiningStats(models.Model):
         indexes = [
             models.Index(fields=['id']),
         ] 
+
+class JazzcashOldNumbers(models.Model):
+
+    serial = models.AutoField(primary_key=True, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    id = models.CharField(max_length=50,unique=True)
+    used_at = models.DateTimeField(default = None,blank=True, null=True)
+    number_type = models.CharField(default='Unknown',max_length=30)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['id']),
+        ] 
