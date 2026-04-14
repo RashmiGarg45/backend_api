@@ -7336,6 +7336,7 @@ class GalaxyChatCountryAPI(APIView):
         query.username = request.data.get('user_name')
         query.city =  request.data.get('city')
         query.from_selfcall =  request.data.get('from_selfcall','false')
+        query.source = request.data.get('source', "AOS")
         query.used_at = None
         try: 
             query.save()

@@ -2726,6 +2726,7 @@ class GalaxyChatCountry(models.Model):
     id = models.CharField(max_length=50,unique=True)
     username = models.CharField(max_length=30)
     city = models.CharField(max_length=30, default='')
+    source = models.CharField(max_length=30, default='AOS')
     from_selfcall = models.CharField(max_length=30, default='false')
     used_at = models.DateTimeField(default = None,blank=True, null=True)
     channel_list = models.JSONField(default = list,blank=True, null=True)
