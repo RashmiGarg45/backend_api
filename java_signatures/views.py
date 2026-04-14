@@ -1929,7 +1929,10 @@ def get_stats(campaign_name):
             },
         "fanaticsshopiosmodd": {
             "purchase": {0: 31, 1: 20, 2: 15.83}
-        }
+        },
+        "jarmoneyiosmodd": {
+            "AUTOPAY_SETUP_COMPLETE": {0:19, 1:9.4, 2: 8.3, 3: 6.6}
+        },
 
 
     }
