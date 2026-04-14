@@ -1648,8 +1648,8 @@ def get_stats(campaign_name):
         },
 
         "paymayamodd": {
-            "EKYC_SUCCESS": {0:16, 1:10.7, 2:8.1},
-            "WALLET_DEBIT_ACTIVE": {0:47, 1:20, 2:13.5, 3: 12.2}
+            "EKYC_SUCCESS": {0:16, 1:8.1, 2: 6.9},
+            "WALLET_DEBIT_ACTIVE": {0:47, 1:16.6, 2:10.6, 3:  8.1}
         },
 
         "bajajfinauto": {
