@@ -7262,9 +7262,9 @@ class GalaxyChatAPI(APIView):
         exclude_dict_1 = {}
 
         query_list = GalaxyChat.objects.filter(used_at=None).exclude(**exclude_dict_1).order_by('-created_at')[0:25].all()        
-        if not query_list:
-            print ("Galaxy in not function")
-            query_list = GalaxyChat.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
+        # if not query_list:
+        #     print ("Galaxy in not function")
+        #     query_list = GalaxyChat.objects.exclude(**exclude_dict).order_by('-created_at')[0:25].all()
 
         if query_list:
             print ("Galzxy found query")
