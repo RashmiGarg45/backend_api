@@ -1930,6 +1930,9 @@ def get_stats(campaign_name):
         "jarmoneyiosmodd": {
             "AUTOPAY_SETUP_COMPLETE": {0:19, 1:9.4, 2: 8.3, 3: 6.6}
         },
+        "dbbetmodd": {
+            "first_deposit": {0: 31, 1: 20, 2: 15.83}
+        },
 
 
     }
