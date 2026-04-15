@@ -1935,7 +1935,12 @@ def get_stats(campaign_name):
         },
         "justfoodappmetrica": {
             "kf_payment_success": {0: 90, 1: 45}
+        },
+
+        "jazzcashmodd": {
+            "L1_registration_successful": {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.52}
         }
+
 
 
     }
@@ -1951,9 +1956,6 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
 
         elif channel in ["mobpine", "77ads", "appamplify"] and 0.05<=float(Pay_out)<=0.10 :
             return {0:2.22, 1:2, 2: 1.81, 3: 1.72, 4: 1.66}
-        else:
-            return {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.52}
-
 
     
     elif campaign_name == "onmobilautoios" and event_name == "jr95xb_login":
@@ -2071,7 +2073,7 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
     elif campaign_name == "shionauto" and event_name == "10000_revenue":
         from datetime import datetime
         today = datetime.now().weekday()
-        if today in [3, 4]:
+        if today in [1, 5]:
             return {0:37}    
     
 
