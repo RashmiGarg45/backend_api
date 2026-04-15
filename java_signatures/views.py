@@ -1908,15 +1908,15 @@ def get_stats(campaign_name):
             },
 
         "tangledropemodd": {
-            "af_purchase_199": {0: 31, 2: 24},
-            "af_purchase_799": {1: 50, 4: 28},
-            "af_purchase_1499": {3: 90},
+            "af_purchase_199": {0: 47, 1: 24},
+            "af_purchase_799": {1: 31, 2: 19, 3: 16.6},
+            "af_purchase_1499": {1: 90, 2: 31, 3: 24},
         },
 
         "tangledropeiosmodd": {
-            "af_purchase_199": {1: 31, 3: 24},
-            "af_purchase_799": {2: 50, 5: 28},
-            "af_purchase_1499": {4: 90},
+            "af_purchase_199": {0: 47, 1: 24},
+            "af_purchase_799": {1: 31, 2: 19, 3: 16.6},
+            "af_purchase_1499": {1: 90, 2: 31, 3: 24},
         },
         "titanfincorpmodd": {
             "lms_loan_application_disburse": {0: 90, 1: 33, 2: 25}
