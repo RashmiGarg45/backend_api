@@ -2138,10 +2138,10 @@ def camp_wise_stats(campaign_name, event_name, channel, network, offer_id,Pay_ou
         return {0:30, 1: 18.5, 2:15}
 
     elif campaign_name == "tangledropemodd" and event_name == "af_purchase_199":
-        return {0: 31, 2: 24}
+        return  {0: 31, 1: 19}
 
     elif campaign_name == "tangledropeiosmodd" and event_name == "af_purchase_199":
-        return {0: 31, 2: 24}
+        return  {0: 31, 1: 19}
         
     
     campaign_stats = get_stats(campaign_name)
