@@ -1939,6 +1939,9 @@ def get_stats(campaign_name):
 
         "jazzcashmodd": {
             "L1_registration_successful": {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.52}
+        },
+        "happybingoiosmodd": {
+            "af_ftd": {0: 33, 1: 25, 2: 20}
         }
 
 
