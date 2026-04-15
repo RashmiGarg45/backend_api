@@ -1934,7 +1934,7 @@ def get_stats(campaign_name):
             "first_deposit": {0: 31, 1: 20, 2: 15.83}
         },
         "justfoodappmetrica": {
-            "kf_payment_success": {0: 50, 1: 33, 2: 25}
+            "kf_payment_success": {0: 90, 1: 45}
         }
 
 
