@@ -1947,6 +1947,10 @@ def get_stats(campaign_name):
            "sm_first_payment_success" : {0:45, 1:27}
             },
 
+        "fxproiosdirectmodd": {
+            "depositfirst_suc": {0: 31, 1: 24, 2: 19},
+            "40_spread": {3: 90},
+        }
 
 
     }
