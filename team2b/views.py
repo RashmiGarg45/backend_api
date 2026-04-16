@@ -684,9 +684,9 @@ class AppsForSimulation(APIView):
 
             data[app] = {}
 
-            if today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=1)),{}).get('TR'):
+            if today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=2)),{}).get('TR'):
                 data[app] = {}
-                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=1)),{}).get('TR')
+                dict__['i2'] = today_r6_data.get(app,{}).get(str(date.today() - timedelta(days=2)),{}).get('TR')
             
             key = app +'_'+type
 
