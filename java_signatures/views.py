@@ -1948,9 +1948,10 @@ def get_stats(campaign_name):
             },
 
         "fxproiosdirectmodd": {
-            "depositfirst_suc": {0: 31, 1: 24, 2: 19},
-            "40_spread": {3: 90},
-        }
+            "depositfirst_suc": {0: 31, 1: 19, 2: 14.28, 3: 11.87},
+            "40_spread": {3: 90, 5: 47},
+            "verification_suc": {0: 19, 1: 9.8, 2:7.5 , 3: 6.5},
+            }
 
 
     }
