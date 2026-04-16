@@ -2955,7 +2955,7 @@ class TrackScript(APIView):
 
         filter_dict = {
             'created_at__gte':start_date,
-            'created_at__lte':end_date + " 23:59:59.999999",
+            'created_at__lte':end_date,
         }
 
         for key in ['campaign_name','channel','network','offer_id']:
