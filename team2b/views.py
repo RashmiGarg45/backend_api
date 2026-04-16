@@ -2968,7 +2968,7 @@ class TrackScript(APIView):
             'campaign_name',
         ]
 
-        data = InstallData.objects.filter(**filter_dict).values(*values_dict)#.annotate(
+        data = InstallData.objects.filter(**filter_dict)#.annotate(
             # install_count=Count('event_name',filter=Q(event_name='Install')),
             # total_count=Count('event_name'),
             # total_revenue=Sum('revenue'),
