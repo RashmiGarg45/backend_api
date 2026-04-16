@@ -1942,7 +1942,10 @@ def get_stats(campaign_name):
         },
         "happybingoiosmodd": {
             "af_ftd": {0: 33, 1: 25, 2: 20}
-        }
+        },
+        "stablemoneynewmodd": {
+           "sm_first_payment_success" : {0:45, 1:27}
+            },
 
 
 
