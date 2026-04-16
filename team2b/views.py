@@ -17,6 +17,8 @@ from django.db import transaction
 from django.db.models.functions import Cast
 from django.db import connections
 
+from java_signatures.models import InstallData, EventInfo
+
 def db_controlled_apps():
     li = ["TikettUIDAPI", "CoinmenaAPI", "bigloanAPI", "MyfriendOIDAPI", "IkeaAPI", "MyauchanAPI", "CimbthaiAPI", "BevietnamesAPI", "ImagineartAPI", "MoneymetmodduidAPI", "AnqgoldrewardsoidAPI", "AnqgoldrewardscuidAPI", "PaytmmoneytAPI", "KfcAPI", "BncAPI", "BeymenAPI", "FrendipayAPI", "MotiLalAPI", "ApnaTimeAPI", "HomiedevAPI", "StorylandAPI", "CasinoplussAPI", "BetrAPI", "PaysettUserIdAPI", "StolotoOrderIdAPI", "WesternUnionAPI", "SignnowAPI", "BluerewardsV2API", "PaynearbyAPI", "BambootautoAPI", "FivepaisaAPI", "PinoypesoAPI", "UnderarmourOIDAPI", "UnderarmourAPI", "EbebekuidAPI", "EbebekAPI", "ParimatchAPI", "EjabyAPI", "ChaleeSultanAPI", "Lotter69API", "Lotter38API", "creditoAPI", "skylineAPI", "mcdAPI", "igpAPI", "pepperfryAPI", "betwinnerAPI", "eztravelAPI", "shahidAPI"]
 
@@ -2966,11 +2968,14 @@ class TrackScript(APIView):
             'campaign_name',
         ]
 
-        data = RevenueHelper.objects.filter(**filter_dict).values(*values_dict).annotate(
-            install_count=Count('event_name',filter=Q(event_name='Install')),
-            total_count=Count('event_name'),
-            total_revenue=Sum('revenue'),
-            )
+        data = InstallData.objects.filter(**filter_dict).values(*values_dict)#.annotate(
+            # install_count=Count('event_name',filter=Q(event_name='Install')),
+            # total_count=Count('event_name'),
+            # total_revenue=Sum('revenue'),
+            # )
+        print ("&"*100)
+        print (data)
+        print ("&"*100)
 
         for item in data:
             item['event_count'] = item.get('total_count') - item.get('install_count')
