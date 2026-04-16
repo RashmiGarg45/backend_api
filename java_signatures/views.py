@@ -1896,7 +1896,11 @@ def get_stats(campaign_name):
             },
 
         "jazzcashiosmodd": {
-            "L1_registration_successful": {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.55}
+            "L1_registration_successful": {            
+                
+                "77ads::azzuremedia::azz-jazz.apr2": {0: 4.18, 1: 2.85, 2: 2.65, 3: 2.55},
+                "*::*::*": {0: 2.18, 1: 1.85, 2: 1.65, 3: 1.55}
+                },
             },
 
         "grandparimodd": {
