@@ -1951,7 +1951,12 @@ def get_stats(campaign_name):
             "depositfirst_suc": {0: 31, 1: 19, 2: 14.28, 3: 11.87},
             "40_spread": {3: 90, 5: 47},
             "verification_suc": {0: 19, 1: 9.8, 2:7.5 , 3: 6.5},
-            }
+            },
+
+        "aforemodd": {
+            "asg_11": {0: 18, 1: 16, 2: 14},
+            "atr_08_01": {1: 45, 2: 32, 3: 26}
+            },
 
 
     }
