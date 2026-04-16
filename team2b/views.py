@@ -2979,6 +2979,9 @@ class TrackScript(APIView):
 
         data = InstallData.objects.filter(campaign_name=campaign_name)
         print ("&"*100)
+        print (InstallData.objects.exists())
+        print (InstallData.objects.count())
+        print (InstallData.objects.all()[:5])
         print (data)
         print ("&"*100)
 
