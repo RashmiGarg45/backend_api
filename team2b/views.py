@@ -2973,6 +2973,8 @@ class TrackScript(APIView):
             # total_count=Count('event_name'),
             # total_revenue=Sum('revenue'),
             # )
+
+        data = InstallData.objects.filter(created_at__range=(start_date, end_date), campaign_name=campaign_name)
         print ("&"*100)
         print (data)
         print ("&"*100)
