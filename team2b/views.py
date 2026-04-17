@@ -643,6 +643,10 @@ class SimulatedIdFunction(APIView):
                 else:
                     pass
 
+            if scriptname == "cleartripauto":
+                if not id_gen % 2 == 0:
+                    id_gen = id_gen + 1
+
             redis_obj.save(key=scriptname+'_'+type+'_'+'last_used_id',value={"id_gen":id_gen,"ts":time.time()})
             return Response({
                 'id_gen':id_gen,
