@@ -903,7 +903,7 @@ def get_stats(campaign_name):
                 "total_transaction": {0: 13, 1: 8.5, 2: 6}
                 },
 
-           "opaymodd": {
+           "opaynewmodd": {
                 "signup_success": {
                     "77ads::dopemobi::7dope-opayy": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
                     "77ads::dopemobi::7dope-opayy2": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
