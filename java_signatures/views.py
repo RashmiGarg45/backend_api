@@ -17,7 +17,7 @@ from django.utils import timezone
 from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
 from django.db import connections
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 def get_signtaure(request):
     data = json.loads(request.body)
@@ -2672,12 +2672,33 @@ class Running_camps_stats(APIView):
         if event_name:
             ev_filter_dict["event_name"] = event_name
 
-        installs_stats = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("installs", "serial")
+        # installs_stats = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("installs", "serial")
 
-        events_stats = EventInfo.objects.filter(offer_serial_id__in = installs_stats["serial"]).values("event_name").annotate(count=Count("id"))
+        # events_stats = EventInfo.objects.filter(offer_serial_id__in = installs_stats["serial"]).values("event_name").annotate(count=Count("id"))
 
 
-        output_data = {"installs" : installs_stats["installs"], "events": events_stats}
+        # output_data = {"installs" : installs_stats["installs"], "events": events_stats}
+
+        installs_qs = InstallData.objects.filter(
+            created_at__range=(from_date, to_date),
+            **filter_dict
+        )
+
+        # total installs
+        total_installs = installs_qs.aggregate(total=Sum("installs"))["total"]
+
+        # events grouped by name
+        events_stats = (
+            EventInfo.objects
+            .filter(offer_serial_id__in=installs_qs.values_list("serial", flat=True))
+            .values("event_name")
+            .annotate(count=Count("id"))
+        )
+
+        output_data = {
+            "installs": total_installs,
+            "events": list(events_stats)
+        }
 
 
 
