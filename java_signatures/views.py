@@ -16,7 +16,8 @@ from django.utils import timezone
 
 from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
-from django.db import connections, Count
+from django.db import connections
+from django.db.models import Count
 
 def get_signtaure(request):
     data = json.loads(request.body)
