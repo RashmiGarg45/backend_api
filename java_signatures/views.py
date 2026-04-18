@@ -1983,7 +1983,7 @@ def get_stats(campaign_name):
             },
 
         "jiofinancemodd": {
-            "JPB_New VKYC_ORN generated Success": {0: 20, 1: 12, 2: 9, 3: 8},
+            "JPB_New VKYC_ORN generated Success": {0: 25, 1: 12, 2: 9, 3: 8},
             "WMC_onboarding_Lumpsum_Transaction_Completed": {0: 100, 1: 50}
         }
 
