@@ -2681,7 +2681,7 @@ class Running_camps_stats(APIView):
 
         print (filter_dict)
 
-        installs_qs = InstallData.objects.filter(created_at__range=(from_date, to_date),campaign_name=campaign_name)
+        installs_qs = InstallData.objects.filter(created_at__range=(from_date, to_date),campaign_name=campaign_name, **filter_dict)
 
         print ("&"*100)
         print (installs_qs)
