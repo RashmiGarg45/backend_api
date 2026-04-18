@@ -2659,12 +2659,12 @@ class Running_camps_stats(APIView):
         output_data = {}
 
         filter_dict = {}
-        if channel:
-            filter_dict["channel"] = channel
-        if network:
-            filter_dict["network"] = network
-        if offer_id:
-            filter_dict["offer_id"] = offer_id
+        # if channel:
+        #     filter_dict["channel"] = channel
+        # if network:
+        #     filter_dict["network"] = network
+        # if offer_id:
+        #     filter_dict["offer_id"] = offer_id
         if campaign_name:
             filter_dict["campaign_name"] = campaign_name
 
