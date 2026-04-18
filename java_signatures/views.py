@@ -2684,6 +2684,10 @@ class Running_camps_stats(APIView):
             **filter_dict
         )
 
+        print ("&"*100)
+        print (installs_qs)
+        print ("&"*100)
+
         # total installs
         total_installs = installs_qs.aggregate(total=Sum("installs"))["total"]
 
