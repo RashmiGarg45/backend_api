@@ -2965,7 +2965,7 @@ class TrackScript(APIView):
         params = {"campaign_name": campaign_name, "from_date": start_date, "to_date": end_date, "channel": channel, "network": network, "offer_id": offer_id}
 
 
-        resp = requests.get("http://54.70.36.111/backend/stats/")
+        resp = requests.get("http://54.70.36.111/backend/stats", params=params)
 
         print ("&"*100)
         print (resp.json())
