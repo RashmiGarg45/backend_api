@@ -2659,8 +2659,8 @@ class Running_camps_stats(APIView):
         output_data = {}
 
         filter_dict = {}
-        # if channel:
-        #     filter_dict["channel"] = channel
+        if channel:
+            filter_dict["channel"] = channel
         # if network:
         #     filter_dict["network"] = network
         # if offer_id:
