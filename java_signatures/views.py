@@ -902,6 +902,26 @@ def get_stats(campaign_name):
                 "total_transaction": {0: 15, 1: 10, 2: 6}
                 },
 
+            "opaynewmodd": {
+                "signup_success": {
+                    "77ads::dopemobi::7dope-opayy": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy2": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy3": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy4": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy5": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy6": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "77ads::dopemobi::7dope-opayy7": {0: 3.7, 1: 3.3, 2: 3, 3: 2.85},
+                    "*::*::*": {0: 3.7, 1: 3.44, 2: 3.3}  # fallback
+                },
+
+                "first_transaction": {
+                    "adshustle::leanmobi::noplenmmp": {0: 7.14, 1: 6.25, 2: 5.67, 3: 5},
+                    "*::*::*": {0: 16.6, 1: 11, 2: 7.14}  # fallback
+                },
+
+                "total_transaction": {0: 15, 1: 10, 2: 6}
+                },
+
             "indigomoddteam2modd": {
                 "af_purchase": {
                     # "mobpine::*::*": {0: 12, 1: 10, 2: 9},
