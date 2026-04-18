@@ -16,7 +16,7 @@ from django.utils import timezone
 
 from java_signatures.models import InstallData, EventInfo, ExchangeRate, InstallDataTZ, EventInfoTZ
 from rest_framework.response import Response
-from django.db import connections
+from django.db import connections, Count
 
 def get_signtaure(request):
     data = json.loads(request.body)
@@ -2671,35 +2671,41 @@ class Running_camps_stats(APIView):
         if event_name:
             ev_filter_dict["event_name"] = event_name
 
-        installs = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("campaign_name", "channel", "network", "offer_id", "created_at", "installs", "serial")
+        installs_stats = InstallData.objects.filter(created_at__range=(from_date, to_date), **filter_dict).values("installs", "serial")
+
+        events_stats = EventInfo.objects.filter(offer_serial_id__in = installs_stats["serial"]).values("event_name").annotate(count=Count("id"))
 
 
-        for row in installs:
-            camp_name = row["campaign_name"]
-            if camp_name not in output_data:
-                output_data[camp_name] = {}
-            offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
-            date_key = row["created_at"].isoformat()
+        output_data = {"installs" : installs_stats["installs"], "events": events_stats}
 
-            if offer_key not in output_data[camp_name]:
-                output_data[camp_name][offer_key] = {}
 
-            if date_key not in output_data[camp_name][offer_key]:
-                output_data[camp_name][offer_key][date_key] = {}
 
-            events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
-            event_data = {}
-            if events:
-                for event in events:
-                    event_name = event["event_name"]
-                    event_day = str(event["event_day"])
+        # for row in installs:
+        #     camp_name = row["campaign_name"]
+        #     if camp_name not in output_data:
+        #         output_data[camp_name] = {}
+        #     offer_key = f"{row['channel']}::{row['network']}::{row['offer_id']}"
+        #     date_key = row["created_at"].isoformat()
 
-                    if event_name not in event_data:
-                        event_data[event_name] = {}
+        #     if offer_key not in output_data[camp_name]:
+        #         output_data[camp_name][offer_key] = {}
 
-                    event_data[event_name][event_day]= event["event_count"]
+        #     if date_key not in output_data[camp_name][offer_key]:
+        #         output_data[camp_name][offer_key][date_key] = {}
 
-            output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
+        #     events = EventInfo.objects.filter(offer_serial_id=row["serial"], **ev_filter_dict).values("event_name", "event_day", "event_count", "revenue", "created_at")
+        #     event_data = {}
+        #     if events:
+        #         for event in events:
+        #             event_name = event["event_name"]
+        #             event_day = str(event["event_day"])
+
+        #             if event_name not in event_data:
+        #                 event_data[event_name] = {}
+
+        #             event_data[event_name][event_day]= event["event_count"]
+
+        #     output_data[camp_name][offer_key][date_key] = {"installs" : row["installs"], "events": event_data}
 
         return Response({"status": 200, "message": "Success", "data": output_data})
     
