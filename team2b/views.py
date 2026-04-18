@@ -2948,6 +2948,11 @@ class ScoreoneMiningAPI(APIView):
 class TrackScript(APIView):
 
     def get(self, request):
+
+
+
+        
+
         from django.db.models import Q,Sum
 
         start_date = request.GET.get('from_date')
@@ -2956,6 +2961,19 @@ class TrackScript(APIView):
         channel = request.GET.get('channel')
         network = request.GET.get('network')
         offer_id = request.GET.get('offer_id')
+
+        params = {"campaign_name": campaign_name, "from_date": start_date, "to_date": end_date, "channel": channel, "network": network, "offer_id", offer_id}
+
+
+        resp = requests.get("http://54.70.36.111/backend/stats/")
+
+        print ("&"*100)
+        print (resp.json())
+        print ("&"*100)
+
+        return Response({
+                'data':{}
+            })
 
         filter_dict = {
             'created_at__gte':start_date,
