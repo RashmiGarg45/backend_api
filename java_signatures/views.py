@@ -2692,7 +2692,7 @@ class Running_camps_stats(APIView):
             EventInfo.objects
             .filter(offer_serial_id__in=installs_qs.values_list("serial", flat=True))
             .values("event_name")
-            .annotate(count=Count("id"))
+            .annotate(count=Count("serial"))
         )
 
         output_data = {
