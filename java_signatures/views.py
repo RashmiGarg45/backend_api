@@ -904,10 +904,10 @@ def get_stats(campaign_name):
 
             "indigomoddteam2modd": {
                 "af_purchase": {
-                    "mobpine::*::*": {0: 12, 1: 10, 2: 9},
-                    "77ads::*::*": {0: 12, 1: 10, 2: 9},
-                    "appamplify::*::*": {0: 12, 1: 10, 2: 9},
-                    "*::*::*": {0: 8, 1: 7.33, 2: 6.14}  # fallback
+                    # "mobpine::*::*": {0: 12, 1: 10, 2: 9},
+                    # "77ads::*::*": {0: 12, 1: 10, 2: 9},
+                    # "appamplify::*::*": {0: 12, 1: 10, 2: 9},
+                    "*::*::*": {0: 16, 1: 14.66, 2: 12.88}
                 }
             },
 
@@ -1961,6 +1961,11 @@ def get_stats(campaign_name):
             "asg_11": {0: 90, 1: 50},
             "atr_08_01": {1: 45, 2: 32, 3: 26}
             },
+
+        "jiofinancemodd": {
+            "JPB_New VKYC_ORN generated Success": {0: 20, 1: 12, 2: 9, 3: 8},
+            "WMC_onboarding_Lumpsum_Transaction_Completed": {0: 100, 1: 50}
+        }
 
 
     }
