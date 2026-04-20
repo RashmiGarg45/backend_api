@@ -1994,7 +1994,7 @@ def get_stats(campaign_name):
                 "first_deposit": {0: 75, 1: 30 , 2: 23, 3: 19}
         },
         "jeniust1iosmodd": {
-            'REGISTRATION_ACCOUNT_ACTIVATION - account_activated': {0: 20, 1: 10, 2: 7, 3: 6}
+            'REGISTRATION_ACCOUNT_ACTIVATION - account_activated': {0: 20, 1: 10, 2: 7, 3: 6.6}
         }
 
 
