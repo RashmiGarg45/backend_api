@@ -1991,7 +1991,7 @@ def get_stats(campaign_name):
         },
 
         "megaparit1iosmodd": {
-                "first_deposit": {0: 75, 1: 30 , 2: 23, 3: 19}
+                "first_deposit": {0: 75, 1: 30 , 2: 23, 3: 19.1}
         },
         "jeniust1iosmodd": {
             'REGISTRATION_ACCOUNT_ACTIVATION - account_activated': {0: 20, 1: 10, 2: 7, 3: 6.6}
