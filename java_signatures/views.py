@@ -1995,6 +1995,11 @@ def get_stats(campaign_name):
         },
         "jeniust1iosmodd": {
             'REGISTRATION_ACCOUNT_ACTIVATION - account_activated': {0: 20, 1: 10, 2: 7, 3: 6.6}
+        },
+ 
+        "trazet1modd": {
+            'af_first_deposit': {0: 100, 1: 50},
+            'af_trade_opened': {0: 200, 1: 100}
         }
 
 
