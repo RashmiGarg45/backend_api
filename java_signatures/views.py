@@ -1988,7 +1988,11 @@ def get_stats(campaign_name):
         "jiofinancemodd": {
             "JPB_New VKYC_ORN generated Success": {0: 25, 1: 12, 2: 9, 3: 8},
             "WMC_onboarding_Lumpsum_Transaction_Completed": {0: 100, 1: 50}
-        }
+        },
+
+        "megaparit1iosmodd": {
+                "first_deposit": {0: 75, 1: 30 , 2: 23, 3: 19}
+            },
 
 
     }
