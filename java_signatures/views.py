@@ -1997,8 +1997,16 @@ def get_stats(campaign_name):
         "trazet1modd": {
             'af_first_deposit': {0: 100, 1: 50},
             'af_trade_opened': {0: 200, 1: 100}
-        }
+        },
 
+        "jeniust1iosmodd": {
+            'REGISTRATION_ACCOUNT_ACTIVATION - account_activated': {0: 25, 1: 12.5, 2: 9.09, 3: 8.34}
+        },
+
+        "aaavpnt1iosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:11.5, 3:9.9}
+        },
+        
 
     }
 
