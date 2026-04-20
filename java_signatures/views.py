@@ -2000,7 +2000,12 @@ def get_stats(campaign_name):
         "trazet1modd": {
             'af_first_deposit': {0: 100, 1: 50},
             'af_trade_opened': {0: 200, 1: 100}
-        }
+        },
+
+        "aaavpnt1iosmodd": {
+            "apphud_trial_started": {0:22.5, 1:15, 2:11.5, 3:9.9}
+        },
+
 
 
     }
