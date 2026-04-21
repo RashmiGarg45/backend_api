@@ -2007,7 +2007,7 @@ def get_stats(campaign_name):
             "apphud_trial_started": {0:22.5, 1:15, 2:11.5, 3:9.9}
         },
 
-        "credito365iosmodd": {
+        "credito365t1iosmodd": {
             'first_loan': {0: 40, 1: 22.23, 2: 18.18, 3: 16.67}
         }
 
