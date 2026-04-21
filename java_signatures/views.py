@@ -2009,7 +2009,15 @@ def get_stats(campaign_name):
 
         "credito365t1iosmodd": {
             'first_loan': {0: 40, 1: 22.23, 2: 18.18, 3: 16.67}
-        }
+        },
+
+        "globoplaytmodd": {
+            'af_purchase': {
+                "adshustle::appsalutes::gblappmmp": {0: 25, 1: 15, 2: 12.3},
+                "*::*::*": {0: 16.6, 1: 10, 2: 8.33, 3: 7.65}   
+            }
+        },
+
 
         
 
