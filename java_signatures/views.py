@@ -2009,7 +2009,7 @@ def get_stats(campaign_name):
 
         "credito365t1iosmodd": {
             'first_loan': {0: 40, 1: 22.23, 2: 18.18, 3: 16},
-             'repeat_loan': {2: 125, 3: 100}
+             'repeat_loan': {3: 150}
         },
 
         "globoplaytmodd": {
