@@ -2287,8 +2287,8 @@ class IndigoV3MiningAPI(APIView):
         if not query:
             query = IndigoV4Mining.objects.filter(used_at=None,departure_date__gte=datetime.now(),flight_type='Domestic').order_by('created_at', 'departure_date').first()
         
-        if not query:
-            return Response({"error": "ID Not Found"})
+        # if not query:
+        #     return Response({"error": "ID Not Found"})
 
         if channel in ["mobpine", "77ads", "appamplify"]:
             bt3_count = IndigoV4Mining.objects.filter(used_at__startswith=datetime.now().strftime('%Y-%m-%d'), channel__in=("mobpine", "77ads", "appamplify")).count()
