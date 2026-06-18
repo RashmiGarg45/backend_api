@@ -10924,10 +10924,19 @@ class MixpanelAPI(APIView):
             event_name = request.data.get("event_name")
             properties = request.data.get("properties", {})
 
-            resp = mp.track(
-                    distinct_id=distinct_id,
+            # mp.track(
+            #         distinct_id=distinct_id,
+            #         event_name=event_name,
+            #         properties=properties
+            #     )
+
+            mp.import_data(
+                    api_key="",
+                    distinct_id=str(distinct_id),
                     event_name=event_name,
-                    properties=properties
+                    timestamp=int(time.time()),
+                    properties=properties,
+                    api_secret="18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
                 )
 
             return Response({
