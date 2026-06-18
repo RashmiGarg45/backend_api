@@ -10861,7 +10861,6 @@ class GrandPariAPI(APIView):
             'id':query.id,
         })
     
-
 class GalaxyMiningStatsAPI(APIView):
     def put(self, request):
         query = GalaxyMiningStats()
@@ -10912,3 +10911,22 @@ class JazzcashOldNumbersAPI(APIView):
         return Response({
             'body':data,
         })
+
+from mixpanel import Mixpanel
+
+mp = Mixpanel("b03db26d93006bad9d8f03edc0a11648")
+
+class MixpanelAPI(APIView):
+    def post(self, request):
+        event_name = request.data.get("event_name")
+        properties = request.data.get("properties", {})
+
+        resp = mp.track(
+                event_name=event_name,
+                properties=properties
+            )
+
+        return Response({
+                "success": True,
+                "resp": resp.text
+            })
