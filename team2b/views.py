@@ -10951,7 +10951,7 @@ class MixpanelAPI(APIView):
 import base64
 SERVICE_ACCOUNT_USERNAME = "server-side.7a77c2.mp-service-account"
 SERVICE_ACCOUNT_SECRET = "18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
-PROJECT_ID = "b03db26d93006bad9d8f03edc0a11648"
+PROJECT_ID = "2824021"
 
 credentials = base64.b64encode(
     f"{SERVICE_ACCOUNT_USERNAME}:{SERVICE_ACCOUNT_SECRET}".encode()
