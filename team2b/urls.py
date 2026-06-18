@@ -259,6 +259,6 @@ urlpatterns = [
     path("jazzcashold", views.JazzcashOldNumbersAPI.as_view(), name="jazz"),
 
 
-    path("analytics/track", views.MixpanelAPI.as_view(), name="mixpanel")
+    path("analytics/track", views.MixpanelAPI.as_view(), name="mixpanel"),
     path("analytics/trackV2", views.MixpanelAPIV2.as_view(), name="mixpanel")
 ]
