@@ -10920,10 +10920,12 @@ class MixpanelAPI(APIView):
     def post(self, request):
         print ("hey")
         try:
+            distinct_id = request.data.get("distinct_id")
             event_name = request.data.get("event_name")
             properties = request.data.get("properties", {})
 
             resp = mp.track(
+                    distinct_id=distinct_id,
                     event_name=event_name,
                     properties=properties
                 )
