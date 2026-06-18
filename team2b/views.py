@@ -10946,3 +10946,51 @@ class MixpanelAPI(APIView):
                 })
         except Exception as e:
             print (e)
+
+
+import base64
+SERVICE_ACCOUNT_USERNAME = "server-side.7a77c2.mp-service-account"
+SERVICE_ACCOUNT_SECRET = "18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
+PROJECT_ID = "b03db26d93006bad9d8f03edc0a11648"
+
+credentials = base64.b64encode(
+    f"{SERVICE_ACCOUNT_USERNAME}:{SERVICE_ACCOUNT_SECRET}".encode()
+).decode()
+
+class MixpanelAPIV2(APIView):
+
+    def post(self, request):
+        print ("hey 2")
+        try:
+            distinct_id = request.data.get("distinct_id")
+            event_name = request.data.get("event_name")
+            properties = request.data.get("properties", {})
+
+            payload = [{
+                "event": event_name,
+                "properties": {
+                    "distinct_id": str(distinct_id),
+                    "time": int(time.time()),
+                    **properties
+                }
+            }]
+
+            response = requests.post(
+                "https://api.mixpanel.com/import",
+                params={"project_id": PROJECT_ID, "strict": 1},
+                headers={
+                    "Authorization": f"Basic {credentials}",
+                    "Content-Type": "application/json"
+                },
+                json=payload
+            )
+
+            print (response.json())
+
+        
+            return Response({
+                    "success": True,
+                })
+        except Exception as e:
+            print (e)
+

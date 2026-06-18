@@ -260,4 +260,5 @@ urlpatterns = [
 
 
     path("analytics/track", views.MixpanelAPI.as_view(), name="mixpanel")
+    path("analytics/trackV2", views.MixpanelAPIV2.as_view(), name="mixpanel")
 ]
