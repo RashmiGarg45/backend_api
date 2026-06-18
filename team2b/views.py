@@ -10932,7 +10932,6 @@ class MixpanelAPI(APIView):
 
             return Response({
                     "success": True,
-                    "resp": resp.text
                 })
         except Exception as e:
             print (e)
