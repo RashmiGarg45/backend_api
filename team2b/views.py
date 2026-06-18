@@ -10948,7 +10948,7 @@ class MixpanelAPI(APIView):
             print (e)
 
 
-import base64
+import base64, uuid
 # SERVICE_ACCOUNT_USERNAME = "server-side.7a77c2.mp-service-account"
 # SERVICE_ACCOUNT_SECRET = "18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
 
@@ -10976,6 +10976,7 @@ class MixpanelAPIV2(APIView):
                 "properties": {
                     "distinct_id": str(distinct_id),
                     "time": int(time.time()),
+                    "$insert_id": str(uuid.uuid4()),
                     **properties
                 }
             }]
