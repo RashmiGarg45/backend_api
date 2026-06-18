@@ -10916,6 +10916,8 @@ from mixpanel import Mixpanel
 
 mp = Mixpanel("b03db26d93006bad9d8f03edc0a11648")
 
+# 18tupmbdCC1GowgCucPgI3OGzQdwiT5T
+
 class MixpanelAPI(APIView):
     def post(self, request):
         print ("hey")
@@ -10931,7 +10933,7 @@ class MixpanelAPI(APIView):
             #     )
 
             mp.import_data(
-                    api_key="b03db26d93006bad9d8f03edc0a11648",
+                    api_key="",
                     distinct_id=str(distinct_id),
                     event_name=event_name,
                     timestamp=int(time.time()),
