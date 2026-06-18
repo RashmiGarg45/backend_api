@@ -10938,7 +10938,7 @@ class MixpanelAPI(APIView):
                     event_name=event_name,
                     timestamp=int(time.time()),
                     properties=properties,
-                    api_secret="18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
+                    api_secret="570e1132dc3da15255848d8ee128ca40"
                 )
 
             return Response({
