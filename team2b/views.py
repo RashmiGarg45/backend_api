@@ -10918,15 +10918,19 @@ mp = Mixpanel("b03db26d93006bad9d8f03edc0a11648")
 
 class MixpanelAPI(APIView):
     def post(self, request):
-        event_name = request.data.get("event_name")
-        properties = request.data.get("properties", {})
+        print ("hey")
+        try:
+            event_name = request.data.get("event_name")
+            properties = request.data.get("properties", {})
 
-        resp = mp.track(
-                event_name=event_name,
-                properties=properties
-            )
+            resp = mp.track(
+                    event_name=event_name,
+                    properties=properties
+                )
 
-        return Response({
-                "success": True,
-                "resp": resp.text
-            })
+            return Response({
+                    "success": True,
+                    "resp": resp.text
+                })
+        except Exception as e:
+            print (e)
