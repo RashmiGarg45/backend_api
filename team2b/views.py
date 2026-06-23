@@ -10914,32 +10914,34 @@ class JazzcashOldNumbersAPI(APIView):
 
 from mixpanel import Mixpanel
 
-mp = Mixpanel("b03db26d93006bad9d8f03edc0a11648")
+Project_token = "b03db26d93006bad9d8f03edc0a11648"
+API_SECRET = "570e1132dc3da15255848d8ee128ca40"
 
-# 18tupmbdCC1GowgCucPgI3OGzQdwiT5T
+
+mp = Mixpanel(Project_token)
+
 
 class MixpanelAPI(APIView):
     def post(self, request):
-        print ("hey")
         try:
             distinct_id = request.data.get("distinct_id")
             event_name = request.data.get("event_name")
             properties = request.data.get("properties", {})
 
-            # mp.track(
-            #         distinct_id=distinct_id,
-            #         event_name=event_name,
-            #         properties=properties
-            #     )
-
-            mp.import_data(
-                    api_key="",
-                    distinct_id=str(distinct_id),
+            mp.track(
+                    distinct_id=distinct_id,
                     event_name=event_name,
-                    timestamp=int(time.time()),
-                    properties=properties,
-                    api_secret="570e1132dc3da15255848d8ee128ca40"
+                    properties=properties
                 )
+
+            # mp.import_data(
+            #         api_key="",
+            #         distinct_id=str(distinct_id),
+            #         event_name=event_name,
+            #         timestamp=int(time.time()),
+            #         properties=properties,
+            #         api_secret=API_SECRET
+            #     )
 
             return Response({
                     "success": True,
@@ -10949,13 +10951,9 @@ class MixpanelAPI(APIView):
 
 
 import base64, uuid
-# SERVICE_ACCOUNT_USERNAME = "server-side.7a77c2.mp-service-account"
-# SERVICE_ACCOUNT_SECRET = "18tupmbdCC1GowgCucPgI3OGzQdwiT5T"
 
 SERVICE_ACCOUNT_USERNAME = "new_server.8d9999.mp-service-account"
 SERVICE_ACCOUNT_SECRET = "qPvKusheqAIW2Msxma8Noju1KbOiFSFE"
-
-
 PROJECT_ID = "2824021"
 
 credentials = base64.b64encode(
@@ -10965,7 +10963,6 @@ credentials = base64.b64encode(
 class MixpanelAPIV2(APIView):
 
     def post(self, request):
-        print ("hey 2")
         try:
             distinct_id = request.data.get("distinct_id")
             event_name = request.data.get("event_name")
