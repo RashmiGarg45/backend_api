@@ -10997,3 +10997,52 @@ class MixpanelAPIV2(APIView):
         except Exception as e:
             print (e)
 
+
+class Moengage(APIView):
+
+    def post(self, request):
+        try:
+            user_id = request.data.get("distinct_id")
+            event_name = request.data.get("event_name")
+            properties = request.data.get("properties", {})
+            WORKSPACE_ID = "TSFY2VC9V92FOFD50MON1WNV"
+            API_KEY = "iN6Dj9UhPHA3mB7uvggNJIdk"
+            auth = base64.b64encode(f"{WORKSPACE_ID}:{API_KEY}".encode()).decode()
+
+            current_time = str(int(time.time()*1000))
+            data = {
+                "type": "event", # required
+                "customer_id": user_id, # required
+                "actions": [
+                    {
+                    "action": event_name, # required
+                    "attributes": properties,
+                    "platform": "Android",
+                    "app_version": "1.2.3",
+                    "user_time": current_time,
+                    "user_timezone_offset": 19800,
+
+                    "current_time": current_time,
+                    }
+                ]
+                }
+
+            response = requests.post(
+                "https://api-01.moengage.com/v1/event/TSFY2VC9V92FOFD50MON1WNV",
+                headers = {
+                            "Authorization": f"Basic {auth}",
+                            "Content-Type": "application/json"
+                        },
+                params={},
+                json= json.dumps(data)
+            )
+
+            print (response.json())
+
+        
+            return Response({
+                    "success": True,
+                })
+        except Exception as e:
+            print (e)
+
